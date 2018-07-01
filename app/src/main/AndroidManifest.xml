@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".View.MainActivity"
+            android:name=".View.Home.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,6 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".View.MeowBoxStory.MeowBoxStoryActivity"
+            android:label="@string/title_activity_meow_box_story"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".View.MeowBoxReview.MeowBoxReviewActivity"
+            android:label="@string/title_activity_meow_box_review"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

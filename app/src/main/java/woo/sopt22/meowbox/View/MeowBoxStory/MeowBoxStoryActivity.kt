@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.app_bar_meow_box_story.*
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
+import woo.sopt22.meowbox.View.Order.OrderActivity
 
 class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -60,18 +61,23 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
                 // Handle the camera action
             }
             R.id.homeBtn -> {
-                var intent : Intent =  Intent(this, MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                var intent =  Intent(this, MainActivity::class.java)
+                /*intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)*/
                 startActivity(intent)
+                finish()
             }
             R.id.stroyBtn -> {
-                startActivity(Intent(this, MeowBoxStoryActivity::class.java))
+                //startActivity(Intent(this, MeowBoxStoryActivity::class.java))
             }
             R.id.orderBtn -> {
-
+                startActivity(Intent(this, OrderActivity::class.java))
+                finish()
             }
             R.id.reviewBtn -> {
-                startActivity(Intent(this, MeowBoxReviewActivity::class.java))
+                var intent = Intent(this, MeowBoxReviewActivity::class.java)
+                startActivity(intent)
+                finish()
             }
 
         }

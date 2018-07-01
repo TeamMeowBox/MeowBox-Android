@@ -1,5 +1,6 @@
-package woo.sopt22.meowbox.View
+package woo.sopt22.meowbox.View.Home
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -11,6 +12,8 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import woo.sopt22.meowbox.R
+import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
+import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -20,19 +23,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
+        // actionBar 타이틀 가리기
 
 
         var headerView : View = nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
         userName.text = "이승우"
 
-
-
-
-
-
-
-        
 
 
         val toggle = ActionBarDrawerToggle(
@@ -51,11 +48,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-/*    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }*/
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
@@ -77,13 +70,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
             R.id.stroyBtn -> {
-
+                startActivity(Intent(this, MeowBoxStoryActivity::class.java))
             }
             R.id.orderBtn -> {
 
             }
             R.id.reviewBtn -> {
-
+                startActivity(Intent(this, MeowBoxReviewActivity::class.java))
             }
 
         }

@@ -8,12 +8,15 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
+import woo.sopt22.meowbox.View.Order.OrderActivity
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -28,6 +31,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         var headerView : View = nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+
+
         userName.text = "이승우"
 
 
@@ -73,7 +78,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(this, MeowBoxStoryActivity::class.java))
             }
             R.id.orderBtn -> {
-
+                startActivity(Intent(this, OrderActivity::class.java))
             }
             R.id.reviewBtn -> {
                 startActivity(Intent(this, MeowBoxReviewActivity::class.java))

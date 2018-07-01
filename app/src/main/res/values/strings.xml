@@ -8,4 +8,5 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_meow_box_story">MeowBoxStoryActivity</string>
     <string name="title_activity_meow_box_review">MeowBoxReviewActivity</string>
+    <string name="title_activity_meow_box_detail">MeowBoxDetailActivity</string>
 </resources>

@@ -27,6 +27,11 @@
             android:name=".View.MeowBoxReview.MeowBoxReviewActivity"
             android:label="@string/title_activity_meow_box_review"
             android:theme="@style/AppTheme" />
+        <activity android:name=".View.Order.OrderActivity" />
+        <activity
+            android:name=".View.MeowBoxDetail.MeowBoxDetailActivity"
+            android:label="@string/title_activity_meow_box_detail"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

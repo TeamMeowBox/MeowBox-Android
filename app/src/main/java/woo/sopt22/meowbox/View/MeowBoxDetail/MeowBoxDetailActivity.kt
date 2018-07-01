@@ -1,4 +1,4 @@
-package woo.sopt22.meowbox.View.MeowBoxReview
+package woo.sopt22.meowbox.View.MeowBoxDetail
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,20 +9,19 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_meow_box_review.*
-import kotlinx.android.synthetic.main.app_bar_meow_box_review.*
+import kotlinx.android.synthetic.main.activity_meow_box_detail.*
+import kotlinx.android.synthetic.main.app_bar_meow_box_detail.*
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.Order.OrderActivity
 
-class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_meow_box_review)
+        setContentView(R.layout.activity_meow_box_detail)
         setSupportActionBar(toolbar)
-        getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
 
 
         val toggle = ActionBarDrawerToggle(

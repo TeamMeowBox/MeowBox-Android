@@ -1,26 +1,27 @@
-package woo.sopt22.meowbox.View.MeowBoxStory
+package woo.sopt22.meowbox.View.Order
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_meow_box_story.*
-import kotlinx.android.synthetic.main.app_bar_meow_box_story.*
+import kotlinx.android.synthetic.main.activity_order_first.*
+import kotlinx.android.synthetic.main.app_bar_order_first.*
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.View.Home.MainActivity
-import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
+import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 
-class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_meow_box_story)
+        setContentView(R.layout.activity_order_first)
         setSupportActionBar(toolbar)
-        getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
 
 
 
@@ -59,29 +60,26 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
                 // Handle the camera action
             }
             R.id.homeBtn -> {
-                var intent =  Intent(this, MainActivity::class.java)
-                /*intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)*/
+                var intent  =  Intent(this, MainActivity::class.java)
+                //intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
                 finish()
             }
             R.id.stroyBtn -> {
-                //startActivity(Intent(this, MeowBoxStoryActivity::class.java))
+                startActivity(Intent(this, MeowBoxStoryActivity::class.java))
+                finish()
             }
             R.id.orderBtn -> {
-                startActivity(Intent(this, OrderActivity::class.java))
-                finish()
+              /*  startActivity(Intent(this, OrderFirstActivity::class.java))
+                finish()*/
             }
             R.id.reviewBtn -> {
-                var intent = Intent(this, MeowBoxReviewActivity::class.java)
-                startActivity(intent)
-                finish()
+                //startActivity(Intent(this, MeowBoxReviewActivity::class.java))
             }
             R.id.myPageBtn->{
                 startActivity(Intent(this, MyPageActivity::class.java))
                 finish()
             }
-
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)

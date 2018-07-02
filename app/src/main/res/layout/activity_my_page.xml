@@ -5,43 +5,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".View.Order.OrderActivity">
+    tools:context=".View.MyPage.MyPageActivity"
+    android:orientation="vertical">
+
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:background="#ffffffff">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="#ffffffff"
             app:popupTheme="@style/AppTheme.PopupOverlay" >
 
             <TextView
-                android:id="@+id/orderBackBtn"
+                android:id="@+id/myPageBackBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#000000"
                 android:text="뒤로"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MeowBox"
+                android:text="마이페이지"
                 android:layout_gravity="center_horizontal"
                 android:textSize="18sp"
-                android:textColor="#ffffff"/>
+                android:textColor="#000000"/>
 
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
-
-    <TextView
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="주문하기"/>
 
 </LinearLayout>

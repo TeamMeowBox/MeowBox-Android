@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".View.Home.MainActivity">
 
+
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:backgroundTint="#ffffffff"
+        android:background="#07000000">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" >
+            app:elevation="0dp"
+            android:layout_height="?attr/actionBarSize">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -24,7 +27,7 @@
                 android:text="MeowBox"
                 android:layout_gravity="center_horizontal"
                 android:textSize="18sp"
-                android:textColor="#ffffff"/>
+                android:textColor="#FF000000"/>
 
         </android.support.v7.widget.Toolbar>
 
@@ -33,4 +36,4 @@
     <include layout="@layout/content_main" />
 
 
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

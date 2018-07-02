@@ -21,6 +21,11 @@
         <item
             android:id="@+id/reviewBtn"
             android:title="미유박스 후기" />
+        <item
+            android:title=" " />
+        <item
+            android:id="@+id/myPageBtn"
+            android:title="마이페이지" />
     </group>
 
 

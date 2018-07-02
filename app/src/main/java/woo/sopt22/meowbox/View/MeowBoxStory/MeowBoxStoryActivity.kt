@@ -13,6 +13,7 @@ import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
+import woo.sopt22.meowbox.View.Order.OrderFirstActivity
 
 class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -69,7 +70,7 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
                 //startActivity(Intent(this, MeowBoxStoryActivity::class.java))
             }
             R.id.orderBtn -> {
-                startActivity(Intent(this, OrderActivity::class.java))
+                startActivity(Intent(this, OrderFirstActivity::class.java))
                 finish()
             }
             R.id.reviewBtn -> {

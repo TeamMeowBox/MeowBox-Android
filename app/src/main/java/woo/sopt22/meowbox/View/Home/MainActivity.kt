@@ -17,6 +17,7 @@ import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
+import woo.sopt22.meowbox.View.Order.OrderFirstActivity
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -96,7 +97,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(this, MeowBoxStoryActivity::class.java))
             }
             R.id.orderBtn -> {
-                startActivity(Intent(this, OrderActivity::class.java))
+                startActivity(Intent(this, OrderFirstActivity::class.java))
             }
             R.id.reviewBtn -> {
                 startActivity(Intent(this, MeowBoxReviewActivity::class.java))

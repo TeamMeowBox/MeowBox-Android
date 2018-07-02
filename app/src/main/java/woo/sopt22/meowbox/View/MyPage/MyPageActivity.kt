@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_my_page.*
 import kotlinx.android.synthetic.main.app_bar_my_page.*
+import woo.sopt22.meowbox.R
 
 class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 

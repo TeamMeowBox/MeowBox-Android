@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
+import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
@@ -13,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.content_main.*
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
@@ -20,6 +22,8 @@ import woo.sopt22.meowbox.View.Order.OrderActivity
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    lateinit var mViewPager : ViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +35,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         var headerView : View = nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+
+        //희현카드뷰
+        mViewPager = viewpager as ViewPager
+
+        var items : ArrayList<CardData>
+        items = ArrayList();
+        items.add(CardData(R.drawable.ip0))
+        items.add(CardData(R.drawable.ip1))
+        items.add(CardData(R.drawable.ip2))
+
+        var madapter = CardViewAdapter(layoutInflater, items)
+        mViewPager.adapter = madapter
+
 
 
         userName.text = "이승우"

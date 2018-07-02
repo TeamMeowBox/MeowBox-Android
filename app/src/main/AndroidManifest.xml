@@ -36,6 +36,7 @@
             android:name=".View.MyPage.MyPageActivity"
             android:label="@string/title_activity_my_page"
             android:theme="@style/AppTheme" />
+        <activity android:name=".View.MyPage.MySettingActivity"></activity>
     </application>
 
 </manifest>

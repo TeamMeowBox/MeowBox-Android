@@ -1,5 +1,6 @@
 package woo.sopt22.meowbox.View.MyPage
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -8,20 +9,33 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import kotlinx.android.synthetic.main.activity_my_page.*
 import kotlinx.android.synthetic.main.app_bar_my_page.*
+import kotlinx.android.synthetic.main.content_my_page.*
+import woo.sopt22.meowbox.R
+import woo.sopt22.meowbox.View.Home.MainActivity
+import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
+import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
+import woo.sopt22.meowbox.View.Order.OrderFirstActivity
 
-class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+    override fun onClick(p0: View?) {
+        when(p0){
+            mypage_setting -> {
+                val intent = Intent(applicationContext, MySettingActivity::class.java)
+                startActivity(intent);
+            }
+        }
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
+
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -29,6 +43,8 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        mypage_setting.setOnClickListener(this)
     }
 
     override fun onBackPressed() {
@@ -39,11 +55,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.my_page, menu)
-        return true
-    }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
@@ -58,22 +70,30 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
-            R.id.nav_camera -> {
+            R.id.loginBtn -> {
                 // Handle the camera action
             }
-            R.id.nav_gallery -> {
-
+            R.id.homeBtn -> {
+                var intent =  Intent(this, MainActivity::class.java)
+                /*intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)*/
+                startActivity(intent)
+                finish()
             }
-            R.id.nav_slideshow -> {
-
+            R.id.stroyBtn -> {
+                startActivity(Intent(this, MeowBoxStoryActivity::class.java))
+                finish()
             }
-            R.id.nav_manage -> {
-
+            R.id.orderBtn -> {
+                startActivity(Intent(this, OrderFirstActivity::class.java))
+                finish()
             }
-            R.id.nav_share -> {
-
+            R.id.reviewBtn -> {
+                var intent = Intent(this, MeowBoxReviewActivity::class.java)
+                startActivity(intent)
+                finish()
             }
-            R.id.nav_send -> {
+            R.id.myPageBtn->{
 
             }
         }

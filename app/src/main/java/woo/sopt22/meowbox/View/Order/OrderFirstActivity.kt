@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.app_bar_order_first.*
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
+import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 
 class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 

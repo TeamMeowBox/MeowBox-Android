@@ -8,10 +8,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:background="@drawable/ip2"
+        android:background="#FFFFFF"
         android:layout_height="match_parent">
-
-
         <include layout="@layout/content_main" />
 
     <android.support.design.widget.AppBarLayout

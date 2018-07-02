@@ -23,6 +23,8 @@
         android:background="#707070"/>
 
     <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="22dp"
         android:layout_below="@+id/order_name"
@@ -77,11 +79,43 @@
             android:textSize="16dp"
             android:textColor="#4C4E51"/>
 
-
-
-
+        <EditText
+            android:id="@+id/order_cat_name"
+            android:paddingBottom="15dp"
+            android:hint="고양이 이름"
+            android:layout_width="222dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"/>
 
 
    </LinearLayout>
 
+
+    <RelativeLayout
+        android:id="@+id/order_name_next_btn"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#E68789">
+
+        <TextView
+            android:id="@+id/order_name_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="다음"
+            android:textSize="18dp"
+            android:textColor="#FFFFFF"
+            android:textStyle="normal"
+            android:layout_centerInParent="true"/>
+
+        <ImageView
+            android:layout_marginLeft="8dp"
+            android:layout_width="13dp"
+            android:layout_height="14dp"
+            android:src="@drawable/next_arrow"
+            android:layout_toRightOf="@+id/order_name_next"
+            android:layout_centerVertical="true"/>
+
+
+    </RelativeLayout>
 </RelativeLayout>

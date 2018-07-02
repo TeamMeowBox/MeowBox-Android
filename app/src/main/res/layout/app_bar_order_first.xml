@@ -23,7 +23,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MeowBox"
+                android:text="주문하기"
                 android:layout_gravity="center_horizontal"
                 android:textSize="16sp"
                 android:textColor="#4C4E51"/>

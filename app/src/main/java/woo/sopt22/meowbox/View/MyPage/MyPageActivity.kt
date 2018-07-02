@@ -12,8 +12,9 @@ import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_my_page.*
 import kotlinx.android.synthetic.main.app_bar_my_page.*
-import kotlinx.android.synthetic.main.content_my_page.*
+
 import woo.sopt22.meowbox.R
+import kotlinx.android.synthetic.main.content_my_page.*
 import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity

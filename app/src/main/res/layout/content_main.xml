@@ -10,11 +10,14 @@
     tools:context=".View.Home.MainActivity"
     app:umanoPanelHeight="60dp"
     app:umanoShadowHeight="40dp"
+
     android:gravity="bottom"
     tools:showIn="@layout/app_bar_main">
 
     <RelativeLayout
         android:background="@android:color/holo_blue_light"
+        android:layout_marginTop="60dp"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -23,14 +26,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
+<<<<<<< HEAD
+=======
             android:paddingLeft="0dp"
             android:paddingRight="0dp"
+>>>>>>> 1067ed2eccbe5045a9b1f936bcc941c200123f12
             />
 
     </RelativeLayout>
 
     <include
         layout="@layout/sliding_layout"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />

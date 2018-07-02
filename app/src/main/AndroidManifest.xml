@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="woo.sopt22.meowbox">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -36,7 +38,7 @@
             android:name=".View.MyPage.MyPageActivity"
             android:label="@string/title_activity_my_page"
             android:theme="@style/AppTheme" />
-        <activity android:name=".View.MyPage.MySettingActivity"></activity>
+        <activity android:name=".View.MyPage.MySettingActivity" />
     </application>
 
 </manifest>

@@ -25,7 +25,7 @@
                 android:text="MeowBox"
                 android:layout_gravity="center_horizontal"
                 android:textSize="18sp"
-                android:textColor="#FF000000"/>
+                android:textColor="#00ff0000"/>
 
         </android.support.v7.widget.Toolbar>
 

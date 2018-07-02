@@ -10,4 +10,5 @@
     <string name="title_activity_meow_box_review">MeowBoxReviewActivity</string>
     <string name="title_activity_meow_box_detail">MeowBoxDetailActivity</string>
     <string name="title_activity_order_first">OrderFirstActivity</string>
+    <string name="title_activity_my_page">MyPageActivity</string>
 </resources>

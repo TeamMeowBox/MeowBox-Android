@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.app_bar_meow_box_detail.*
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
-import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 import woo.sopt22.meowbox.View.Order.OrderFirstActivity
 
 class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {

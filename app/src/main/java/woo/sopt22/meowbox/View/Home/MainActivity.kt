@@ -1,9 +1,13 @@
 package woo.sopt22.meowbox.View.Home
 
 import android.content.Intent
-import android.content.pm.PackageManager
+
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.v4.content.res.ResourcesCompat
+import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
@@ -16,6 +20,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_order_first.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import woo.sopt22.meowbox.R
@@ -41,7 +46,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
 
-        var headerView : View = nav_view.getHeaderView(0)
+        var headerView : View = main_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
 
         //희현카드뷰
@@ -63,16 +68,34 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer_layout.addDrawerListener(toggle)
+                this, main_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+
+        toggle.setDrawerIndicatorEnabled(false)
+        val drawable = ResourcesCompat.getDrawable(resources, R.drawable.side_bar_btn_black, applicationContext!!.getTheme())
+
+        val bitmap = (drawable as BitmapDrawable).bitmap
+        val newdrawable = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, 30, 30, true))
+
+        toggle.setHomeAsUpIndicator(drawable)
+        toggle.setToolbarNavigationClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                if (main_drawer_layout.isDrawerVisible(GravityCompat.START)) {
+                    main_drawer_layout.closeDrawer(GravityCompat.START)
+                } else {
+                    main_drawer_layout.openDrawer(GravityCompat.START)
+                }
+            }
+        })
+
+        main_drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
-        nav_view.setNavigationItemSelectedListener(this)
+        main_nav_view.setNavigationItemSelectedListener(this)
     }
 
     override fun onBackPressed() {
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
+        if (main_drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            main_drawer_layout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }
@@ -114,7 +137,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         }
 
-        drawer_layout.closeDrawer(GravityCompat.START)
+        main_drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
 

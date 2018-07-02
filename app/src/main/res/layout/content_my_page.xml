@@ -17,12 +17,11 @@
         android:orientation="horizontal"
         >
         
-        <ImageView
+        <woo.sopt22.meowbox.View.MyPage.CircleImageView
             android:id="@+id/mypage_profile_img"
             android:layout_width="51dp"
             android:layout_height="51dp"
             android:src="@drawable/pro1"
-            android:scaleType="fitXY"
             android:layout_gravity="center"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
@@ -90,8 +89,8 @@
         <ImageView
             android:id="@+id/story_order_btn"
             android:src="@drawable/story_order_btn"
-            android:layout_width="80dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="30dp"/>

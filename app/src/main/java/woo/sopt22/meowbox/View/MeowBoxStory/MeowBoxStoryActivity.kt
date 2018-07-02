@@ -2,19 +2,18 @@ package woo.sopt22.meowbox.View.MeowBoxStory
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_meow_box_story.*
 import kotlinx.android.synthetic.main.app_bar_meow_box_story.*
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
-import woo.sopt22.meowbox.View.Order.OrderActivity
+import woo.sopt22.meowbox.View.MyPage.MyPageActivity
+import woo.sopt22.meowbox.View.Order.OrderFirstActivity
 
 class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -71,12 +70,16 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
                 //startActivity(Intent(this, MeowBoxStoryActivity::class.java))
             }
             R.id.orderBtn -> {
-                startActivity(Intent(this, OrderActivity::class.java))
+                startActivity(Intent(this, OrderFirstActivity::class.java))
                 finish()
             }
             R.id.reviewBtn -> {
                 var intent = Intent(this, MeowBoxReviewActivity::class.java)
                 startActivity(intent)
+                finish()
+            }
+            R.id.myPageBtn->{
+                startActivity(Intent(this, MyPageActivity::class.java))
                 finish()
             }
 

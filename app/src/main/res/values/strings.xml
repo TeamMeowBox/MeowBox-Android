@@ -13,4 +13,6 @@
     <string name="title_activity_my_page">MyPageActivity</string>
     <string name="title_activity_order_second">OrderSecondActivity</string>
     <string name="title_activity_order_third">OrderThirdActivity</string>
+    <string name="title_activity_order_four">OrderFourActivity</string>
+    <string name="title_activity_order_five">OrderFiveActivity</string>
 </resources>

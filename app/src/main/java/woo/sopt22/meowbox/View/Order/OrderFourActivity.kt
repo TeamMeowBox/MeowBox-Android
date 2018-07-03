@@ -13,49 +13,66 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.RadioGroup
 import android.widget.RelativeLayout
-import kotlinx.android.synthetic.main.activity_order_third.*
-import kotlinx.android.synthetic.main.app_bar_order_third.*
-import kotlinx.android.synthetic.main.content_order_third.*
+import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_order_four.*
+import kotlinx.android.synthetic.main.app_bar_order_four.*
+import kotlinx.android.synthetic.main.content_order_four.*
 import woo.sopt22.meowbox.R
+import android.widget.RadioButton
 import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 
-class OrderThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+
+class OrderFourActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!){
-            order_third_previeous_btn->{
+            order_four_previeous_btn->{
                 finish()
             }
-            order_third_next_btn->{
-                startActivity(Intent(this, OrderFourActivity::class.java))
+            order_four_next_btn->{
+                Toast.makeText(this, radio_button.text.trim(), Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, OrderFiveActivity::class.java))
             }
         }
     }
 
+    lateinit var radio_group : RadioGroup
+    lateinit var radio_button : RadioButton
 
-    lateinit var order_third_previeous_btn : RelativeLayout
-    lateinit var order_third_next_btn : RelativeLayout
+    lateinit var order_four_previeous_btn : RelativeLayout
+    lateinit var order_four_next_btn : RelativeLayout
+    var id : Int?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_order_third)
+        setContentView(R.layout.activity_order_four)
         setSupportActionBar(toolbar)
 
+        // 타이틀바 없애기
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
 
 
-        order_third_previeous_btn = order_period_previous as RelativeLayout
-        order_third_next_btn = order_period_next as RelativeLayout
+        radio_group = order_four_pay_method as RadioGroup
+        id = radio_group.checkedRadioButtonId
 
-        order_third_previeous_btn.setOnClickListener(this)
-        order_third_next_btn.setOnClickListener(this)
+        order_four_previeous_btn = order_pay_previous as RelativeLayout
+        order_four_next_btn = order_pay_next as RelativeLayout
+
+        order_four_previeous_btn.setOnClickListener(this)
+        order_four_next_btn.setOnClickListener(this)
+
+        radio_button = findViewById<View>(id!!) as RadioButton
+
+
+
 
 
         val toggle = ActionBarDrawerToggle(
-                this, order_third_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        order_third_drawer_layout.addDrawerListener(toggle)
+                this, order_four_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        order_four_drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
         toggle.setDrawerIndicatorEnabled(false)
@@ -67,21 +84,20 @@ class OrderThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         toggle.setHomeAsUpIndicator(drawable)
         toggle.setToolbarNavigationClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                if (order_third_drawer_layout.isDrawerVisible(GravityCompat.START)) {
-                    order_third_drawer_layout.closeDrawer(GravityCompat.START)
+                if (order_four_drawer_layout.isDrawerVisible(GravityCompat.START)) {
+                    order_four_drawer_layout.closeDrawer(GravityCompat.START)
                 } else {
-                    order_third_drawer_layout.openDrawer(GravityCompat.START)
+                    order_four_drawer_layout.openDrawer(GravityCompat.START)
                 }
             }
         })
 
-        order_third_nav_view.setNavigationItemSelectedListener(this)
-
+        order_four_nav_view.setNavigationItemSelectedListener(this)
     }
 
     override fun onBackPressed() {
-        if (order_third_drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            order_third_drawer_layout.closeDrawer(GravityCompat.START)
+        if (order_four_drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            order_four_drawer_layout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }
@@ -119,7 +135,7 @@ class OrderThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             }
         }
 
-        order_third_drawer_layout.closeDrawer(GravityCompat.START)
+        order_four_drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
 }

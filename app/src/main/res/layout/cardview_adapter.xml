@@ -25,15 +25,15 @@
                 android:src="@drawable/ip0"/>
 
 
-            <Button
-                android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="104dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginLeft="23dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:id="@+id/titleTextView"
-
-                android:text="Button" />
+                android:id="@+id/home_detail_btn"
+                android:src="@drawable/home_detail_btn_gray"
+                />
         </RelativeLayout>
 
         <ImageView

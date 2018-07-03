@@ -12,20 +12,18 @@
         android:layout_height="match_parent">
         <include layout="@layout/content_main" />
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#00ffffff"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        android:background="#00ffffff">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:background="#00ffffff"
+            android:background="@drawable/toolbar_bg"
             android:backgroundTint="#00ffffff"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
+            android:layout_height="?attr/actionBarSize"
+
+
+            android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -36,8 +34,6 @@
                 android:textColor="#000000"/>
 
         </android.support.v7.widget.Toolbar>
-
-    </android.support.design.widget.AppBarLayout>
 
 
 

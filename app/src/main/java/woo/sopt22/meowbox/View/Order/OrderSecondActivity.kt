@@ -29,8 +29,8 @@ class OrderSecondActivity : AppCompatActivity(), NavigationView.OnNavigationItem
             order_second_previeous_btn->{
                 finish()
             }
-            order_secondnext_btn->{
-
+            order_second_next_btn->{
+                startActivity(Intent(this, OrderThirdActivity::class.java))
             }
         }
     }
@@ -39,11 +39,21 @@ class OrderSecondActivity : AppCompatActivity(), NavigationView.OnNavigationItem
     lateinit var month_spinner : Spinner
     lateinit var day_spinner : Spinner
     lateinit var order_second_previeous_btn : RelativeLayout
-    lateinit var order_secondnext_btn : RelativeLayout
+    lateinit var order_second_scroll : ScrollView
+    lateinit var order_second_next_btn : RelativeLayout
+
+    override fun onResume() {
+        super.onResume()
+        order_second_scroll = order_second_scrollview as ScrollView
+        order_second_scroll.fullScroll(ScrollView.FOCUS_UP)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_second)
         setSupportActionBar(toolbar)
+        getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
+        getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
 
 
         year_spinner = order_second_year as Spinner
@@ -51,10 +61,11 @@ class OrderSecondActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         day_spinner = order_second_day as Spinner
 
         order_second_previeous_btn = order_etc_previous as RelativeLayout
-        order_secondnext_btn = order_etc_next as RelativeLayout
+        order_second_next_btn = order_etc_next as RelativeLayout
+
 
         order_second_previeous_btn.setOnClickListener(this)
-        order_secondnext_btn.setOnClickListener(this)
+        order_second_next_btn.setOnClickListener(this)
 
 
 

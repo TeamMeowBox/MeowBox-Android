@@ -27,6 +27,7 @@
                 android:text="마이페이지"
                 android:textStyle="bold"
                 android:textSize="16dp"
+                android:layout_gravity="center_horizontal"
                 android:textColor="#4C4E51"/>
 
         </android.support.v7.widget.Toolbar>

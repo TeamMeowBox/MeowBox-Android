@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".View.Order.OrderFourActivity"
+    tools:showIn="@layout/app_bar_order_four">
+
+
+
+        <ScrollView
+            android:layout_above="@+id/order_four_bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:id="@+id/order_period"
+                        android:layout_marginRight="22dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="20.5dp"
+                        android:layout_width="164dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/order_four_step_pay"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:background="#707070"/>
+
+
+
+                    <LinearLayout
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginRight="22dp"
+                        android:layout_below="@+id/order_period"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="28dp"
+                                android:text="미유박스를 받기 위한"
+                                android:textColor="#4C4E51"/>
+
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="정보"
+                                android:textStyle="bold"
+                                android:textSize="28dp"
+                                android:textColor="#4C4E51"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="28dp"
+                                android:text="를 입력해주세요"
+                                android:textColor="#4C4E51"/>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_marginTop="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="*"
+                                android:textSize="14dp"
+                                android:textColor="#E68789"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="필수항목(*)은 꼭 입력해주세요"
+                                android:textSize="14dp"
+                                android:textColor="#E68789"/>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="49dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="48dp"
+                                android:layout_height="wrap_content"
+                                android:text="주문자"
+                                android:textSize="16dp"
+                                android:textColor="#4C4E51"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="*"
+                                android:textSize="13dp"
+                                android:textColor="#E68789"
+                                />
+
+                            
+                            <EditText
+                                android:id="@+id/order_four_name"
+                                android:layout_marginLeft="62dp"
+                                android:layout_width="208dp"
+                                android:layout_height="25dp"
+                                android:background="@drawable/edittext_background"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="31dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="48dp"
+                                android:layout_height="wrap_content"
+                                android:text="주소"
+                                android:textSize="16dp"
+                                android:textColor="#4C4E51"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="*"
+                                android:textSize="13dp"
+                                android:textColor="#E68789"
+                                />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+
+                                <EditText
+                                    android:id="@+id/order_four_address_one"
+                                    android:layout_marginLeft="62dp"
+                                    android:layout_width="208dp"
+                                    android:layout_height="25dp"
+                                    android:background="@drawable/edittext_background"/>
+
+                                <EditText
+                                    android:id="@+id/order_four_address_two"
+                                    android:layout_marginTop="11dp"
+                                    android:layout_marginLeft="62dp"
+                                    android:layout_width="208dp"
+                                    android:layout_height="25dp"
+                                    android:background="@drawable/edittext_background"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="29dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="휴대전화"
+                                android:textSize="16dp"
+                                android:textColor="#4C4E51"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="*"
+                                android:textSize="13dp"
+                                android:textColor="#E68789"
+                                />
+
+
+                            <EditText
+                                android:id="@+id/order_four_phone_number"
+                                android:layout_marginLeft="50dp"
+                                android:layout_width="208dp"
+                                android:layout_height="25dp"
+                                android:background="@drawable/edittext_background"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="29dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="이메일"
+                                android:textSize="16dp"
+                                android:textColor="#4C4E51"/>
+
+                            <EditText
+                                android:id="@+id/order_four_email"
+                                android:layout_marginLeft="71dp"
+                                android:layout_width="208dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/edittext_background"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="29dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="결제수단"
+                                android:textSize="16dp"
+                                android:textColor="#4C4E51"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="*"
+                                android:textSize="13dp"
+                                android:textColor="#E68789"
+                                />
+
+                            <LinearLayout
+                                android:layout_marginLeft="45dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <RadioGroup
+                                    android:id="@+id/order_four_pay_method"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <RadioButton
+                                        android:id="@+id/order_four_credit_pay"
+                                        android:paddingLeft="-20dp"
+                                        android:layout_marginLeft="-30dp"
+                                        android:layout_marginRight="-20dp"
+                                        android:text="                                                               신용카드   "
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:scaleX="0.8"
+                                        android:scaleY="0.8"
+                                        android:buttonTint="#E68789"
+                                        android:checked="true"/>
+
+                                    <RadioButton
+                                        android:id="@+id/order_four_phone_pay"
+                                        android:paddingLeft="-20dp"
+                                        android:layout_marginLeft="-30dp"
+                                        android:text="                                                           휴대폰 결제   "
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:scaleX="0.8"
+                                        android:scaleY="0.8"
+                                        android:buttonTint="#E68789"/>
+
+                                </RadioGroup>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#EFEDED"
+                            android:layout_marginTop="40dp"
+                            />
+
+                        <LinearLayout
+                            android:layout_marginTop="15dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="배송비"
+                                android:textSize="14dp"
+                                android:textColor="#4C4E51"
+                                />
+
+                            <TextView
+                                android:id="@+id/order_four_delivery_charge"
+                                android:layout_gravity="right"
+                                android:gravity="right"
+                                android:textSize="14dp"
+                                android:textColor="#E68789"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0 원"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="15dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="총 할인 금액"
+                                android:textColor="#4C4E51"
+                                android:textSize="14dp"
+                                />
+
+                            <TextView
+                                android:id="@+id/order_four_discounted_charge"
+                                android:layout_gravity="right"
+                                android:gravity="right"
+                                android:textSize="14dp"
+                                android:textColor="#E68789"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0 원"/>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#EFEDED"
+                            android:layout_marginTop="16dp"
+                            />
+
+                        <LinearLayout
+                            android:layout_marginTop="15dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="총 결제 금액"
+                                android:textSize="18dp"
+                                android:textColor="#4C4E51"
+                                android:textStyle="bold"
+                                />
+
+                            <TextView
+                                android:id="@+id/order_four_total_charge"
+                                android:layout_gravity="right"
+                                android:gravity="right"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:textColor="#E68789"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="38,500 원"/>
+                        </LinearLayout>
+
+
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/order_four_bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true">
+
+            <RelativeLayout
+                android:id="@+id/order_pay_previous"
+                android:background="#EFEDED"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이전"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="22dp"
+                    android:textColor="#4C4E51"
+                    android:textSize="18dp"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/order_pay_next"
+                android:background="#E68789"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/order_second_next_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="완료"
+                    android:textSize="18dp"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginLeft="148dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="22dp"
+                    android:layout_centerVertical="true"/>
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+
+
+</RelativeLayout>

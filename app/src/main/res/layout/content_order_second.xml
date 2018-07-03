@@ -9,6 +9,7 @@
     tools:showIn="@layout/app_bar_order_second">
 
     <ScrollView
+        android:id="@+id/order_second_scrollview"
         android:layout_above="@+id/order_second_bottom_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -248,8 +249,9 @@
             android:id="@+id/order_etc_previous"
             android:background="#EFEDED"
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -264,11 +266,12 @@
         </RelativeLayout>
 
         <RelativeLayout
+
             android:id="@+id/order_etc_next"
             android:background="#E68789"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2">
+            android:layout_weight="2"
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/order_second_next_text"

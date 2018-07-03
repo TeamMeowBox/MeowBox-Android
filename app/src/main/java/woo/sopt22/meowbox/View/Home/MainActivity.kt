@@ -74,15 +74,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //희현카드뷰
         mViewPager = viewpager as ViewPager
 
+        var imgUrl1 = "https://post-phinf.pstatic.net/MjAxNzA0MjFfMTMx/MDAxNDkyNzAxMjI0NzA3.Q_bmK_EvjtxtFpT30CNtyBsJBfGkAieooME9VDfoKHYg.nrXNY37E18mt1g6nbwDpHN7kQAwmDr9Q2RPLKWkw_2wg.JPEG/1492696692724.jpg?type=w1200" as String
+        var imgUrl2 = "https://post-phinf.pstatic.net/MjAxNzA0MjFfMTc2/MDAxNDkyNzAxMjI1MDA4.IS9AxBl-5bs1-h3PbJssvfm5xmcsUAkkLMg-qIJ9KVsg.h8_rW0zPTvO74wQ5yH_K3TRAJVJUcGT6Z_hldpv_GRgg.JPEG/1492696688049.jpg?type=w1200" as String
+        var imgUrl3 = "https://post-phinf.pstatic.net/MjAxNzA0MjFfMTI1/MDAxNDkyNzAxMjI1MTY0.femsgEnFQWPK7szY4kZ0_6uSgXqCaDNyAPZt5Pp-ebMg.oRMiRH-aga5cGKJc8OSOabjZv1Nf0AO7XUFGe7sVa_cg.JPEG/1492696687282.jpg?type=w1200" as String
+
         var items : ArrayList<CardData>
         items = ArrayList();
-        items.add(CardData(R.drawable.ip0))
-        items.add(CardData(R.drawable.ip1))
-        items.add(CardData(R.drawable.ip2))
-        items.add(CardData(R.drawable.ip0))
-        items.add(CardData(R.drawable.ip1))
+        items.add(CardData(imgUrl1))
+        items.add(CardData(imgUrl2))
+        items.add(CardData(imgUrl3))
+        items.add(CardData(imgUrl1))
+        items.add(CardData(imgUrl2))
 
-        mViewPager.setPadding(0,0,300,0)
+        mViewPager.setPadding(0,0,100,0)
         var madapter = CardViewAdapter(layoutInflater, items)
         mViewPager.adapter = madapter
         mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
@@ -97,10 +101,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 when(position){
                     (items.size-2)->{
-                        mViewPager.setPadding((300 * positionOffset).toInt(),0,300 - (300*positionOffset).toInt(),0)
+                        mViewPager.setPadding((100 * positionOffset).toInt(),0,100 - (100*positionOffset).toInt(),0)
                     }
                     (items.size-1)->{
-                        mViewPager.setPadding(300,0,0,0)
+                        mViewPager.setPadding(100,0,0,0)
                     }
 
                 }

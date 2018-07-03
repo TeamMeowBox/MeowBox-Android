@@ -1,6 +1,8 @@
 package woo.sopt22.meowbox.View.MeowBoxDetail
 
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -21,6 +23,8 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_meow_box_detail)
         setSupportActionBar(toolbar)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            window.statusBarColor = Color.BLACK
 
 
         val toggle = ActionBarDrawerToggle(

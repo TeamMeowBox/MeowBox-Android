@@ -19,7 +19,9 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import android.R.attr.bitmap
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.os.Build
 import android.widget.RelativeLayout
 import kotlinx.android.synthetic.main.content_order_first.*
 
@@ -38,6 +40,8 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_first)
         setSupportActionBar(toolbar)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            window.statusBarColor = Color.BLACK
 
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)

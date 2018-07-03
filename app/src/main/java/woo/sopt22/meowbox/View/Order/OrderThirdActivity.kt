@@ -2,7 +2,9 @@ package woo.sopt22.meowbox.View.Order
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -41,6 +43,8 @@ class OrderThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_third)
         setSupportActionBar(toolbar)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            window.statusBarColor = Color.BLACK
 
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)

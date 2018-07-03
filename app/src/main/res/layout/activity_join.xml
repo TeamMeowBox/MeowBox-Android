@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.Login.JoinActivity">
+
+    <ScrollView
+        android:layout_above="@+id/order_four_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="회원가입"
+                    android:textSize="16dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="15dp"
+                    android:layout_alignParentBottom="true" />
+
+                <ImageView
+                    android:id="@+id/join_x_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/x_btn"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="15dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="22dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#D4D4D4"
+                    android:layout_alignParentBottom="true">
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="회원가입"
+                           android:textStyle="bold"
+                            android:textSize="28dp"
+                            android:textColor="#4C4E51"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="28dp"
+                            android:text="을 위한"
+                            android:textColor="#4C4E51"/>
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="28dp"
+                        android:text="정보를 입력해주세요"
+                        android:textColor="#4C4E51"/>
+
+
+
+
+                    <LinearLayout
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*"
+                            android:textSize="14dp"
+                            android:textColor="#E68789"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="필수항목(*)은 꼭 입력해주세요"
+                            android:textSize="14dp"
+                            android:textColor="#E68789"/>
+
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_marginTop="49dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/join_namebox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="이름"
+                            android:textSize="16dp"
+                            android:textColor="#4C4E51"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/join_namebox"
+                            android:text="*"
+                            android:textSize="13dp"
+                            android:textColor="#E68789"
+                            />
+
+
+                        <EditText
+                            android:id="@+id/join_name"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="22dp"
+                            android:layout_width="208dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/edittext_background"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_marginTop="31dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/join_phonebox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="휴대전화"
+                            android:textSize="16dp"
+                            android:textColor="#4C4E51"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/join_phonebox"
+                            android:text="*"
+                            android:textSize="13dp"
+                            android:textColor="#E68789"
+                            />
+
+
+                        <EditText
+                            android:id="@+id/join_phone"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="22dp"
+                            android:layout_width="208dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/edittext_background"/>
+
+                    </RelativeLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="#D4D4D4"
+                        android:layout_marginTop="31dp"
+                        >
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_marginTop="31dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/join_emailbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="이메일"
+                            android:textSize="16dp"
+                            android:textColor="#4C4E51"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/join_emailbox"
+                            android:text="*"
+                            android:textSize="13dp"
+                            android:textColor="#E68789"
+                            />
+
+
+                        <EditText
+                            android:id="@+id/join_email"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="22dp"
+                            android:layout_width="208dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/edittext_background"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="(아이디)"
+                            android:textSize="14dp"
+                            android:textColor="#999999"
+                            android:layout_below="@+id/join_emailbox"
+                            />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_marginTop="31dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/join_pwbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="비밀번호"
+                            android:textSize="16dp"
+                            android:textColor="#4C4E51"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/join_pwbox"
+                            android:text="*"
+                            android:textSize="13dp"
+                            android:textColor="#E68789"
+                            />
+
+
+                        <EditText
+                            android:id="@+id/join_password"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="22dp"
+                            android:layout_width="208dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/edittext_background"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/join_btn"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#E68789">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="가입하기"
+            android:textSize="18dp"
+            android:textColor="#FFFFFF"
+            android:textStyle="normal"
+            android:layout_centerInParent="true"/>
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

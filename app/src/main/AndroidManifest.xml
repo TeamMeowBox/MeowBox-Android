@@ -59,7 +59,8 @@
             android:name=".View.Order.OrderFiveActivity"
             android:label="@string/title_activity_order_five"
             android:theme="@style/AppTheme" />
-        <activity android:name=".View.Login.LoginActivity"></activity>
+        <activity android:name=".View.Login.LoginActivity" />
+        <activity android:name=".View.Login.JoinActivity"></activity>
     </application>
 
 </manifest>

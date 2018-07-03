@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toolbar.bringToFront()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            window.statusBarColor = Color.TRANSPARENT
+        window.statusBarColor = Color.BLACK
 
 
         //허가 요청

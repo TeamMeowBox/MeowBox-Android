@@ -46,7 +46,7 @@ class OrderFourActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
     lateinit var order_four_previeous_btn : RelativeLayout
     lateinit var order_four_next_btn : RelativeLayout
-    var id : Int?=null
+    //var id : Int?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_four)
@@ -59,16 +59,16 @@ class OrderFourActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
 
 
-        radio_group = order_four_pay_method as RadioGroup
+      /*  radio_group = order_four_pay_method as RadioGroup
         id = radio_group.checkedRadioButtonId
 
         order_four_previeous_btn = order_pay_previous as RelativeLayout
-        order_four_next_btn = order_pay_next as RelativeLayout
+        order_four_next_btn = order_pay_next as RelativeLayout*/
 
         order_four_previeous_btn.setOnClickListener(this)
         order_four_next_btn.setOnClickListener(this)
 
-        radio_button = findViewById<View>(id!!) as RadioButton
+        //radio_button = findViewById<View>(id!!) as RadioButton
 
 
 

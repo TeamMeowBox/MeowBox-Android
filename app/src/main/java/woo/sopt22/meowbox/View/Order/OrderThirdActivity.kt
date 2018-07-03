@@ -50,11 +50,11 @@ class OrderThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
 
 
-        order_third_previeous_btn = order_period_previous as RelativeLayout
+        /*order_third_previeous_btn = order_period_previous as RelativeLayout
         order_third_next_btn = order_period_next as RelativeLayout
 
         order_third_previeous_btn.setOnClickListener(this)
-        order_third_next_btn.setOnClickListener(this)
+        order_third_next_btn.setOnClickListener(this)*/
 
 
         val toggle = ActionBarDrawerToggle(

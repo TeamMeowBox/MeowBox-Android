@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:text="안녕하세요"
-            android:textSize="14sp"/>
+            android:textSize="14dp"/>
 
             <TextView
                 android:layout_gravity="left"
@@ -50,6 +50,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textColor="#000000"
+                android:textSize="14dp"
                 android:text="온풍이 집사 한승미님"/>
 
         </LinearLayout>
@@ -147,62 +148,70 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="21dp"
         android:id="@+id/mypage_order_btn"
         android:layout_width="match_parent"
         android:layout_marginLeft="22dp"
         android:layout_marginRight="22dp"
-        android:layout_height="40dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColor="#4C4E51"
+            android:textSize="17dp"
             android:text="주문내역"/>
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="34dp"
         android:id="@+id/mypage_suggest_btn"
         android:layout_width="match_parent"
         android:layout_marginLeft="22dp"
         android:layout_marginRight="22dp"
-        android:layout_height="40dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColor="#4C4E51"
+            android:textSize="17dp"
             android:text="미유박스에 제안"/>
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="34dp"
         android:id="@+id/mypage_qna_btn"
         android:layout_width="match_parent"
         android:layout_marginLeft="22dp"
         android:layout_marginRight="22dp"
-        android:layout_height="40dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColor="#4C4E51"
+            android:textSize="17dp"
             android:text="자주묻는 질문"/>
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="34dp"
         android:id="@+id/mypage_setting_btn"
         android:layout_width="match_parent"
         android:layout_marginLeft="22dp"
         android:layout_marginRight="22dp"
-        android:layout_height="40dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColor="#4C4E51"
+            android:textSize="17dp"
             android:text="설정"/>
     </LinearLayout>
 

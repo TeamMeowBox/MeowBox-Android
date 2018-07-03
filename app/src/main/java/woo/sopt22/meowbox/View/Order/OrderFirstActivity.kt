@@ -18,12 +18,16 @@ import android.support.v4.content.res.ResourcesCompat
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.R.attr.bitmap
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.os.Build
+import android.support.v4.app.Fragment
+import android.widget.FrameLayout
 import android.widget.RelativeLayout
 import kotlinx.android.synthetic.main.content_order_first.*
+import woo.sopt22.meowbox.View.Order.Fragment.OrderFirstFragment
 
 
 class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -37,29 +41,35 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         }
     }
 
+
+    companion object {
+        var mContext: Context?=null
+    }
     lateinit var order_next_btn : RelativeLayout
+    lateinit var container : FrameLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_first)
         setSupportActionBar(toolbar)
+        mContext = this
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             window.statusBarColor = Color.BLACK
 
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
 
-        order_next_btn = order_name_next_btn as RelativeLayout
-        order_next_btn.setOnClickListener(this)
+        /*order_next_btn = order_name_next_btn as RelativeLayout
+        order_next_btn.setOnClickListener(this)*/
+
+        container = order_framge as FrameLayout
+
+        replaceFragment(OrderFirstFragment())
 
 
         val toggle = ActionBarDrawerToggle(
                 this, order_first_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
 
-        /*toggle.setDrawerIndicatorEnabled(false)
-        toggle.setHomeAsUpIndicator(R.drawable.back_btn)
-        toggle.setDrawerIndicatorEnabled(true)
-        toggle.setToolbarNavigationClickListener {
-        }*/
+
 
         toggle.setDrawerIndicatorEnabled(false)
         val drawable = ResourcesCompat.getDrawable(resources, R.drawable.side_bar_btn_black, applicationContext!!.getTheme())
@@ -84,6 +94,20 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
 
         order_first_nav_view.setNavigationItemSelectedListener(this)
+    }
+
+    fun addFragment(fragment : Fragment){
+        val fm = supportFragmentManager
+        val transaction = fm.beginTransaction()
+        transaction.add(R.id.order_framge, fragment)
+        transaction.commit()
+    }
+
+    fun replaceFragment(fragment : Fragment){
+        val fm = supportFragmentManager
+        val transaction = fm.beginTransaction()
+        transaction.replace(R.id.order_framge, fragment)
+        transaction.commit()
     }
 
     override fun onBackPressed() {

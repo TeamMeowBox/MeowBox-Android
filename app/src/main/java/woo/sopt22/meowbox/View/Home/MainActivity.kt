@@ -79,6 +79,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         items.add(CardData(R.drawable.ip0))
         items.add(CardData(R.drawable.ip1))
         items.add(CardData(R.drawable.ip2))
+        items.add(CardData(R.drawable.ip0))
+        items.add(CardData(R.drawable.ip1))
 
         mViewPager.setPadding(0,0,300,0)
         var madapter = CardViewAdapter(layoutInflater, items)
@@ -86,12 +88,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(state: Int) {
 
+
             }
 
             override fun onPageSelected(position: Int) {
             }
 
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                when(position){
+                    (items.size-2)->{
+                        mViewPager.setPadding((300 * positionOffset).toInt(),0,300 - (300*positionOffset).toInt(),0)
+                    }
+                    (items.size-1)->{
+                        mViewPager.setPadding(300,0,0,0)
+                    }
+
+                }
 
             }
 

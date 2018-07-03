@@ -59,8 +59,7 @@
             android:name=".View.Order.OrderFiveActivity"
             android:label="@string/title_activity_order_five"
             android:theme="@style/AppTheme" />
-        <activity android:name=".View.Login.LoginActivity"
-            android:windowSoftInputMode="adjustResize"></activity>
+        <activity android:name=".View.Login.LoginActivity"></activity>
     </application>
 
 </manifest>

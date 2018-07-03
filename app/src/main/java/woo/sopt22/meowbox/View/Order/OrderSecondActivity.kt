@@ -2,8 +2,10 @@ package woo.sopt22.meowbox.View.Order
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.media.SoundPool
+import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -54,6 +56,8 @@ class OrderSecondActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         setSupportActionBar(toolbar)
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            window.statusBarColor = Color.BLACK
 
 
         year_spinner = order_second_year as Spinner

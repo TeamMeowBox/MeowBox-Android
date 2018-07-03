@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.content.res.ResourcesCompat
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Build
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
@@ -49,6 +50,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
         toolbar.bringToFront()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        window.statusBarColor = Color.BLACK
+
 
         //허가 요청
         val list = listOf<String>(

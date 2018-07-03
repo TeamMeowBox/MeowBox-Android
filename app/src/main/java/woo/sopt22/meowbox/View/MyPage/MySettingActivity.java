@@ -2,6 +2,8 @@ package woo.sopt22.meowbox.View.MyPage;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +36,8 @@ public class MySettingActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_my_setting);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            getWindow().setStatusBarColor(Color.BLACK);
 
         ImageView profileImage = (ImageView) findViewById(R.id.mysetting_profile);
 

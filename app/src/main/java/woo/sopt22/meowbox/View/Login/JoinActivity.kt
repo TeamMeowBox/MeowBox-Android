@@ -24,17 +24,22 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var joinEmail : EditText
     lateinit var joinPwd : EditText
 
-    var jName : String = ""
-    var jPhone : String = ""
-    var jEmail : String = ""
-    var jPwd : String = ""
+    lateinit var jName : String
+    lateinit var jPhone : String
+    lateinit var jEmail : String
+    lateinit var jPwd : String
 
     override fun onClick(v: View?) {
         when(v!!){
             joinBtn->{
                 startActivity(Intent(this, LoginActivity::class.java))
-                Toast.makeText(this, jName+" "+jPhone+" "+
-                        jEmail+" "+jPwd, Toast.LENGTH_SHORT).show()
+
+                jName = joinName.text.toString()
+                jPhone = joinPhone.text.toString()
+                jEmail = joinEmail.text.toString()
+                jPwd = joinPwd.text.toString()
+
+                Toast.makeText(this, jName+" "+jPhone+" "+jEmail+" "+jPwd, Toast.LENGTH_SHORT).show()
             }
             joinCloseBtn->{
                 startActivity(Intent(this, LoginActivity::class.java))
@@ -59,11 +64,6 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
         joinPhone = join_phone as EditText
         joinEmail = join_email as EditText
         joinPwd = join_password as EditText
-
-        jName = joinName.text.toString()
-        jPhone = joinPhone.text.toString()
-        jEmail = joinEmail.text.toString()
-        jPwd = joinPwd.text.toString()
 
 
     }

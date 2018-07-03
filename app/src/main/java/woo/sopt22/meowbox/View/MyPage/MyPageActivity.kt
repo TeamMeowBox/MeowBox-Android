@@ -1,12 +1,15 @@
 package woo.sopt22.meowbox.View.MyPage
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
 import android.media.Image
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -41,6 +44,9 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         setContentView(R.layout.activity_my_page)
         setSupportActionBar(toolbar)
 
+        getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
+        getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
+
         var profileImage = mypage_profile_img as ImageView
 
         var imgUrlex = "https://www.petmd.com/sites/default/files/petmd-cat-happy.jpg" as String
@@ -54,18 +60,35 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
 
         val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer_layout.addDrawerListener(toggle)
+                this, mypage_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        mypage_drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
-        nav_view.setNavigationItemSelectedListener(this)
+        toggle.setDrawerIndicatorEnabled(false)
+        val drawable = ResourcesCompat.getDrawable(resources, R.drawable.side_bar_btn_black, applicationContext!!.getTheme())
+
+        val bitmap = (drawable as BitmapDrawable).bitmap
+        val newdrawable = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, 30, 30, true))
+
+        toggle.setHomeAsUpIndicator(drawable)
+        toggle.setToolbarNavigationClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                if (mypage_drawer_layout.isDrawerVisible(GravityCompat.START)) {
+                    mypage_drawer_layout.closeDrawer(GravityCompat.START)
+                } else {
+                    mypage_drawer_layout.openDrawer(GravityCompat.START)
+                }
+            }
+        })
+
+        mypage_nav_view.setNavigationItemSelectedListener(this)
 
         mypage_setting.setOnClickListener(this)
     }
 
     override fun onBackPressed() {
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
+        if (mypage_drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            mypage_drawer_layout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }
@@ -114,7 +137,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
         }
 
-        drawer_layout.closeDrawer(GravityCompat.START)
+        mypage_drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
 }

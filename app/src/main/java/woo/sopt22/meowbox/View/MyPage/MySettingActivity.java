@@ -47,8 +47,10 @@ public class MySettingActivity extends AppCompatActivity{
         ImageView myXButton = (ImageView) findViewById(R.id.mysetting_x_btn);
         myXButton.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View v){
-            Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
-            startActivity(intent);
+            /*Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
+            startActivity(intent);*/
+            // 여기 finish()로 해도 될듯?
+                    finish();
         }
         });
 

@@ -14,6 +14,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_my_page.*
 import kotlinx.android.synthetic.main.app_bar_my_page.*
 
@@ -41,6 +42,10 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         setSupportActionBar(toolbar)
 
         var profileImage = mypage_profile_img as ImageView
+
+        var imgUrlex = "https://www.petmd.com/sites/default/files/petmd-cat-happy.jpg" as String
+        Glide.with(profileImage).load(imgUrlex).into(profileImage)
+
 
 
 

@@ -13,6 +13,7 @@ import woo.sopt22.meowbox.View.Home.MainActivity;
 import woo.sopt22.meowbox.View.Login.LoginActivity;
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity;
 
+
 public class LoginCustomDialog extends Dialog implements View.OnClickListener{
     private static final int LAYOUT = R.layout.login_dialog_custom;
 
@@ -37,7 +38,6 @@ public class LoginCustomDialog extends Dialog implements View.OnClickListener{
         popLoginBtn.setOnClickListener(this);
 
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){

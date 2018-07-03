@@ -51,8 +51,8 @@ class OrderFiveActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
 
-        order_five_home = order_five_home_btn as RelativeLayout
-        order_five_home.setOnClickListener(this)
+      /*  order_five_home = order_five_home_btn as RelativeLayout
+        order_five_home.setOnClickListener(this)*/
 
 
 

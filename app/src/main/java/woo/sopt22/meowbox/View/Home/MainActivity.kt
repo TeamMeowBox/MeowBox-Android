@@ -1,5 +1,6 @@
 package woo.sopt22.meowbox.View.Home
 
+import android.content.Context
 import android.content.Intent
 
 import android.graphics.Bitmap
@@ -8,6 +9,7 @@ import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.content.res.ResourcesCompat
 import android.content.pm.PackageManager
+import android.os.Build
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
@@ -19,6 +21,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_order_first.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -35,6 +38,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     lateinit var mViewPager : ViewPager
 
+    private val PermissionRequestCode = 123
+    private lateinit var managePermissions : ManagePermissions
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -42,6 +48,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
         toolbar.bringToFront()
+
+        //허가 요청
+        val list = listOf<String>(
+                android.Manifest.permission.INTERNET
+        )
+
+        managePermissions = ManagePermissions(this, list, PermissionRequestCode)
+
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                managePermissions.checkPermissions()
+
+
+
+
+
+
         // actionBar 타이틀 가리기
 
 
@@ -141,8 +163,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        when (requestCode){
+            PermissionRequestCode ->{
+                val isPermissionsGranted = managePermissions.processPermissionsResult(requestCode, permissions as Array<String>, grantResults)
+                if(isPermissionsGranted){
+                    // Do the task now
+                    toast("Permissions granted.")
+                }else{
+                    toast("Permissions denied.")
+                }
+                return
+            }
+        }
+    }
 
 
 
+
+}
+
+fun Context.toast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
 

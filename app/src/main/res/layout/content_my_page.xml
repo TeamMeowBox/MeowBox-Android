@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="22dp"
-    android:layout_marginRight="22dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".View.MyPage.MyPageActivity"
     tools:showIn="@layout/app_bar_my_page"
@@ -15,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:orientation="horizontal"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
         >
         
         <woo.sopt22.meowbox.View.MyPage.CircleImageView
@@ -39,14 +39,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello, Zipsa"
+            android:layout_gravity="left"
+            android:text="안녕하세요"
             android:textSize="14sp"/>
 
             <TextView
+                android:layout_gravity="left"
                 android:id="@+id/mypage_text1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Who are you"/>
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:text="온풍이 집사 한승미님"/>
 
         </LinearLayout>
 
@@ -67,24 +71,61 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="220dp"
         android:orientation="vertical"
         >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="1.5dp"
             android:background="#EFEDED"
             ></LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
         <TextView
+            android:id="@+id/mypage_text_ex1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="고양이\n 박스\n 사라"
-            android:textSize="25sp"
+            android:text="나의 고양이에게"
+            android:textColor="#67696B"
+            android:textSize="27sp"
             android:layout_marginTop="30dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             />
+        <TextView
+            android:id="@+id/mypage_text_ex2"
+            android:layout_below="@+id/mypage_text_ex1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="미유박스"
+            android:textColor="#67696B"
+            android:textSize="27sp"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:layout_toEndOf="@+id/mypage_text_ex2"
+            android:layout_alignBottom="@+id/mypage_text_ex2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="를"
+            android:textColor="#67696B"
+            android:textSize="27sp"
+            />
+        <TextView
+            android:layout_below="@+id/mypage_text_ex2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="선물해 보는건 어때요?"
+            android:textColor="#67696B"
+            android:textSize="27sp"
+            android:layout_centerHorizontal="true"
+            />
+
+        </RelativeLayout>
 
         <ImageView
             android:id="@+id/story_order_btn"
@@ -99,50 +140,69 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="9dp"
+        android:background="#EFEDED">
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/mypage_order_btn"
         android:layout_width="match_parent"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
         android:layout_height="40dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textColor="#4C4E51"
             android:text="주문내역"/>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/mypage_suggest_btn"
         android:layout_width="match_parent"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
         android:layout_height="40dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textColor="#4C4E51"
             android:text="미유박스에 제안"/>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/mypage_qna_btn"
         android:layout_width="match_parent"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
         android:layout_height="40dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textColor="#4C4E51"
             android:text="자주묻는 질문"/>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/mypage_setting_btn"
         android:layout_width="match_parent"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
         android:layout_height="40dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textColor="#4C4E51"
             android:text="설정"/>
     </LinearLayout>
 

@@ -42,7 +42,7 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
                 Toast.makeText(this, jName+" "+jPhone+" "+jEmail+" "+jPwd, Toast.LENGTH_SHORT).show()
             }
             joinCloseBtn->{
-                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
             }
         }
     }

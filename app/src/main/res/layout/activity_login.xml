@@ -50,6 +50,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/login_email_image"
             android:paddingTop="4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,18 +79,20 @@
     <LinearLayout
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:layout_marginTop="67dp"
+        android:layout_marginTop="37dp"
         android:layout_gravity="center_horizontal"
         android:layout_width="255dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/login_password_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/password_icon"/>
 
         <EditText
+            android:id="@+id/login_password"
             android:layout_marginLeft="12dp"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
@@ -108,11 +111,39 @@
         android:background="#999999"/>
 
     <ImageView
+        android:id="@+id/loginBtn"
         android:layout_marginTop="61dp"
         android:layout_gravity="center_horizontal"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:src="@drawable/login_icon"/>
+
+    <RelativeLayout
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/login_to_sign_btn"
+            android:background="#EFEDED"
+            android:layout_width="match_parent"
+            android:layout_height="83dp">
+
+            <TextView
+                android:id="@+id/login_to_sign_text"
+                android:textSize="14dp"
+                android:textColor="#999999"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
 
 
 

@@ -1,5 +1,6 @@
 package woo.sopt22.meowbox.View.Login
 
+import android.content.Intent
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -12,32 +13,50 @@ import android.text.style.ForegroundColorSpan
 import android.text.SpannableStringBuilder
 import android.text.TextWatcher
 import android.view.View
+import woo.sopt22.meowbox.Util.ToastMaker
 
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!){
             login_to_sign_btn->{
-
+                startActivity(Intent(this, JoinActivity::class.java))
             }
             loginBtn->{
-                //clearSelected()
+                if(cnt_email == 1 && cnt_password == 1){
+                    ToastMaker.makeLongToast(this, "로그인할 수 있음")
+                } else{
+                    ToastMaker.makeLongToast(this, "안되지!")
+                }
 
-
+            }
+            login_back_btn->{
+                finish()
             }
         }
     }
 
+    var email_length : Int=0
+    var password_length : Int=0
+    var cnt_email : Int=0
+    var cnt_password : Int=0
+    var email_flag : Boolean = false
+    var password_flag : Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         login_to_sign_btn.setOnClickListener(this)
         loginBtn.setOnClickListener(this)
+        login_back_btn.setOnClickListener(this)
 
-        if (login_email.text.toString().length >= 5 && login_password.text.toString().length >=5){
+
+        email_length = login_email.text.toString().length
+        password_length = login_password.text.toString().length
+
+      /*  if (email_length > 5 && password_length > 5 ){
             loginBtn.isSelected = true
-        }
+        }*/
 
 
         // login_email 입력 시 이메일 아이콘 색상 변경
@@ -49,6 +68,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                if(login_email.text.toString().length<5 && login_password.text.toString().length<5){
+                    loginBtn.setImageResource(R.drawable.login_btn_gray)
+                    cnt_email=0
+                    cnt_password=0
+                }
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -56,6 +80,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     login_email_image.isSelected = true
                 } else {
                     login_email_image.isSelected = false
+                }
+
+                if(login_email.text.toString().length>=5 && login_password.text.toString().length>=5){
+                    loginBtn.setImageResource(R.drawable.login_btn_pink)
+                    cnt_email=1
+                    cnt_password=1
                 }
             }
         })
@@ -69,6 +99,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                if(login_email.text.toString().length<5 && login_password.text.toString().length<5){
+                    loginBtn.setImageResource(R.drawable.login_btn_gray)
+                    cnt_password=0
+                    cnt_email=0
+                }
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -76,6 +111,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     login_password_image.isSelected = true
                 } else if(s!!.length == null){
                     login_password_image.isSelected = false
+                }
+
+                if(login_email.text.toString().length>=5 && login_password.text.toString().length>=5) {
+                    loginBtn.setImageResource(R.drawable.login_btn_pink)
+                    cnt_password = 1
+                    cnt_email=1
                 }
             }
         })

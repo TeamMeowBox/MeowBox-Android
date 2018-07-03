@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.order_first_fragment.*
 import kotlinx.android.synthetic.main.order_first_fragment.view.*
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.View.Home.MainActivity
+import woo.sopt22.meowbox.View.Order.LoginCustomDialog
 import woo.sopt22.meowbox.View.Order.OrderFirstActivity
 
 
@@ -17,7 +18,9 @@ class OrderFirstFragment : Fragment(), View.OnClickListener{
         when(v!!){
             order_name_next_btn->{
                 // OrderFirstActivity의 함수 이용하기
-                (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(OrderSecondFragment())
+               // (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(OrderSecondFragment())
+                var dialog = LoginCustomDialog(OrderFirstActivity.mContext as OrderFirstActivity)
+                dialog.show()
             }
         }
     }

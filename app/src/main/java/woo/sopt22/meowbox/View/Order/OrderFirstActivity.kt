@@ -34,7 +34,9 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     override fun onClick(v: View?) {
         when(v!!){
             order_next_btn->{
-                startActivity(Intent(this, OrderSecondActivity::class.java))
+                //startActivity(Intent(this, OrderSecondActivity::class.java))
+                val dialog = LoginCustomDialog(this)
+                dialog.show()
             }
         }
     }

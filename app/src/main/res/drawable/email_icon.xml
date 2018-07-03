@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:drawable="@drawable/email_icon_pink"
+        android:state_selected="true"/>
+    <!--home이 선택되었다면 검은색이미지-->
+    <item
+        android:drawable="@drawable/email_icon_gray"
+        android:state_selected="false"/>
+    <!--선택이 되지 않았다면 색이 없는 이미지-->
+</selector>

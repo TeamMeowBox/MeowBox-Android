@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.Login.LoginActivity"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <ImageView
+            android:id="@+id/login_back_btn"
+            android:layout_marginLeft="22dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_btn"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="로그인"
+            android:textColor="#4C4E51"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"/>
+
+
+    </RelativeLayout>
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginTop="102dp"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:src="@drawable/email_icon_pink"
+        android:layout_gravity="center_horizontal"/>
+
+    <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_marginTop="67dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:paddingTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/email_icon"/>
+
+        <EditText
+            android:id="@+id/login_email"
+            android:layout_marginLeft="12dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:hint="이메일"
+            android:layout_height="wrap_content"
+            android:background="#00000000"/>
+
+
+    </LinearLayout>
+    
+    <View
+        android:layout_marginTop="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="255dp"
+        android:layout_height="1dp"
+        android:background="#999999"/>
+
+
+    <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_marginTop="67dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/password_icon"/>
+
+        <EditText
+            android:layout_marginLeft="12dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:hint="비밀번호"
+            android:layout_height="wrap_content"
+            android:background="#00000000"/>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="255dp"
+        android:layout_height="1dp"
+        android:background="#999999"/>
+
+    <ImageView
+        android:layout_marginTop="61dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/login_icon"/>
+
+
+
+</LinearLayout>

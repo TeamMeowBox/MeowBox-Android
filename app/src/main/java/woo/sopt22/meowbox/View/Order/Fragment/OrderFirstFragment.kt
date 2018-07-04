@@ -22,12 +22,12 @@ class OrderFirstFragment : Fragment(), View.OnClickListener{
         when(v!!){
             order_name_next_btn->{
                 // OrderFirstActivity의 함수 이용하기
-               // (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(OrderSecondFragment())
+               (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(OrderSecondFragment())
 
-                var dialog = LoginCustomDialog(OrderFirstActivity.mContext as OrderFirstActivity)
+              /*  var dialog = LoginCustomDialog(OrderFirstActivity.mContext as OrderFirstActivity)
                 dialog.getWindow ().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 dialog.setCanceledOnTouchOutside(false)
-                dialog.show()
+                dialog.show()*/
             }
         }
     }

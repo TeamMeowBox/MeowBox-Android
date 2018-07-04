@@ -65,6 +65,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         mypage_to_suggest_btn = mypage_suggest_btn as LinearLayout
         mypage_suggest_btn.setOnClickListener(this)
+        
 
 
 

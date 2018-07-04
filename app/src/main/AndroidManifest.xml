@@ -62,7 +62,8 @@
         <activity android:name=".View.Login.LoginActivity" />
         <activity android:name=".View.Login.JoinActivity" />
         <activity android:name=".View.MyPage.Suggest.MyPageSuggestActivity" />
-        <activity android:name=".View.MyPage.Setting.MyPageSettingActivity"></activity>
+        <activity android:name=".View.MyPage.Setting.MyPageSettingActivity" />
+        <activity android:name=".View.MyPage.FAQ.QuestionActivity"></activity>
     </application>
 
 </manifest>

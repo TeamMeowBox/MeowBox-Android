@@ -45,7 +45,7 @@ class MyPageSettingActivity : AppCompatActivity(), View.OnClickListener{
             }
 
             my_page_notice_btn->{
-                startActivity(Intent(this, NoticeActivity::class.java))
+                startActivity(Intent(this, Notice2Activity::class.java))
             }
         }
     }

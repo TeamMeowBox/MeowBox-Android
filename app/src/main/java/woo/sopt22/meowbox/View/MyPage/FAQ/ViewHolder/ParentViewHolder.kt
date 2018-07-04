@@ -8,7 +8,7 @@ import woo.sopt22.meowbox.R
 
 class ParentViewHolder(itemView : View) : GroupViewHolder(itemView) {
 
-    var genre_title : TextView = itemView.findViewById(R.id.list_item_genre_name)
+    var genre_title : TextView = itemView.findViewById(R.id.list_item_parent_name)
 
 
 }

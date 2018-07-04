@@ -20,14 +20,14 @@
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="21dp"
-            android:id="@+id/list_item_genre_name"
+            android:id="@+id/list_item_parent_name"
             android:text="Genre"/>
 
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/list_item_genre"
+            android:id="@+id/list_item_parent"
             android:layout_marginLeft="@dimen/horizontal_margin"
             android:layout_marginRight="21dp"
             android:layout_gravity="center_vertical"

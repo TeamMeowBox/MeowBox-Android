@@ -2,6 +2,7 @@ package woo.sopt22.meowbox.View.MyPage.Setting
 
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +13,7 @@ import woo.sopt22.meowbox.R
 import android.text.style.UnderlineSpan
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 
 
@@ -25,12 +27,29 @@ class MyPageSettingActivity : AppCompatActivity(), View.OnClickListener{
             my_page_terms_btn->{
                 startActivity(Intent(this, TermsActivity::class.java))
             }
+
+            my_page_setting_logout->{
+                var dialog = LogoutCustomDialog(this)
+                dialog.getWindow ().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.setCanceledOnTouchOutside(false)
+                dialog.show()
+            }
+
+            my_page_setting_disjoin->{
+                var dialog = DisjoinCustomDialog(this)
+                dialog.getWindow ().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.setCanceledOnTouchOutside(false)
+                dialog.show()
+
+            }
         }
     }
 
     // var tv1 = my_page_setting_disjoin as TextView
     lateinit var myPageSettingXBtn : ImageView
     lateinit var myPageSettingTerms : RelativeLayout
+    lateinit var myPageSettingLogout : LinearLayout
+    lateinit var myPageSettingDisjoin : TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +68,12 @@ class MyPageSettingActivity : AppCompatActivity(), View.OnClickListener{
 
         myPageSettingTerms = my_page_terms_btn as RelativeLayout
         my_page_terms_btn.setOnClickListener(this)
+
+        myPageSettingLogout = my_page_setting_logout as LinearLayout
+        my_page_setting_logout.setOnClickListener(this)
+
+        myPageSettingDisjoin = my_page_setting_disjoin as TextView
+        my_page_setting_disjoin.setOnClickListener(this)
 
 
     }

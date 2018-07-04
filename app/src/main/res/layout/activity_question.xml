@@ -50,7 +50,7 @@
         android:layout_marginTop="31dp"
         android:textColor="#4C4E51"/>
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_below="@+id/faq_product_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -61,7 +61,7 @@
             android:layout_height="match_parent"/>
 
 
-    </RelativeLayout>
+    </FrameLayout>
 
 
 

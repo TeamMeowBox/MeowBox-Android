@@ -67,7 +67,8 @@
         <activity
             android:name=".View.MyPage.Setting.TermsActivity"
             android:label="@string/title_activity_terms"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".View.MyPage.Setting.NoticeActivity"></activity>
     </application>
 
 </manifest>

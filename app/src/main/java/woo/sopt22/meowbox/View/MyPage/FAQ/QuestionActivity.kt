@@ -38,14 +38,7 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
 
         question_x_btn.setOnClickListener(this)
 
-        question_rv
 
-        println(faq.size)
-        println(faq_content.indexOf("간식, 사료"))
-
-        for(i in 0..faq.size){
-            println(i)
-        }
 
         getGenres()
         parentAdapter = ParentAdapter(genre_items)

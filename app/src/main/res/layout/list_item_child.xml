@@ -2,14 +2,19 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/list_item_height">
+    android:layout_height="wrap_content"
+    android:background="#EFEDED">
 
     <TextView
+        android:layout_marginTop="15dp"
         android:id="@+id/list_item_content_name"
-        android:layout_marginLeft="@dimen/list_item_left_margin"
+        android:layout_marginLeft="22dp"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="content name"/>
+        android:text="content name"
+        android:textSize="14dp"
+        android:textColor="#707070"
+        android:layout_marginBottom="19dp"/>
 
 </FrameLayout>

@@ -18,9 +18,6 @@ import woo.sopt22.meowbox.View.MyPage.FAQ.models.Child
 
 class ParentAdapter(groups: List<ExpandableGroup<*>>)
     : ExpandableRecyclerViewAdapter<ParentViewHolder, ContentViewHolder>(groups) {
-/*
-    private val TYPE_HEADER : Int = 0
-    private val TYPE_ITEM : Int = 1*/
 
 
     override fun onCreateGroupViewHolder(parent: ViewGroup?, viewType: Int): ParentViewHolder {
@@ -40,28 +37,10 @@ class ParentAdapter(groups: List<ExpandableGroup<*>>)
     }
 
     override fun onBindGroupViewHolder(holder: ParentViewHolder?, flatPosition: Int, group: ExpandableGroup<*>?) {
-        if(flatPosition == 0){
-            holder!!.genre_title.setTextSize(TypedValue.COMPLEX_UNIT_PX,60f)
-        }
         holder!!.genre_title.text = group!!.title
     }
 
-   /* override fun getItemViewType(position: Int): Int {
-        if(isPositionHeader(position)){
-            return TYPE_HEADER
-        }else{
-            return TYPE_ITEM
-        }
-        return 0
-    }*/
 
- /*   fun isPositionHeader(position: Int):Boolean{
-        return position == TYPE_HEADER
-    }
-    fun isPositionItem(position: Int): Boolean{
-        return position == TYPE_ITEM
-    }
-*/
 
 }
 

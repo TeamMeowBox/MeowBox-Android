@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -41,6 +42,7 @@ public class TermsActivity extends AppCompatActivity {
         tabHost.setup();
 
         TabHost.TabSpec tab1 = tabHost.newTabSpec("1").setContent(R.id.tab1).setIndicator("이용약관");
+        //spec.setIndicator(null, ResourcesCompat.getDrawable(getResources(), R.drawable.tab_icon1,null));
 
         TabHost.TabSpec tab2 = tabHost.newTabSpec("2").setContent(R.id.tab2).setIndicator("개인정보 취급방침");
 

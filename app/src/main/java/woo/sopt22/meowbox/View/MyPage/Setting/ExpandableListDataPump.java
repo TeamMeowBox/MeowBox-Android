@@ -26,7 +26,7 @@ public class ExpandableListDataPump {
                 "여러분이 무언가 설레는 것 하나쯤은 간직하고 살아가기를 바랍니다.");
 
         expandableListDetail.put("CRICKET TEAMS", cricket);
-        expandableListDetail.put("미유박스 주문관련 공지입니다.", notice2);
+        //expandableListDetail.put("미유박스 주문관련 공지입니다.", notice2);
         expandableListDetail.put("드디어 미유박스가 출시되었습니다", notice1);
         return expandableListDetail;
     }

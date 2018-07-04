@@ -33,13 +33,25 @@
     </RelativeLayout>
 
     <View
+        android:id="@+id/faq_view"
         android:layout_below="@+id/faq_layout"
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
         android:background="#707070"/>
 
+    <TextView
+        android:layout_marginLeft="21dp"
+        android:id="@+id/faq_product_name"
+        android:layout_below="@+id/faq_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="제품"
+        android:textSize="28dp"
+        android:layout_marginTop="31dp"
+        android:textColor="#4C4E51"/>
+
     <RelativeLayout
-        android:layout_below="@+id/faq_layout"
+        android:layout_below="@+id/faq_product_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         

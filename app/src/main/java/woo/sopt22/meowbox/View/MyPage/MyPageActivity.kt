@@ -30,6 +30,7 @@ import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.FAQ.QuestionActivity
+import woo.sopt22.meowbox.View.MyPage.History.HistoryActivity
 import woo.sopt22.meowbox.View.MyPage.Setting.MyPageSettingActivity
 import woo.sopt22.meowbox.View.MyPage.Suggest.MyPageSuggestActivity
 import woo.sopt22.meowbox.View.Order.OrderFirstActivity
@@ -52,6 +53,10 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 startActivity(Intent(this, QuestionActivity::class.java))
             }
 
+            mypage_order_btn->{
+                startActivity(Intent(this, HistoryActivity::class.java))
+            }
+
         }
 
     }
@@ -59,6 +64,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     lateinit var mypage_to_suggest_btn : LinearLayout
     lateinit var mypage_to_setting_btn : LinearLayout
     lateinit var mypage_to_qna_btn : LinearLayout
+    lateinit var mypage_to_history_btn : LinearLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page)
@@ -82,6 +88,9 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         mypage_to_qna_btn = mypage_qna_btn as LinearLayout
         mypage_qna_btn.setOnClickListener(this)
+
+        mypage_to_history_btn = mypage_order_btn as LinearLayout
+        mypage_order_btn.setOnClickListener(this)
 
 
 

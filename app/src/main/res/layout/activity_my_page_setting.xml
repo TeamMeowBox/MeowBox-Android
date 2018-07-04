@@ -62,7 +62,7 @@
             
             <Switch
                 android:layout_marginRight="22dp"
-                android:layout_width="42dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"

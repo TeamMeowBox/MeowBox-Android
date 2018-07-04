@@ -37,8 +37,6 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 val intent = Intent(applicationContext, MySettingActivity::class.java)
                 startActivity(intent);
             }
-
-
         }
 
     }

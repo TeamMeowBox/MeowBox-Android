@@ -1,9 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".View.MyPage.Suggest.MyPageSuggestActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:id="@+id/suggest_layout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="미유박스에 제안"
+            android:textColor="#4C4E51"
+            android:textSize="16dp"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/suggest_x_btn"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:src="@drawable/x_btn"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="22dp"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_below="@+id/suggest_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:background="#707070"/>
+
+    <ScrollView
+        android:layout_above="@+id/suggest_btn"
+        android:layout_below="@+id/suggest_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_marginTop="31dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="22dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="미유박스에 대한"
+                android:textColor="#4C4E51"
+                android:textSize="28dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="의견을 보내주세요"
+                android:textColor="#4C4E51"
+                android:textSize="28dp"/>
+
+
+            <TextView
+                android:layout_marginTop="23dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="제목을 입력해주세요"
+                android:textSize="16dp"
+                android:textColor="#4C4E51"/>
+
+            <EditText
+                android:id="@+id/suggest_opinion"
+                android:paddingLeft="15dp"
+                android:hint="어떤 의견인가요?"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:textSize="14dp"
+                android:background="@drawable/edittext_background"/>
+
+
+            <TextView
+                android:layout_marginTop="57dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="자세히 알려주세요"
+                android:textSize="16dp"
+                android:textColor="#4C4E51"/>
+
+
+            <EditText
+                android:id="@+id/suggest_detail_comment"
+                android:gravity="top"
+                android:paddingTop="11dp"
+                android:paddingLeft="15dp"
+                android:hint="미유박스 이용 경험에 대해 알려주세요.\n만족스러웠던 점과 개선해야 할 점을 알려주세요.\n더 노력하는 미유박스가 될게요."
+                android:layout_marginTop="15dp"
+                android:textSize="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="166dp"
+                android:background="@drawable/edittext_background"/>
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/suggest_btn"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#E68789">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="제안하기"
+            android:textSize="18dp"
+            android:textColor="#FFFFFF"
+            android:textStyle="normal"
+            android:layout_centerInParent="true"/>
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

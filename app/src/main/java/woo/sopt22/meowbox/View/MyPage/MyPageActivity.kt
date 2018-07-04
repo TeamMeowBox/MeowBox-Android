@@ -19,6 +19,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_my_page.*
 import kotlinx.android.synthetic.main.app_bar_my_page.*
@@ -28,19 +29,25 @@ import kotlinx.android.synthetic.main.content_my_page.*
 import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
+import woo.sopt22.meowbox.View.MyPage.Suggest.MyPageSuggestActivity
 import woo.sopt22.meowbox.View.Order.OrderFirstActivity
 
 class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
-    override fun onClick(p0: View?) {
-        when(p0){
+    override fun onClick(v: View?) {
+        when(v!!){
             mypage_setting -> {
                 val intent = Intent(applicationContext, MySettingActivity::class.java)
                 startActivity(intent);
             }
+            mypage_suggest_btn->{
+                startActivity(Intent(this, MyPageSuggestActivity::class.java))
+            }
+
         }
 
     }
 
+    lateinit var mypage_to_suggest_btn : LinearLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page)
@@ -55,6 +62,10 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         var imgUrlex = "https://www.petmd.com/sites/default/files/petmd-cat-happy.jpg" as String
         Glide.with(profileImage).load(imgUrlex).into(profileImage)
+
+        mypage_to_suggest_btn = mypage_suggest_btn as LinearLayout
+        mypage_suggest_btn.setOnClickListener(this)
+        
 
 
 

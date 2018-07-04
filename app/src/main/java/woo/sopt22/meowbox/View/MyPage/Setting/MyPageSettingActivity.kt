@@ -1,5 +1,6 @@
 package woo.sopt22.meowbox.View.MyPage.Setting
 
+import android.app.ExpandableListActivity
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -42,6 +43,10 @@ class MyPageSettingActivity : AppCompatActivity(), View.OnClickListener{
                 dialog.show()
 
             }
+
+            my_page_notice_btn->{
+                startActivity(Intent(this, NoticeActivity::class.java))
+            }
         }
     }
 
@@ -50,6 +55,7 @@ class MyPageSettingActivity : AppCompatActivity(), View.OnClickListener{
     lateinit var myPageSettingTerms : RelativeLayout
     lateinit var myPageSettingLogout : LinearLayout
     lateinit var myPageSettingDisjoin : TextView
+    lateinit var myPageNoticeBtn : RelativeLayout
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,6 +80,9 @@ class MyPageSettingActivity : AppCompatActivity(), View.OnClickListener{
 
         myPageSettingDisjoin = my_page_setting_disjoin as TextView
         my_page_setting_disjoin.setOnClickListener(this)
+
+        myPageNoticeBtn = my_page_notice_btn as RelativeLayout
+        my_page_notice_btn.setOnClickListener(this)
 
 
     }

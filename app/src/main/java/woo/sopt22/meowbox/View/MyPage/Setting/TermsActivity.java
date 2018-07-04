@@ -1,6 +1,7 @@
 package woo.sopt22.meowbox.View.MyPage.Setting;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -32,6 +33,9 @@ public class TermsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terms);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            getWindow().setStatusBarColor(Color.BLACK);
 
         tabHost = (TabHost) findViewById(R.id.tabhost1);
         tabHost.setup();

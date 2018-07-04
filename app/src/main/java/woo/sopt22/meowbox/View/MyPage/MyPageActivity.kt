@@ -29,6 +29,7 @@ import kotlinx.android.synthetic.main.content_my_page.*
 import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
+import woo.sopt22.meowbox.View.MyPage.FAQ.QuestionActivity
 import woo.sopt22.meowbox.View.MyPage.Setting.MyPageSettingActivity
 import woo.sopt22.meowbox.View.MyPage.Suggest.MyPageSuggestActivity
 import woo.sopt22.meowbox.View.Order.OrderFirstActivity
@@ -47,6 +48,9 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             mypage_setting_btn->{
                 startActivity(Intent(this, MyPageSettingActivity::class.java))
             }
+            mypage_qna_btn->{
+                startActivity(Intent(this, QuestionActivity::class.java))
+            }
 
         }
 
@@ -54,6 +58,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     lateinit var mypage_to_suggest_btn : LinearLayout
     lateinit var mypage_to_setting_btn : LinearLayout
+    lateinit var mypage_to_qna_btn : LinearLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page)
@@ -74,6 +79,9 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         mypage_to_setting_btn = mypage_setting_btn as LinearLayout
         mypage_setting_btn.setOnClickListener(this)
+
+        mypage_to_qna_btn = mypage_qna_btn as LinearLayout
+        mypage_qna_btn.setOnClickListener(this)
 
 
 

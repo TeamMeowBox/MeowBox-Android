@@ -1,5 +1,6 @@
 package woo.sopt22.meowbox.View.MyPage.Setting
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
@@ -11,6 +12,7 @@ import woo.sopt22.meowbox.R
 import android.text.style.UnderlineSpan
 import android.view.View
 import android.widget.ImageView
+import android.widget.RelativeLayout
 
 
 class MyPageSettingActivity : AppCompatActivity(), View.OnClickListener{
@@ -19,11 +21,17 @@ class MyPageSettingActivity : AppCompatActivity(), View.OnClickListener{
             my_page_setting_x_btn -> {
                 finish()
             }
+
+            my_page_terms_btn->{
+                startActivity(Intent(this, TermsActivity::class.java))
+            }
         }
     }
 
     // var tv1 = my_page_setting_disjoin as TextView
     lateinit var myPageSettingXBtn : ImageView
+    lateinit var myPageSettingTerms : RelativeLayout
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +46,9 @@ class MyPageSettingActivity : AppCompatActivity(), View.OnClickListener{
 
         myPageSettingXBtn = my_page_setting_x_btn as ImageView
         my_page_setting_x_btn.setOnClickListener(this)
+
+        myPageSettingTerms = my_page_terms_btn as RelativeLayout
+        my_page_terms_btn.setOnClickListener(this)
 
 
     }

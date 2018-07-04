@@ -63,7 +63,11 @@
         <activity android:name=".View.Login.JoinActivity" />
         <activity android:name=".View.MyPage.Suggest.MyPageSuggestActivity" />
         <activity android:name=".View.MyPage.Setting.MyPageSettingActivity" />
-        <activity android:name=".View.MyPage.FAQ.QuestionActivity"></activity>
+        <activity android:name=".View.MyPage.FAQ.QuestionActivity" />
+        <activity
+            android:name=".View.MyPage.Setting.TermsActivity"
+            android:label="@string/title_activity_terms"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

@@ -15,4 +15,5 @@
     <string name="title_activity_order_third">OrderThirdActivity</string>
     <string name="title_activity_order_four">OrderFourActivity</string>
     <string name="title_activity_order_five">OrderFiveActivity</string>
+    <string name="title_activity_terms">TermsActivity</string>
 </resources>

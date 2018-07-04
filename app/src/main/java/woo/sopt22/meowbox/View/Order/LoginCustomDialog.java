@@ -24,6 +24,7 @@ public class LoginCustomDialog extends Dialog implements View.OnClickListener{
 
     public LoginCustomDialog(@NonNull Context context) {
         super(context);
+        this.context = context;
     }
 
 
@@ -36,6 +37,9 @@ public class LoginCustomDialog extends Dialog implements View.OnClickListener{
         popCancelBtn.setOnClickListener(this);
         popLoginBtn = (LinearLayout) findViewById(R.id.popup_login_btn) ;
         popLoginBtn.setOnClickListener(this);
+
+
+
 
     }
     @Override

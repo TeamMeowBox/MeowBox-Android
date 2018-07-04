@@ -1,9 +1,252 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.MyPage.Setting.MyPageSettingActivity">
+    tools:context=".View.MyPage.Setting.MyPageSettingActivity"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="설정"
+            android:textSize="16dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:layout_alignParentBottom="true" />
+
+        <ImageView
+            android:id="@+id/my_page_setting_x_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/x_btn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="22dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#D4D4D4"
+            android:layout_alignParentBottom="true">
+        </LinearLayout>
+    </RelativeLayout>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="#4C4E51"
+                android:text="알림설정"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="22dp"
+                android:layout_centerVertical="true"
+                />
+            
+            <Switch
+                android:layout_marginRight="22dp"
+                android:layout_width="42dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:track="@drawable/switch_track_selector"
+                android:thumb="@drawable/switch_thumb_selector"
+                />
+
+        </RelativeLayout>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="9dp"
+            android:background="#EFEDED"></LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/my_page_notice_btn">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="#4C4E51"
+            android:text="공지사항"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="22dp"
+            android:layout_centerVertical="true"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/setting_arrow_btn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="22dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#D4D4D4"
+            android:layout_alignParentBottom="true">
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="#4C4E51"
+            android:text="앱정보"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="22dp"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#999999"
+            android:text="버전 1.0"
+            android:layout_marginRight="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textSize="16dp"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#D4D4D4"
+            android:layout_alignParentBottom="true">
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/my_page_terms_btn">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="#4C4E51"
+            android:text="약관 및 개인정보 취급방침"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="22dp"
+            android:layout_centerVertical="true"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/setting_arrow_btn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="22dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#D4D4D4"
+            android:layout_alignParentBottom="true">
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EFEDED">
+
+        <LinearLayout
+            android:id="@+id/my_page_setting_logout"
+            android:layout_width="316dp"
+            android:layout_height="56dp"
+            android:background="#FFFFFF"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="33dp"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:textColor="#4C4E51"
+                android:text="로그아웃"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/my_page_setting_logout"
+            android:layout_marginTop="11dp"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13dp"
+                android:textColor="#999999"
+                android:text="미유 박스를 탈퇴하려면 "/>
+
+            <TextView
+                android:textSize="13dp"
+                android:textColor="#999999"
+                android:id="@+id/my_page_setting_disjoin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="여기"/>
+            <TextView
+                android:textSize="13dp"
+                android:textColor="#999999"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="를 눌러주세요"/>
+
+
+       </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

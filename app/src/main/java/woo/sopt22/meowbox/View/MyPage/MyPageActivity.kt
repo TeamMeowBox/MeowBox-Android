@@ -4,13 +4,18 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.ShapeDrawable
+import android.graphics.drawable.shapes.OvalShape
+import android.media.Image
 import android.os.Build
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
@@ -22,11 +27,11 @@ import kotlinx.android.synthetic.main.app_bar_my_page.*
 import woo.sopt22.meowbox.R
 import kotlinx.android.synthetic.main.content_my_page.*
 import woo.sopt22.meowbox.View.Home.MainActivity
-import woo.sopt22.meowbox.View.Login.LoginActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.FAQ.QuestionActivity
 import woo.sopt22.meowbox.View.MyPage.OrderHistory.OrderHistoryActivity
+import woo.sopt22.meowbox.View.MyPage.ProgressBar.StateProgressBar
 import woo.sopt22.meowbox.View.MyPage.Setting.MyPageSettingActivity
 import woo.sopt22.meowbox.View.MyPage.Suggest.MyPageSuggestActivity
 import woo.sopt22.meowbox.View.Order.OrderFirstActivity
@@ -56,6 +61,8 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         }
 
     }
+
+    var descriptionData = arrayOf("1box", "2box", "3box")
 
     lateinit var mypage_to_suggest_btn : LinearLayout
     lateinit var mypage_to_setting_btn : LinearLayout
@@ -87,6 +94,9 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         mypage_to_history_btn = mypage_order_btn as LinearLayout
         mypage_order_btn.setOnClickListener(this)
+
+        var stateProgressBar = your_state_progress_bar_id as StateProgressBar
+        stateProgressBar.setStateDescriptionData(descriptionData)
 
 
 
@@ -148,8 +158,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.loginBtn -> {
-                startActivity(Intent(this, LoginActivity::class.java))
-                finish()
+                // Handle the camera action
             }
             R.id.homeBtn -> {
                 var intent =  Intent(this, MainActivity::class.java)

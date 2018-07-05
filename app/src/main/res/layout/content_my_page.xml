@@ -79,7 +79,96 @@
         
     </RelativeLayout>
 
+        <RelativeLayout
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#EFEDED"
+                ></LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/mypage_text_ex11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="나의 고양이에게"
+                    android:textColor="#67696B"
+                    android:textSize="27sp"
+                    android:layout_marginTop="30dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/mypage_text_box11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/mypage_text_ex11"
+                    android:layout_centerHorizontal="true">
+                    <TextView
+                        android:id="@+id/mypage_text_ex22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="미유박스"
+                        android:textColor="#67696B"
+                        android:textSize="27sp"
+                        />
+                    <TextView
+                        android:layout_toEndOf="@+id/mypage_text_ex22"
+                        android:layout_alignBottom="@+id/mypage_text_ex22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="를"
+                        android:textColor="#67696B"
+                        android:textSize="27sp"
+                        />
+                </LinearLayout>
+                <TextView
+                    android:layout_below="@+id/mypage_text_box11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="선물해 보는건 어때요?"
+                    android:textColor="#67696B"
+                    android:textSize="27sp"
+                    android:layout_centerHorizontal="true"
+                    />
+
+            </RelativeLayout>
+
+            <woo.sopt22.meowbox.View.MyPage.ProgressBar.StateProgressBar
+                android:layout_alignParentBottom="true"
+
+                android:id="@+id/your_state_progress_bar_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:spb_currentStateNumber="two"
+                app:spb_maxStateNumber="three"
+                app:spb_stateBackgroundColor="#EFEDED"
+                app:spb_stateForegroundColor="#E88687"
+                app:spb_stateNumberBackgroundColor="#EFEDED"
+                app:spb_stateNumberForegroundColor="#E88687"
+                app:spb_currentStateDescriptionColor="#E88687"
+                app:spb_stateDescriptionColor="#EFEDED"
+                app:spb_animateToCurrentProgressState="true"
+                app:spb_checkStateCompleted="true"
+                android:layout_centerHorizontal="true"
+
+                />
+
+
+        </RelativeLayout>
+
     <RelativeLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:orientation="vertical"

@@ -677,7 +677,7 @@ public class StateProgressBar extends View {
         mDescriptionLinesSpacing = 0.0f;
 
         mCheckStateCompleted = false;
-        mAnimateToCurrentProgressState = false;
+        mAnimateToCurrentProgressState = true;
         mEnableAllStatesCompleted = false;
 
         mAnimStartDelay = 100;
@@ -967,9 +967,9 @@ public class StateProgressBar extends View {
             endCenterX = mCellWidth * endIndex - (mCellWidth / 2);
 
             startX = startCenterX;
-                    //+ (mStateRadius * 0.75f);
+            //+ (mStateRadius * 0.75f);
             stopX = endCenterX ;
-                    //- (mStateRadius * 0.75f);
+            //- (mStateRadius * 0.75f);
 
             canvas.drawLine(startX, mCellHeight / 2, stopX, mCellHeight / 2, paint);
 
@@ -1204,8 +1204,8 @@ public class StateProgressBar extends View {
             if (mCheckStateCompleted && isChecked) {
                 //canvas.drawText(getContext().getString(R.string.check_icon), xPos, yPos, innerPaintType);
                 //hereis
-                    canvas.drawLine(mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f, mCellHeight / 2,
-                            mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f,mCellHeight / 2 + 40f, paintTmpCheck);
+                canvas.drawLine(mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f, mCellHeight / 2,
+                        mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f,mCellHeight / 2 + 40f, paintTmpCheck);
 
             } else {
                 if (mIsStateNumberDescending)

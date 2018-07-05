@@ -30,7 +30,7 @@ import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.FAQ.QuestionActivity
-import woo.sopt22.meowbox.View.MyPage.History.HistoryActivity
+import woo.sopt22.meowbox.View.MyPage.OrderHistory.OrderHistoryActivity
 import woo.sopt22.meowbox.View.MyPage.ProgressBar.StateProgressBar
 import woo.sopt22.meowbox.View.MyPage.Setting.MyPageSettingActivity
 import woo.sopt22.meowbox.View.MyPage.Suggest.MyPageSuggestActivity
@@ -55,7 +55,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
 
             mypage_order_btn->{
-                startActivity(Intent(this, HistoryActivity::class.java))
+                startActivity(Intent(this, OrderHistoryActivity::class.java))
             }
 
         }

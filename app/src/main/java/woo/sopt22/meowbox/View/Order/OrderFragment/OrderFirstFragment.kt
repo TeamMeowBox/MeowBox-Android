@@ -1,6 +1,5 @@
-package woo.sopt22.meowbox.View.Order.Fragment
+package woo.sopt22.meowbox.View.Order.OrderFragment
 
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -9,12 +8,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.order_first_fragment.*
 import kotlinx.android.synthetic.main.order_first_fragment.view.*
 import woo.sopt22.meowbox.R
-import woo.sopt22.meowbox.View.Home.MainActivity
-import woo.sopt22.meowbox.View.Order.LoginCustomDialog
 import woo.sopt22.meowbox.View.Order.OrderFirstActivity
-import android.graphics.drawable.ColorDrawable
-
-
 
 
 class OrderFirstFragment : Fragment(), View.OnClickListener{

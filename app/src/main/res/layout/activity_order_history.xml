@@ -1,54 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.MyPage.Setting.Notice.Notice2Activity">
+    android:orientation="vertical"
+    tools:context=".View.MyPage.OrderHistory.OrderHistoryActivity">
 
     <RelativeLayout
-        android:id="@+id/notice_layout"
+        android:id="@+id/order_history_layout"
+        android:background="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="공지사항"
-            android:textColor="#4C4E51"
-            android:textSize="16dp"
+            android:text="주문내역"
+            android:layout_gravity="center_horizontal"
             android:layout_centerInParent="true"
-            android:textStyle="bold"/>
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#4C4E51"/>
 
         <ImageView
-            android:id="@+id/notice_x_btn"
+            android:id="@+id/order_history_x_btn"
             android:layout_width="14dp"
             android:layout_height="14dp"
             android:src="@drawable/x_btn"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="22dp"/>
+            android:layout_marginRight="24dp"
+            />
 
     </RelativeLayout>
 
+
     <View
         android:id="@+id/notice_view"
-        android:layout_below="@+id/notice_layout"
+        android:layout_below="@+id/order_history_layout"
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
         android:background="#707070"/>
 
-    <FrameLayout
-        android:layout_below="@+id/notice_view"
+    <android.support.v7.widget.RecyclerView
+        android:background="#FFFFFF"
+        android:layout_below="@+id/order_history_layout"
+        android:id="@+id/order_history_rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/notice_rv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </FrameLayout>
-
-
-
-</RelativeLayout>
+</LinearLayout>

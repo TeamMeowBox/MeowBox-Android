@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginTop="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/header_ticket_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/order_ticket_gray"/>
+
+    <RelativeLayout
+        android:id="@+id/order_ticket_name"
+        android:layout_width="42dp"
+        android:layout_height="19dp"
+        android:background="#999999"
+        android:layout_marginLeft="63dp"
+        android:layout_marginTop="35dp">
+
+        <TextView
+            android:id="@+id/order_ticket_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="정기권"
+            android:textSize="10dp"
+            android:textColor="#FFFFFF"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_below="@+id/order_ticket_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="63dp">
+
+        <TextView
+            android:id="@+id/order_payment_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#4C4E51"
+            android:text="3개월 정기권"
+            android:textSize="24dp"/>
+
+        <TextView
+            android:id="@+id/order_payment_date"
+            android:layout_marginTop="7dp"
+            android:layout_below="@+id/order_payment_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2018.04.26 - 2018.06.26"/>
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

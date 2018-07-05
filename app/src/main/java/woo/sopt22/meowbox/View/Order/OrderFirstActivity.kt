@@ -1,6 +1,5 @@
 package woo.sopt22.meowbox.View.Order
 
-import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -15,9 +14,7 @@ import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 import android.support.v4.content.res.ResourcesCompat
-import android.graphics.drawable.Drawable
 import android.view.View
-import android.R.attr.bitmap
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -27,7 +24,7 @@ import android.support.v4.app.Fragment
 import android.widget.FrameLayout
 import android.widget.RelativeLayout
 import kotlinx.android.synthetic.main.content_order_first.*
-import woo.sopt22.meowbox.View.Order.Fragment.OrderFirstFragment
+import woo.sopt22.meowbox.View.Order.OrderFragment.OrderFirstFragment
 
 
 class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {

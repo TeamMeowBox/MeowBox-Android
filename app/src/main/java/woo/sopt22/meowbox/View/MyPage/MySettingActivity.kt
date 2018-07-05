@@ -40,6 +40,12 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
             mysetting_profile -> {
                 changeImage()
             }
+            custom_button1->{
+                customButton1!!.setBackgroundResource(R.drawable.custom_button)
+                customButton2!!.isClickable = false
+                customButton3!!.isClickable = false
+            }
+
         }
     }
 

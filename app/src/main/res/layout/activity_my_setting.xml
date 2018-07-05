@@ -359,7 +359,7 @@
             <Spinner
                 android:entries="@array/year"
                 android:id="@+id/mysetting_year"
-                android:layout_width="100dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"></Spinner>
 
             <TextView
@@ -370,7 +370,7 @@
             <Spinner
                 android:entries="@array/month"
                 android:id="@+id/mysetting_month"
-                android:layout_width="80dp"
+                android:layout_width="85dp"
                 android:layout_height="wrap_content"></Spinner>
 
             <TextView

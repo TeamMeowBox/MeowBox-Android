@@ -23,6 +23,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_order_first.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -166,6 +167,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.loginBtn -> {
                 startActivity(Intent(this, LoginActivity::class.java))
+            }
+            R.id.blankBtn->{
+                item.isChecked = false
             }
             R.id.homeBtn -> {
 

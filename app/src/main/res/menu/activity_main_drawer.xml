@@ -8,6 +8,7 @@
             android:id="@+id/loginBtn"
             android:title="로그인" />
         <item
+            android:id="@+id/blankBtn"
             android:title=" " />
         <item
             android:id="@+id/homeBtn"

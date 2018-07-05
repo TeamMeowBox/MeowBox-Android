@@ -1,5 +1,6 @@
 package woo.sopt22.meowbox.View.MyPage.OrderHistory.Adapter
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -10,11 +11,12 @@ import woo.sopt22.meowbox.R
 
 
 
-class OrderHistoryAdapter(var order_history_items : ArrayList<OrderHistory>)
+class OrderHistoryAdapter(var order_history_items : ArrayList<OrderHistory>, var context : Context)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     private val TYPE_HEADER : Int = 0
     private val TYPE_ITEM : Int = 1
+    private lateinit var onItemClick: View.OnClickListener
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -26,6 +28,10 @@ class OrderHistoryAdapter(var order_history_items : ArrayList<OrderHistory>)
             val view = LayoutInflater.from(parent.context).inflate(R.layout.order_history_item, parent, false)
             return OrderHistoryViewHolder(view)
         }
+    }
+
+    fun setOnItemClickListener(l : View.OnClickListener){
+        onItemClick = l
     }
 
     override fun getItemCount(): Int {

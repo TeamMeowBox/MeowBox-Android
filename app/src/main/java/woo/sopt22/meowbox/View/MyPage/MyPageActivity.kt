@@ -31,6 +31,7 @@ import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.FAQ.QuestionActivity
 import woo.sopt22.meowbox.View.MyPage.History.HistoryActivity
+import woo.sopt22.meowbox.View.MyPage.ProgressBar.StateProgressBar
 import woo.sopt22.meowbox.View.MyPage.Setting.MyPageSettingActivity
 import woo.sopt22.meowbox.View.MyPage.Suggest.MyPageSuggestActivity
 import woo.sopt22.meowbox.View.Order.OrderFirstActivity
@@ -60,6 +61,8 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         }
 
     }
+
+    var descriptionData = arrayOf("1box", "2box", "3box")
 
     lateinit var mypage_to_suggest_btn : LinearLayout
     lateinit var mypage_to_setting_btn : LinearLayout
@@ -91,6 +94,9 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         mypage_to_history_btn = mypage_order_btn as LinearLayout
         mypage_order_btn.setOnClickListener(this)
+
+        var stateProgressBar = your_state_progress_bar_id as StateProgressBar
+        stateProgressBar.setStateDescriptionData(descriptionData)
 
 
 

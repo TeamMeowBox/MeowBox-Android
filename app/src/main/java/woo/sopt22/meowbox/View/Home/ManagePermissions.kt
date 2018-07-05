@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
+import woo.sopt22.meowbox.Util.ToastMaker
 
 
 class ManagePermissions(val activity: Activity,val list: List<String>,val code:Int) {
@@ -14,7 +15,7 @@ class ManagePermissions(val activity: Activity,val list: List<String>,val code:I
         if (isPermissionsGranted() != PackageManager.PERMISSION_GRANTED) {
             showAlert()
         } else {
-            activity.toast("Permissions already granted.")
+            ToastMaker.makeLongToast(activity,"Permissions already granted.")
         }
     }
 
@@ -58,7 +59,7 @@ class ManagePermissions(val activity: Activity,val list: List<String>,val code:I
         val permission = deniedPermission()
         if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
             // Show an explanation asynchronously
-            activity.toast("Should show an explanation.")
+            ToastMaker.makeLongToast(activity,"Should show an explanation.")
         } else {
             ActivityCompat.requestPermissions(activity, list.toTypedArray(), code)
         }

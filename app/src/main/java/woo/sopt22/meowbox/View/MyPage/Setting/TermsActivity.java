@@ -3,18 +3,12 @@ package woo.sopt22.meowbox.View.MyPage.Setting;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -89,7 +83,7 @@ public class TermsActivity extends AppCompatActivity {
     private String readTxt(int idx){
         String data = null;
         if(idx == 1){
-            InputStream inputStream = getResources().openRawResource(R.raw.test_txt);
+            InputStream inputStream = getResources().openRawResource(R.raw.text_txt1);
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
             int i;

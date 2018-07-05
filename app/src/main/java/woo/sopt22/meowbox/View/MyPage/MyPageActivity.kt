@@ -4,18 +4,13 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.ShapeDrawable
-import android.graphics.drawable.shapes.OvalShape
-import android.media.Image
 import android.os.Build
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
@@ -31,7 +26,7 @@ import woo.sopt22.meowbox.View.Login.LoginActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.FAQ.QuestionActivity
-import woo.sopt22.meowbox.View.MyPage.History.HistoryActivity
+import woo.sopt22.meowbox.View.MyPage.OrderHistory.OrderHistoryActivity
 import woo.sopt22.meowbox.View.MyPage.Setting.MyPageSettingActivity
 import woo.sopt22.meowbox.View.MyPage.Suggest.MyPageSuggestActivity
 import woo.sopt22.meowbox.View.Order.OrderFirstActivity
@@ -55,7 +50,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
 
             mypage_order_btn->{
-                startActivity(Intent(this, HistoryActivity::class.java))
+                startActivity(Intent(this, OrderHistoryActivity::class.java))
             }
 
         }

@@ -1,4 +1,4 @@
-package woo.sopt22.meowbox.View.MyPage.Setting
+package woo.sopt22.meowbox.View.MyPage.Setting.Notice
 
 import android.graphics.Color
 import android.os.Build

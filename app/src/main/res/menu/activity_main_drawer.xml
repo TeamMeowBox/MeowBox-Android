@@ -17,7 +17,7 @@
             android:title="미유박스 이야기" />
         <item
             android:id="@+id/birthDayBtn"
-            android:title="생일축하! 박스" />
+            android:title="생일축하해! 박스" />
         <item
             android:id="@+id/orderBtn"
             android:title="주문하기" />

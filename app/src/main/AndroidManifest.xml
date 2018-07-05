@@ -3,6 +3,7 @@
     package="woo.sopt22.meowbox">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -69,7 +70,8 @@
             android:label="@string/title_activity_terms"
             android:theme="@style/AppTheme" />
         <activity android:name=".View.MyPage.Setting.NoticeActivity" />
-        <activity android:name=".View.MyPage.Setting.Notice2Activity"></activity>
+        <activity android:name=".View.MyPage.Setting.Notice2Activity" />
+        <activity android:name=".View.MyPage.Setting.Terms.Terms2Activity"></activity>
     </application>
 
 </manifest>

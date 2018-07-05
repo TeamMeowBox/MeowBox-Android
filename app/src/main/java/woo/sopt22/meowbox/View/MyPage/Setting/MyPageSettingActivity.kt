@@ -1,6 +1,5 @@
 package woo.sopt22.meowbox.View.MyPage.Setting
 
-import android.app.ExpandableListActivity
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -16,6 +15,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import woo.sopt22.meowbox.View.MyPage.Setting.Terms.Terms2Activity
 
 
 class MyPageSettingActivity : AppCompatActivity(), View.OnClickListener{
@@ -26,7 +26,7 @@ class MyPageSettingActivity : AppCompatActivity(), View.OnClickListener{
             }
 
             my_page_terms_btn->{
-                startActivity(Intent(this, TermsActivity::class.java))
+                startActivity(Intent(this, Terms2Activity::class.java))
             }
 
             my_page_setting_logout->{

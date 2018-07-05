@@ -71,8 +71,7 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".View.MyPage.Setting.NoticeActivity" />
         <activity android:name=".View.MyPage.Setting.Notice2Activity" />
-        <activity android:name=".View.MyPage.Setting.Terms.Terms2Activity"/>
-        <activity android:name=".View.MyPage.History.HistoryActivity"/>
+        <activity android:name=".View.MyPage.Setting.Terms.Terms2Activity"></activity>
     </application>
 
 </manifest>

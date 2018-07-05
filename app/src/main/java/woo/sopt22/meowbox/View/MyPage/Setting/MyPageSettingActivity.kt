@@ -15,6 +15,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import woo.sopt22.meowbox.View.MyPage.Setting.Notice.Notice2Activity
 import woo.sopt22.meowbox.View.MyPage.Setting.Terms.Terms2Activity
 
 

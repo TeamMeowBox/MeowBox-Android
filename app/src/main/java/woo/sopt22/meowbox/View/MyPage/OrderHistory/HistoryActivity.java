@@ -1,4 +1,4 @@
-package woo.sopt22.meowbox.View.MyPage.History;
+package woo.sopt22.meowbox.View.MyPage.OrderHistory;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

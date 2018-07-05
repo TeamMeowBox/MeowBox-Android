@@ -1,4 +1,4 @@
-package woo.sopt22.meowbox.View.Order.Fragment
+package woo.sopt22.meowbox.View.Order.OrderFragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.content_order_five.*
-import kotlinx.android.synthetic.main.content_order_five.view.*
 import kotlinx.android.synthetic.main.order_five_fragment.*
 import kotlinx.android.synthetic.main.order_five_fragment.view.*
 import woo.sopt22.meowbox.R

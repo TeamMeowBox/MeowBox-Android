@@ -1,4 +1,4 @@
-package woo.sopt22.meowbox.View.Order.Fragment
+package woo.sopt22.meowbox.View.Order.OrderFragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

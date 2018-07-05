@@ -118,25 +118,28 @@
                     </LinearLayout>
 
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="112dp"
+                        android:id="@+id/order_small_cat_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="28dp"
-                        android:src="@drawable/card_box_pink"
+                        android:src="@drawable/order_small_cat"
                         android:scaleType="fitXY"/>
 
 
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="112dp"
+                        android:id="@+id/order_normal_cat_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/card_box_pink"
+                        android:src="@drawable/order_normal_cat"
                         android:scaleType="fitXY"/>
 
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="112dp"
+                        android:id="@+id/order_large_cat_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/card_box_pink"
+                        android:src="@drawable/order_large_cat"
                         android:scaleType="fitXY"/>
 
                     <LinearLayout
@@ -213,6 +216,7 @@
                         android:text="알레르기 및 특이사항"/>
 
                     <EditText
+                        android:id="@+id/cat_about_info"
                         android:paddingLeft="11dp"
                         android:textSize="16dp"
                         android:paddingTop="11dp"

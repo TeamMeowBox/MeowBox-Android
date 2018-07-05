@@ -23,9 +23,11 @@ class OrderHistoryAdapter(var order_history_items : ArrayList<OrderHistory>, var
 
         if(viewType == TYPE_HEADER){
             val view = LayoutInflater.from(parent.context).inflate(R.layout.order_history_header, parent, false)
+            view.setOnClickListener(onItemClick)
             return OrderHeaderViewHolder(view)
         } else{
             val view = LayoutInflater.from(parent.context).inflate(R.layout.order_history_item, parent, false)
+            view.setOnClickListener(onItemClick)
             return OrderHistoryViewHolder(view)
         }
     }

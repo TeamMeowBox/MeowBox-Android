@@ -1,5 +1,6 @@
 package woo.sopt22.meowbox.View.MyPage.OrderHistory
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
@@ -10,12 +11,21 @@ import kotlinx.android.synthetic.main.activity_order_history.*
 import woo.sopt22.meowbox.Model.OrderHistory
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.View.MyPage.OrderHistory.Adapter.OrderHistoryAdapter
+import woo.sopt22.meowbox.View.MyPage.OrderHistory.OrderHistoryDetail.OrderHistoryDetailActivity
 
 class OrderHistoryActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!){
             order_history_x_btn->{
                 finish()
+            }
+            v!!->{
+                val index : Int = order_history_rv.getChildAdapterPosition(v!!)
+                var product = order_history_items[index].product
+
+                val intent = Intent(this, OrderHistoryDetailActivity::class.java)
+                intent.putExtra("product",product)
+                startActivity(intent)
             }
         }
     }
@@ -45,7 +55,8 @@ class OrderHistoryActivity : AppCompatActivity(), View.OnClickListener {
         order_history_items.add(OrderHistory(9,"생일박","2018.06.26",1))
 
 
-        orderHistoryAdapter = OrderHistoryAdapter(order_history_items)
+        orderHistoryAdapter = OrderHistoryAdapter(order_history_items, context = this@OrderHistoryActivity)
+        orderHistoryAdapter.setOnItemClickListener(this)
         order_history_rv.layoutManager = LinearLayoutManager(this@OrderHistoryActivity)
         order_history_rv.adapter = orderHistoryAdapter
 

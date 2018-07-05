@@ -27,6 +27,7 @@ import kotlinx.android.synthetic.main.app_bar_my_page.*
 import woo.sopt22.meowbox.R
 import kotlinx.android.synthetic.main.content_my_page.*
 import woo.sopt22.meowbox.View.Home.MainActivity
+import woo.sopt22.meowbox.View.Login.LoginActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.FAQ.QuestionActivity
@@ -152,7 +153,8 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.loginBtn -> {
-                // Handle the camera action
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
             }
             R.id.homeBtn -> {
                 var intent =  Intent(this, MainActivity::class.java)

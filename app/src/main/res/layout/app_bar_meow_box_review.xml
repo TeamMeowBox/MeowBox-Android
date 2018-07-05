@@ -4,18 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".View.MeowBoxReview.MeowBoxReviewActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#FFFFFF"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="#FFFFFF"
             app:popupTheme="@style/AppTheme.PopupOverlay" >
 
         <TextView
@@ -24,7 +26,8 @@
             android:text="MeowBox"
             android:layout_gravity="center_horizontal"
             android:textSize="18sp"
-            android:textColor="#ffffff"/>
+            android:textStyle="bold"
+            android:textColor="#4C4E51"/>
 
         </android.support.v7.widget.Toolbar>
 

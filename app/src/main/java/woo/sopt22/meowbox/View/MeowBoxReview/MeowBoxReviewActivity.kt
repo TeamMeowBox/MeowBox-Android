@@ -24,6 +24,7 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         setContentView(R.layout.activity_meow_box_review)
         setSupportActionBar(toolbar)
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
+        getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             window.statusBarColor = Color.BLACK
 

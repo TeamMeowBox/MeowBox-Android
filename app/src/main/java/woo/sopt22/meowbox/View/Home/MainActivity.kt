@@ -2,6 +2,7 @@ package woo.sopt22.meowbox.View.Home
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
@@ -29,6 +30,7 @@ import kotlinx.android.synthetic.main.activity_order_first.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import woo.sopt22.meowbox.R
+import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Login.LoginActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
@@ -53,6 +55,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
         toolbar.bringToFront()
 
+        SharedPreference.instance!!.load(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
         window.statusBarColor = Color.BLACK
 

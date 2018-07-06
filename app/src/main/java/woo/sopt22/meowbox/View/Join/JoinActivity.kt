@@ -23,7 +23,9 @@ import woo.sopt22.meowbox.Model.Login.LoginUser
 import woo.sopt22.meowbox.Network.NetworkService
 
 import woo.sopt22.meowbox.R
+import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
+import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.Login.LoginActivity
 
 class JoinActivity : AppCompatActivity(), View.OnClickListener {
@@ -97,6 +99,8 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
                     Log.v("11",response!!.body()!!.message)
                     token = response!!.body()!!.result.toString()
                     ToastMaker.makeLongToast(this@JoinActivity, token)
+                    SharedPreference.instance!!.setPrefData("token",token)
+                    startActivity(Intent(this@JoinActivity, MainActivity::class.java))
                 }
             }
 

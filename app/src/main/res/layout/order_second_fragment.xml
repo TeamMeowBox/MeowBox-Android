@@ -118,12 +118,13 @@
                     </LinearLayout>
 
                     <ImageView
+                        android:layout_gravity="center"
                         android:id="@+id/order_small_cat_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="28dp"
                         android:src="@drawable/order_small_cat"
-                        android:scaleType="fitXY"/>
+                        />
 
 
                     <ImageView
@@ -131,8 +132,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/order_normal_cat"
-                        android:scaleType="fitXY"/>
+                        android:elevation="10dp"
+                        android:src="@drawable/order_normal_cat" />
 
                     <ImageView
                         android:id="@+id/order_large_cat_image"
@@ -140,7 +141,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:src="@drawable/order_large_cat"
-                        android:scaleType="fitXY"/>
+                        />
 
                     <LinearLayout
                         android:layout_marginTop="52dp"

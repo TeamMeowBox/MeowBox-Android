@@ -20,6 +20,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_my_page.*
@@ -70,6 +71,9 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     lateinit var tmpString1 : String
     lateinit var tmpString2 : String
 
+    lateinit var mypageVisibleProgess : RelativeLayout
+    lateinit var mypageVisibleText : RelativeLayout
+
     lateinit var mypage_to_suggest_btn : LinearLayout
     lateinit var mypage_to_setting_btn : LinearLayout
     lateinit var mypage_to_qna_btn : LinearLayout
@@ -103,10 +107,18 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         mypage_to_history_btn = mypage_order_btn as LinearLayout
         mypage_order_btn.setOnClickListener(this)
 
+
+        mypageVisibleProgess = mypage_visiblebox_progress as RelativeLayout
+        mypageVisibleText = mypage_visiblebox_text as RelativeLayout
+        mypageVisibleProgess.show()
+        mypageVisibleText.hide()
+
+
+
         tmpCurrentNum = 3;
         tmpMaxNum = 6;
 
-        var descriptionData = Array(tmpMaxNum,{ i -> (i+1).toString()+"box"})
+        var descriptionData = Array(tmpMaxNum,{ i -> (i+1).toString()})
 
 
         var stateProgressBar = your_state_progress_bar_id as StateProgressBar
@@ -117,12 +129,14 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 //            descriptionData[i] = (i+1).toString()+"box";
 //
 //        }
-        tmpString1 = "3박스"
-        tmpString2 = "1박스"
+        tmpString1 = "6박스"
+        tmpString2 = "3박스"
 
 
 
-        var tmpString11 = tmpString1.replace("[^0-9]","")
+        val re = Regex("[^0-9]")
+        tmpMaxNum = re.replace(tmpString1, "").toInt()
+        tmpCurrentNum = re.replace(tmpString2, "").toInt()
 
 
         stateProgressBar.setMaxStateNumber(tmpMaxNum);
@@ -131,7 +145,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         mypageVisibleBoxLeftBox = mypage_visiblebox_progress_leftbox as TextView
         mypageVisibleBoxGetBox = mypage_visiblebox_progress_getbox as TextView
 
-        mypageVisibleBoxLeftBox.setText(tmpString11)
+        mypageVisibleBoxLeftBox.setText(tmpString1)
         mypageVisibleBoxGetBox.setText(tmpString2)
 
 
@@ -229,8 +243,12 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         return true
     }
 
-    fun removeCharExceptNumber(str : String): String {
-        return str.replace("[^-?0-9]", " ")
+    fun View.show(){
+        visibility = View.VISIBLE
+    }
+
+    fun View.hide(){
+        visibility = View.GONE
     }
 
 

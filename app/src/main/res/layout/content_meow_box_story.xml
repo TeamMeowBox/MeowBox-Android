@@ -5,87 +5,548 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".View.MeowBoxDetail.MeowBoxDetailActivity"
-    android:orientation="vertical"
-    tools:showIn="@layout/app_bar_meow_box_detail">
+    tools:context=".View.MeowBoxStory.MeowBoxStoryActivity"
+    tools:showIn="@layout/content_meow_box_story">
 
 
 
     <ScrollView
+        android:id="@+id/order_second_scrollview"
+        android:layout_above="@+id/order_second_bottom_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#ffffff"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="362dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="83dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="28dp"
+                    android:textColor="#4C4E51"
+                    android:text="내 고양이에게\n꼭 필요한\n특별 선물"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/logo_pink"/>
+
+                <ImageView
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:src="@drawable/story_order_btn"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_marginTop="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="매달, 새로운 행복을"
+                    android:textSize="22dp"
+                    android:textColor="#4C4E51"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="주고 싶어요"
+                    android:textSize="22dp"
+                    android:textColor="#4C4E51"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <TextView
+                    android:layout_marginTop="22dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#4C4E51"
+                    android:textSize="16dp"
+                    android:text="새로운 것만 찾고,"
+                    android:layout_gravity="center_horizontal"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#4C4E51"
+                    android:textSize="16dp"
+                    android:text="까다로운 우리 고양이"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <TextView
+                    android:layout_marginTop="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#4C4E51"
+                    android:textSize="16dp"
+                    android:text="건강,비용...신경쓸 게"
+                    android:layout_gravity="center_horizontal"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#4C4E51"
+                    android:textSize="16dp"
+                    android:text="한 두가지가 아닌 집사"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+
+            </LinearLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@android:color/holo_blue_light">
+                android:layout_height="wrap_content"
+                android:background="@drawable/story_meow_box_img_1">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="&quot; "
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:textColor="#E88687"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="우리가 함께, 쉽게"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:textColor="#4C4E51"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="행복해질 수는 없을까요?"
+                            android:textColor="#4C4E51"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" &quot;"
+                            android:textColor="#E88687"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp"
+                android:layout_marginTop="34dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/box_dashline"/>
+
+            <LinearLayout
+                android:layout_marginTop="34dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Under the sea"/>
-
-            </RelativeLayout>
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp">
-
+                    android:text="내 고양이의"
+                    android:textSize="22dp"
+                    android:textColor="#4C4E51"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="죠스 쿨링 모자"/>
+                    android:text="내 고양이를 위해"
+                    android:textSize="22dp"
+                    android:textColor="#4C4E51"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:text="내 고양이에 의해"
+                    android:textSize="22dp"
+                    android:textColor="#4C4E51"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"/>
+
+                <LinearLayout
+
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="125dp"
+                    android:layout_height="93dp"
+                    android:background="#eeeeee">
+
+                </LinearLayout>
+                <TextView
+                    android:layout_marginBottom="41dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="16dp"
+                    android:textColor="#4C4E51"
+                    android:text="꼼꼼하고 센스있는 장난감"/>
+
+                <LinearLayout
+
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="125dp"
+                    android:layout_height="93dp"
+                    android:background="#eeeeee">
+
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="16dp"
+                    android:textColor="#4C4E51"
+                    android:text="수의사가 체크한"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="16dp"
+                    android:textColor="#4C4E51"
+                    android:text="건강하고 맛있는 간식"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+
+                        android:layout_marginTop="31dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="&quot; "
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            android:textColor="#E88687"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="미유박스는 당신의 고양이를 위해"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            android:textColor="#4C4E51"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="끝없이 고민하고,준비했어요"
+                            android:textColor="#4C4E51"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" &quot;"
+                            android:textColor="#E88687"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+            <ImageView
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp"
+                android:layout_marginTop="34dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/box_dashline"/>
+            <RelativeLayout
+                android:layout_marginTop="34dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/story_tmp_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="만약 네가 7월에 온다면,"
+                        android:textSize="22dp"
+                        android:textColor="#4C4E51"
+                        android:layout_gravity="center_horizontal"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="나는 6월말부터 행복해질 거야"
+                        android:textSize="22dp"
+                        android:textColor="#4C4E51"
+                        android:layout_gravity="center_horizontal"
+                        />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/story_tmp_txt"
+                    android:textSize="12dp"
+                    android:textColor="#999999"
+                    android:text="생택쥐페리 「어린왕자」 중에서"
+                    android:layout_alignRight="@+id/story_tmp_txt"/>
 
             </RelativeLayout>
 
             <RelativeLayout
+                android:layout_marginTop="40dp"
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="wrap_content"
+                android:background="@drawable/story_meow_box_img_2">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+
+                        android:layout_marginTop="31dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="&quot; "
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            android:textColor="#E88687"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="매 월 첫 번째 월요일"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            android:textColor="#4C4E51"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:layout_marginBottom="40dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="당신의 고양이에게 설렘을 배송할게요"
+                            android:textColor="#4C4E51"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" &quot;"
+                            android:textColor="#E88687"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+            <ImageView
+                android:layout_marginBottom="40dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp"
+                android:layout_marginTop="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/box_dashline"/>
+
+            <LinearLayout
+
+                android:layout_gravity="center_horizontal"
+                android:layout_width="210dp"
+                android:layout_height="155dp"
+                android:background="#eeeeee">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="카드 뷰페이져 들어올 부분"/>
+                    android:textColor="#4C4E51"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:text="당신은 "/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="66dp"
+                        android:layout_height="9dp"
+                        android:background="#E88687"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#4C4E51"
+                        android:textSize="22dp"
+                        android:textStyle="bold"
+                        android:text="사랑만"/>
 
-            </RelativeLayout>
-
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@android:color/holo_red_light">
-
+                </RelativeLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="산호섬 노즈 워크"/>
+                    android:textColor="#4C4E51"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:text=" 주세요"/>
 
-            </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="156dp"
+                        android:layout_height="9dp"
+                        android:background="#E88687"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#4C4E51"
+                        android:textSize="22dp"
+                        android:textStyle="bold"
+                        android:text="고민은 미유박스"/>
+
+                </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#4C4E51"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:text="가 할게요"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_marginTop="34dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/story_order_btn"/>
+
 
         </LinearLayout>
+
     </ScrollView>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_alignParentBottom="true"
-        android:background="@android:color/holo_green_light">
-
-        <TextView
-            android:id="@+id/detailOrderBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="미유박스 주문하기"
-            android:layout_centerInParent="true"/>
-
-    </RelativeLayout>
 
 
 

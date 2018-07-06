@@ -45,6 +45,8 @@ public class StateProgressBar extends View {
         }
     }
 
+    private int myWidth = 0;
+
     private static final int MIN_STATE_NUMBER = 1;
     private static final int MAX_STATE_NUMBER = 5;
 
@@ -879,6 +881,14 @@ public class StateProgressBar extends View {
         return (int) (2 * mStateRadius) + (int) (mSpacing);
     }
 
+    private int getCellWidth(){
+        return myWidth;
+    }
+
+    public void setCellWidth(int a){
+        this.myWidth = a;
+    }
+
 
     private boolean checkForDescriptionMultiLine(ArrayList<String> stateDescriptionData) {
         boolean isMultiLine = false;
@@ -1215,17 +1225,17 @@ public class StateProgressBar extends View {
             if (mCheckStateCompleted && isChecked) {
                 //canvas.drawText(getContext().getString(R.string.check_icon), xPos, yPos, innerPaintType);
                 //hereis
-                canvas.drawLine(mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f, mCellHeight / 2,
+                canvas.drawLine(mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f, mCellHeight / 2 - mStateLineThickness/2,
                         mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f,mCellHeight / 2 + 40f, paintTmpCheck);
 
             } else {
                 if (mIsStateNumberDescending)
                     //canvas.drawText(String.valueOf(noOfCircles - i), xPos, yPos, innerPaintType);
-                    canvas.drawLine(mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f, mCellHeight / 2,
+                    canvas.drawLine(mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f, mCellHeight / 2 - mStateLineThickness/2,
                             mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f,mCellHeight / 2 + 40f, paintTmpCheck);
                 else
                     //canvas.drawText(String.valueOf(i + 1), xPos, yPos, innerPaintType);
-                    canvas.drawLine(mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f, mCellHeight / 2,
+                    canvas.drawLine(mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f, mCellHeight / 2 - mStateLineThickness/2,
                             mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f,mCellHeight / 2 + 40f, paintTmpUnCheck);
             }
         }

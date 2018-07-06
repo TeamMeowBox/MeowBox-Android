@@ -14,7 +14,6 @@
     tools:showIn="@layout/app_bar_main">
 
     <RelativeLayout
-        android:background="@android:color/holo_blue_light"
         android:layout_marginTop="60dp"
 
         android:layout_width="match_parent"

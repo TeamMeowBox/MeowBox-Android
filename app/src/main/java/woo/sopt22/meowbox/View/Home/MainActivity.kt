@@ -74,6 +74,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         home_detail_btn = home_to_detail_btn as ImageView
     }
 
+    override fun onRestart() {
+        Log.v("onRestart",SharedPreference.instance!!.getPrefStringData("user_name"))
+        super.onRestart()
+        SharedPreference.instance!!.load(this)
+
+
+        var headerView : View = main_nav_view.getHeaderView(0)
+        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+
+        if(SharedPreference.instance!!.getPrefStringData("email")!!.isEmpty()){
+            userName.text = "OO님!"
+        } else {
+            userName.text = SharedPreference.instance!!.getPrefStringData("email")
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -82,12 +98,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
         toolbar.bringToFront()
 
-        //Log.v("main user_idx : ",SharedPreference.instance!!.getPrefIntegerData("user_idx",0).toString())
+        var headerView : View = main_nav_view.getHeaderView(0)
+        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+
+
 
         init()
         home_stroy_btn.setOnClickListener(this)
         home_detail_btn.setOnClickListener(this)
         SharedPreference.instance!!.load(this)
+
+
+        if(SharedPreference.instance!!.getPrefStringData("email")!!.isEmpty()){
+            userName.text = "OO님!"
+        } else {
+            userName.text = SharedPreference.instance!!.getPrefStringData("email")
+        }
+        Log.v("onCreate",SharedPreference.instance!!.getPrefStringData("email"))
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
         window.statusBarColor = Color.BLACK
@@ -111,8 +138,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         // actionBar 타이틀 가리기
 
-        var headerView : View = main_nav_view.getHeaderView(0)
-        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+
+
 
         //희현카드뷰
 
@@ -162,11 +189,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
 
 
-
-        userName.text = SharedPreference.instance!!.getPrefStringData("user_id")
-
-
-
         val toggle = ActionBarDrawerToggle(
                 this, main_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
 
@@ -206,7 +228,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.loginBtn -> {
-                startActivity(Intent(this, LoginActivity::class.java))
+                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                    startActivity(Intent(this, LoginActivity::class.java))
+                } else{
+                    ToastMaker.makeLongToast(this, "이미 로그인 하셨습니다.")
+                }
             }
             R.id.blankBtn->{
                 item.isChecked = false

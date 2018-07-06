@@ -58,26 +58,20 @@ class LogoutCustomDialog(context: Context) : Dialog(context), View.OnClickListen
     companion object {
         private val LAYOUT = R.layout.logout_custom_dialog
     }
+
     fun logoutUser(){
-        val logoutUser = networkService.deleteUser(SharedPreference.instance!!.getPrefStringData("user_idx")!!.toInt())
-        logoutUser.enqueue(object : Callback<BaseModel>{
-            override fun onFailure(call: Call<BaseModel>?, t: Throwable?) {
+        val dialog = LogoutApplyDialog(context)
+        SharedPreference.instance!!.removeData("user_idx")
+        SharedPreference.instance!!.removeData("email")
+        SharedPreference.instance!!.removeData("token")
+        //SharedPreference.instance!!.removeData("cat_idx")
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.show()
+        cancel()
+        context.startActivity(Intent(context, MainActivity::class.java))
 
-            }
-
-            override fun onResponse(call: Call<BaseModel>?, response: Response<BaseModel>?) {
-                if(response!!.isSuccessful){
-                    val dialog = LogoutApplyDialog(context)
-                    SharedPreference.instance!!.removeData("user_idx")
-                    SharedPreference.instance!!.removeData("token")
-                    SharedPreference.instance!!.removeData("cat_idx")
-                    dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    dialog.setCanceledOnTouchOutside(false)
-                    dialog.show()
-                    cancel()
-                    context.startActivity(Intent(context, MainActivity::class.java))
-                }
-            }
-        })
     }
+
+
 }

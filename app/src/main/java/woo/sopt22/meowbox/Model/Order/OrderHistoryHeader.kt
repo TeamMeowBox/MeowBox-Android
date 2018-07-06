@@ -1,4 +1,4 @@
-package woo.sopt22.meowbox.Model
+package woo.sopt22.meowbox.Model.Order
 
 data class OrderHistoryHeader (
 

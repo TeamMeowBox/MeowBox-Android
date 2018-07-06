@@ -24,14 +24,14 @@ interface NetworkService {
 
 
     // 3. 고양이 등록
-    @FormUrlEncoded
+    //@FormUrlEncoded
     @POST("user/cat_signup")
     fun registerCat(
             @Header("token") token : String,
             @Body catInformation: CatInformation
     ) : Call<BaseModel>
 
-    // 4. 로그아웃
+    // 4. 회원탈퇴
     @HTTP(method = "DELETE", path = "user/account/{user_idx}", hasBody = false)
     fun deleteUser(
             @Path("user_idx") user_idx : Int

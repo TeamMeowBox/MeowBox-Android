@@ -100,7 +100,7 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
                     token = response!!.body()!!.result.toString()
                     ToastMaker.makeLongToast(this@JoinActivity, token)
                     SharedPreference.instance!!.setPrefData("token",token)
-                    SharedPreference.instance!!.setPrefData("user_id",jEmail)
+                    SharedPreference.instance!!.setPrefData("user_email",jEmail)
                     SharedPreference.instance!!.setPrefData("user_idx",response.body()!!.result!!.user_idx)
                     SharedPreference.instance!!.setPrefData("cat_idx",response.body()!!.result!!.cat_idx)
                     startActivity(Intent(this@JoinActivity, MainActivity::class.java))

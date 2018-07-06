@@ -57,10 +57,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     var password_flag : Boolean = false
 
 
+
     // 통신
     lateinit var loginUser : LoginUser
     lateinit var networkService: NetworkService
     lateinit var token : String
+    lateinit var email : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +70,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         networkService = ApplicationController.instance!!.networkService
         SharedPreference.instance!!.load(this)
+        email = SharedPreference.instance!!.getPrefStringData("user_name")!!
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             window.statusBarColor = Color.BLACK
@@ -172,7 +175,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             override fun onResponse(call: Call<LoginResponse>?, response: Response<LoginResponse>?) {
                 if(response!!.isSuccessful){
                     Log.v("login",response!!.message())
+                    token = response!!.body()!!.result!!.token
                     SharedPreference.instance!!.setPrefData("token",token)
+                    SharedPreference.instance!!.setPrefData("email",login_email.text.toString())
                     SharedPreference.instance!!.setPrefData("user_idx",response.body()!!.result!!.user_idx)
                     SharedPreference.instance!!.setPrefData("cat_idx",response.body()!!.result!!.cat_idx)
                     startActivity(Intent(applicationContext, MainActivity::class.java))

@@ -202,7 +202,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val isPermissionsGranted = managePermissions.processPermissionsResult(requestCode, permissions as Array<String>, grantResults)
                 if(isPermissionsGranted){
                     // Do the task now
-                    ToastMaker.makeLongToast(this,"Permissions granted.")
+                    //ToastMaker.makeLongToast(this,"Permissions granted.")
                 }else{
                     ToastMaker.makeLongToast(this,"Permissions denied.")
                 }

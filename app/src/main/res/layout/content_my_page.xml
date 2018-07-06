@@ -22,8 +22,6 @@
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:orientation="horizontal"
-        android:layout_marginLeft="22dp"
-        android:layout_marginRight="22dp"
         >
         
         <woo.sopt22.meowbox.View.MyPage.CircleImageView
@@ -34,6 +32,8 @@
             android:layout_gravity="center"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
+
+            android:layout_marginLeft="22dp"
             />
 
 
@@ -73,82 +73,112 @@
             android:layout_gravity="center_vertical"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginRight="22dp"
             />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#EFEDED"
+            android:layout_alignParentBottom="true"
+            ></LinearLayout>
 
 
         
     </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/mypage_visiblebox_progress"
             android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:orientation="vertical"
+
             >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1.5dp"
-                android:background="#EFEDED"
-                ></LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
 
-                <TextView
-                    android:id="@+id/mypage_text_ex11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="나의 고양이에게"
-                    android:textColor="#67696B"
-                    android:textSize="27sp"
-                    android:layout_marginTop="30dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    />
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp">
 
                 <LinearLayout
-                    android:id="@+id/mypage_text_box11"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="#4C4E51"
+                        android:text="정기권"
+                        android:textSize="14dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/mypage_visiblebox_progress_box"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/mypage_text_ex11"
+                    android:orientation="horizontal"
                     android:layout_centerHorizontal="true">
                     <TextView
-                        android:id="@+id/mypage_text_ex22"
+                        android:id="@+id/mypage_visiblebox_progress_leftbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="미유박스"
                         android:textColor="#67696B"
-                        android:textSize="27sp"
-                        />
+                        android:textSize="27dp"
+                        android:text="3박스"
+                        android:layout_marginTop="30dp"/>
+
                     <TextView
-                        android:layout_toEndOf="@+id/mypage_text_ex22"
-                        android:layout_alignBottom="@+id/mypage_text_ex22"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="를"
                         android:textColor="#67696B"
-                        android:textSize="27sp"
-                        />
+                        android:textSize="27dp"
+                        android:text=" 중 "
+                        android:layout_marginTop="30dp"/>
+
+                    <TextView
+                        android:id="@+id/mypage_visiblebox_progress_getbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#E88687"
+                        android:textStyle="bold"
+                        android:textSize="27dp"
+                        android:text="3박스"
+                        android:layout_marginTop="30dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#67696B"
+                        android:textSize="27dp"
+                        android:text="를"
+                        android:layout_marginTop="30dp"/>
+
                 </LinearLayout>
+
                 <TextView
-                    android:layout_below="@+id/mypage_text_box11"
+                    android:layout_centerHorizontal="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="선물해 보는건 어때요?"
+                    android:text="배송 받으셨어요"
+                    android:layout_below="@+id/mypage_visiblebox_progress_box"
                     android:textColor="#67696B"
-                    android:textSize="27sp"
-                    android:layout_centerHorizontal="true"
+                    android:textSize="27dp"
                     />
+
+
+
 
             </RelativeLayout>
 
             <woo.sopt22.meowbox.View.MyPage.ProgressBar.StateProgressBar
                 android:layout_alignParentBottom="true"
+                android:layout_marginBottom="14dp"
 
                 android:id="@+id/your_state_progress_bar_id"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:spb_currentStateNumber="two"
                 app:spb_maxStateNumber="three"
@@ -162,22 +192,17 @@
                 app:spb_checkStateCompleted="true"
                 android:layout_centerHorizontal="true"
 
+
                 />
-
-
         </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/mypage_visiblebox_text"
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:orientation="vertical"
         >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1.5dp"
-            android:background="#EFEDED"
-            ></LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"

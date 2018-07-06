@@ -33,7 +33,7 @@ public class StateProgressBar extends View {
 
 
     public enum StateNumber {
-        ONE(1), TWO(2), THREE(3), FOUR(4), FIVE(5);
+        ONE(1), TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6);
         private int value;
 
         StateNumber(int value) {
@@ -44,6 +44,8 @@ public class StateProgressBar extends View {
             return value;
         }
     }
+
+    private int myWidth = 0;
 
     private static final int MIN_STATE_NUMBER = 1;
     private static final int MAX_STATE_NUMBER = 5;
@@ -422,6 +424,13 @@ public class StateProgressBar extends View {
         invalidate();
     }
 
+    public void setCurrentStateNumber(int currentStateNumber) {
+        validateStateNumber(currentStateNumber);
+        mCurrentStateNumber = currentStateNumber+1;
+        updateCheckAllStatesValues(mEnableAllStatesCompleted);
+        invalidate();
+    }
+
     public int getCurrentStateNumber() {
         return mCurrentStateNumber;
     }
@@ -429,6 +438,10 @@ public class StateProgressBar extends View {
 
     public void setMaxStateNumber(StateNumber maximumState) {
         mMaxStateNumber = maximumState.getValue();
+        resolveMaxStateNumber();
+    }
+    public void setMaxStateNumber(int maximumState) {
+        mMaxStateNumber = maximumState+1;
         resolveMaxStateNumber();
     }
 
@@ -662,7 +675,7 @@ public class StateProgressBar extends View {
         mStateDescriptionColor = ContextCompat.getColor(context, R.color.background_text_color);
 
         mStateSize = 0.0f;
-        mStateLineThickness = 4.0f;
+        mStateLineThickness = 8.0f;
         mStateNumberTextSize = 0.0f;
         mStateDescriptionSize = 15f;
 
@@ -868,6 +881,14 @@ public class StateProgressBar extends View {
         return (int) (2 * mStateRadius) + (int) (mSpacing);
     }
 
+    private int getCellWidth(){
+        return myWidth;
+    }
+
+    public void setCellWidth(int a){
+        this.myWidth = a;
+    }
+
 
     private boolean checkForDescriptionMultiLine(ArrayList<String> stateDescriptionData) {
         boolean isMultiLine = false;
@@ -967,9 +988,9 @@ public class StateProgressBar extends View {
             endCenterX = mCellWidth * endIndex - (mCellWidth / 2);
 
             startX = startCenterX;
-                    //+ (mStateRadius * 0.75f);
+            //+ (mStateRadius * 0.75f);
             stopX = endCenterX ;
-                    //- (mStateRadius * 0.75f);
+            //- (mStateRadius * 0.75f);
 
             canvas.drawLine(startX, mCellHeight / 2, stopX, mCellHeight / 2, paint);
 
@@ -1204,17 +1225,17 @@ public class StateProgressBar extends View {
             if (mCheckStateCompleted && isChecked) {
                 //canvas.drawText(getContext().getString(R.string.check_icon), xPos, yPos, innerPaintType);
                 //hereis
-                    canvas.drawLine(mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f, mCellHeight / 2,
-                            mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f,mCellHeight / 2 + 40f, paintTmpCheck);
+                canvas.drawLine(mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f, mCellHeight / 2 - mStateLineThickness/2,
+                        mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f,mCellHeight / 2 + 40f, paintTmpCheck);
 
             } else {
                 if (mIsStateNumberDescending)
                     //canvas.drawText(String.valueOf(noOfCircles - i), xPos, yPos, innerPaintType);
-                    canvas.drawLine(mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f, mCellHeight / 2,
+                    canvas.drawLine(mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f, mCellHeight / 2 - mStateLineThickness/2,
                             mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f,mCellHeight / 2 + 40f, paintTmpCheck);
                 else
                     //canvas.drawText(String.valueOf(i + 1), xPos, yPos, innerPaintType);
-                    canvas.drawLine(mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f, mCellHeight / 2,
+                    canvas.drawLine(mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f, mCellHeight / 2 - mStateLineThickness/2,
                             mCellWidth * (i + 2) - (mCellWidth / 2) -2.0f,mCellHeight / 2 + 40f, paintTmpUnCheck);
             }
         }

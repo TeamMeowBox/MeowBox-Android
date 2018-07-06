@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import kotlinx.android.synthetic.main.activity_order_history.*
-import woo.sopt22.meowbox.Model.OrderHistory
+import woo.sopt22.meowbox.Model.Order.OrderHistory
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.View.MyPage.OrderHistory.Adapter.OrderHistoryAdapter
 import woo.sopt22.meowbox.View.MyPage.OrderHistory.OrderHistoryDetail.OrderHistoryDetailActivity
@@ -44,15 +44,15 @@ class OrderHistoryActivity : AppCompatActivity(), View.OnClickListener {
             window.statusBarColor = Color.BLACK
 
         order_history_items = ArrayList()
-        order_history_items.add(OrderHistory(1,"헤더","2018.04.26 - 2018.06.26",0))
-        order_history_items.add(OrderHistory(2,"6개월 정기권","2018.08.26 - 2018.01.26",1))
-        order_history_items.add(OrderHistory(3,"생일박","2018.06.26",2))
-        order_history_items.add(OrderHistory(4,"3개월 정기권","2018.04.26 - 2018.06.26",3))
-        order_history_items.add(OrderHistory(5,"6개월 정기권","2018.08.26 - 2018.01.26",4))
-        order_history_items.add(OrderHistory(6,"생일박","2018.06.26",5))
-        order_history_items.add(OrderHistory(7,"3개월 정기권","2018.04.26 - 2018.06.26",6))
-        order_history_items.add(OrderHistory(8,"6개월 정기권","2018.08.26 - 2018.01.26",7))
-        order_history_items.add(OrderHistory(9,"생일박","2018.06.26",1))
+        order_history_items.add(OrderHistory(1, "헤더", "2018.04.26 - 2018.06.26", 0))
+        order_history_items.add(OrderHistory(2, "6개월 정기권", "2018.08.26 - 2018.01.26", 1))
+        order_history_items.add(OrderHistory(3, "생일박", "2018.06.26", 2))
+        order_history_items.add(OrderHistory(4, "3개월 정기권", "2018.04.26 - 2018.06.26", 3))
+        order_history_items.add(OrderHistory(5, "6개월 정기권", "2018.08.26 - 2018.01.26", 4))
+        order_history_items.add(OrderHistory(6, "생일박", "2018.06.26", 5))
+        order_history_items.add(OrderHistory(7, "3개월 정기권", "2018.04.26 - 2018.06.26", 6))
+        order_history_items.add(OrderHistory(8, "6개월 정기권", "2018.08.26 - 2018.01.26", 7))
+        order_history_items.add(OrderHistory(9, "생일박", "2018.06.26", 1))
 
 
         orderHistoryAdapter = OrderHistoryAdapter(order_history_items, context = this@OrderHistoryActivity)

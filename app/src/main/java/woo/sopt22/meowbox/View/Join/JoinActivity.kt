@@ -12,21 +12,18 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_join.*
-import kotlinx.android.synthetic.main.sliding_layout.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import woo.sopt22.meowbox.ApplicationController
-import woo.sopt22.meowbox.Model.Base.BaseModel
 import woo.sopt22.meowbox.Model.Login.LoginResponse
-import woo.sopt22.meowbox.Model.Login.LoginUser
+import woo.sopt22.meowbox.Model.SignUp.SignUpUser
 import woo.sopt22.meowbox.Network.NetworkService
 
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Home.MainActivity
-import woo.sopt22.meowbox.View.Login.LoginActivity
 
 class JoinActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -43,7 +40,7 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var jPwd : String
 
     lateinit var networkService: NetworkService
-    lateinit var loginUser : LoginUser
+    lateinit var signUpUser : SignUpUser
     lateinit var token : String
     override fun onClick(v: View?) {
         when(v!!){
@@ -69,6 +66,8 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_join)
 
         networkService = ApplicationController.instance!!.networkService
+        SharedPreference.instance!!.load(this)
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             window.statusBarColor = Color.BLACK
@@ -87,8 +86,8 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     fun sign(){
-        loginUser = LoginUser(jEmail,jPwd,jName,jPhone)
-        var loginResponse = networkService.postSignUp(loginUser)
+        signUpUser = SignUpUser(jEmail, jPwd, jName, jPhone)
+        var loginResponse = networkService.postSignUp(signUpUser)
         loginResponse.enqueue(object : Callback<LoginResponse>{
             override fun onFailure(call: Call<LoginResponse>?, t: Throwable?) {
                 Log.v("12",t.toString())
@@ -97,9 +96,13 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
             override fun onResponse(call: Call<LoginResponse>?, response: Response<LoginResponse>?) {
                 if(response!!.isSuccessful){
                     Log.v("11",response!!.body()!!.message)
+                    Log.v("11",response!!.body()!!.result!!.user_idx)
                     token = response!!.body()!!.result.toString()
                     ToastMaker.makeLongToast(this@JoinActivity, token)
                     SharedPreference.instance!!.setPrefData("token",token)
+                    SharedPreference.instance!!.setPrefData("user_email",jEmail)
+                    SharedPreference.instance!!.setPrefData("user_idx",response.body()!!.result!!.user_idx)
+                    SharedPreference.instance!!.setPrefData("cat_idx",response.body()!!.result!!.cat_idx)
                     startActivity(Intent(this@JoinActivity, MainActivity::class.java))
                 }
             }

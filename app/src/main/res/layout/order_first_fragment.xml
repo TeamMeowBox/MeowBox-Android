@@ -78,6 +78,7 @@
 
         <EditText
             android:id="@+id/order_cat_name"
+            android:inputType="text"
             android:paddingBottom="15dp"
             android:hint="고양이 이름"
             android:layout_width="222dp"

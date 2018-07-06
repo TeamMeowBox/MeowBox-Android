@@ -12,8 +12,19 @@ import android.text.Spannable
 import android.text.style.ForegroundColorSpan
 import android.text.SpannableStringBuilder
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import woo.sopt22.meowbox.ApplicationController
+import woo.sopt22.meowbox.Model.Base.BaseModel
+import woo.sopt22.meowbox.Model.Login.LoginResponse
+import woo.sopt22.meowbox.Model.Login.LoginUser
+import woo.sopt22.meowbox.Network.NetworkService
+import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
+import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.Join.JoinActivity
 
 
@@ -21,11 +32,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!){
             login_to_sign_btn->{
-                startActivity(Intent(this, JoinActivity::class.java))
+                startActivity(Intent(applicationContext, JoinActivity::class.java))
             }
             loginBtn->{
                 if(cnt_email == 1 && cnt_password == 1){
-                    ToastMaker.makeLongToast(this, "로그인할 수 있음")
+                    postLogin()
+                    //ToastMaker.makeLongToast(this, "로그인할 수 있음")
                 } else{
                     ToastMaker.makeLongToast(this, "안되지!")
                 }
@@ -43,9 +55,22 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     var cnt_password : Int=0
     var email_flag : Boolean = false
     var password_flag : Boolean = false
+
+
+
+    // 통신
+    lateinit var loginUser : LoginUser
+    lateinit var networkService: NetworkService
+    lateinit var token : String
+    lateinit var email : String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        networkService = ApplicationController.instance!!.networkService
+        SharedPreference.instance!!.load(this)
+        email = SharedPreference.instance!!.getPrefStringData("user_name")!!
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             window.statusBarColor = Color.BLACK
@@ -72,7 +97,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                if(login_email.text.toString().length<5 && login_password.text.toString().length<5){
+                if(login_email.text.toString().length<1 && login_password.text.toString().length<1){
                     loginBtn.setImageResource(R.drawable.login_btn_gray)
                     cnt_email=0
                     cnt_password=0
@@ -86,7 +111,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     login_email_image.isSelected = false
                 }
 
-                if(login_email.text.toString().length>=5 && login_password.text.toString().length>=5){
+                if(login_email.text.toString().length>=1 && login_password.text.toString().length>=1){
                     loginBtn.setImageResource(R.drawable.login_btn_pink)
                     cnt_email=1
                     cnt_password=1
@@ -117,7 +142,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     login_password_image.isSelected = false
                 }
 
-                if(login_email.text.toString().length>=5 && login_password.text.toString().length>=5) {
+                if(login_email.text.toString().length>=1 && login_password.text.toString().length>=1){
                     loginBtn.setImageResource(R.drawable.login_btn_pink)
                     cnt_password = 1
                     cnt_email=1
@@ -136,5 +161,29 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     fun clearSelected(){
         loginBtn.isSelected = false
+    }
+
+    fun postLogin(){
+        loginUser = LoginUser(login_email.text.toString(), login_password.text.toString())
+        val loginResponse = networkService.postSignIn(loginUser)
+        loginResponse.enqueue(object : Callback<LoginResponse>{
+            override fun onFailure(call: Call<LoginResponse>?, t: Throwable?) {
+                Log.v("login",t.toString())
+
+            }
+
+            override fun onResponse(call: Call<LoginResponse>?, response: Response<LoginResponse>?) {
+                if(response!!.isSuccessful){
+                    Log.v("login",response!!.message())
+                    token = response!!.body()!!.result!!.token
+                    SharedPreference.instance!!.setPrefData("token",token)
+                    SharedPreference.instance!!.setPrefData("email",login_email.text.toString())
+                    SharedPreference.instance!!.setPrefData("user_idx",response.body()!!.result!!.user_idx)
+                    SharedPreference.instance!!.setPrefData("cat_idx",response.body()!!.result!!.cat_idx)
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
+                }
+            }
+
+        })
     }
 }

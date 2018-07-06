@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import woo.sopt22.meowbox.R;
+import woo.sopt22.meowbox.Util.ToastMaker;
 import woo.sopt22.meowbox.View.MeowBoxDetail.MeowBoxDetailActivity;
 
 public class CardViewAdapter extends PagerAdapter implements View.OnClickListener{
@@ -41,6 +42,7 @@ public class CardViewAdapter extends PagerAdapter implements View.OnClickListene
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View view = inflater.inflate(R.layout.cardview_adapter, container, false);
 
+
         ImageView home_detail_btn = view.findViewById(R.id.home_detail_btn);
         home_detail_btn.setOnClickListener(this);
         ImageView mImageView = view.findViewById(R.id.titleImageView);
@@ -59,8 +61,7 @@ public class CardViewAdapter extends PagerAdapter implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.home_detail_btn :
-                Intent intent = new Intent(context, MeowBoxDetailActivity.class);
-                context.startActivity(intent);
+                ToastMaker.INSTANCE.makeLongToast(context, "뜨니?");
                 break;
         }
     }

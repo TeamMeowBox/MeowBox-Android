@@ -2,6 +2,7 @@ package woo.sopt22.meowbox.View.Order.OrderFragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,16 @@ import android.widget.AdapterView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.order_second_fragment.*
 import kotlinx.android.synthetic.main.order_second_fragment.view.*
+import kotlinx.android.synthetic.main.sliding_layout.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import woo.sopt22.meowbox.ApplicationController
+import woo.sopt22.meowbox.Model.Base.BaseModel
+import woo.sopt22.meowbox.Model.RegisterCat.CatInformation
+import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
+import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Order.OrderFirstActivity
 
@@ -21,8 +31,9 @@ class OrderSecondFragment : Fragment(), View.OnClickListener{
                 (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(OrderFirstFragment())
             }
             order_etc_next->{
-                (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(OrderThirdFragment())
-                ToastMaker.makeLongToast(context, order_etc_cat_name.text.toString()+"고양이와"+year+month+day+"생일 정보와"+cat_type.toString()+"과"+cat_about_info.text.toString())
+                // 고양이 등록 통신 진행
+                registerCatInfo()
+                //ToastMaker.makeLongToast(context, order_etc_cat_name.text.toString()+"고양이와"+year+month+day+"생일 정보와"+cat_type.toString()+"과"+cat_about_info.text.toString())
             }
             order_small_cat_image->{
                 if(!order_small_cat_image.isSelected){
@@ -73,8 +84,16 @@ class OrderSecondFragment : Fragment(), View.OnClickListener{
     lateinit var month : String
     lateinit var day : String
     var cat_type : Int = 0
+
+    // 통신
+    lateinit var networkService: NetworkService
+    lateinit var catInformation: CatInformation
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.order_second_fragment, container, false)
+
+        networkService = ApplicationController.instance!!.networkService
+        SharedPreference.instance!!.load(context!!)
 
 
         view.order_etc_previous.setOnClickListener(this)
@@ -136,6 +155,26 @@ class OrderSecondFragment : Fragment(), View.OnClickListener{
             order_etc_cat_name.text = bundle.getString("cat_name")
         }
 
+    }
+
+    fun registerCatInfo(){
+        catInformation = CatInformation(order_etc_cat_name.text.toString(), cat_type,
+                year+month+day,cat_about_info.text.toString())
+        val registerResponse = networkService.registerCat(SharedPreference.instance!!.getPrefStringData("token")!!,catInformation)
+        registerResponse.enqueue(object : Callback<BaseModel>{
+            override fun onFailure(call: Call<BaseModel>?, t: Throwable?) {
+                Log.v("0210",t!!.message)
+            }
+
+            override fun onResponse(call: Call<BaseModel>?, response: Response<BaseModel>?) {
+                if(response!!.isSuccessful){
+                    Log.v("0210",response!!.message())
+                    (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(OrderThirdFragment())
+                }
+
+            }
+
+        })
     }
 
 

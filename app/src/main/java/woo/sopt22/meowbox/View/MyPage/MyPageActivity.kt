@@ -20,6 +20,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_my_page.*
 import kotlinx.android.synthetic.main.app_bar_my_page.*
@@ -62,12 +63,19 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     }
 
-    var descriptionData = arrayOf("1box", "2box", "3box")
+    //var descriptionData = arrayOf("1box")
+
+    var tmpMaxNum : Int = 0
+    var tmpCurrentNum : Int = 0
+    lateinit var tmpString1 : String
+    lateinit var tmpString2 : String
 
     lateinit var mypage_to_suggest_btn : LinearLayout
     lateinit var mypage_to_setting_btn : LinearLayout
     lateinit var mypage_to_qna_btn : LinearLayout
     lateinit var mypage_to_history_btn : LinearLayout
+    lateinit var mypageVisibleBoxLeftBox : TextView
+    lateinit var mypageVisibleBoxGetBox : TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page)
@@ -95,8 +103,41 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         mypage_to_history_btn = mypage_order_btn as LinearLayout
         mypage_order_btn.setOnClickListener(this)
 
+        tmpCurrentNum = 3;
+        tmpMaxNum = 6;
+
+        var descriptionData = Array(tmpMaxNum,{ i -> (i+1).toString()+"box"})
+
+
         var stateProgressBar = your_state_progress_bar_id as StateProgressBar
         stateProgressBar.setStateDescriptionData(descriptionData)
+
+
+//        for(i in 0..tmpMaxNum){
+//            descriptionData[i] = (i+1).toString()+"box";
+//
+//        }
+        tmpString1 = "3박스"
+        tmpString2 = "1박스"
+
+
+
+        var tmpString11 = tmpString1.replace("[^0-9]","")
+
+
+        stateProgressBar.setMaxStateNumber(tmpMaxNum);
+        stateProgressBar.setCurrentStateNumber(tmpCurrentNum);
+
+        mypageVisibleBoxLeftBox = mypage_visiblebox_progress_leftbox as TextView
+        mypageVisibleBoxGetBox = mypage_visiblebox_progress_getbox as TextView
+
+        mypageVisibleBoxLeftBox.setText(tmpString11)
+        mypageVisibleBoxGetBox.setText(tmpString2)
+
+
+
+
+
 
 
 
@@ -143,7 +184,6 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
 
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -188,4 +228,11 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         mypage_drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
+
+    fun removeCharExceptNumber(str : String): String {
+        return str.replace("[^-?0-9]", " ")
+    }
+
+
+
 }

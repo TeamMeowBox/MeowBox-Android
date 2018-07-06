@@ -33,7 +33,7 @@ public class StateProgressBar extends View {
 
 
     public enum StateNumber {
-        ONE(1), TWO(2), THREE(3), FOUR(4), FIVE(5);
+        ONE(1), TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6);
         private int value;
 
         StateNumber(int value) {
@@ -422,6 +422,13 @@ public class StateProgressBar extends View {
         invalidate();
     }
 
+    public void setCurrentStateNumber(int currentStateNumber) {
+        validateStateNumber(currentStateNumber);
+        mCurrentStateNumber = currentStateNumber+1;
+        updateCheckAllStatesValues(mEnableAllStatesCompleted);
+        invalidate();
+    }
+
     public int getCurrentStateNumber() {
         return mCurrentStateNumber;
     }
@@ -429,6 +436,10 @@ public class StateProgressBar extends View {
 
     public void setMaxStateNumber(StateNumber maximumState) {
         mMaxStateNumber = maximumState.getValue();
+        resolveMaxStateNumber();
+    }
+    public void setMaxStateNumber(int maximumState) {
+        mMaxStateNumber = maximumState+1;
         resolveMaxStateNumber();
     }
 
@@ -662,7 +673,7 @@ public class StateProgressBar extends View {
         mStateDescriptionColor = ContextCompat.getColor(context, R.color.background_text_color);
 
         mStateSize = 0.0f;
-        mStateLineThickness = 4.0f;
+        mStateLineThickness = 8.0f;
         mStateNumberTextSize = 0.0f;
         mStateDescriptionSize = 15f;
 
@@ -677,7 +688,7 @@ public class StateProgressBar extends View {
         mDescriptionLinesSpacing = 0.0f;
 
         mCheckStateCompleted = false;
-        mAnimateToCurrentProgressState = true;
+        mAnimateToCurrentProgressState = false;
         mEnableAllStatesCompleted = false;
 
         mAnimStartDelay = 100;

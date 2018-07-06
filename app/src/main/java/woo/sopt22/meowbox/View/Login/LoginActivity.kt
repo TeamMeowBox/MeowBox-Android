@@ -8,13 +8,13 @@ import android.os.Bundle
 import android.text.Editable
 import kotlinx.android.synthetic.main.activity_login.*
 import woo.sopt22.meowbox.R
-import woo.sopt22.meowbox.R.id.textView
 import android.text.Spannable
 import android.text.style.ForegroundColorSpan
 import android.text.SpannableStringBuilder
 import android.text.TextWatcher
 import android.view.View
 import woo.sopt22.meowbox.Util.ToastMaker
+import woo.sopt22.meowbox.View.Join.JoinActivity
 
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {

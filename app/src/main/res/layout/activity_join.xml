@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.Login.JoinActivity">
+    tools:context=".View.Join.JoinActivity">
 
     <ScrollView
         android:layout_above="@+id/order_four_bottom_layout"

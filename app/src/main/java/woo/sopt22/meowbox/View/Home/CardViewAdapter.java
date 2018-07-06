@@ -1,5 +1,7 @@
 package woo.sopt22.meowbox.View.Home;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -12,10 +14,12 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import woo.sopt22.meowbox.R;
+import woo.sopt22.meowbox.View.MeowBoxDetail.MeowBoxDetailActivity;
 
-public class CardViewAdapter extends PagerAdapter{
+public class CardViewAdapter extends PagerAdapter implements View.OnClickListener{
     private LayoutInflater inflater;
     private List<CardData> mPageList;
+    private Context context;
 
     public CardViewAdapter(LayoutInflater inflater, List<CardData> mPageList) {
         this.inflater = inflater;
@@ -36,6 +40,9 @@ public class CardViewAdapter extends PagerAdapter{
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View view = inflater.inflate(R.layout.cardview_adapter, container, false);
+
+        ImageView home_detail_btn = view.findViewById(R.id.home_detail_btn);
+        home_detail_btn.setOnClickListener(this);
         ImageView mImageView = view.findViewById(R.id.titleImageView);
         CardData item = mPageList.get(position);
         Glide.with(container.getContext()).load(item.getImage()).into(mImageView);
@@ -48,4 +55,13 @@ public class CardViewAdapter extends PagerAdapter{
         container.removeView((View) object);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.home_detail_btn :
+                Intent intent = new Intent(context, MeowBoxDetailActivity.class);
+                context.startActivity(intent);
+                break;
+        }
+    }
 }

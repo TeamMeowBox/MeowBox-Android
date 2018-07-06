@@ -11,6 +11,7 @@ import android.support.design.widget.NavigationView
 import android.support.v4.content.res.ResourcesCompat
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.media.Image
 import android.os.Build
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
@@ -22,17 +23,18 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_order_first.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.sliding_layout.*
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Login.LoginActivity
+import woo.sopt22.meowbox.View.MeowBoxDetail.MeowBoxDetailActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
@@ -40,12 +42,32 @@ import woo.sopt22.meowbox.View.Order.OrderFirstActivity
 import java.util.jar.Manifest
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+    override fun onClick(v: View?) {
+        when(v!!){
+            home_stroy_btn->{
+                startActivity(Intent(this, MeowBoxStoryActivity::class.java))
+            }
+            home_detail_btn->{
+                startActivity(Intent(this, MeowBoxDetailActivity::class.java))
+            }
+        }
+    }
 
     lateinit var mViewPager : ViewPager
+    lateinit var mSlidingTextView: TextView
+    lateinit var home_stroy_btn : ImageView
+    lateinit var home_detail_btn : ImageView
 
     private val PermissionRequestCode = 123
     private lateinit var managePermissions : ManagePermissions
+
+    fun init(){
+        mViewPager = viewpager as ViewPager
+        mSlidingTextView = home_cat_count as TextView
+        home_stroy_btn = home_to_story_btn as ImageView
+        home_detail_btn = home_to_detail_btn as ImageView
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +77,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
         toolbar.bringToFront()
 
+        init()
+        home_stroy_btn.setOnClickListener(this)
+        home_detail_btn.setOnClickListener(this)
         SharedPreference.instance!!.load(this)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
         window.statusBarColor = Color.BLACK
 
@@ -72,18 +98,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
 
-
-
+        mSlidingTextView.setOnClickListener {
+            ToastMaker.makeLongToast(this,mSlidingTextView.text.toString())
+        }
 
         // actionBar 타이틀 가리기
-
-
 
         var headerView : View = main_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
 
         //희현카드뷰
-        mViewPager = viewpager as ViewPager
+
 
         var imgUrl1 = "https://post-phinf.pstatic.net/MjAxNzA0MjFfMTMx/MDAxNDkyNzAxMjI0NzA3.Q_bmK_EvjtxtFpT30CNtyBsJBfGkAieooME9VDfoKHYg.nrXNY37E18mt1g6nbwDpHN7kQAwmDr9Q2RPLKWkw_2wg.JPEG/1492696692724.jpg?type=w1200" as String
         var imgUrl2 = "https://post-phinf.pstatic.net/MjAxNzA0MjFfMTc2/MDAxNDkyNzAxMjI1MDA4.IS9AxBl-5bs1-h3PbJssvfm5xmcsUAkkLMg-qIJ9KVsg.h8_rW0zPTvO74wQ5yH_K3TRAJVJUcGT6Z_hldpv_GRgg.JPEG/1492696688049.jpg?type=w1200" as String

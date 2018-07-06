@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".View.MeowBoxStory.MeowBoxStoryActivity"
-    tools:showIn="@layout/content_meow_box_story">
+    tools:showIn="@layout/app_bar_meow_box_story">
 
 
 
@@ -37,12 +37,13 @@
                     android:textColor="#4C4E51"
                     android:text="내 고양이에게\n꼭 필요한\n특별 선물"/>
 
+
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_height="24dp"
                     android:layout_marginTop="17dp"
-                    android:layout_marginLeft="20dp"
-                    android:src="@drawable/logo_pink"/>
+                    android:src="@drawable/story_meow_box_logo_img"/>
 
                 <ImageView
                     android:layout_marginLeft="20dp"

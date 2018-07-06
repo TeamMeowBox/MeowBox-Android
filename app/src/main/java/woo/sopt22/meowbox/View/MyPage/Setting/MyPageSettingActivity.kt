@@ -20,8 +20,8 @@ import woo.sopt22.meowbox.View.MyPage.Setting.Terms.Terms2Activity
 
 
 class MyPageSettingActivity : AppCompatActivity(), View.OnClickListener{
-    override fun onClick(p0: View?) {
-        when(p0) {
+    override fun onClick(v: View?) {
+        when(v!!) {
             my_page_setting_x_btn -> {
                 finish()
             }
@@ -31,10 +31,10 @@ class MyPageSettingActivity : AppCompatActivity(), View.OnClickListener{
             }
 
             my_page_setting_logout->{
-                var dialog = LogoutCustomDialog(this)
-                dialog.getWindow ().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                dialog.setCanceledOnTouchOutside(false)
-                dialog.show()
+                var logout_dialog = LogoutCustomDialog(this)
+                logout_dialog.getWindow ().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                logout_dialog.setCanceledOnTouchOutside(false)
+                logout_dialog.show()
             }
 
             my_page_setting_disjoin->{
@@ -57,6 +57,13 @@ class MyPageSettingActivity : AppCompatActivity(), View.OnClickListener{
     lateinit var myPageSettingLogout : LinearLayout
     lateinit var myPageSettingDisjoin : TextView
     lateinit var myPageNoticeBtn : RelativeLayout
+
+
+    fun dialog(){
+        val inflater =  layoutInflater
+        val dialogView = inflater.inflate(R.layout.logout_custom_dialog, null)
+
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

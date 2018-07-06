@@ -129,6 +129,7 @@
                             android:layout_marginLeft="62dp"
                             android:layout_width="208dp"
                             android:layout_height="25dp"
+                            android:inputType="text"
                             android:background="@drawable/edittext_background"/>
 
                     </LinearLayout>
@@ -165,6 +166,7 @@
                                 android:layout_marginLeft="62dp"
                                 android:layout_width="208dp"
                                 android:layout_height="25dp"
+                                android:inputType="text"
                                 android:background="@drawable/edittext_background"/>
 
                             <EditText
@@ -173,6 +175,7 @@
                                 android:layout_marginLeft="62dp"
                                 android:layout_width="208dp"
                                 android:layout_height="25dp"
+                                android:inputType="text"
                                 android:background="@drawable/edittext_background"/>
                         </LinearLayout>
 
@@ -197,12 +200,14 @@
                             android:text="*"
                             android:textSize="13dp"
                             android:textColor="#E68789"
+                            android:layout_marginLeft="10dp"
                             />
 
 
                         <EditText
                             android:id="@+id/order_four_phone_number"
-                            android:layout_marginLeft="50dp"
+                            android:layout_marginLeft="49dp"
+                            android:inputType="text"
                             android:layout_width="208dp"
                             android:layout_height="25dp"
                             android:background="@drawable/edittext_background"/>
@@ -224,7 +229,8 @@
 
                         <EditText
                             android:id="@+id/order_four_email"
-                            android:layout_marginLeft="71dp"
+                            android:layout_marginLeft="79dp"
+                            android:inputType="text"
                             android:layout_width="208dp"
                             android:layout_height="match_parent"
                             android:background="@drawable/edittext_background"/>
@@ -247,6 +253,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
                             android:text="*"
                             android:textSize="13dp"
                             android:textColor="#E68789"
@@ -266,10 +273,10 @@
 
                                 <RadioButton
                                     android:id="@+id/order_four_credit_pay"
-                                    android:paddingLeft="-20dp"
-                                    android:layout_marginLeft="-30dp"
+                                    android:paddingLeft="-70dp"
+                                    android:layout_marginLeft="-25dp"
                                     android:layout_marginRight="-20dp"
-                                    android:text="                                                               신용카드   "
+                                    android:text="                                                                                              신용카드   "
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:scaleX="0.8"
@@ -279,9 +286,9 @@
 
                                 <RadioButton
                                     android:id="@+id/order_four_phone_pay"
-                                    android:paddingLeft="-20dp"
-                                    android:layout_marginLeft="-30dp"
-                                    android:text="                                                           휴대폰 결제   "
+                                    android:paddingLeft="-70dp"
+                                    android:layout_marginLeft="-25dp"
+                                    android:text="                                                                                          휴대폰 결제   "
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:scaleX="0.8"

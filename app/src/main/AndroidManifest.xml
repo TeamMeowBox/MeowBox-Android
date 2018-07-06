@@ -44,23 +44,7 @@
             android:label="@string/title_activity_my_page"
             android:theme="@style/AppTheme" />
         <activity android:name=".View.MyPage.MySettingActivity" />
-        <activity
-            android:name=".View.Order.OrderSecondActivity"
-            android:label="@string/title_activity_order_second"
-            android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".View.Order.OrderThirdActivity"
-            android:label="@string/title_activity_order_third"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".View.Order.OrderFourActivity"
-            android:label="@string/title_activity_order_four"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".View.Order.OrderFiveActivity"
-            android:label="@string/title_activity_order_five"
-            android:theme="@style/AppTheme" />
+
         <activity android:name=".View.Login.LoginActivity" />
         <activity android:name=".View.Join.JoinActivity" />
         <activity android:name=".View.MyPage.Suggest.MyPageSuggestActivity" />

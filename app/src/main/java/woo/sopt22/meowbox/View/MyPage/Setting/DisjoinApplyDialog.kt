@@ -23,9 +23,7 @@ import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 
 class DisjoinApplyDialog(context: Context) : Dialog(context), View.OnClickListener {
 
-    private var disjoinLogoutBtn: LinearLayout? = null
-    lateinit var networkService : NetworkService
-
+    lateinit var disjoinLogoutBtn: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle) {
         super.onCreate(savedInstanceState)
@@ -42,7 +40,7 @@ class DisjoinApplyDialog(context: Context) : Dialog(context), View.OnClickListen
     override fun onClick(v: View) {
         when (v.id) {
             R.id.disjoin_apply_apply -> {
-                deleteUser()
+                //deleteUser()
                 cancel()
             }
         }
@@ -52,26 +50,5 @@ class DisjoinApplyDialog(context: Context) : Dialog(context), View.OnClickListen
         private val LAYOUT = R.layout.disjoin_apply_dialog
     }
 
-    fun deleteUser(){
-        val logoutUser = networkService.deleteUser(SharedPreference.instance!!.getPrefStringData("user_idx")!!.toInt())
-        logoutUser.enqueue(object : Callback<BaseModel> {
-            override fun onFailure(call: Call<BaseModel>?, t: Throwable?) {
 
-            }
-
-            override fun onResponse(call: Call<BaseModel>?, response: Response<BaseModel>?) {
-                if(response!!.isSuccessful){
-                    val dialog = LogoutApplyDialog(context)
-                    SharedPreference.instance!!.removeData("user_idx")
-                    SharedPreference.instance!!.removeData("token")
-                    SharedPreference.instance!!.removeData("cat_idx")
-                    dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    dialog.setCanceledOnTouchOutside(false)
-                    dialog.show()
-                    cancel()
-                    context.startActivity(Intent(context, MainActivity::class.java))
-                }
-            }
-        })
-    }
 }

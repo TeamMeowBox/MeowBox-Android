@@ -109,12 +109,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         SharedPreference.instance!!.load(this)
 
 
-        if(SharedPreference.instance!!.getPrefStringData("email")!!.isEmpty()){
+        if(SharedPreference.instance!!.getPrefStringData("user_email")!!.isEmpty()){
             userName.text = "OO님!"
         } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("email")
+            userName.text = SharedPreference.instance!!.getPrefStringData("user_email")
         }
-        Log.v("onCreate",SharedPreference.instance!!.getPrefStringData("email"))
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
         window.statusBarColor = Color.BLACK
@@ -264,7 +263,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(this, MeowBoxReviewActivity::class.java))
             }
             R.id.myPageBtn->{
-                startActivity(Intent(this, MyPageActivity::class.java))
+                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                    ToastMaker.makeLongToast(this,"로그인 해주세요.")
+                } else{
+                    startActivity(Intent(this, MyPageActivity::class.java))
+                }
             }
 
         }

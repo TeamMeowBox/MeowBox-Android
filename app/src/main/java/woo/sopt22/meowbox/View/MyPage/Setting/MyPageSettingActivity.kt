@@ -15,6 +15,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import woo.sopt22.meowbox.Util.CustomDialog.DeleteUserCustomDialog
 import woo.sopt22.meowbox.View.MyPage.Setting.Notice.Notice2Activity
 import woo.sopt22.meowbox.View.MyPage.Setting.Terms.Terms2Activity
 
@@ -31,17 +32,17 @@ class MyPageSettingActivity : AppCompatActivity(), View.OnClickListener{
             }
 
             my_page_setting_logout->{
-                var logout_dialog = LogoutCustomDialog(this)
-                logout_dialog.getWindow ().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                var logout_dialog = LogoutCustomDialog(this@MyPageSettingActivity)
+                logout_dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 logout_dialog.setCanceledOnTouchOutside(false)
                 logout_dialog.show()
             }
 
             my_page_setting_disjoin->{
-                var dialog = DisjoinCustomDialog(this)
-                dialog.getWindow ().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                dialog.setCanceledOnTouchOutside(false)
-                dialog.show()
+                var dis_joing_dialog = DeleteUserCustomDialog(this@MyPageSettingActivity)
+                dis_joing_dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dis_joing_dialog.setCanceledOnTouchOutside(false)
+                dis_joing_dialog.show()
 
             }
 
@@ -62,6 +63,7 @@ class MyPageSettingActivity : AppCompatActivity(), View.OnClickListener{
     fun dialog(){
         val inflater =  layoutInflater
         val dialogView = inflater.inflate(R.layout.logout_custom_dialog, null)
+
 
     }
 

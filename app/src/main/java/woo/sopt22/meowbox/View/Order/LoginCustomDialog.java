@@ -46,11 +46,11 @@ public class LoginCustomDialog extends Dialog implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.popup_cancel_btn:
-                Intent intent = new Intent(context, MainActivity.class);
-                context.startActivity(intent);
+                //Intent intent = new Intent(context, MainActivity.class);
+                cancel();
                 break;
             case R.id.popup_login_btn:
-                intent = new Intent(context, LoginActivity.class);
+                Intent intent = new Intent(context, LoginActivity.class);
                 context.startActivity(intent);
                 break;
         }

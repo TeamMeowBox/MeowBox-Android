@@ -9,12 +9,11 @@
     tools:showIn="@layout/app_bar_meow_box_story">
 
 
-
     <ScrollView
-        android:id="@+id/order_second_scrollview"
-        android:layout_above="@+id/order_second_bottom_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,29 +27,29 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="83dp"
-                    android:layout_marginLeft="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="28dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="83dp"
+                    android:text="내 고양이에게\n꼭 필요한\n특별 선물"
                     android:textColor="#4C4E51"
-                    android:text="내 고양이에게\n꼭 필요한\n특별 선물"/>
+                    android:textSize="28dp" />
 
 
                 <ImageView
                     android:layout_width="200dp"
-                    android:layout_marginLeft="20dp"
                     android:layout_height="24dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="17dp"
-                    android:src="@drawable/story_meow_box_logo_img"/>
+                    android:src="@drawable/story_meow_box_logo_img" />
 
                 <ImageView
-                    android:layout_marginLeft="20dp"
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="40dp"
-                    android:src="@drawable/story_order_btn"/>
+                    android:src="@drawable/story_order_btn" />
 
 
             </LinearLayout>
@@ -59,61 +58,59 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:orientation="vertical">
+
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginTop="30dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="매달, 새로운 행복을"
-                    android:textSize="22dp"
                     android:textColor="#4C4E51"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_horizontal"
-                    />
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:text="주고 싶어요"
+                    android:textColor="#4C4E51"
                     android:textSize="22dp"
-                    android:textColor="#4C4E51"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_horizontal"
-                    />
+                    android:textStyle="bold" />
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginTop="22dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#4C4E51"
-                    android:textSize="16dp"
                     android:text="새로운 것만 찾고,"
-                    android:layout_gravity="center_horizontal"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:textColor="#4C4E51"
-                    android:textSize="16dp"
-                    android:text="까다로운 우리 고양이"
-                    android:layout_gravity="center_horizontal"
-                    />
+                    android:textSize="16dp" />
 
                 <TextView
-                    android:layout_marginTop="14dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#4C4E51"
-                    android:textSize="16dp"
-                    android:text="건강,비용...신경쓸 게"
                     android:layout_gravity="center_horizontal"
-                    />
+                    android:text="까다로운 우리 고양이"
+                    android:textColor="#4C4E51"
+                    android:textSize="16dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#4C4E51"
-                    android:textSize="16dp"
-                    android:text="한 두가지가 아닌 집사"
                     android:layout_gravity="center_horizontal"
-                    />
+                    android:layout_marginTop="14dp"
+                    android:text="건강,비용...신경쓸 게"
+                    android:textColor="#4C4E51"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="한 두가지가 아닌 집사"
+                    android:textColor="#4C4E51"
+                    android:textSize="16dp" />
 
 
             </LinearLayout>
@@ -122,6 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/story_meow_box_img_1">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -134,24 +132,24 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_gravity="center_horizontal">
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="&quot; "
-                            android:textSize="15dp"
-                            android:textStyle="bold"
                             android:textColor="#E88687"
-                            />
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="우리가 함께, 쉽게"
-                            android:textSize="15dp"
-                            android:textStyle="bold"
                             android:textColor="#4C4E51"
-                            />
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -185,86 +183,91 @@
             </RelativeLayout>
 
             <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="22dp"
                 android:layout_marginRight="22dp"
                 android:layout_marginTop="34dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/box_dashline"/>
+                android:src="@drawable/box_dashline" />
 
             <LinearLayout
-                android:layout_marginTop="34dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="34dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:text="내 고양이의"
-                    android:textSize="22dp"
                     android:textColor="#4C4E51"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_horizontal"/>
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:text="내 고양이를 위해"
-                    android:textSize="22dp"
                     android:textColor="#4C4E51"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_horizontal"/>
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="18dp"
                     android:text="내 고양이에 의해"
+                    android:textColor="#4C4E51"
                     android:textSize="22dp"
-                    android:textColor="#4C4E51"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_horizontal"/>
+                    android:textStyle="bold" />
 
                 <LinearLayout
 
-                    android:layout_gravity="center_horizontal"
                     android:layout_width="125dp"
                     android:layout_height="93dp"
+                    android:layout_gravity="center_horizontal"
                     android:background="#eeeeee">
 
                 </LinearLayout>
+
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="41dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:textSize="16dp"
+                    android:text="꼼꼼하고 센스있는 장난감"
                     android:textColor="#4C4E51"
-                    android:text="꼼꼼하고 센스있는 장난감"/>
+                    android:textSize="16dp" />
 
                 <LinearLayout
 
-                    android:layout_gravity="center_horizontal"
                     android:layout_width="125dp"
                     android:layout_height="93dp"
+                    android:layout_gravity="center_horizontal"
                     android:background="#eeeeee">
 
                 </LinearLayout>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:textSize="16dp"
+                    android:text="수의사가 체크한"
                     android:textColor="#4C4E51"
-                    android:text="수의사가 체크한"/>
+                    android:textSize="16dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:textSize="16dp"
+                    android:text="건강하고 맛있는 간식"
                     android:textColor="#4C4E51"
-                    android:text="건강하고 맛있는 간식"/>
+                    android:textSize="16dp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -276,27 +279,27 @@
 
                     <LinearLayout
 
-                        android:layout_marginTop="31dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_gravity="center_horizontal">
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="31dp"
+                        android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="&quot; "
-                            android:textSize="16dp"
-                            android:textStyle="bold"
                             android:textColor="#E88687"
-                            />
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="미유박스는 당신의 고양이를 위해"
-                            android:textSize="16dp"
-                            android:textStyle="bold"
                             android:textColor="#4C4E51"
-                            />
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -328,59 +331,61 @@
                 </LinearLayout>
 
 
-
-
             </LinearLayout>
+
             <ImageView
-                android:layout_marginLeft="22dp"
-                android:layout_marginRight="22dp"
-                android:layout_marginTop="34dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/box_dashline"/>
-            <RelativeLayout
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp"
                 android:layout_marginTop="34dp"
+                android:src="@drawable/box_dashline" />
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34dp">
+
                 <LinearLayout
                     android:id="@+id/story_tmp_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
                         android:text="만약 네가 7월에 온다면,"
-                        android:textSize="22dp"
                         android:textColor="#4C4E51"
-                        android:layout_gravity="center_horizontal"
-                        />
+                        android:textSize="22dp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="나는 6월말부터 행복해질 거야"
-                        android:textSize="22dp"
-                        android:textColor="#4C4E51"
                         android:layout_gravity="center_horizontal"
-                        />
+                        android:text="나는 6월말부터 행복해질 거야"
+                        android:textColor="#4C4E51"
+                        android:textSize="22dp" />
                 </LinearLayout>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/story_tmp_txt"
                     android:layout_below="@+id/story_tmp_txt"
-                    android:textSize="12dp"
-                    android:textColor="#999999"
                     android:text="생택쥐페리 「어린왕자」 중에서"
-                    android:layout_alignRight="@+id/story_tmp_txt"/>
+                    android:textColor="#999999"
+                    android:textSize="12dp" />
 
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_marginTop="40dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
                 android:background="@drawable/story_meow_box_img_2">
 
                 <LinearLayout
@@ -393,37 +398,37 @@
 
                     <LinearLayout
 
-                        android:layout_marginTop="31dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_gravity="center_horizontal">
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="31dp"
+                        android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="&quot; "
-                            android:textSize="16dp"
-                            android:textStyle="bold"
                             android:textColor="#E88687"
-                            />
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="매 월 첫 번째 월요일"
-                            android:textSize="16dp"
-                            android:textStyle="bold"
                             android:textColor="#4C4E51"
-                            />
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
 
-                        android:layout_marginBottom="40dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true"
                         android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="40dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -447,21 +452,22 @@
 
 
             </RelativeLayout>
+
             <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="40dp"
                 android:layout_marginLeft="22dp"
                 android:layout_marginRight="22dp"
                 android:layout_marginTop="40dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/box_dashline"/>
+                android:src="@drawable/box_dashline" />
 
             <LinearLayout
 
-                android:layout_gravity="center_horizontal"
                 android:layout_width="210dp"
                 android:layout_height="155dp"
+                android:layout_gravity="center_horizontal"
                 android:background="#eeeeee">
 
             </LinearLayout>
@@ -469,80 +475,90 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_horizontal">
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="당신은 "
                     android:textColor="#4C4E51"
                     android:textSize="22dp"
-                    android:textStyle="bold"
-                    android:text="당신은 "/>
+                    android:textStyle="bold" />
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+
                     <LinearLayout
-                        android:layout_alignParentBottom="true"
                         android:layout_width="66dp"
                         android:layout_height="9dp"
-                        android:background="#E88687"/>
+                        android:layout_alignParentBottom="true"
+                        android:background="#E88687" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="사랑만"
                         android:textColor="#4C4E51"
                         android:textSize="22dp"
-                        android:textStyle="bold"
-                        android:text="사랑만"/>
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text=" 주세요"
                     android:textColor="#4C4E51"
                     android:textSize="22dp"
-                    android:textStyle="bold"
-                    android:text=" 주세요"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_horizontal">
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+
                     <LinearLayout
-                        android:layout_alignParentBottom="true"
                         android:layout_width="156dp"
                         android:layout_height="9dp"
-                        android:background="#E88687"/>
+                        android:layout_alignParentBottom="true"
+                        android:background="#E88687" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="고민은 미유박스"
                         android:textColor="#4C4E51"
                         android:textSize="22dp"
-                        android:textStyle="bold"
-                        android:text="고민은 미유박스"/>
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="가 할게요"
                     android:textColor="#4C4E51"
                     android:textSize="22dp"
-                    android:textStyle="bold"
-                    android:text="가 할게요"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
             <ImageView
-                android:layout_marginTop="34dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="50dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/story_order_btn"/>
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="50dp"
+                android:layout_marginTop="34dp"
+                android:src="@drawable/story_order_btn" />
 
 
         </LinearLayout>

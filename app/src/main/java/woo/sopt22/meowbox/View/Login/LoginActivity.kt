@@ -64,6 +64,15 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var token : String
     lateinit var email : String
 
+    fun init(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            window.statusBarColor = Color.BLACK
+
+        login_to_sign_btn.setOnClickListener(this)
+        loginBtn.setOnClickListener(this)
+        login_back_btn.setOnClickListener(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -72,20 +81,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         SharedPreference.instance!!.load(this)
         email = SharedPreference.instance!!.getPrefStringData("user_name")!!
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            window.statusBarColor = Color.BLACK
+        init()
 
-        login_to_sign_btn.setOnClickListener(this)
-        loginBtn.setOnClickListener(this)
-        login_back_btn.setOnClickListener(this)
 
 
         email_length = login_email.text.toString().length
         password_length = login_password.text.toString().length
-
-      /*  if (email_length > 5 && password_length > 5 ){
-            loginBtn.isSelected = true
-        }*/
 
 
         // login_email 입력 시 이메일 아이콘 색상 변경
@@ -157,10 +158,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         login_to_sign_text.append(sp)
 
 
-    }
-
-    fun clearSelected(){
-        loginBtn.isSelected = false
     }
 
     fun postLogin(){

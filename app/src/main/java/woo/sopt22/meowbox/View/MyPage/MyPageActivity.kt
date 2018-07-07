@@ -23,11 +23,13 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_my_page.*
 import kotlinx.android.synthetic.main.app_bar_my_page.*
 
 import woo.sopt22.meowbox.R
 import kotlinx.android.synthetic.main.content_my_page.*
+import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
@@ -89,6 +91,16 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
+
+
+        var headerView : View = mypage_nav_view.getHeaderView(0)
+        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+
+        if(SharedPreference.instance!!.getPrefStringData("user_email")!!.isEmpty()){
+            userName.text = "OO님!"
+        } else {
+            userName.text = SharedPreference.instance!!.getPrefStringData("user_email")
+        }
 
         var profileImage = mypage_profile_img as ImageView
 

@@ -44,7 +44,7 @@
     <ScrollView
         android:layout_below="@+id/login_border"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:focusable="true"
@@ -54,12 +54,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <ImageView
+                android:id="@+id/login_logo_name"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo_pink"/>
+
             <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_below="@+id/login_logo_name"
+                android:layout_marginTop="7dp"
                 android:id="@+id/login_logo"
                 android:layout_centerHorizontal="true"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
-                android:src="@drawable/email_icon_pink"/>
+                android:src="@drawable/side_bar_profile_img"/>
 
             <LinearLayout
                 android:id="@+id/login_email_layout"
@@ -80,7 +89,7 @@
                     android:src="@drawable/email_icon"/>
 
                 <EditText
-                    android:inputType="text"
+                    android:inputType="textEmailAddress"
                     android:id="@+id/login_email"
                     android:layout_marginLeft="12dp"
                     android:layout_gravity="center_horizontal"
@@ -119,7 +128,7 @@
                     android:src="@drawable/password_icon"/>
 
                 <EditText
-                    android:inputType="text"
+                    android:inputType="textPassword"
                     android:id="@+id/login_password"
                     android:layout_marginLeft="12dp"
                     android:layout_gravity="center_horizontal"

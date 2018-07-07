@@ -2,6 +2,7 @@ package woo.sopt22.meowbox.View.Home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -17,10 +18,11 @@ import woo.sopt22.meowbox.R;
 import woo.sopt22.meowbox.Util.ToastMaker;
 import woo.sopt22.meowbox.View.MeowBoxDetail.MeowBoxDetailActivity;
 
-public class CardViewAdapter extends PagerAdapter implements View.OnClickListener{
+public class CardViewAdapter extends PagerAdapter{
     private LayoutInflater inflater;
     private List<CardData> mPageList;
     private Context context;
+    private View.OnClickListener onItemClick;
 
     public CardViewAdapter(LayoutInflater inflater, List<CardData> mPageList) {
         this.inflater = inflater;
@@ -43,8 +45,8 @@ public class CardViewAdapter extends PagerAdapter implements View.OnClickListene
         View view = inflater.inflate(R.layout.cardview_adapter, container, false);
 
 
-        ImageView home_detail_btn = view.findViewById(R.id.home_detail_btn);
-        home_detail_btn.setOnClickListener(this);
+        ImageView home_detail_btn = (ImageView) view.findViewById(R.id.home_detail_btn);
+        home_detail_btn.setOnClickListener(onItemClick);
         ImageView mImageView = view.findViewById(R.id.titleImageView);
         CardData item = mPageList.get(position);
         Glide.with(container.getContext()).load(item.getImage()).into(mImageView);
@@ -57,12 +59,8 @@ public class CardViewAdapter extends PagerAdapter implements View.OnClickListene
         container.removeView((View) object);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.home_detail_btn :
-                ToastMaker.INSTANCE.makeLongToast(context, "뜨니?");
-                break;
-        }
+
+    public void setOnItemClickListener(View.OnClickListener l){
+        onItemClick = l;
     }
 }

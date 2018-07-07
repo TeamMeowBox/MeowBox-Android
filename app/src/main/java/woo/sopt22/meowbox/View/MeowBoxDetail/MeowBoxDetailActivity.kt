@@ -11,8 +11,10 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
 import android.widget.Adapter
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import com.bumptech.glide.Glide
 import com.zarinpal.libs.cardviwepager.CardViewPager
 import kotlinx.android.synthetic.main.activity_meow_box_detail.*
 import kotlinx.android.synthetic.main.app_bar_meow_box_detail.*
@@ -39,6 +41,7 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
     lateinit var items1 : ArrayList<DetailModel>
 
     lateinit var detailOrderBtn : RelativeLayout
+    lateinit var detailFirstImg : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +71,10 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         items1.add(DetailModel("ex2",imgUrl2))
         items1.add(DetailModel("ex3",imgUrl3))
 
+        detailFirstImg = detail_first_img as ImageView
+
+        Glide.with(this).load("http://t1.daumcdn.net/liveboard/petxlab/a5d83a4064744faea244e8ac7667fb90.gif").into(detailFirstImg);
+
 
        var detailViewPager1 = detail_cardview_pager1 as CardViewPager
        var detailViewPager2 = detail_cardview_pager2 as CardViewPager
@@ -79,8 +86,12 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             detailItem1.addCardItem(items1[i])
         }
         println("333"+detailItem1.getItem(0).text)
+
+        detailItem1.setElevation(0.0f)
+        
         detailViewPager1.setAdapter(detailItem1)
         detailViewPager2.setAdapter(detailItem1)
+
     }
 
     override fun onBackPressed() {

@@ -23,10 +23,13 @@
             >
 
             <ImageView
-                android:id="@+id/detail_first_img"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/detail_test_img1"/>
+                android:id="@+id/detail_first_img"
+                android:src="@drawable/detail_test_img1">
+
+            </ImageView>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -111,6 +114,7 @@
                     android:layout_marginRight="22dp"
                     android:layout_marginTop="16dp"
                     android:textColor="#4C4E51"
+                    android:lineSpacingExtra="5dp"
                     android:layout_marginBottom="37dp"
                     android:textSize="16dp"
                     android:text="더운 여름을 시원한 바다로 만들어 줄\n쿨 원단으로 만들어진 모자입니다.\n귀여운 사진은 덤, 시원한 여름은 필수입니다."
@@ -121,12 +125,15 @@
 
             <com.zarinpal.libs.cardviwepager.CardViewPager
                 android:id="@+id/detail_cardview_pager1"
-                android:layout_marginRight="22dp"
-                android:layout_marginLeft="22dp"
+
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_gravity="center"
                 app:indicatorSize="5dp"
+                app:selectIndicatorColor="#E88787"
+                app:unSelectIndicatorColor="#E4E4E4"
+                app:visibleLeftPadding="30dp"
+                app:visibleRightPadding="30dp"
                 app:visibleIndicator="true"
                 />
 

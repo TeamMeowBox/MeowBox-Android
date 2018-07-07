@@ -122,14 +122,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="199dp"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/card_box_pink"
+                        android:src="@drawable/card_box"
                         android:scaleType="fitXY"/>
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="199dp"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/card_box_pink"
+                        android:src="@drawable/card_box"
                         android:scaleType="fitXY"/>
 
 

@@ -31,6 +31,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_order_first.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.sliding_layout.*
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
@@ -66,6 +67,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private val PermissionRequestCode = 123
     private lateinit var managePermissions : ManagePermissions
+    lateinit var main_side_bar_btn : ImageView
 
     fun init(){
         mViewPager = viewpager as ViewPager
@@ -103,11 +105,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
 
+
         init()
         home_stroy_btn.setOnClickListener(this)
         home_detail_btn.setOnClickListener(this)
         SharedPreference.instance!!.load(this)
-
+        var result = SharedPreference.instance!!.getPrefStringData("token")
+        println("11"+SharedPreference.instance!!.getPrefStringData("token"))
+        //println("11"+result!![0])
 
         if(SharedPreference.instance!!.getPrefStringData("user_email")!!.isEmpty()){
             userName.text = "OO님!"
@@ -252,9 +257,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         val dialog = CatCustomDialog(this)
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
-                    } else{
-                        startActivity(Intent(this, OrderFirstActivity::class.java))
-
+                    } else {
+                        val intent = Intent(this, OrderFirstActivity::class.java)
+                        intent.putExtra("cat_idx",SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
+                        startActivity(intent)
                     }
                 }
 
@@ -271,7 +277,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
         }
-
         main_drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }

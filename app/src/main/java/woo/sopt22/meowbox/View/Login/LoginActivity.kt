@@ -175,7 +175,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             override fun onResponse(call: Call<LoginResponse>?, response: Response<LoginResponse>?) {
                 if(response!!.isSuccessful){
                     Log.v("login",response!!.message())
-                    token = response!!.body()!!.result!!.token
+                    token = response!!.body()!!.result!!.token!!.toString()
                     SharedPreference.instance!!.setPrefData("token",token)
                     SharedPreference.instance!!.setPrefData("user_email",login_email.text.toString())
                     SharedPreference.instance!!.setPrefData("user_idx",response.body()!!.result!!.user_idx)

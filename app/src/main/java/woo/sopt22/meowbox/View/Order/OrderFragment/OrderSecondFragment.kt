@@ -39,12 +39,10 @@ class OrderSecondFragment : Fragment(), View.OnClickListener{
                 if(!order_small_cat_image.isSelected){
                     cat_type = 0
                     order_small_cat_image.isSelected = true
-                    order_normal_cat_image.isClickable = false
-                    order_large_cat_image.isClickable = false
+                    order_normal_cat_image.isSelected = false
+                    order_large_cat_image.isSelected = false
                 } else{
                     order_small_cat_image.isSelected = false
-                    order_normal_cat_image.isClickable = true
-                    order_large_cat_image.isClickable = true
                 }
 
             }
@@ -52,12 +50,10 @@ class OrderSecondFragment : Fragment(), View.OnClickListener{
                 if(!order_normal_cat_image.isSelected){
                     cat_type = 1
                     order_normal_cat_image.isSelected = true
-                    order_small_cat_image.isClickable = false
-                    order_large_cat_image.isClickable = false
+                    order_small_cat_image.isSelected = false
+                    order_large_cat_image.isSelected = false
                 } else{
                     order_normal_cat_image.isSelected = false
-                    order_small_cat_image.isClickable = true
-                    order_large_cat_image.isClickable = true
                 }
 
             }
@@ -65,12 +61,11 @@ class OrderSecondFragment : Fragment(), View.OnClickListener{
                 if(!order_large_cat_image.isSelected){
                     cat_type = 2
                     order_large_cat_image.isSelected = true
-                    order_small_cat_image.isClickable = false
-                    order_normal_cat_image.isClickable = false
+                    order_normal_cat_image.isSelected = false
+                    order_small_cat_image.isSelected = false
                 } else{
                     order_large_cat_image.isSelected = false
-                    order_small_cat_image.isClickable = true
-                    order_normal_cat_image.isClickable = true
+
                 }
 
             }
@@ -92,6 +87,7 @@ class OrderSecondFragment : Fragment(), View.OnClickListener{
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.order_second_fragment, container, false)
 
+        // 네트워크 서비스 초기와, SharedPreference 사
         networkService = ApplicationController.instance!!.networkService
         SharedPreference.instance!!.load(context!!)
 
@@ -102,7 +98,7 @@ class OrderSecondFragment : Fragment(), View.OnClickListener{
         view.order_normal_cat_image.setOnClickListener(this)
         view.order_large_cat_image.setOnClickListener(this)
 
-        val userId = arguments!!.getString("userId") // 전달한 key 값
+        //val userId = arguments!!.getString("userId") // 전달한 key 값
 
 
 
@@ -157,25 +153,34 @@ class OrderSecondFragment : Fragment(), View.OnClickListener{
 
     }
 
+    // 고양이 등록
     fun registerCatInfo(){
         catInformation = CatInformation(order_etc_cat_name.text.toString(), cat_type,
                 year+month+day,cat_about_info.text.toString())
+        Log.v("cat1",order_etc_cat_name.text.toString())
+        Log.v("cat2",cat_type.toString())
+        Log.v("cat3",year+month+day)
+        Log.v("cat4",cat_about_info.text.toString())
+        Log.v("cat5",SharedPreference.instance!!.getPrefStringData("token"))
         val registerResponse = networkService.registerCat(SharedPreference.instance!!.getPrefStringData("token")!!,catInformation)
+        Log.v("xx","들어오닝?")
         registerResponse.enqueue(object : Callback<BaseModel>{
             override fun onFailure(call: Call<BaseModel>?, t: Throwable?) {
-                Log.v("0210",t!!.message)
+                Log.v("0211",t!!.message)
             }
 
             override fun onResponse(call: Call<BaseModel>?, response: Response<BaseModel>?) {
                 if(response!!.isSuccessful){
-                    Log.v("0210",response!!.message())
+                    Log.v("0212",response!!.message())
                     (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(OrderThirdFragment())
+                    SharedPreference.instance!!.setPrefData("cat_idx", "1") // 고양이 정보 등록했다는 걸 : 1로 표시
+                    SharedPreference.instance!!.setPrefData("cat_name",order_etc_cat_name.text.toString()) // 고양이 이름 저장
+                } else{
+                    Log.v("02",response!!.message())
                 }
 
             }
 
         })
     }
-
-
 }

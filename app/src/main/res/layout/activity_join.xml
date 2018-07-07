@@ -120,7 +120,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="25dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="49dp"
                         android:orientation="horizontal">
 
@@ -144,7 +144,7 @@
                         <EditText
                             android:id="@+id/join_name"
                             android:layout_width="208dp"
-                            android:layout_height="25dp"
+                            android:layout_height="30dp"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="22dp"
                             android:inputType="text"
@@ -154,7 +154,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="25dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="31dp"
                         android:orientation="horizontal">
 
@@ -178,7 +178,7 @@
                         <EditText
                             android:id="@+id/join_phone"
                             android:layout_width="208dp"
-                            android:layout_height="25dp"
+                            android:layout_height="30dp"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="22dp"
                             android:inputType="numberDecimal"
@@ -219,10 +219,10 @@
                         <EditText
                             android:id="@+id/join_email"
                             android:layout_width="208dp"
-                            android:layout_height="25dp"
+                            android:layout_height="30dp"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="22dp"
-                            android:inputType="text"
+                            android:inputType="textEmailAddress"
                             android:background="@drawable/edittext_background" />
 
                         <TextView
@@ -237,7 +237,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="25dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="31dp"
                         android:orientation="horizontal">
 
@@ -261,10 +261,10 @@
                         <EditText
                             android:id="@+id/join_password"
                             android:layout_width="208dp"
-                            android:layout_height="25dp"
+                            android:layout_height="30dp"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="22dp"
-                            android:inputType="text"
+                            android:inputType="textPassword"
                             android:background="@drawable/edittext_background" />
 
                     </RelativeLayout>

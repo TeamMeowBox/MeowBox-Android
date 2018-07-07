@@ -52,16 +52,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             home_stroy_btn->{
                 startActivity(Intent(this, MeowBoxStoryActivity::class.java))
             }
-            home_detail_btn->{
+            else->{
                 startActivity(Intent(this, MeowBoxDetailActivity::class.java))
             }
+
         }
     }
 
     lateinit var mViewPager : ViewPager
     lateinit var mSlidingTextView: TextView
     lateinit var home_stroy_btn : ImageView
-    lateinit var home_detail_btn : ImageView
+    //lateinit var home_detail_btn : ImageView
     var cag_flag : Boolean = false
 
     private val PermissionRequestCode = 123
@@ -71,7 +72,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         mViewPager = viewpager as ViewPager
         mSlidingTextView = home_cat_count as TextView
         home_stroy_btn = home_to_story_btn as ImageView
-        home_detail_btn = home_to_detail_btn as ImageView
+        //home_detail_btn = home_to_detail_btn as ImageView
     }
 
     override fun onRestart() {
@@ -105,7 +106,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         init()
         home_stroy_btn.setOnClickListener(this)
-        home_detail_btn.setOnClickListener(this)
+        //home_detail_btn.setOnClickListener(this)
         SharedPreference.instance!!.load(this)
 
 
@@ -156,9 +157,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         items.add(CardData(imgUrl1))
         items.add(CardData(imgUrl2))
 
-        home_detail_btn.setOnClickListener {
+        /*home_detail_btn.setOnClickListener {
             ToastMaker.makeLongToast(this, "dd")
-        }
+        }*/
 
         mViewPager.setPadding(0,0,100,0)
         var madapter = CardViewAdapter(layoutInflater, items)
@@ -187,6 +188,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
         })
+
+        madapter.setOnItemClickListener(this)
+
+
+
 
 
         val toggle = ActionBarDrawerToggle(

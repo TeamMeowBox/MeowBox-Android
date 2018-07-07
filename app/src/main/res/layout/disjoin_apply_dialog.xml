@@ -63,7 +63,6 @@
 
 
             <LinearLayout
-
                 android:layout_weight="1"
                 android:id="@+id/disjoin_apply_apply"
                 android:layout_width="wrap_content"

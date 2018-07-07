@@ -28,10 +28,7 @@
                     android:layout_height="28dp"
                     android:src="@drawable/order_four_step_pay"/>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.2dp"
-                    android:background="#707070"/>
+
 
 
 
@@ -102,11 +99,52 @@
 
                     </LinearLayout>
 
+                    <RadioGroup
+                        android:layout_marginTop="35dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                            <RadioButton
+                                android:id="@+id/before_address"
+                                android:checked="true"
+                                android:layout_marginLeft="-5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="이전 배송지 불러우기"
+                                android:scaleX="1.0"
+                                android:scaleY="1.0"
+                                android:buttonTint="#E68789"
+                                android:textSize="14dp"
+                                android:textColor="#707070"/>
+
+                            <RadioButton
+                                android:layout_marginLeft="22dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="새로 입력하기"
+                                android:scaleX="1.0"
+                                android:scaleY="1.0"
+                                android:buttonTint="#E68789"
+                                android:textSize="14dp"
+                                android:textColor="#707070"/>
+
+
+                    </RadioGroup>
+
+                    <View
+                        android:layout_marginTop="14dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:background="#707070"/>
+
                     <LinearLayout
-                        android:layout_marginTop="49dp"
+                        android:layout_marginTop="22dp"
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
                         android:orientation="horizontal">
+
 
                         <TextView
                             android:layout_width="48dp"
@@ -165,7 +203,7 @@
                                 android:id="@+id/order_four_address_one"
                                 android:layout_marginLeft="62dp"
                                 android:layout_width="208dp"
-                                android:layout_height="25dp"
+                                android:layout_height="30dp"
                                 android:inputType="text"
                                 android:background="@drawable/edittext_background"/>
 
@@ -174,7 +212,7 @@
                                 android:layout_marginTop="11dp"
                                 android:layout_marginLeft="62dp"
                                 android:layout_width="208dp"
-                                android:layout_height="25dp"
+                                android:layout_height="30dp"
                                 android:inputType="text"
                                 android:background="@drawable/edittext_background"/>
                         </LinearLayout>
@@ -184,7 +222,7 @@
                     <LinearLayout
                         android:layout_marginTop="29dp"
                         android:layout_width="match_parent"
-                        android:layout_height="25dp"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <TextView
@@ -209,7 +247,7 @@
                             android:layout_marginLeft="49dp"
                             android:inputType="text"
                             android:layout_width="208dp"
-                            android:layout_height="25dp"
+                            android:layout_height="30dp"
                             android:background="@drawable/edittext_background"/>
 
                     </LinearLayout>
@@ -217,7 +255,7 @@
                     <LinearLayout
                         android:layout_marginTop="29dp"
                         android:layout_width="match_parent"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -263,39 +301,59 @@
                             android:layout_marginLeft="45dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:orientation="horizontal">
 
                             <RadioGroup
                                 android:id="@+id/order_four_pay_method"
-                                android:layout_width="match_parent"
+                                android:layout_width="100dp"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
                                 <RadioButton
                                     android:id="@+id/order_four_credit_pay"
-                                    android:paddingLeft="-70dp"
-                                    android:layout_marginLeft="-25dp"
-                                    android:layout_marginRight="-20dp"
-                                    android:text="                                                                                              신용카드   "
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:scaleX="0.8"
-                                    android:scaleY="0.8"
+                                    android:scaleX="1.2"
+                                    android:scaleY="1.2"
                                     android:buttonTint="#E68789"
                                     android:checked="true"/>
 
                                 <RadioButton
                                     android:id="@+id/order_four_phone_pay"
-                                    android:paddingLeft="-70dp"
-                                    android:layout_marginLeft="-25dp"
-                                    android:text="                                                                                          휴대폰 결제   "
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:scaleX="0.8"
-                                    android:scaleY="0.8"
+                                    android:scaleX="1.2"
+                                    android:scaleY="1.2"
                                     android:buttonTint="#E68789"/>
 
                             </RadioGroup>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_marginLeft="61dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:text="신용카드"
+                                    android:textColor="#4C4E51"
+                                    android:textSize="15dp"/>
+
+                                <TextView
+                                    android:layout_marginLeft="43dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:text="휴대폰 결제"
+                                    android:textColor="#4C4E51"
+                                    android:textSize="15dp"/>
+
+
+                            </LinearLayout>
+
 
                         </LinearLayout>
 

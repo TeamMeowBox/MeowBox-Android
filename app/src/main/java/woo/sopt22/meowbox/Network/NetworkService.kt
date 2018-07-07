@@ -27,13 +27,14 @@ interface NetworkService {
     //@FormUrlEncoded
     @POST("user/cat_signup")
     fun registerCat(
-            @Header("token") token : String,
+            @Header("authorization") token : String,
             @Body catInformation: CatInformation
     ) : Call<BaseModel>
 
     // 4. 회원탈퇴
     @HTTP(method = "DELETE", path = "user/account/{user_idx}", hasBody = false)
     fun deleteUser(
-            @Path("user_idx") user_idx : Int
+            @Header("token") token : String,
+            @Path("user_idx") user_idx : String
     ):   Call<BaseModel>
 }

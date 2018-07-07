@@ -13,10 +13,13 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_meow_box_story.*
 import kotlinx.android.synthetic.main.app_bar_meow_box_story.*
 import woo.sopt22.meowbox.R
+import woo.sopt22.meowbox.Util.SharedPreference
+import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.Login.LoginActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
@@ -32,6 +35,16 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             window.statusBarColor = Color.BLACK
+
+        SharedPreference.instance!!.load(this)
+        var headerView : View = story_nav_view.getHeaderView(0)
+        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+
+        if(SharedPreference.instance!!.getPrefStringData("user_email")!!.isEmpty()){
+            userName.text = "OO님!"
+        } else {
+            userName.text = SharedPreference.instance!!.getPrefStringData("user_email")
+        }
 
 
 
@@ -85,7 +98,11 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.loginBtn -> {
-                startActivity(Intent(this, LoginActivity::class.java))
+                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                    startActivity(Intent(this, LoginActivity::class.java))
+                } else{
+                    ToastMaker.makeLongToast(this, "이미 로그인 하셨습니다.")
+                }
             }
             R.id.homeBtn -> {
                 var intent =  Intent(this, MainActivity::class.java)

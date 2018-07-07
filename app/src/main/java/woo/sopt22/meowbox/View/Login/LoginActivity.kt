@@ -168,16 +168,16 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val loginResponse = networkService.postSignIn(loginUser)
         loginResponse.enqueue(object : Callback<LoginResponse>{
             override fun onFailure(call: Call<LoginResponse>?, t: Throwable?) {
-                Log.v("login",t.toString())
+                Log.v("login",t!!.message.toString())
 
             }
 
             override fun onResponse(call: Call<LoginResponse>?, response: Response<LoginResponse>?) {
                 if(response!!.isSuccessful){
                     Log.v("login",response!!.message())
-                    token = response!!.body()!!.result!!.token
+                    token = response!!.body()!!.result!!.token!!.toString()
                     SharedPreference.instance!!.setPrefData("token",token)
-                    SharedPreference.instance!!.setPrefData("email",login_email.text.toString())
+                    SharedPreference.instance!!.setPrefData("user_email",login_email.text.toString())
                     SharedPreference.instance!!.setPrefData("user_idx",response.body()!!.result!!.user_idx)
                     SharedPreference.instance!!.setPrefData("cat_idx",response.body()!!.result!!.cat_idx)
                     startActivity(Intent(applicationContext, MainActivity::class.java))

@@ -25,6 +25,7 @@ import android.widget.FrameLayout
 import android.widget.RelativeLayout
 import kotlinx.android.synthetic.main.content_order_first.*
 import woo.sopt22.meowbox.View.Order.OrderFragment.OrderFirstFragment
+import woo.sopt22.meowbox.View.Order.OrderFragment.OrderThirdFragment
 
 
 class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -60,7 +61,13 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
         container = order_framge as FrameLayout
 
-        replaceFragment(OrderFirstFragment())
+        var cat_idx = getIntent().getStringExtra("cat_idx")
+
+        if(cat_idx == "-1"){
+            replaceFragment(OrderFirstFragment())
+        }else{
+            replaceFragment(OrderThirdFragment())
+        }
 
 
         val toggle = ActionBarDrawerToggle(

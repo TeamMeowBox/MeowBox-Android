@@ -63,11 +63,8 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
         var cat_idx = getIntent().getStringExtra("cat_idx")
 
-        if(cat_idx == "-1"){
-            replaceFragment(OrderFirstFragment())
-        }else{
-            replaceFragment(OrderThirdFragment())
-        }
+        replaceFragment(OrderFirstFragment())
+
 
 
         val toggle = ActionBarDrawerToggle(

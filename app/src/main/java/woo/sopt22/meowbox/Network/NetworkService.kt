@@ -59,5 +59,5 @@ interface NetworkService {
     fun getMyPageYes(
             @Header("authorization") authorization: String
     ) : Call<MyPageYes>
-    //
+    
 }

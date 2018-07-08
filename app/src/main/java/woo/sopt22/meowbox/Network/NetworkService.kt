@@ -47,5 +47,5 @@ interface NetworkService {
     ) : Call<OrderHistory>
 
     // 6. 미유박스에 제안하기
-    
+
 }

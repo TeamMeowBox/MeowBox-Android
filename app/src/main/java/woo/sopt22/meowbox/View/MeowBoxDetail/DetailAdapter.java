@@ -7,7 +7,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.shuhart.bubblepagerindicator.BubblePageIndicator;
 import com.zarinpal.libs.cardviwepager.BaseCardViewPagerItem;
+import com.zarinpal.libs.cardviwepager.ScrollViewPagerIndicator;
 
 import woo.sopt22.meowbox.R;
 
@@ -18,8 +20,11 @@ public class DetailAdapter extends BaseCardViewPagerItem<DetailModel>{
         return R.layout.detail_card_view;
     }
 
+
+
     @Override
     public void bindView(View view, DetailModel item) {
+
 
         ImageView detailCardViewImg = view.findViewById(R.id.detail_card_view_img);
         TextView detailCardViewTxt = view.findViewById(R.id.detail_card_view_txt);

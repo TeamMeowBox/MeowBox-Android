@@ -8,7 +8,7 @@ data class MyPageYes (
 ) : BaseModel()
 
 data class MyPageYesData(
-        var catinfo : Int,
+        var catinfo : String,
         var flag : Int,
         var ticket : String,
         var use : String

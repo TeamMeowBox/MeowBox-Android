@@ -5,9 +5,19 @@ import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.View
+import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup
 import kotlinx.android.synthetic.main.activity_question.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import woo.sopt22.meowbox.ApplicationController
+import woo.sopt22.meowbox.Model.QnA.QnAResponse
+import woo.sopt22.meowbox.Model.QnA.ResultData
+import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
+import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.View.MyPage.FAQ.Adapter.ParentAdapter
 import woo.sopt22.meowbox.View.MyPage.FAQ.models.Child
 import woo.sopt22.meowbox.View.MyPage.FAQ.models.Parent
@@ -27,6 +37,13 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var packingAdapter : ParentAdapter
     lateinit var subscribeAdapter : ParentAdapter
 
+    // 통신 아이템
+    lateinit var product_item : ArrayList<ResultData>
+    lateinit var delivery_item : ArrayList<ResultData>
+    lateinit var packing_item : ArrayList<ResultData>
+    lateinit var subscribe_item : ArrayList<ResultData>
+
+
 
     lateinit var parent_items : ArrayList<Parent>
     lateinit var shipping_items : ArrayList<Parent>
@@ -45,6 +62,8 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
     var subscribe = arrayListOf("Q. 매번 결제를 해야하는건가요?")
     var subscribe_content = arrayListOf("1회 구매의 경우 매번 결제를 하셔야합니다. 이것이 \n귀찮으시다면 정기구독(3개월, 6개월)을 선택하시면 \n매월초 자동결제가 되고 박스가 배송됩니다.")
 
+    lateinit var networkService: NetworkService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question)
@@ -53,6 +72,8 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
             window.statusBarColor = Color.BLACK
 
         question_x_btn.setOnClickListener(this)
+        networkService = ApplicationController.instance!!.networkService
+        SharedPreference.instance!!.load(this)
 
 
 
@@ -60,6 +81,23 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
         getShipping()
         getPacking()
         getSubscribe()
+        //getQnA()
+    }
+
+
+    fun getShipping() {
+        shipping_items = ArrayList(1)
+
+        for (i in 0..shipping.size-1) {
+            val contents : ArrayList<Child> = ArrayList<Child>(1)
+            contents.add(Child(shipping_content[i]))
+            if(i == 0){
+                shipping[i]
+                shipping_content
+            }
+            shipping_items.add(Parent(shipping[i], contents))
+        }
+
     }
 
     fun getGenres() {
@@ -78,20 +116,7 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
         parentAdapter = ParentAdapter(parent_items)
         question_rv.layoutManager = LinearLayoutManager(this)
         question_rv.adapter = parentAdapter
-    }
 
-    fun getShipping() {
-        shipping_items = ArrayList(1)
-
-        for (i in 0..shipping.size-1) {
-            val contents : ArrayList<Child> = ArrayList<Child>(1)
-            contents.add(Child(shipping_content[i]))
-            if(i == 0){
-                shipping[i]
-                shipping_content
-            }
-            shipping_items.add(Parent(shipping[i], contents))
-        }
         shippingAdapter = ParentAdapter(shipping_items)
         shipping_rv.layoutManager = LinearLayoutManager(this)
         shipping_rv.adapter = shippingAdapter
@@ -125,6 +150,65 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
         subscribe_rv.adapter = subscribeAdapter
         subscribe_rv.setVerticalScrollBarEnabled(false)
     }
+
+    fun getQnA(){
+        val qnaResponse = networkService.getQnA(SharedPreference.instance!!.getPrefStringData("token")!!)
+        qnaResponse.enqueue(object : Callback<QnAResponse>{
+            override fun onFailure(call: Call<QnAResponse>?, t: Throwable?) {
+
+            }
+
+            override fun onResponse(call: Call<QnAResponse>?, response: Response<QnAResponse>?) {
+                if(response!!.isSuccessful){
+                    product_item = response!!.body()!!.result!!.product
+                    Log.v("0033",product_item!![0]!!.toString())
+                    Log.v("0033",product_item!![0].answer)
+                    //getProduct(product_item)
+
+                    delivery_item = response!!.body()!!.result!!.delivery
+                    packing_item = response!!.body()!!.result!!.packing
+                    delivery_item = response!!.body()!!.result!!.delivery
+
+                }
+
+            }
+
+        })
+    }
+/*
+    fun getProduct(product_items : ArrayList<ResultData>){
+
+        //product_item = ArrayList()
+
+        for (i in 0..product_items.size-1) {
+            //val contents : ArrayList<ResultData> = ArrayList<ResultData>()
+            var contents = ArrayList<String>()
+            contents.add(product_items!![i]!!.answer)
+            product_items.add(contents)
+        }
+
+        parentAdapter = ParentAdapter(product_items as List<ExpandableGroup<*>>)
+        question_rv.layoutManager = LinearLayoutManager(this)
+        question_rv.adapter = parentAdapter
+    }*/
+
+/*    fun getGenres() {
+        parent_items = ArrayList(3)
+
+        for (i in 0..faq.size-1) {
+            val contents : ArrayList<Child> = ArrayList<Child>(1)
+            contents.add(Child(faq_content[i]))
+            if(i == 0){
+                faq[i]
+                faq_content
+            }
+            parent_items.add(Parent(faq[i], contents))
+        }
+
+        parentAdapter = ParentAdapter(parent_items)
+        question_rv.layoutManager = LinearLayoutManager(this)
+        question_rv.adapter = parentAdapter
+    }*/
 
 }
 

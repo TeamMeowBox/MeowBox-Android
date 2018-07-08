@@ -24,14 +24,67 @@ class WithOutCatInfoThird : Fragment(), View.OnClickListener{
             order_period_next->{
                 (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithOutCatInfoFour())
             }
+            order_third_1_layout->{
+                if(!order_third_1_layout.isSelected){
+                    order_third_1_layout.isSelected = true
+
+                    order_third_3.isSelected = false
+                    order_third_6.isSelected = false
+                    order_third_7.isSelected = false
+                } else{
+                    order_third_1_layout.isSelected = false
+                }
+            }
+            order_third_3->{
+                if(!order_third_3.isSelected){
+                    order_third_3.isSelected = true
+
+                    order_third_1_layout.isSelected = false
+                    order_third_6.isSelected = false
+                    order_third_7.isSelected = false
+                } else{
+                    order_third_3.isSelected = false
+                }
+            }
+            order_third_6->{
+                if(!order_third_6.isSelected){
+                    order_third_6.isSelected = true
+
+                    order_third_1_layout.isSelected = false
+                    order_third_3.isSelected = false
+                    order_third_7.isSelected = false
+                } else{
+                    order_third_6.isSelected = false
+                }
+
+            }
+            order_third_7->{
+                if(!order_third_7.isSelected){
+                    order_third_7.isSelected = true
+
+                    order_third_1_layout.isSelected = false
+                    order_third_6.isSelected = false
+                    order_third_3.isSelected = false
+                } else{
+                    order_third_7.isSelected = false
+                }
+
+            }
+
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.order_third_fragment, container, false)
 
+
         view.order_period_previous.setOnClickListener(this)
         view.order_period_next.setOnClickListener(this)
+        view.order_third_1_layout.setOnClickListener(this)
+        view.order_third_3.setOnClickListener(this)
+        view.order_third_6.setOnClickListener(this)
+        view.order_third_7.setOnClickListener(this)
+        view.order_third_1_layout.isSelected = true
         return view
     }
 }

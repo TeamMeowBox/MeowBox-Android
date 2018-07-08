@@ -7,6 +7,7 @@ import woo.sopt22.meowbox.Model.Login.LoginResponse
 import woo.sopt22.meowbox.Model.Login.LoginUser
 import woo.sopt22.meowbox.Model.MyPageMain.MyPageYes
 import woo.sopt22.meowbox.Model.Order.OrderHistory
+import woo.sopt22.meowbox.Model.QnA.QnAResponse
 import woo.sopt22.meowbox.Model.SignUp.SignUpUser
 import woo.sopt22.meowbox.Model.RegisterCat.CatInformation
 import woo.sopt22.meowbox.Model.SignUp.SignUpResponse
@@ -56,10 +57,17 @@ interface NetworkService {
             @Body meowBoxSuggest: MeowBoxSuggest
     ) : Call<BaseModel>
 
-    //7. 마이페이지-1
+    //7. 마이페이지-1 - 0 손 좀 더 봐야함
     @GET("/mypage/mypageinfo/")
     fun getMyPageYes(
             @Header("authorization") authorization: String
     ) : Call<MyPageYes>
-    
+
+    // 8. Q&A 질문 불러오기
+    @GET("mypage/qna")
+    fun getQnA(
+            @Header("authorization") authorization : String
+    ) : Call<QnAResponse>
+
+
 }

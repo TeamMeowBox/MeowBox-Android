@@ -175,10 +175,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     token = response!!.body()!!.result!!.token!!.toString()
                     SharedPreference.instance!!.setPrefData("token",token)
                     SharedPreference.instance!!.setPrefData("user_email",login_email.text.toString())
-                    SharedPreference.instance!!.setPrefData("user_idx",response.body()!!.result!!.user_idx)
                     SharedPreference.instance!!.setPrefData("cat_idx",response.body()!!.result!!.cat_idx)
                     Log.v("123",token)
-                    Log.v("123",response.body()!!.result!!.user_idx)
                     Log.v("123",response.body()!!.result!!.cat_idx)
                     startActivity(Intent(applicationContext, MainActivity::class.java))
                 }

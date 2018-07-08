@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_my_page_suggest.*
 import retrofit2.Call
@@ -37,7 +38,7 @@ class MyPageSuggestActivity : AppCompatActivity(), View.OnClickListener {
     fun postSuggest(){
         meowBoxSuggest = MeowBoxSuggest(SharedPreference.instance!!.getPrefStringData("user_idx")!!
                 ,suggest_opinion.text.toString(),suggest_detail_comment.text.toString())
-        var suggestResponse = networkService.postSuggest(meowBoxSuggest)
+        var suggestResponse = networkService.postSuggest(SharedPreference.instance!!.getPrefStringData("token")!!,meowBoxSuggest)
         suggestResponse.enqueue(object : Callback<BaseModel>{
             override fun onFailure(call: Call<BaseModel>?, t: Throwable?) {
 
@@ -45,6 +46,7 @@ class MyPageSuggestActivity : AppCompatActivity(), View.OnClickListener {
 
             override fun onResponse(call: Call<BaseModel>?, response: Response<BaseModel>?) {
                 if(response!!.isSuccessful){
+                    Log.v("43",response!!.message())
                     finish()
                 }
             }

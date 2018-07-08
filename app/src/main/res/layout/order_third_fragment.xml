@@ -110,27 +110,264 @@
 
 
 
-                    <ImageView
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="199dp"
-                        android:layout_marginTop="28dp"
-                        android:src="@drawable/card_box_pink"
-                        android:scaleType="fitXY"/>
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/big_card_box"
+                            android:scaleType="fitXY"/>
+                        
+                        <ImageView
+                            android:id="@+id/order_first_image"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_width="130dp"
+                            android:layout_height="94dp"
+                            />
+
+                      <RelativeLayout
+                          android:layout_toRightOf="@+id/order_first_image"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="40dp"
+                          android:layout_marginRight="40dp"
+                          android:orientation="vertical">
+
+                          <TextView
+                              android:layout_alignParentRight="true"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:textSize="18dp"
+                              android:textColor="#4C4E51"
+                              android:id="@+id/one_shipping"
+                              android:text="한 번만 받기"/>
+
+                          <TextView
+                              android:layout_alignParentRight="true"
+                              android:layout_below="@+id/one_shipping"
+                              android:layout_marginTop="4dp"
+                              android:layout_gravity="right"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:textSize="18dp"
+                              android:textColor="#E68789"
+                              android:text="39,900 원"/>
+
+                      </RelativeLayout>
 
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="199dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/card_box"
-                        android:scaleType="fitXY"/>
+                        <ImageView
+                            android:id="@+id/order_dash"
+                            android:layout_marginTop="15dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_below="@+id/order_first_image"
+                            android:layout_width="320dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/dash_bar_img"/>
 
-                    <ImageView
+                        <RadioGroup
+                            android:id="@+id/order_third_pay_method"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginLeft="27dp"
+                            android:layout_marginRight="22dp"
+                            android:layout_below="@+id/order_dash"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <RadioButton
+                                android:id="@+id/order_third_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:scaleX="1.0"
+                                android:scaleY="1.0"
+                                android:buttonTint="#E68789"
+                                android:paddingLeft="20dp"
+                                android:text="7월 패키지 박스"
+                                android:checked="true"
+                                android:textColor="#4C4E51"
+                                android:textSize="14dp"/>
+
+
+                            <RadioButton
+                                android:id="@+id/order_third_2"
+                                android:layout_marginTop="17dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:scaleX="1.0"
+                                android:scaleY="1.0"
+                                android:buttonTint="#E68789"
+                                android:paddingLeft="20dp"
+                                android:text="고양이는 처음이지? 박스"
+                                android:textColor="#4C4E51"
+                                android:textSize="14dp"/>
+
+
+                        </RadioGroup>
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="199dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/card_box"
-                        android:scaleType="fitXY"/>
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/order_third_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/small_card_box"
+                            android:scaleType="fitXY"/>
+
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:id="@+id/order_3month_image"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_width="130dp"
+                            android:layout_height="94dp"
+                            />
+
+
+                        <RelativeLayout
+                            android:layout_marginRight="40dp"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/order_3month_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="40dp">
+
+                            <TextView
+                                android:layout_alignParentRight="true"
+                                android:id="@+id/three_shipping"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18dp"
+                                android:textColor="#4C4E51"
+                                android:text="3개월 정기배송"/>
+
+                            <TextView
+                                android:layout_below="@+id/three_shipping"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="4dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18dp"
+                                android:textColor="#E68789"
+                                android:text="37,000 원 /월"/>
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/order_third_6"
+                            android:layout_width="match_parent"
+                            android:layout_height="199dp"
+                            android:src="@drawable/small_card_box"
+                            android:scaleType="fitXY"/>
+
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:id="@+id/order_6month_image"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_width="130dp"
+                            android:layout_height="94dp"
+                            />
+
+                        <RelativeLayout
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/order_6month_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="40dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_alignParentRight="true"
+                                android:id="@+id/six_shipping"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18dp"
+                                android:textColor="#4C4E51"
+                                android:text="6개월 정기배송"/>
+
+                            <TextView
+                                android:layout_alignParentRight="true"
+                                android:layout_below="@+id/six_shipping"
+                                android:layout_marginTop="4dp"
+                                android:layout_gravity="right"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18dp"
+                                android:textColor="#E68789"
+                                android:text="35,000 원 /월"/>
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/order_third_7"
+                            android:layout_width="match_parent"
+                            android:layout_height="199dp"
+                            android:src="@drawable/small_card_box"
+                            android:scaleType="fitXY"/>
+
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:id="@+id/order_birthday_image"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_width="130dp"
+                            android:layout_height="94dp"
+                            />
+                        <RelativeLayout
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/order_birthday_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="40dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_alignParentRight="true"
+                                android:id="@+id/birth_shipping"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18dp"
+                                android:textColor="#4C4E51"
+                                android:text="생일축하해! 박스"/>
+
+                            <TextView
+                                android:layout_alignParentRight="true"
+                                android:layout_below="@+id/birth_shipping"
+                                android:layout_marginTop="4dp"
+                                android:layout_gravity="right"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18dp"
+                                android:textColor="#E68789"
+                                android:text="60,000원"/>
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+
+
 
 
                 </LinearLayout>

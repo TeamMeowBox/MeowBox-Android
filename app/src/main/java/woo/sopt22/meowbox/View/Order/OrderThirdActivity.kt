@@ -18,6 +18,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_meow_box_detail.*
 import kotlinx.android.synthetic.main.activity_order_third.*
 import kotlinx.android.synthetic.main.app_bar_order_third.*
@@ -46,6 +47,15 @@ class OrderThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
         toolbar.bringToFront()
+
+        var headerView : View = order_third_nav_view.getHeaderView(0)
+        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+
+        if(SharedPreference.instance!!.getPrefStringData("user_email")!!.isEmpty()){
+            userName.text = "OO님!"
+        } else {
+            userName.text = SharedPreference.instance!!.getPrefStringData("user_email")
+        }
 
         replaceFragment(WithOutCatInfoThird())
         //(OrderThirdActivity. as OrderFirstActivity).replaceFragment(third_fragment)

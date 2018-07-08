@@ -5,9 +5,11 @@ import retrofit2.http.*
 import woo.sopt22.meowbox.Model.Base.BaseModel
 import woo.sopt22.meowbox.Model.Login.LoginResponse
 import woo.sopt22.meowbox.Model.Login.LoginUser
+import woo.sopt22.meowbox.Model.MyPageMain.MyPageYes
 import woo.sopt22.meowbox.Model.Order.OrderHistory
 import woo.sopt22.meowbox.Model.SignUp.SignUpUser
 import woo.sopt22.meowbox.Model.RegisterCat.CatInformation
+import woo.sopt22.meowbox.Model.Suggest.MeowBoxSuggest
 
 interface NetworkService {
 
@@ -47,5 +49,15 @@ interface NetworkService {
     ) : Call<OrderHistory>
 
     // 6. 미유박스에 제안하기
-    
+    @POST("mypage/feedback")
+    fun postSuggest(
+            @Body meowBoxSuggest: MeowBoxSuggest
+    ) : Call<BaseModel>
+
+    //7. 마이페이지-1
+    @GET("/mypage/mypageinfo/")
+    fun getMyPageYes(
+            @Header("authorization") authorization: String
+    ) : Call<MyPageYes>
+    //
 }

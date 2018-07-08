@@ -15,6 +15,7 @@ import android.support.v4.content.res.ResourcesCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -29,6 +30,12 @@ import kotlinx.android.synthetic.main.app_bar_my_page.*
 
 import woo.sopt22.meowbox.R
 import kotlinx.android.synthetic.main.content_my_page.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import woo.sopt22.meowbox.ApplicationController
+import woo.sopt22.meowbox.Model.MyPageMain.MyPageYes
+import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
@@ -70,8 +77,8 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     var tmpMaxNum : Int = 0
     var tmpCurrentNum : Int = 0
-    lateinit var tmpString1 : String
-    lateinit var tmpString2 : String
+    lateinit var tmpStringMax : String
+    lateinit var tmpStringCurrent : String
 
     lateinit var mypageVisibleProgess : RelativeLayout
     lateinit var mypageVisibleText : RelativeLayout
@@ -82,9 +89,23 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     lateinit var mypage_to_history_btn : LinearLayout
     lateinit var mypageVisibleBoxLeftBox : TextView
     lateinit var mypageVisibleBoxGetBox : TextView
+    lateinit var re : Regex
+
+    lateinit var stateProgressBar : StateProgressBar
+
+
+    lateinit var networkService: NetworkService
+    lateinit var myPageYes: MyPageYes
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page)
+
+
+        networkService = ApplicationController.instance.networkService
+        SharedPreference.instance!!.load(this)
+
+        getMyPageYes();
+
         setSupportActionBar(toolbar)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             window.statusBarColor = Color.BLACK
@@ -127,28 +148,20 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
 
 
-        tmpCurrentNum = 3;
-        tmpMaxNum = 6;
 
-        var descriptionData = Array(tmpMaxNum,{ i -> (i+1).toString()})
-
-
-        var stateProgressBar = your_state_progress_bar_id as StateProgressBar
-        stateProgressBar.setStateDescriptionData(descriptionData)
 
 
 //        for(i in 0..tmpMaxNum){
 //            descriptionData[i] = (i+1).toString()+"box";
 //
 //        }
-        tmpString1 = "6박스"
-        tmpString2 = "3박스"
 
 
 
-        val re = Regex("[^0-9]")
-        tmpMaxNum = re.replace(tmpString1, "").toInt()
-        tmpCurrentNum = re.replace(tmpString2, "").toInt()
+
+        /*re = Regex("[^0-9]")
+        tmpMaxNum = re.replace(tmpStringMax, "").toInt()
+        tmpCurrentNum = re.replace(tmpStringCurrent, "").toInt()
 
 
         stateProgressBar.setMaxStateNumber(tmpMaxNum);
@@ -157,8 +170,8 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         mypageVisibleBoxLeftBox = mypage_visiblebox_progress_leftbox as TextView
         mypageVisibleBoxGetBox = mypage_visiblebox_progress_getbox as TextView
 
-        mypageVisibleBoxLeftBox.setText(tmpString1)
-        mypageVisibleBoxGetBox.setText(tmpString2)
+        mypageVisibleBoxLeftBox.setText(tmpStringMax)
+        mypageVisibleBoxGetBox.setText(tmpStringCurrent)*/
 
 
 
@@ -199,6 +212,62 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         mypage_nav_view.setNavigationItemSelectedListener(this)
 
         mypage_setting.setOnClickListener(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+
+
+    }
+
+    fun getMyPageYes(){
+        val tmpResponse = networkService.getMyPageYes(SharedPreference.instance!!.getPrefStringData("token")!!)
+        Log.v("98","들어오니?")
+        tmpResponse.enqueue(object : Callback<MyPageYes>{
+            override fun onFailure(call: Call<MyPageYes>?, t: Throwable?) {
+                Log.v("98",t!!.message)
+            }
+
+            override fun onResponse(call: Call<MyPageYes>?, response: Response<MyPageYes>?) {
+                if(response!!.isSuccessful){
+                    tmpStringMax = "6박스"
+                    tmpStringCurrent = "3박스"
+
+                    tmpCurrentNum = 3;
+                    tmpMaxNum = 6;
+
+                    var descriptionData = Array(tmpMaxNum,{ i -> (i+1).toString()})
+
+
+                    stateProgressBar = your_state_progress_bar_id as StateProgressBar
+                    stateProgressBar.setStateDescriptionData(descriptionData)
+
+                    tmpStringMax = response!!.body()!!.result.ticket
+                    tmpStringCurrent = response!!.body()!!.result.use
+                    Log.v("93",tmpStringCurrent)
+
+                    re = Regex("[^0-9]")
+                    tmpMaxNum = re.replace(tmpStringMax, "").toInt()
+                    tmpCurrentNum = re.replace(tmpStringCurrent, "").toInt()
+
+
+                    stateProgressBar.setMaxStateNumber(tmpMaxNum);
+                    stateProgressBar.setCurrentStateNumber(tmpCurrentNum);
+
+                    mypageVisibleBoxLeftBox = mypage_visiblebox_progress_leftbox as TextView
+                    mypageVisibleBoxGetBox = mypage_visiblebox_progress_getbox as TextView
+
+                    mypageVisibleBoxLeftBox.setText(tmpStringMax)
+                    mypageVisibleBoxGetBox.setText(tmpStringCurrent)
+                } else{
+                    Log.v("96",response!!.message())
+                }
+
+            }
+
+        })
+
     }
 
     override fun onBackPressed() {

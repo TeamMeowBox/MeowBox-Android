@@ -37,4 +37,6 @@ interface NetworkService {
             @Header("token") token : String,
             @Path("user_idx") user_idx : String
     ):   Call<BaseModel>
+
+
 }

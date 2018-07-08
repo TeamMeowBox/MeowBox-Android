@@ -129,7 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_gravity="center"
-                app:indicatorSize="5dp"
+                app:indicatorSize="3dp"
                 app:selectIndicatorColor="#E88787"
                 app:unSelectIndicatorColor="#E4E4E4"
                 app:visibleLeftPadding="30dp"

@@ -222,11 +222,13 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
     fun getMyPageYes(){
-        val tmpResponse = networkService.getMyPageYes(SharedPreference.instance!!.getPrefStringData("token")!!)
+        //val tmpResponse = networkService.getMyPageYes(SharedPreference.instance!!.getPrefStringData("token")!!)
+
+        val tmpResponse = networkService.getMyPageYes("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IuyEnOyXsOydtCDstZzqs6Ag6riw7Jqp7J2064qUIOqwgGRkIiwidXNlcl9pZHgiOjE5MywiaWF0IjoxNTMxMDI1NzQ5LCJleHAiOjE1MzM2MTc3NDl9.OlyBgwTWCeG76qAi1f8sV37MzluNJXe4PPqvUpK2mzA")
         Log.v("98","들어오니?")
         tmpResponse.enqueue(object : Callback<MyPageYes>{
             override fun onFailure(call: Call<MyPageYes>?, t: Throwable?) {
-                Log.v("98",t!!.message)
+                Log.v("98","안됭")
             }
 
             override fun onResponse(call: Call<MyPageYes>?, response: Response<MyPageYes>?) {
@@ -237,11 +239,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                     tmpCurrentNum = 3;
                     tmpMaxNum = 6;
 
-                    var descriptionData = Array(tmpMaxNum,{ i -> (i+1).toString()})
 
-
-                    stateProgressBar = your_state_progress_bar_id as StateProgressBar
-                    stateProgressBar.setStateDescriptionData(descriptionData)
 
                     tmpStringMax = response!!.body()!!.result.ticket
                     tmpStringCurrent = response!!.body()!!.result.use
@@ -260,6 +258,12 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
                     mypageVisibleBoxLeftBox.setText(tmpStringMax)
                     mypageVisibleBoxGetBox.setText(tmpStringCurrent)
+
+                    var descriptionData = Array(tmpMaxNum,{ i -> (i+1).toString()})
+
+
+                    stateProgressBar = your_state_progress_bar_id as StateProgressBar
+                    stateProgressBar.setStateDescriptionData(descriptionData)
                 } else{
                     Log.v("96",response!!.message())
                 }

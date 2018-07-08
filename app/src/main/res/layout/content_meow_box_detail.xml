@@ -135,6 +135,7 @@
                 app:visibleLeftPadding="30dp"
                 app:visibleRightPadding="30dp"
                 app:visibleIndicator="true"
+                android:elevation="0dp"
                 />
 
             <LinearLayout

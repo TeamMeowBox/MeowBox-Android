@@ -9,7 +9,15 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import kotlinx.android.synthetic.main.activity_my_page_suggest.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import woo.sopt22.meowbox.ApplicationController
+import woo.sopt22.meowbox.Model.Base.BaseModel
+import woo.sopt22.meowbox.Model.Suggest.MeowBoxSuggest
+import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
+import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 
 class MyPageSuggestActivity : AppCompatActivity(), View.OnClickListener {
@@ -17,6 +25,7 @@ class MyPageSuggestActivity : AppCompatActivity(), View.OnClickListener {
         when(v!!){
             suggest_btn->{
                 // 서버랑 통신
+                postSuggest()
             }
             suggest_x_btn->{
                 finish()
@@ -25,9 +34,31 @@ class MyPageSuggestActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    fun postSuggest(){
+        meowBoxSuggest = MeowBoxSuggest(SharedPreference.instance!!.getPrefStringData("user_idx")!!
+                ,suggest_opinion.text.toString(),suggest_detail_comment.text.toString())
+        var suggestResponse = networkService.postSuggest(meowBoxSuggest)
+        suggestResponse.enqueue(object : Callback<BaseModel>{
+            override fun onFailure(call: Call<BaseModel>?, t: Throwable?) {
+
+            }
+
+            override fun onResponse(call: Call<BaseModel>?, response: Response<BaseModel>?) {
+                if(response!!.isSuccessful){
+                    finish()
+                }
+            }
+
+        })
+    }
+    lateinit var networkService: NetworkService
+    lateinit var meowBoxSuggest: MeowBoxSuggest
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page_suggest)
+
+        networkService = ApplicationController.instance!!.networkService
+        SharedPreference.instance!!.load(this)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             window.statusBarColor = Color.BLACK

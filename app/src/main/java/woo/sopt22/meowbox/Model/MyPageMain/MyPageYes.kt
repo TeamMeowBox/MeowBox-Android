@@ -1,4 +1,16 @@
 package woo.sopt22.meowbox.Model.MyPageMain
 
-class MyPageYes {
-}
+import woo.sopt22.meowbox.Model.Base.BaseModel
+import woo.sopt22.meowbox.Model.RegisterCat.CatInformation
+
+data class MyPageYes (
+    var result : MyPageYesData
+) : BaseModel()
+
+data class MyPageYesData(
+        var catinfo : Int,
+        var flag : Int,
+        var ticket : String,
+        var use : String
+
+)

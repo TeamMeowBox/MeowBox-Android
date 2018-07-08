@@ -145,10 +145,11 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         }
         println("333"+detailItem1.getItem(0).text)
 
-        detailItem1.setElevation(0.0f)
+        detailItem1.setElevation(-0f)
         
         detailViewPager1.setAdapter(detailItem1)
         detailViewPager2.setAdapter(detailItem1)
+        detailViewPager1.isShowShadowTransformer(false)
 
     }
 

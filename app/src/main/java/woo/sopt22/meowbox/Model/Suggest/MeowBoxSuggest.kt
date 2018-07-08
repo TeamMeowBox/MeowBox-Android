@@ -1,4 +1,7 @@
 package woo.sopt22.meowbox.Model.Suggest
 
-class MeowBoxSuggest {
-}
+data class MeowBoxSuggest(
+        var user_idx : String,
+        var title : String,
+        var content : String
+)

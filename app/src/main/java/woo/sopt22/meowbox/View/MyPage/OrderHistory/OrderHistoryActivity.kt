@@ -91,6 +91,7 @@ class OrderHistoryActivity : AppCompatActivity(), View.OnClickListener {
             override fun onResponse(call: Call<OrderHistory>?, response: Response<OrderHistory>?) {
                 if(response!!.isSuccessful){
                     order_history_items = response!!.body()!!.result
+                    //SharedPreference.instance!!.setPrefData("idx", response!!.body()!!.result.ticketed)
                     Log.v("11",order_history_items.ticket.toString())
                     orderHistoryAdapter = OrderHistoryAdapter(order_history_items, context = this@OrderHistoryActivity)
                     orderHistoryAdapter.setOnItemClickListener(this@OrderHistoryActivity)

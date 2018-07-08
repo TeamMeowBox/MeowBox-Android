@@ -8,12 +8,16 @@ import woo.sopt22.meowbox.Model.Base.BaseModel
 data class LoginResponse(
         @SerializedName("result")
         @Expose
-        open var result : result?=null
+        open var result : LoginResult?=null
 ) : BaseModel()
 
 
-data class result(
+data class LoginResult(
         var token : String,
-        var user_idx : String,
+        var email : String,
+        var name : String,
+        var phone_number : String,
+        var image_background : Int?,
+        var image_profile : Int?,
         var cat_idx : String
 )

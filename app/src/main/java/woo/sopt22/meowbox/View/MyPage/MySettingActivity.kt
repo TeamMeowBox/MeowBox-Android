@@ -12,12 +12,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 
 import com.bumptech.glide.Glide
 
@@ -53,6 +48,11 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
     private var customButton2: Button? = null
     private var customButton3: Button? = null
 
+    lateinit var mySettingName : EditText
+    lateinit var mySettingEmail : EditText
+    lateinit var mySettingPhone : EditText
+    lateinit var mySettingCatName : EditText
+
     lateinit var year: String
     lateinit var month: String
     lateinit var day: String
@@ -77,9 +77,6 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
 
         val myXButton = findViewById<View>(R.id.mysetting_x_btn) as ImageView
         myXButton.setOnClickListener {
-            /*Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
-            startActivity(intent);*/
-            // 여기 finish()로 해도 될듯?
             finish()
         }
 
@@ -87,11 +84,26 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         mySaveButton.setOnClickListener {
             val intent = Intent(applicationContext, MyPageActivity::class.java)
             startActivity(intent)
+            var myName = mySettingName.text.toString()
+            var myEmail = mySettingEmail.text.toString()
+            var myPhone = mySettingPhone.text.toString()
+            var myCatName = mySettingCatName.text.toString()
 
-            Toast.makeText(this@MySettingActivity, year + month + day, LENGTH_SHORT).show()
+            mySettingName.setText(myName)
+            mySettingEmail.setText(myEmail)
+            mySettingPhone.setText(myPhone)
+            mySettingCatName.setText(myCatName)
+
+            Toast.makeText(this@MySettingActivity, myName + month + day, LENGTH_SHORT).show()
         }
 
         mysetting_profile.setOnClickListener(this)
+
+
+        mySettingName = mysetting_my_name as EditText
+        mySettingEmail = mysetting_my_email as EditText
+        mySettingPhone = mysetting_my_phone as EditText
+        mySettingCatName = mysetting_cat_name as EditText
 
         customButton1 = findViewById<View>(R.id.custom_button1) as Button
         customButton1!!.setBackgroundResource(R.drawable.custom_button)

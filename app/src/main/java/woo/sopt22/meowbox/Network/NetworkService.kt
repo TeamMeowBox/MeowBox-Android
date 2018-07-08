@@ -5,6 +5,7 @@ import retrofit2.http.*
 import woo.sopt22.meowbox.Model.Base.BaseModel
 import woo.sopt22.meowbox.Model.Login.LoginResponse
 import woo.sopt22.meowbox.Model.Login.LoginUser
+import woo.sopt22.meowbox.Model.MyAccountSetting.MyAccountSettingGet
 import woo.sopt22.meowbox.Model.MyPageMain.MyPageYes
 import woo.sopt22.meowbox.Model.Order.OrderHistory
 import woo.sopt22.meowbox.Model.SignUp.SignUpUser
@@ -55,9 +56,14 @@ interface NetworkService {
     ) : Call<BaseModel>
 
     //7. 마이페이지-1
-    @GET("/mypage/mypageinfo/")
+    @GET("mypage/mypageinfo/")
     fun getMyPageYes(
             @Header("authorization") authorization: String
     ) : Call<MyPageYes>
-    //
+    //?.get계정설정화면
+    @GET("mypage/account/{user_idx}")
+    fun getMyAccountSetting(
+            @Header("authorization") authorization: String,
+            @Path("user_idx") user_idx: String
+    ) : Call<MyAccountSettingGet>
 }

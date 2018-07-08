@@ -127,13 +127,11 @@
                 android:id="@+id/detail_cardview_pager1"
 
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="430dp"
                 android:layout_gravity="center"
                 app:indicatorSize="3dp"
                 app:selectIndicatorColor="#E88787"
                 app:unSelectIndicatorColor="#E4E4E4"
-                app:visibleLeftPadding="30dp"
-                app:visibleRightPadding="30dp"
                 app:visibleIndicator="true"
                 android:elevation="0dp"
                 />
@@ -231,12 +229,12 @@
 
             <com.zarinpal.libs.cardviwepager.CardViewPager
                 android:id="@+id/detail_cardview_pager2"
-                android:layout_marginRight="22dp"
-                android:layout_marginLeft="22dp"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="430dp"
+                app:indicatorSize="3dp"
+                app:selectIndicatorColor="#E88787"
+                app:unSelectIndicatorColor="#E4E4E4"
                 android:layout_gravity="center"
-                app:indicatorSize="5dp"
                 app:visibleIndicator="true"
                 />
             

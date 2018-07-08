@@ -156,7 +156,7 @@ class OrderSecondFragment : Fragment(), View.OnClickListener{
     // 고양이 등록
     fun registerCatInfo(){
         catInformation = CatInformation(order_etc_cat_name.text.toString(), cat_type,
-                year+month+day,cat_about_info.text.toString())
+                year+"-"+month+"-"+day,cat_about_info.text.toString())
         Log.v("cat1",order_etc_cat_name.text.toString())
         Log.v("cat2",cat_type.toString())
         Log.v("cat3",year+month+day)

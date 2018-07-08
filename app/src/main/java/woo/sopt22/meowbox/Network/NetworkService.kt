@@ -5,6 +5,7 @@ import retrofit2.http.*
 import woo.sopt22.meowbox.Model.Base.BaseModel
 import woo.sopt22.meowbox.Model.Login.LoginResponse
 import woo.sopt22.meowbox.Model.Login.LoginUser
+import woo.sopt22.meowbox.Model.Order.OrderHistory
 import woo.sopt22.meowbox.Model.SignUp.SignUpUser
 import woo.sopt22.meowbox.Model.RegisterCat.CatInformation
 
@@ -27,7 +28,7 @@ interface NetworkService {
     //@FormUrlEncoded
     @POST("user/cat_signup")
     fun registerCat(
-            @Header("authorization") token : String,
+            @Header("authorization") authorization : String,
             @Body catInformation: CatInformation
     ) : Call<BaseModel>
 
@@ -38,5 +39,13 @@ interface NetworkService {
             @Path("user_idx") user_idx : String
     ):   Call<BaseModel>
 
+    // 5. 주문 내역
+    @GET("order/order_list/{user_idx}")
+    fun getOrderHistory(
+            @Header("authorization") authorization : String,
+            @Path("user_idx") user_idx : String
+    ) : Call<OrderHistory>
 
+    // 6. 미유박스에 제안하기
+    
 }

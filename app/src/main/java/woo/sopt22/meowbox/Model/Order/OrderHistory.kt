@@ -1,9 +1,12 @@
 package woo.sopt22.meowbox.Model.Order
 
-data class OrderHistory (
+import woo.sopt22.meowbox.Model.Base.BaseModel
 
-        var idx : Int,
-        var product : String,
-        var payment_date : String,
-        var flag : Int
+data class OrderHistory (
+        var result : OrderHistoryDate
+) : BaseModel()
+
+data class OrderHistoryDate(
+        var ticket : ticketData,
+        var ticketed : ArrayList<ticketData>
 )

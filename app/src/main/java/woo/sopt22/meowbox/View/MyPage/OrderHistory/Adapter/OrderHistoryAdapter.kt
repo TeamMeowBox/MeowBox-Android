@@ -7,11 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import woo.sopt22.meowbox.Model.Order.OrderHistory
+import woo.sopt22.meowbox.Model.Order.OrderHistoryDate
 import woo.sopt22.meowbox.R
 
 
 
-class OrderHistoryAdapter(var order_history_items : ArrayList<OrderHistory>, var context : Context)
+class OrderHistoryAdapter(var order_history_items : OrderHistoryDate, var context : Context)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     private val TYPE_HEADER : Int = 0
@@ -37,21 +38,20 @@ class OrderHistoryAdapter(var order_history_items : ArrayList<OrderHistory>, var
     }
 
     override fun getItemCount(): Int {
-        return order_history_items.size
+        println("티켓 사이즈"+order_history_items.ticketed.size)
+        return order_history_items.ticketed.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         if(holder is OrderHistoryViewHolder){
-
             val itemHolder : OrderHistoryViewHolder = holder
-            itemHolder.product_name_item.text = order_history_items[position].product
-            itemHolder.product_date_item.text = order_history_items[position].payment_date
-            itemHolder.product_ticket_type.text = order_history_items[position].flag.toString()
+            itemHolder.product_name_item.text = order_history_items.ticketed[position].product
+            itemHolder.product_date_item.text = order_history_items.ticketed[position].term
         } else if(holder is OrderHeaderViewHolder){
             val headerHolder : OrderHeaderViewHolder = holder
-            headerHolder.header_name_item.text = order_history_items[position].product
-            headerHolder.header_date_item.text = order_history_items[position].payment_date
+            headerHolder.header_name_item.text = order_history_items.ticket.product
+            headerHolder.header_date_item.text = order_history_items.ticket.term
 
         }
 
@@ -63,7 +63,7 @@ class OrderHistoryAdapter(var order_history_items : ArrayList<OrderHistory>, var
 
         var product_name_item : TextView = itemView.findViewById(R.id.order_payment_name)
         var product_date_item : TextView = itemView.findViewById(R.id.order_payment_date)
-        var product_ticket_type : TextView = itemView.findViewById(R.id.order_ticket_type)
+        //var product_ticket_type : TextView = itemView.findViewById(R.id.order_ticket_type)
     }
 
     class OrderHeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){

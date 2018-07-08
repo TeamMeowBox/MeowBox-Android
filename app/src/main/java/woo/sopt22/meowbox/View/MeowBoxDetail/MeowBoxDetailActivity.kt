@@ -35,13 +35,29 @@ import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 import woo.sopt22.meowbox.View.Order.LoginCustomDialog
 import woo.sopt22.meowbox.View.Order.OrderFirstActivity
+import woo.sopt22.meowbox.View.Order.OrderThirdActivity
 
 class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     override fun onClick(p0: View?) {
-        when(p0){
-            detail_order_btn->{
-                startActivity(Intent(this, OrderFirstActivity::class.java))
+        when (p0) {
+            detail_order_btn -> {
+                if (SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()) {
+                    val dialog = LoginCustomDialog(this)
+                    dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    dialog.show()
+                } else {
+                    if (SharedPreference.instance!!.getPrefStringData("cat_idx")!!.toInt() == -1) {
+                        val dialog = CatCustomDialog(this)
+                        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        dialog.show()
+                    } else {
+                        val intent = Intent(this, OrderThirdActivity::class.java)
+                        intent.putExtra("cat_idx", SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
+                        startActivity(intent)
+
+                    }
+                }
             }
         }
     }
@@ -60,6 +76,8 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
         toolbar.bringToFront()
+
+        SharedPreference.instance!!.load(this)
 
 
         var headerView : View = detail_nav_view.getHeaderView(0)

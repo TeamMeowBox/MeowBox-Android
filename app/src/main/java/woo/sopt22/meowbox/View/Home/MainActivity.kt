@@ -270,7 +270,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         startActivity(intent)
                     }
                 }
-
             }
             R.id.reviewBtn -> {
                 startActivity(Intent(this, MeowBoxReviewActivity::class.java))

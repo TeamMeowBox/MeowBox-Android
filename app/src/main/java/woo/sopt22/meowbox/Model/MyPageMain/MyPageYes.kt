@@ -11,6 +11,7 @@ data class MyPageYesData(
         var catinfo : String,
         var flag : Int,
         var ticket : String,
-        var use : String
+        var use : String,
+        var sendImage : String
 
 )

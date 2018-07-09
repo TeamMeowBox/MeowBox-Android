@@ -68,7 +68,8 @@
                     <woo.sopt22.meowbox.View.MyPage.CircleImageView
                         android:id="@+id/mysetting_profile"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:src="@drawable/side_bar_profile_img"/>
 
                     <ImageView
 
@@ -255,15 +256,15 @@
                         android:textSize="16sp" />
 
                     <EditText
-                        android:textColor="#E88687"
-                        android:background="@null"
                         android:id="@+id/mysetting_cat_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="22dp"
+                        android:background="@null"
                         android:text="온풍이"
+                        android:textColor="#E88687"
                         android:textSize="16sp" />
 
                     <LinearLayout
@@ -289,32 +290,32 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp">
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp">
 
-                    <Button
+                    <ImageView
                         android:id="@+id/custom_button1"
-                        android:layout_width="155dp"
-                        android:layout_height="38.5dp"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="22dp"
-                        android:text="조금" />
+                        android:src="@drawable/my_small_check_box_gray" />
 
-                    <Button
+                    <ImageView
                         android:id="@+id/custom_button2"
-                        android:layout_width="155dp"
-                        android:layout_height="38.5dp"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="22dp"
-                        android:text="보통" />
+                        android:src="@drawable/my_normal_check_box_gray" />
 
-                    <Button
+                    <ImageView
                         android:id="@+id/custom_button3"
-                        android:layout_width="155dp"
-                        android:layout_height="38.5dp"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
                         android:layout_below="@+id/custom_button1"
-                        android:layout_marginLeft="22dp"
                         android:layout_marginTop="9.2dp"
-                        android:text="과체중" />
+                        android:src="@drawable/my_large_check_box_gray" />
 
 
                     <LinearLayout

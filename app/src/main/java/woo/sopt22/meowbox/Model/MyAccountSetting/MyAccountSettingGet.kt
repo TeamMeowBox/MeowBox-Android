@@ -11,7 +11,8 @@ data class MyAccountSettingGetData(
         var email : String,
         var phone_number : String,
         var image_profile : String,
-        var image_background : String,
         var cat_name : String,
-        var size : Int
+        var size : String,
+        var birthday : String,
+        var caution : String
 )

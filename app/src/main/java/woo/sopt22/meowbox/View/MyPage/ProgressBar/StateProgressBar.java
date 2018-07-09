@@ -48,7 +48,7 @@ public class StateProgressBar extends View {
     private int myWidth = 0;
 
     private static final int MIN_STATE_NUMBER = 1;
-    private static final int MAX_STATE_NUMBER = 5;
+    private static final int MAX_STATE_NUMBER = 7;
 
     private static final String STATE_SIZE_KEY = "mStateSize";
     private static final String STATE_LINE_THICKNESS_KEY = "mStateLineThickness";

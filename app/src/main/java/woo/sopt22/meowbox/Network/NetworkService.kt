@@ -7,10 +7,13 @@ import woo.sopt22.meowbox.Model.Login.LoginResponse
 import woo.sopt22.meowbox.Model.Login.LoginUser
 import woo.sopt22.meowbox.Model.MyAccountSetting.MyAccountSettingGet
 import woo.sopt22.meowbox.Model.MyPageMain.MyPageYes
-import woo.sopt22.meowbox.Model.Order.OrderHistory
+import woo.sopt22.meowbox.Model.Order.OrderData
+import woo.sopt22.meowbox.Model.OrderHistory.OrderHistory
 import woo.sopt22.meowbox.Model.QnA.QnAResponse
+import woo.sopt22.meowbox.Model.RegisterCat.CatIndex
 import woo.sopt22.meowbox.Model.SignUp.SignUpUser
 import woo.sopt22.meowbox.Model.RegisterCat.CatInformation
+import woo.sopt22.meowbox.Model.SignUp.SignUpResponse
 import woo.sopt22.meowbox.Model.Suggest.MeowBoxSuggest
 
 interface NetworkService {
@@ -34,13 +37,13 @@ interface NetworkService {
     fun registerCat(
             @Header("authorization") authorization : String,
             @Body catInformation: CatInformation
-    ) : Call<BaseModel>
+    ) : Call<CatIndex>
 
     // 4. 회원탈퇴
-    @HTTP(method = "DELETE", path = "user/account/{user_idx}", hasBody = false)
+    @HTTP(method = "DELETE", path = "user/account", hasBody = false)
+    //@DELETE("user/account")
     fun deleteUser(
-            @Header("token") token : String,
-            @Path("user_idx") user_idx : String
+            @Header("authorization") authorization : String
     ):   Call<BaseModel>
 
     // 5. 주문 내역
@@ -53,6 +56,7 @@ interface NetworkService {
     // 6. 미유박스에 제안하기
     @POST("mypage/feedback")
     fun postSuggest(
+            @Header("authorization") authorization : String,
             @Body meowBoxSuggest: MeowBoxSuggest
     ) : Call<BaseModel>
 
@@ -78,5 +82,13 @@ interface NetworkService {
             @Header("authorization") authorization: String,
             @Path("user_idx") user_idx: String
     ) : Call<MyAccountSettingGet>
+
+    // 10. 주문 페이지
+    @POST("order/order_page")
+    fun postOrder(
+            @Header("authorization") authorization : String,
+            @Body orderData: OrderData
+    ) : Call<BaseModel>
+
 
 }

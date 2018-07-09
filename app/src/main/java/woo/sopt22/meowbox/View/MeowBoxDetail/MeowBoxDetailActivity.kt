@@ -29,6 +29,7 @@ import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
+import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.Login.LoginActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
@@ -83,10 +84,10 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         var headerView : View = detail_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
 
-        if(SharedPreference.instance!!.getPrefStringData("user_email")!!.isEmpty()){
+        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
             userName.text = "OO님!"
         } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("user_email")
+            userName.text = SharedPreference.instance!!.getPrefStringData("name")
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -187,7 +188,7 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
                 item.isChecked = false
             }
             R.id.homeBtn -> {
-
+                startActivity(Intent(this, MainActivity::class.java))
             }
             R.id.stroyBtn -> {
                 startActivity(Intent(this, MeowBoxStoryActivity::class.java))
@@ -203,12 +204,11 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
                     } else {
-                        val intent = Intent(this, OrderFirstActivity::class.java)
+                        val intent = Intent(this, OrderThirdActivity::class.java)
                         intent.putExtra("cat_idx", SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
                         startActivity(intent)
                     }
                 }
-
             }
             R.id.reviewBtn -> {
                 startActivity(Intent(this, MeowBoxReviewActivity::class.java))

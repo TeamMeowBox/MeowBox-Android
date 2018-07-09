@@ -14,10 +14,10 @@ data class LoginResponse(
 
 data class LoginResult(
         var token : String,
+        var flag : String,
         var email : String,
         var name : String,
         var phone_number : String,
-        var image_background : Int?,
-        var image_profile : Int?,
+        var image_profile : String?,
         var cat_idx : String
 )

@@ -117,10 +117,10 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         var headerView : View = mypage_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
 
-        if(SharedPreference.instance!!.getPrefStringData("user_email")!!.isEmpty()){
+        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
             userName.text = "OO님!"
         } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("user_email")
+            userName.text = SharedPreference.instance!!.getPrefStringData("name")
         }
 
         var profileImage = mypage_profile_img as ImageView
@@ -249,7 +249,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                     tmpMaxNum = re.replace(tmpStringMax, "").toInt()
                     tmpCurrentNum = re.replace(tmpStringCurrent, "").toInt()
 
-
+                    stateProgressBar = StateProgressBar(applicationContext)
                     stateProgressBar.setMaxStateNumber(tmpMaxNum);
                     stateProgressBar.setCurrentStateNumber(tmpCurrentNum);
 

@@ -47,8 +47,7 @@ class DeleteUserApplyCustomDialog(context : Context) : Dialog(context), View.OnC
 
     fun deleteUser(){
         Log.v("delete","들어옴?")
-        val logoutUser = networkService.deleteUser(SharedPreference.instance!!.getPrefStringData("token")!!
-                , SharedPreference.instance!!.getPrefStringData("user_idx")!!)
+        val logoutUser = networkService.deleteUser(SharedPreference.instance!!.getPrefStringData("token")!!)
         Log.v("delete2","들어옴?2")
         logoutUser.enqueue(object : Callback<BaseModel> {
             override fun onFailure(call: Call<BaseModel>?, t: Throwable?) {
@@ -58,10 +57,13 @@ class DeleteUserApplyCustomDialog(context : Context) : Dialog(context), View.OnC
             override fun onResponse(call: Call<BaseModel>?, response: Response<BaseModel>?) {
                 if(response!!.isSuccessful){
                     Log.v("success",response!!.body()!!.message)
-                    SharedPreference.instance!!.removeData("user_idx")
-                    SharedPreference.instance!!.removeData("token")
-                    SharedPreference.instance!!.removeData("cat_idx")
                     SharedPreference.instance!!.removeData("user_email")
+                    SharedPreference.instance!!.removeData("token")
+                    SharedPreference.instance!!.removeData("name")
+                    SharedPreference.instance!!.removeData("flag")
+                    SharedPreference.instance!!.removeData("phone_number")
+                    SharedPreference.instance!!.removeData("cat_idx")
+                    cancel()
                     context.startActivity(Intent(context, MainActivity::class.java))
                 }
             }

@@ -117,11 +117,12 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
                 }
             }
             R.id.homeBtn -> {
+                finish()
                 var intent =  Intent(this, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
-                //finish()
+
             }
             R.id.stroyBtn -> {
                 //startActivity(Intent(this, MeowBoxStoryActivity::class.java))

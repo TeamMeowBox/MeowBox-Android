@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.order_second_fragment.*
@@ -91,6 +92,7 @@ class OrderSecondFragment : Fragment(), View.OnClickListener{
         // 네트워크 서비스 초기와, SharedPreference 사
         networkService = ApplicationController.instance!!.networkService
         SharedPreference.instance!!.load(context!!)
+        activity!!.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
 
 
         view.order_etc_previous.setOnClickListener(this)

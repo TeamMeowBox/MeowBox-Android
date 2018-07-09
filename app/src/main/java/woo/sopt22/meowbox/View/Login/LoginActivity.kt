@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     postLogin()
                     //ToastMaker.makeLongToast(this, "로그인할 수 있음")
                 } else{
-                    ToastMaker.makeLongToast(this, "안되지!")
+                    ToastMaker.makeLongToast(this, "정보를 입력해주세요!")
                 }
 
             }

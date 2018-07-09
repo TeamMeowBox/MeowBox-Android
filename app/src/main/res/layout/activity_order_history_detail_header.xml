@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".View.MyPage.OrderHistory.OrderHistoryDetail.OrderHistoryDetailActivity">
+    tools:context=".View.MyPage.OrderHistory.OrderHistoryDetail.OrderHistoryDetailHeaderActivity">
+
 
     <RelativeLayout
         android:id="@+id/order_history_detail_layout"
@@ -37,36 +38,24 @@
 
 
     <View
-        android:id="@+id/order_history_detail_view"
+        android:id="@+id/notice_view"
         android:layout_below="@+id/order_history_detail_layout"
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
         android:background="#707070"/>
 
+    <TextView
+        android:id="@+id/header_term_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="dddd"/>
 
     <TextView
-        android:layout_centerInParent="true"
-        android:id="@+id/detail_text_tv1"
-        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/header_name_tv"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ddd"/>
-
-
-    <TextView
-        android:layout_centerInParent="true"
-        android:id="@+id/detail_text_tv2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ddd"/>
-
-
-    <TextView
-        android:layout_centerInParent="true"
-        android:id="@+id/detail_text_tv3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ddd"/>
-
+        android:text="dddd"/>
 
 
 </LinearLayout>

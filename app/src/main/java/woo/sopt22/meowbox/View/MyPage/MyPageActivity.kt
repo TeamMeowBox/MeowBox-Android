@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
 import android.media.Image
@@ -25,7 +26,9 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_meow_box_story.*
 import kotlinx.android.synthetic.main.activity_my_page.*
+import kotlinx.android.synthetic.main.activity_question.*
 import kotlinx.android.synthetic.main.app_bar_my_page.*
 
 import woo.sopt22.meowbox.R
@@ -36,8 +39,11 @@ import retrofit2.Response
 import woo.sopt22.meowbox.ApplicationController
 import woo.sopt22.meowbox.Model.MyPageMain.MyPageYes
 import woo.sopt22.meowbox.Network.NetworkService
+import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
+import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Home.MainActivity
+import woo.sopt22.meowbox.View.Login.LoginActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.FAQ.QuestionActivity
@@ -45,7 +51,9 @@ import woo.sopt22.meowbox.View.MyPage.OrderHistory.OrderHistoryActivity
 import woo.sopt22.meowbox.View.MyPage.ProgressBar.StateProgressBar
 import woo.sopt22.meowbox.View.MyPage.Setting.MyPageSettingActivity
 import woo.sopt22.meowbox.View.MyPage.Suggest.MyPageSuggestActivity
+import woo.sopt22.meowbox.View.Order.LoginCustomDialog
 import woo.sopt22.meowbox.View.Order.OrderFirstActivity
+import woo.sopt22.meowbox.View.Order.OrderThirdActivity
 
 class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     override fun onClick(v: View?) {
@@ -121,6 +129,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             userName.text = "OO님!"
         } else {
             userName.text = SharedPreference.instance!!.getPrefStringData("name")
+            mypage_name_text1.text = "온풍이 집사 "+SharedPreference.instance!!.getPrefStringData("name")+" 님"
         }
 
         var profileImage = mypage_profile_img as ImageView
@@ -186,7 +195,6 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
 
 
-
         val toggle = ActionBarDrawerToggle(
                 this, mypage_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         mypage_drawer_layout.addDrawerListener(toggle)
@@ -208,6 +216,15 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 }
             }
         })
+
+        var menu : Menu = mypage_nav_view.menu
+        var login_menu_item : MenuItem = menu.findItem(R.id.loginBtn)
+        var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
+        var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
+        blank_menu_item.setEnabled(false)
+        login_menu_item.setEnabled(false)
+        blank_menu_item2.setEnabled(false)
+        login_menu_item.setTitle("")
 
         mypage_nav_view.setNavigationItemSelectedListener(this)
 
@@ -297,7 +314,11 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.loginBtn -> {
-                // Handle the camera action
+                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                    startActivity(Intent(this, LoginActivity::class.java))
+                } else{
+                    ToastMaker.makeLongToast(this, "설정에서 로그아웃 해주세요!")
+                }
             }
             R.id.homeBtn -> {
                 var intent =  Intent(this, MainActivity::class.java)
@@ -311,8 +332,21 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 finish()
             }
             R.id.orderBtn -> {
-                startActivity(Intent(this, OrderFirstActivity::class.java))
-                finish()
+                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                    val dialog = LoginCustomDialog(this)
+                    dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    dialog.show()
+                } else{
+                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1"){
+                        val dialog = CatCustomDialog(this)
+                        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        dialog.show()
+                    } else {
+                        val intent = Intent(this, OrderThirdActivity::class.java)
+                        intent.putExtra("cat_idx",SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
+                        startActivity(intent)
+                    }
+                }
             }
             R.id.reviewBtn -> {
                 var intent = Intent(this, MeowBoxReviewActivity::class.java)

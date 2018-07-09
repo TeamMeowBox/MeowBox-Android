@@ -12,6 +12,7 @@ import android.support.v4.content.res.ResourcesCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
@@ -42,10 +43,19 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
         var headerView : View = story_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
 
+        var menu : Menu = story_nav_view.menu
+        var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
+        var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
+        var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
+        blank_menu_item.setEnabled(false)
+        blank_menu_item2.setEnabled(false)
+
         if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
             userName.text = "OO님!"
+            menu_item.setTitle("로그인")
         } else {
             userName.text = SharedPreference.instance!!.getPrefStringData("name")
+            menu_item.setTitle("로그아웃")
         }
 
 
@@ -103,15 +113,15 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
                 if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
                     startActivity(Intent(this, LoginActivity::class.java))
                 } else{
-                    ToastMaker.makeLongToast(this, "이미 로그인 하셨습니다.")
+                    ToastMaker.makeLongToast(this, "마이페이지에서 로그아웃 해주세요.")
                 }
             }
             R.id.homeBtn -> {
                 var intent =  Intent(this, MainActivity::class.java)
-                /*intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)*/
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
-                finish()
+                //finish()
             }
             R.id.stroyBtn -> {
                 //startActivity(Intent(this, MeowBoxStoryActivity::class.java))

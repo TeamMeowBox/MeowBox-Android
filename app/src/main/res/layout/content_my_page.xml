@@ -7,7 +7,8 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".View.MyPage.MyPageActivity"
     tools:showIn="@layout/app_bar_my_page"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#ffffff">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -89,7 +90,7 @@
 
         <RelativeLayout
             android:id="@+id/mypage_visiblebox_progress"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:orientation="vertical"
@@ -198,62 +199,22 @@
 
     <RelativeLayout
         android:id="@+id/mypage_visiblebox_text"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:orientation="vertical"
         >
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
 
-        <TextView
-            android:id="@+id/mypage_text_ex1"
+        <ImageView
+            android:id="@+id/mypage_visiblebox_text_img"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="나의 고양이에게"
-            android:textColor="#67696B"
-            android:textSize="27sp"
-            android:layout_marginTop="30dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            />
-
-            <LinearLayout
-                android:id="@+id/mypage_text_box"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/mypage_text_ex1"
-                android:layout_centerHorizontal="true">
-        <TextView
-            android:id="@+id/mypage_text_ex2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="미유박스"
-            android:textColor="#67696B"
-            android:textSize="27sp"
-            />
-        <TextView
-            android:layout_toEndOf="@+id/mypage_text_ex2"
-            android:layout_alignBottom="@+id/mypage_text_ex2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="를"
-            android:textColor="#67696B"
-            android:textSize="27sp"
-            />
-            </LinearLayout>
-        <TextView
-            android:layout_below="@+id/mypage_text_box"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="선물해 보는건 어때요?"
-            android:textColor="#67696B"
-            android:textSize="27sp"
-            android:layout_centerHorizontal="true"
-            />
+            android:layout_height="130dp"/>
 
         </RelativeLayout>
 

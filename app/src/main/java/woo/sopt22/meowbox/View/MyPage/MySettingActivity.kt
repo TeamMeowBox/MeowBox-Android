@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -23,6 +24,15 @@ import kotlinx.android.synthetic.main.activity_my_setting.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import woo.sopt22.meowbox.ApplicationController
+import woo.sopt22.meowbox.Model.MyAccountSetting.MyAccountSettingGet
+import woo.sopt22.meowbox.Model.MyAccountSetting.MyAccountSettingPost
+import woo.sopt22.meowbox.Model.MyAccountSetting.MyAccountSettingPostResponse
+import woo.sopt22.meowbox.Network.NetworkService
+import woo.sopt22.meowbox.Util.SharedPreference
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileNotFoundException
@@ -36,30 +46,61 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
                 changeImage()
             }
             custom_button1->{
-                customButton1!!.setBackgroundResource(R.drawable.custom_button)
-                customButton2!!.isClickable = false
-                customButton3!!.isClickable = false
+                buttonClicked("1")
+            }
+            custom_button2->{
+                buttonClicked("2")
+            }
+            custom_button3->{
+                buttonClicked("3")
+            }
+            mysetting_save->{
+                saveSettingAccount()
+                val intent = Intent(applicationContext, MyPageActivity::class.java)
+                startActivity(intent)
+
+
             }
 
         }
     }
 
-    private var customButton1: Button? = null
-    private var customButton2: Button? = null
-    private var customButton3: Button? = null
+    private var customButton1: ImageView? = null
+    private var customButton2: ImageView? = null
+    private var customButton3: ImageView? = null
 
     lateinit var mySettingName : EditText
     lateinit var mySettingEmail : EditText
     lateinit var mySettingPhone : EditText
     lateinit var mySettingCatName : EditText
+    lateinit var mySettingMySuggest : EditText
 
-    lateinit var year: String
-    lateinit var month: String
-    lateinit var day: String
+    lateinit var mysettingname : String
+    lateinit var mysettingemail : String
+    lateinit var mysettingphone : String
+    var mysettingcatname : String? = null
+    var mysettingmysuggest : String? = null
+
+    var year: String? = null
+    var month: String? = null
+    var day: String? = null
     private val REQ_CODE_SELECT_IMAGE = 100
 
     private var image : MultipartBody.Part?=null
     lateinit var data : Uri
+
+    lateinit var networkService: NetworkService
+    lateinit var myAccountSettingGet: MyAccountSettingGet
+    lateinit var myAccountSettingPost: MyAccountSettingPost
+    lateinit var profileImage : ImageView
+
+    var catSize : String? = null
+
+    lateinit var mySettingYear : Spinner
+    lateinit var mySettingMonth : Spinner
+    lateinit var mySettingDay : Spinner
+
+    lateinit var token : String
 
 
     @SuppressLint("ResourceType")
@@ -70,10 +111,23 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             window.statusBarColor = Color.BLACK
 
-        val profileImage = findViewById<View>(R.id.mysetting_profile) as ImageView
+        networkService = ApplicationController.instance.networkService
+        SharedPreference.instance!!.load(this)
 
+        profileImage = findViewById<View>(R.id.mysetting_profile) as ImageView
         val imgUrlex = "https://www.petmd.com/sites/default/files/petmd-cat-happy.jpg"
-        Glide.with(profileImage).load(imgUrlex).into(profileImage)
+        mySettingYear = findViewById<View>(R.id.mysetting_year) as Spinner
+        mySettingMonth = findViewById<View>(R.id.mysetting_month) as Spinner
+        mySettingDay = findViewById<View>(R.id.mysetting_day) as Spinner
+
+        mySettingYear.setSelection(2018-1980)
+        mySettingMonth.setSelection(6-1)
+        mySettingDay.setSelection(3-1)
+        mySettingMySuggest = mysetting_my_suggest as EditText
+
+
+        accountPreview()
+
 
         val myXButton = findViewById<View>(R.id.mysetting_x_btn) as ImageView
         myXButton.setOnClickListener {
@@ -81,21 +135,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         val mySaveButton = findViewById<View>(R.id.mysetting_save) as RelativeLayout
-        mySaveButton.setOnClickListener {
-            val intent = Intent(applicationContext, MyPageActivity::class.java)
-            startActivity(intent)
-            var myName = mySettingName.text.toString()
-            var myEmail = mySettingEmail.text.toString()
-            var myPhone = mySettingPhone.text.toString()
-            var myCatName = mySettingCatName.text.toString()
-
-            mySettingName.setText(myName)
-            mySettingEmail.setText(myEmail)
-            mySettingPhone.setText(myPhone)
-            mySettingCatName.setText(myCatName)
-
-            Toast.makeText(this@MySettingActivity, myName + month + day, LENGTH_SHORT).show()
-        }
+        mySaveButton.setOnClickListener(this)
 
         mysetting_profile.setOnClickListener(this)
 
@@ -105,16 +145,16 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         mySettingPhone = mysetting_my_phone as EditText
         mySettingCatName = mysetting_cat_name as EditText
 
-        customButton1 = findViewById<View>(R.id.custom_button1) as Button
-        customButton1!!.setBackgroundResource(R.drawable.custom_button)
+        customButton1 = findViewById<View>(R.id.custom_button1) as ImageView
+        customButton1!!.setOnClickListener(this)
 
-        customButton2 = findViewById<View>(R.id.custom_button2) as Button
-        customButton2!!.setBackgroundResource(R.drawable.custom_button)
+        customButton2 = findViewById<View>(R.id.custom_button2) as ImageView
+        customButton2!!.setOnClickListener(this)
 
-        customButton3 = findViewById<View>(R.id.custom_button3) as Button
-        customButton3!!.setBackgroundResource(R.drawable.custom_button)
+        customButton3 = findViewById<View>(R.id.custom_button3) as ImageView
+        customButton3!!.setOnClickListener(this)
 
-        val mySettingYear = findViewById<View>(R.id.mysetting_year) as Spinner
+
         mySettingYear.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
                 year = adapterView.getItemAtPosition(i) as String
@@ -124,8 +164,6 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
 
             }
         }
-
-        val mySettingMonth = findViewById<View>(R.id.mysetting_month) as Spinner
         mySettingMonth.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
                 month = adapterView.getItemAtPosition(i) as String
@@ -135,8 +173,6 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
 
             }
         }
-
-        val mySettingDay = findViewById<View>(R.id.mysetting_day) as Spinner
         mySettingDay.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
                 day = adapterView.getItemAtPosition(i) as String
@@ -149,11 +185,140 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
+    fun accountPreview(){
+        val tmpResponse = networkService.getMyAccount(SharedPreference.instance!!.getPrefStringData("token")!!)
+
+        Log.v("98","들어오니?")
+        tmpResponse.enqueue(object : Callback<MyAccountSettingGet> {
+            override fun onFailure(call: Call<MyAccountSettingGet>?, t: Throwable?) {
+                Log.v("98","안됭")
+            }
+
+            override fun onResponse(call: Call<MyAccountSettingGet>?, response: Response<MyAccountSettingGet>?) {
+                if(response!!.isSuccessful){
+
+
+
+                    mysettingname = response!!.body()!!.result.user_name
+                    mySettingName.setText(mysettingname)
+                    mysettingemail = response!!.body()!!.result.email
+                    mySettingEmail.setText(mysettingemail)
+                    mysettingphone = response!!.body()!!.result.phone_number
+                    mySettingPhone.setText(mysettingphone)
+                    mysettingcatname = response!!.body()!!.result.cat_name
+                    mySettingCatName.setText(mysettingcatname)
+
+
+                    //Glide.with(profileImage).load(response!!.body()!!.result.image_profile).into(profileImage)
+
+                    buttonClicked(response!!.body()!!.result.size)
+
+                    if(response!!.body()!!.result.birthday != null) {
+                        var birthdays = response!!.body()!!.result.birthday.split("-")
+                        var yearInt = birthdays[0].toInt()-1980
+                        year = yearInt.toString()
+                        var monthInt = birthdays[1].toInt()-1
+                        month = monthInt.toString()
+                        var dayInt = birthdays[2].toInt()-1
+                        day = dayInt.toString()
+
+
+                        mySettingYear.setSelection(yearInt)
+                        mySettingMonth.setSelection(monthInt)
+                        mySettingDay.setSelection(dayInt)
+                    }
+
+                    mysettingmysuggest = response!!.body()!!.result.caution
+                    mySettingMySuggest.setText(mysettingmysuggest)
+
+
+
+
+
+
+
+
+
+
+
+                } else{
+                    Log.v("96",response!!.message())
+                }
+
+            }
+
+        })
+    }
+
+    fun buttonClicked(i : String?){
+        when(i){
+            "1" ->{
+                customButton1!!.setImageResource(R.drawable.my_small_check_box_pink)
+                customButton2!!.setImageResource(R.drawable.my_normal_check_box_gray)
+                customButton3!!.setImageResource(R.drawable.my_large_check_box_gray)
+                catSize = "1"
+            }
+
+            "2" ->{
+                customButton1!!.setImageResource(R.drawable.my_small_check_box_gray)
+                customButton2!!.setImageResource(R.drawable.my_normal_check_box_pink)
+                customButton3!!.setImageResource(R.drawable.my_large_check_box_gray)
+                catSize = "2"
+            }
+
+            "3" ->{
+                customButton1!!.setImageResource(R.drawable.my_small_check_box_gray)
+                customButton2!!.setImageResource(R.drawable.my_normal_check_box_gray)
+                customButton3!!.setImageResource(R.drawable.my_large_check_box_pink)
+                catSize = "3"
+            }
+        }
+
+
+    }
+
     fun changeImage(){
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = android.provider.MediaStore.Images.Media.CONTENT_TYPE
         intent.data = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         startActivityForResult(intent, REQ_CODE_SELECT_IMAGE)
+    }
+
+    fun saveSettingAccount(){
+       /* myAccountSettingPost = MyAccountSettingPost(mysettingname, mysettingphone, mysettingemail, image, mysettingcatname,
+                catSize, year+"-"+month+"-"+day,mysettingmysuggest)*/
+
+         var birthdayString = year+"-"+month+"-"+day
+
+        val userName = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingname)
+        val userPhone = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingphone)
+        val userEmail = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingemail)
+        val userCatName = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingcatname+" ")
+        val userCatSize = RequestBody.create(MediaType.parse("multipart/form-data"), catSize+" ")
+        val userBirthday = RequestBody.create(MediaType.parse("multipart/form-data"), birthdayString+" ")
+        val userSuggest = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingmysuggest+" ")
+
+        val tmpResponse = networkService.postMyAccount(SharedPreference.instance!!.getPrefStringData("token")!!,
+                userName, userPhone, userEmail, image, userCatName, userCatSize, userBirthday, userSuggest)
+        tmpResponse.enqueue(object : Callback<MyAccountSettingPostResponse>{
+            override fun onFailure(call: Call<MyAccountSettingPostResponse>?, t: Throwable?) {
+                Log.v("01",t!!.message)
+            }
+
+            override fun onResponse(call: Call<MyAccountSettingPostResponse>?, response: Response<MyAccountSettingPostResponse>?) {
+                if(response!!.isSuccessful){
+                    Log.v("91",response!!.body()!!.message)
+                    Log.v("91",response!!.body()!!.result!!.toString())
+                    //Log.v("11",response!!.body()!!.result!!.user_idx)
+                    token = response!!.body()!!.result!!.token!!
+                    Log.d("404", token)
+                } else{
+                    Log.v("81",response!!.body()!!.message)
+                }
+            }
+
+        })
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

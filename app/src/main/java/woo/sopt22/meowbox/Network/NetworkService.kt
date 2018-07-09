@@ -1,15 +1,20 @@
 package woo.sopt22.meowbox.Network
 
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 import woo.sopt22.meowbox.Model.Base.BaseModel
 import woo.sopt22.meowbox.Model.Login.LoginResponse
 import woo.sopt22.meowbox.Model.Login.LoginUser
 import woo.sopt22.meowbox.Model.MyAccountSetting.MyAccountSettingGet
+import woo.sopt22.meowbox.Model.MyAccountSetting.MyAccountSettingPost
+import woo.sopt22.meowbox.Model.MyAccountSetting.MyAccountSettingPostResponse
 import woo.sopt22.meowbox.Model.MyPageMain.MyPageYes
 import woo.sopt22.meowbox.Model.Order.OrderHistory
 import woo.sopt22.meowbox.Model.SignUp.SignUpUser
 import woo.sopt22.meowbox.Model.RegisterCat.CatInformation
+import woo.sopt22.meowbox.Model.SignUp.SignUpResponse
 import woo.sopt22.meowbox.Model.Suggest.MeowBoxSuggest
 
 interface NetworkService {
@@ -18,7 +23,7 @@ interface NetworkService {
     @POST("user/signup")
     fun postSignUp(
             @Body singUser: SignUpUser
-    ) : Call<LoginResponse>
+    ) : Call<SignUpResponse>
 
     // 2. 로그인
     @POST("user/signin")
@@ -52,18 +57,34 @@ interface NetworkService {
     // 6. 미유박스에 제안하기
     @POST("mypage/feedback")
     fun postSuggest(
+            @Header("authorization") authorization : String,
             @Body meowBoxSuggest: MeowBoxSuggest
     ) : Call<BaseModel>
 
     //7. 마이페이지-1
-    @GET("mypage/mypageinfo/")
+    @GET("/mypage/mypageinfo/")
     fun getMyPageYes(
             @Header("authorization") authorization: String
     ) : Call<MyPageYes>
-    //?.get계정설정화면
-    @GET("mypage/account/{user_idx}")
-    fun getMyAccountSetting(
-            @Header("authorization") authorization: String,
-            @Path("user_idx") user_idx: String
+
+    //8h. 계정설정화면
+    @GET("mypage/account_setting/account")
+    fun getMyAccount(
+            @Header("authorization") authorization: String
     ) : Call<MyAccountSettingGet>
+
+    //9h. 계정설정화면-2
+    @Multipart
+    @POST("mypage/account_setting/account")
+    fun postMyAccount(
+            @Header("authorization") authorization: String,
+            @Part("user_name") user_name : RequestBody,
+            @Part("user_phone") user_phone : RequestBody,
+            @Part("user_email") user_email : RequestBody,
+            @Part image_profile : MultipartBody.Part?,
+            @Part("cat_name") cat_name : RequestBody?,
+            @Part("cat_size") cat_size : RequestBody?,
+            @Part("cat_birthday") cat_birthday : RequestBody?,
+            @Part("cat_caution") cat_caution : RequestBody?
+            ) : Call<MyAccountSettingPostResponse>
 }

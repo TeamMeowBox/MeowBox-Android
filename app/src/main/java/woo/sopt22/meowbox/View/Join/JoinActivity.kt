@@ -16,7 +16,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import woo.sopt22.meowbox.ApplicationController
-import woo.sopt22.meowbox.Model.Login.LoginResponse
 import woo.sopt22.meowbox.Model.SignUp.SignUpResponse
 import woo.sopt22.meowbox.Model.SignUp.SignUpUser
 import woo.sopt22.meowbox.Network.NetworkService
@@ -91,7 +90,6 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
         var loginResponse = networkService.postSignUp(signUpUser)
         loginResponse.enqueue(object : Callback<SignUpResponse>{
             override fun onFailure(call: Call<SignUpResponse>?, t: Throwable?) {
-                Log.v("12",t.toString())
             }
 
             override fun onResponse(call: Call<SignUpResponse>?, response: Response<SignUpResponse>?) {

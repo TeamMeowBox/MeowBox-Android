@@ -13,8 +13,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import woo.sopt22.meowbox.ApplicationController
-import woo.sopt22.meowbox.Model.Order.OrderHistory
-import woo.sopt22.meowbox.Model.Order.OrderHistoryDate
+import woo.sopt22.meowbox.Model.OrderHistory.OrderHistory
+import woo.sopt22.meowbox.Model.OrderHistory.OrderHistoryDate
 import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference

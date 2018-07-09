@@ -89,21 +89,23 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
     fun sign(){
         signUpUser = SignUpUser(jEmail, jPwd, jName, jPhone)
         var loginResponse = networkService.postSignUp(signUpUser)
-        loginResponse.enqueue(object : Callback<SignUpResponse>{
-            override fun onFailure(call: Call<SignUpResponse>?, t: Throwable?) {
+        loginResponse.enqueue(object : Callback<LoginResponse>{
+            override fun onFailure(call: Call<LoginResponse>?, t: Throwable?) {
                 Log.v("12",t.toString())
             }
 
-            override fun onResponse(call: Call<SignUpResponse>?, response: Response<SignUpResponse>?) {
+            override fun onResponse(call: Call<LoginResponse>?, response: Response<LoginResponse>?) {
                 if(response!!.isSuccessful){
                     Log.v("11",response!!.body()!!.message)
                     //Log.v("11",response!!.body()!!.result!!.user_idx)
                     token = response!!.body()!!.result!!.token!!.toString()
                     ToastMaker.makeLongToast(this@JoinActivity, token)
                     SharedPreference.instance!!.setPrefData("token",token)
-                    SharedPreference.instance!!.setPrefData("user_email",join_email.text.toString())
-                    //SharedPreference.instance!!.setPrefData("user_idx",response.body()!!.result!!.user_idx)
-                    //SharedPreference.instance!!.setPrefData("cat_idx",response.body()!!.result!!.cat_idx)
+                    SharedPreference.instance!!.setPrefData("user_email",response!!.body()!!.result!!.email)
+                    SharedPreference.instance!!.setPrefData("name",response!!.body()!!.result!!.name)
+                    SharedPreference.instance!!.setPrefData("flag",response!!.body()!!.result!!.flag)
+                    SharedPreference.instance!!.setPrefData("phone_number",response!!.body()!!.result!!.phone_number)
+                    SharedPreference.instance!!.setPrefData("cat_idx",response!!.body()!!.result!!.cat_idx)
                     startActivity(Intent(this@JoinActivity, MainActivity::class.java))
                 }
             }

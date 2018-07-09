@@ -16,6 +16,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import woo.sopt22.meowbox.ApplicationController
 import woo.sopt22.meowbox.Model.Base.BaseModel
+import woo.sopt22.meowbox.Model.RegisterCat.CatIndex
 import woo.sopt22.meowbox.Model.RegisterCat.CatInformation
 import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
@@ -164,17 +165,18 @@ class OrderSecondFragment : Fragment(), View.OnClickListener{
         Log.v("cat5",SharedPreference.instance!!.getPrefStringData("token"))
         val registerResponse = networkService.registerCat(SharedPreference.instance!!.getPrefStringData("token")!!,catInformation)
         Log.v("xx","들어오닝?")
-        registerResponse.enqueue(object : Callback<BaseModel>{
-            override fun onFailure(call: Call<BaseModel>?, t: Throwable?) {
+        registerResponse.enqueue(object : Callback<CatIndex>{
+            override fun onFailure(call: Call<CatIndex>?, t: Throwable?) {
                 Log.v("0211",t!!.message)
             }
 
-            override fun onResponse(call: Call<BaseModel>?, response: Response<BaseModel>?) {
+            override fun onResponse(call: Call<CatIndex>?, response: Response<CatIndex>?) {
                 if(response!!.isSuccessful){
                     Log.v("0212",response!!.message())
-                    (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(OrderThirdFragment())
-                    SharedPreference.instance!!.setPrefData("cat_idx", "1") // 고양이 정보 등록했다는 걸 : 1로 표시
+                    SharedPreference.instance!!.setPrefData("cat_idx", response!!.body()!!.result.cat_idx) // 고양이 정보 등록했다는 걸 : 1로 표시
                     SharedPreference.instance!!.setPrefData("cat_name",order_etc_cat_name.text.toString()) // 고양이 이름 저장
+                    Log.v("cat_idx", response!!.body()!!.result!!.cat_idx)
+                    (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(OrderThirdFragment())
                 } else{
                     Log.v("02",response!!.message())
                 }

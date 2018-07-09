@@ -50,6 +50,7 @@ class OrderThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
         var headerView : View = order_third_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+        SharedPreference.instance!!.load(this)
 
         if(SharedPreference.instance!!.getPrefStringData("user_email")!!.isEmpty()){
             userName.text = "OO님!"

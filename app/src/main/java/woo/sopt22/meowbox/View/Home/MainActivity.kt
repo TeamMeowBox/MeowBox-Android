@@ -87,11 +87,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var headerView : View = main_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
 
-        if(SharedPreference.instance!!.getPrefStringData("email")!!.isEmpty()){
+        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
             userName.text = "OO님!"
         } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("email")
+            userName.text = SharedPreference.instance!!.getPrefStringData("name")
         }
+
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -114,12 +116,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         SharedPreference.instance!!.load(this)
         var result = SharedPreference.instance!!.getPrefStringData("token")
         println("11"+SharedPreference.instance!!.getPrefStringData("token"))
+        println("cat_idx??"+SharedPreference.instance!!.getPrefStringData("cat_idx"))
         //println("11"+result!![0])
 
-        if(SharedPreference.instance!!.getPrefStringData("user_email")!!.isEmpty()){
+        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
             userName.text = "OO님!"
         } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("user_email")
+            userName.text = SharedPreference.instance!!.getPrefStringData("name")
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -260,7 +263,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.show()
                 } else{
-                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!!.toInt() == -1){
+                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1"){
                         val dialog = CatCustomDialog(this)
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()

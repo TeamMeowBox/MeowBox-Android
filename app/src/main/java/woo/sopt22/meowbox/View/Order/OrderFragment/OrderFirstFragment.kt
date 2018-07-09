@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import kotlinx.android.synthetic.main.order_first_fragment.*
 import kotlinx.android.synthetic.main.order_first_fragment.view.*
 import woo.sopt22.meowbox.R
@@ -40,6 +41,8 @@ class OrderFirstFragment : Fragment(), View.OnClickListener{
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.order_first_fragment, container, false)
+
+        activity!!.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
 
         view.order_name_next_btn.setOnClickListener(this)
         return view

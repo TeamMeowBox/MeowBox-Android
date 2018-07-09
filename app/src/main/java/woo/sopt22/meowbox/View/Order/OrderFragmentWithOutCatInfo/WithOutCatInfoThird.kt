@@ -25,6 +25,7 @@ class WithOutCatInfoThird : Fragment(), View.OnClickListener{
             order_period_previous->{
                 //(OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(OrderSecondFragment())
                 ToastMaker.makeLongToast(context, "이전으로 돌아가지 못합니다. ")
+                activity!!.finish()
             }
             order_period_next->{
                 val without_four_fragment = WithOutCatInfoFour()
@@ -129,6 +130,7 @@ class WithOutCatInfoThird : Fragment(), View.OnClickListener{
         view.order_period_previous.setOnClickListener(this)
         view.order_period_next.setOnClickListener(this)
         view.order_third_1_layout.setOnClickListener(this)
+        view.third_back_btn.text = "취소"
         view.order_third_3.setOnClickListener(this)
         view.order_third_6.setOnClickListener(this)
         view.order_third_7.setOnClickListener(this)

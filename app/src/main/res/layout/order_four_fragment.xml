@@ -142,11 +142,12 @@
                     <LinearLayout
                         android:layout_marginTop="22dp"
                         android:layout_width="match_parent"
-                        android:layout_height="25dp"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
 
                         <TextView
+                            android:layout_gravity="center_vertical"
                             android:layout_width="48dp"
                             android:layout_height="wrap_content"
                             android:text="주문자"
@@ -154,6 +155,7 @@
                             android:textColor="#4C4E51"/>
 
                         <TextView
+                            android:layout_gravity="center_vertical"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="*"
@@ -166,7 +168,7 @@
                             android:id="@+id/order_four_name"
                             android:layout_marginLeft="62dp"
                             android:layout_width="208dp"
-                            android:layout_height="25dp"
+                            android:layout_height="35dp"
                             android:inputType="text"
                             android:background="@drawable/edittext_background"/>
 
@@ -203,7 +205,7 @@
                                 android:id="@+id/order_four_address_one"
                                 android:layout_marginLeft="62dp"
                                 android:layout_width="208dp"
-                                android:layout_height="30dp"
+                                android:layout_height="35dp"
                                 android:inputType="text"
                                 android:background="@drawable/edittext_background"/>
 
@@ -212,7 +214,7 @@
                                 android:layout_marginTop="11dp"
                                 android:layout_marginLeft="62dp"
                                 android:layout_width="208dp"
-                                android:layout_height="30dp"
+                                android:layout_height="35dp"
                                 android:inputType="text"
                                 android:background="@drawable/edittext_background"/>
                         </LinearLayout>
@@ -244,10 +246,10 @@
 
                         <EditText
                             android:id="@+id/order_four_phone_number"
-                            android:layout_marginLeft="49dp"
+                            android:layout_marginLeft="42dp"
                             android:inputType="text"
                             android:layout_width="208dp"
-                            android:layout_height="30dp"
+                            android:layout_height="35dp"
                             android:background="@drawable/edittext_background"/>
 
                     </LinearLayout>
@@ -255,7 +257,7 @@
                     <LinearLayout
                         android:layout_marginTop="29dp"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <TextView
@@ -267,10 +269,10 @@
 
                         <EditText
                             android:id="@+id/order_four_email"
-                            android:layout_marginLeft="79dp"
+                            android:layout_marginLeft="72dp"
                             android:inputType="text"
                             android:layout_width="208dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="35dp"
                             android:background="@drawable/edittext_background"/>
 
                     </LinearLayout>

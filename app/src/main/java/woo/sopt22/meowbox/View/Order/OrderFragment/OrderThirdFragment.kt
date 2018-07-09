@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import kotlinx.android.synthetic.main.order_first_fragment.*
@@ -109,6 +110,7 @@ class OrderThirdFragment : Fragment(), View.OnClickListener{
     lateinit var price : String
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.order_third_fragment, container, false)
+        activity!!.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
 
         //order_third_1_layout.isSelected = true
 

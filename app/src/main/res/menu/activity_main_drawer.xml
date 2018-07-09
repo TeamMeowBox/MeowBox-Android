@@ -26,6 +26,7 @@
             android:id="@+id/reviewBtn"
             android:title="집사들의 후기" />
         <item
+            android:id="@+id/blankBtn2"
             android:title=" " />
         <item
             android:id="@+id/myPageBtn"

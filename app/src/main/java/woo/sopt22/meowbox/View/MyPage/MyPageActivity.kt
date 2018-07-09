@@ -26,9 +26,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_meow_box_story.*
 import kotlinx.android.synthetic.main.activity_my_page.*
-import kotlinx.android.synthetic.main.activity_question.*
 import kotlinx.android.synthetic.main.app_bar_my_page.*
 
 import woo.sopt22.meowbox.R
@@ -43,7 +41,6 @@ import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Home.MainActivity
-import woo.sopt22.meowbox.View.Login.LoginActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.FAQ.QuestionActivity
@@ -76,6 +73,9 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             mypage_order_btn->{
                 startActivity(Intent(this, OrderHistoryActivity::class.java))
             }
+            story_order_btn->{
+                startActivity(Intent(this, OrderFirstActivity::class.java))
+            }
 
         }
 
@@ -87,6 +87,9 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     var tmpCurrentNum : Int = 0
     lateinit var tmpStringMax : String
     lateinit var tmpStringCurrent : String
+    lateinit var myPageTextImg : ImageView
+    lateinit var myPageTextImgString : String
+    lateinit var storyOrderBtn : ImageView
 
     lateinit var mypageVisibleProgess : RelativeLayout
     lateinit var mypageVisibleText : RelativeLayout
@@ -99,11 +102,14 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     lateinit var mypageVisibleBoxGetBox : TextView
     lateinit var re : Regex
 
-    lateinit var stateProgressBar : StateProgressBar
+
 
 
     lateinit var networkService: NetworkService
     lateinit var myPageYes: MyPageYes
+    companion object {
+        lateinit var stateProgressBar : StateProgressBar
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page)
@@ -112,7 +118,6 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         networkService = ApplicationController.instance.networkService
         SharedPreference.instance!!.load(this)
 
-        getMyPageYes();
 
         setSupportActionBar(toolbar)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -152,18 +157,14 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         mypageVisibleProgess = mypage_visiblebox_progress as RelativeLayout
         mypageVisibleText = mypage_visiblebox_text as RelativeLayout
-        mypageVisibleProgess.show()
-        mypageVisibleText.hide()
 
 
 
 
-
-
-//        for(i in 0..tmpMaxNum){
-//            descriptionData[i] = (i+1).toString()+"box";
-//
-//        }
+        tmpStringMax = "6박스"
+        tmpStringCurrent = "6박스"
+        stateProgressBar = your_state_progress_bar_id as StateProgressBar
+        getMyPageYes();
 
 
 
@@ -181,6 +182,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         mypageVisibleBoxLeftBox.setText(tmpStringMax)
         mypageVisibleBoxGetBox.setText(tmpStringCurrent)*/
+
 
 
 
@@ -239,9 +241,9 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
     fun getMyPageYes(){
-        //val tmpResponse = networkService.getMyPageYes(SharedPreference.instance!!.getPrefStringData("token")!!)
+        val tmpResponse = networkService.getMyPageYes(SharedPreference.instance!!.getPrefStringData("token")!!)
 
-        val tmpResponse = networkService.getMyPageYes("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IuyEnOyXsOydtCDstZzqs6Ag6riw7Jqp7J2064qUIOqwgGRkIiwidXNlcl9pZHgiOjE5MywiaWF0IjoxNTMxMDI1NzQ5LCJleHAiOjE1MzM2MTc3NDl9.OlyBgwTWCeG76qAi1f8sV37MzluNJXe4PPqvUpK2mzA")
+        //val tmpResponse = networkService.getMyPageYes("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IuyEnOyXsOydtCDstZzqs6Ag6riw7Jqp7J2064qUIOqwgGRkIiwidXNlcl9pZHgiOjE5MywiaWF0IjoxNTMxMDI1NzQ5LCJleHAiOjE1MzM2MTc3NDl9.OlyBgwTWCeG76qAi1f8sV37MzluNJXe4PPqvUpK2mzA")
         Log.v("98","들어오니?")
         tmpResponse.enqueue(object : Callback<MyPageYes>{
             override fun onFailure(call: Call<MyPageYes>?, t: Throwable?) {
@@ -250,37 +252,53 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
             override fun onResponse(call: Call<MyPageYes>?, response: Response<MyPageYes>?) {
                 if(response!!.isSuccessful){
-                    tmpStringMax = "6박스"
-                    tmpStringCurrent = "3박스"
 
-                    tmpCurrentNum = 3;
-                    tmpMaxNum = 6;
-
-
-
-                    tmpStringMax = response!!.body()!!.result.ticket
-                    tmpStringCurrent = response!!.body()!!.result.use
-                    Log.v("93",tmpStringCurrent)
-
-                    re = Regex("[^0-9]")
-                    tmpMaxNum = re.replace(tmpStringMax, "").toInt()
-                    tmpCurrentNum = re.replace(tmpStringCurrent, "").toInt()
-
-                    stateProgressBar = StateProgressBar(applicationContext)
-                    stateProgressBar.setMaxStateNumber(tmpMaxNum);
-                    stateProgressBar.setCurrentStateNumber(tmpCurrentNum);
-
-                    mypageVisibleBoxLeftBox = mypage_visiblebox_progress_leftbox as TextView
-                    mypageVisibleBoxGetBox = mypage_visiblebox_progress_getbox as TextView
-
-                    mypageVisibleBoxLeftBox.setText(tmpStringMax)
-                    mypageVisibleBoxGetBox.setText(tmpStringCurrent)
-
-                    var descriptionData = Array(tmpMaxNum,{ i -> (i+1).toString()})
+                    var tmpFlag = response!!.body()!!.result.flag
+                    if(tmpFlag == 1){
+                        mypageVisibleProgess.show()
+                        mypageVisibleText.hide()
 
 
-                    stateProgressBar = your_state_progress_bar_id as StateProgressBar
-                    stateProgressBar.setStateDescriptionData(descriptionData)
+
+
+
+                        tmpStringMax = response!!.body()!!.result.ticket
+                        tmpStringCurrent = response!!.body()!!.result.use
+                        Log.v("93",tmpStringCurrent)
+                        Log.v("94", tmpStringMax)
+
+                        re = Regex("[^0-9]")
+                        tmpMaxNum = re.replace(tmpStringMax, "").toInt()
+                        tmpCurrentNum = re.replace(tmpStringCurrent, "").toInt()
+                        Log.v("95", tmpMaxNum.toString())
+
+                        stateProgressBar.setMaxStateNumber(tmpMaxNum);
+                        stateProgressBar.setCurrentStateNumber(tmpCurrentNum);
+
+                        mypageVisibleBoxLeftBox = mypage_visiblebox_progress_leftbox as TextView
+                        mypageVisibleBoxGetBox = mypage_visiblebox_progress_getbox as TextView
+
+                        mypageVisibleBoxLeftBox.setText(tmpStringMax)
+                        mypageVisibleBoxGetBox.setText(tmpStringCurrent)
+                        var descriptionData = Array(tmpMaxNum,{ i -> (i+1).toString()})
+                        stateProgressBar.setStateDescriptionData(descriptionData)
+
+
+
+
+                    }
+                    else{
+                        mypageVisibleProgess.hide()
+                        mypageVisibleText.show()
+                        myPageTextImgString = response!!.body()!!.result.sendImage
+
+                        storyOrderBtn = story_order_btn as ImageView
+                        storyOrderBtn.setOnClickListener(this@MyPageActivity)
+
+                        myPageTextImg = mypage_visiblebox_text_img as ImageView
+                        Glide.with(this@MyPageActivity).load(myPageTextImgString).into(myPageTextImg);
+
+                    }
                 } else{
                     Log.v("96",response!!.message())
                 }

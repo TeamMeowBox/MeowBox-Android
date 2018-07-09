@@ -12,6 +12,7 @@ import android.support.v4.content.res.ResourcesCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.RelativeLayout
@@ -29,6 +30,7 @@ import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
+import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.Login.LoginActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
@@ -83,10 +85,20 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         var headerView : View = detail_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
 
-        if(SharedPreference.instance!!.getPrefStringData("user_email")!!.isEmpty()){
+
+        var menu : Menu = detail_nav_view.menu
+        var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
+        var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
+        var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
+        blank_menu_item.setEnabled(false)
+        blank_menu_item2.setEnabled(false)
+
+        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
             userName.text = "OO님!"
+            menu_item.setTitle("로그인")
         } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("user_email")
+            userName.text = SharedPreference.instance!!.getPrefStringData("name")
+            menu_item.setTitle("로그아웃")
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -180,14 +192,14 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
                 if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
                     startActivity(Intent(this, LoginActivity::class.java))
                 } else{
-                    ToastMaker.makeLongToast(this, "이미 로그인 하셨습니다.")
+                    ToastMaker.makeLongToast(this, "마이페이지에서 로그아웃 해주세요.")
                 }
             }
             R.id.blankBtn->{
                 item.isChecked = false
             }
             R.id.homeBtn -> {
-
+                startActivity(Intent(this, MainActivity::class.java))
             }
             R.id.stroyBtn -> {
                 startActivity(Intent(this, MeowBoxStoryActivity::class.java))
@@ -203,12 +215,11 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
                     } else {
-                        val intent = Intent(this, OrderFirstActivity::class.java)
+                        val intent = Intent(this, OrderThirdActivity::class.java)
                         intent.putExtra("cat_idx", SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
                         startActivity(intent)
                     }
                 }
-
             }
             R.id.reviewBtn -> {
                 startActivity(Intent(this, MeowBoxReviewActivity::class.java))

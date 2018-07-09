@@ -19,11 +19,20 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.support.v4.app.Fragment
+import android.view.Menu
 import android.widget.FrameLayout
 import android.widget.RelativeLayout
+import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_order_third.*
 import kotlinx.android.synthetic.main.content_order_first.*
+import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
+import woo.sopt22.meowbox.Util.SharedPreference
+import woo.sopt22.meowbox.Util.ToastMaker
+import woo.sopt22.meowbox.View.Login.LoginActivity
+import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.Order.OrderFragment.OrderFirstFragment
 import woo.sopt22.meowbox.View.Order.OrderFragment.OrderThirdFragment
 
@@ -53,15 +62,34 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             window.statusBarColor = Color.BLACK
 
+        SharedPreference.instance!!.load(this)
+
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
 
-        /*order_next_btn = order_name_next_btn as RelativeLayout
-        order_next_btn.setOnClickListener(this)*/
+        var headerView : View = order_first_nav_view.getHeaderView(0)
+        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+
 
         container = order_framge as FrameLayout
 
-        var cat_idx = getIntent().getStringExtra("cat_idx")
+        //var cat_idx = getIntent().getStringExtra("cat_idx")
+
+
+        var menu : Menu = order_first_nav_view.menu
+        var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
+        var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
+        var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
+        blank_menu_item.setEnabled(false)
+        blank_menu_item2.setEnabled(false)
+
+        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
+            userName.text = "OO님!"
+            menu_item.setTitle("로그인")
+        } else {
+            userName.text = SharedPreference.instance!!.getPrefStringData("name")
+            menu_item.setTitle("로그아웃")
+        }
 
         replaceFragment(OrderFirstFragment())
 
@@ -97,12 +125,6 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         order_first_nav_view.setNavigationItemSelectedListener(this)
     }
 
-    fun addFragment(fragment : Fragment){
-        val fm = supportFragmentManager
-        val transaction = fm.beginTransaction()
-        transaction.add(R.id.order_framge, fragment)
-        transaction.commit()
-    }
 
     fun replaceFragment(fragment : Fragment){
         val fm = supportFragmentManager
@@ -135,28 +157,48 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.loginBtn -> {
-                // Handle the camera action
+                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                    startActivity(Intent(this, LoginActivity::class.java))
+                } else{
+                    ToastMaker.makeLongToast(this, "마이페이지에서 로그아웃 해주세요.")
+                }
+            }
+            R.id.blankBtn->{
+                item.isChecked = false
             }
             R.id.homeBtn -> {
-                var intent  =  Intent(this, MainActivity::class.java)
-                //intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                startActivity(intent)
-                finish()
+                startActivity(Intent(OrderThirdActivity.thirdContext, MainActivity::class.java))
             }
             R.id.stroyBtn -> {
                 startActivity(Intent(this, MeowBoxStoryActivity::class.java))
-                finish()
             }
             R.id.orderBtn -> {
-              /*  startActivity(Intent(this, OrderFirstActivity::class.java))
-                finish()*/
+                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                    val dialog = LoginCustomDialog(this)
+                    dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    dialog.show()
+                } else{
+                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!!.toInt() == -1){
+                        val dialog = CatCustomDialog(this)
+                        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        dialog.show()
+                    } else {
+                        val intent = Intent(this, OrderFirstActivity::class.java)
+                        intent.putExtra("cat_idx", SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
+                        startActivity(intent)
+                    }
+                }
+
             }
             R.id.reviewBtn -> {
-                //startActivity(Intent(this, MeowBoxReviewActivity::class.java))
+                startActivity(Intent(this, MeowBoxReviewActivity::class.java))
             }
             R.id.myPageBtn->{
-                startActivity(Intent(this, MyPageActivity::class.java))
-                finish()
+                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                    ToastMaker.makeLongToast(this,"로그인 해주세요.")
+                } else{
+                    startActivity(Intent(this, MyPageActivity::class.java))
+                }
             }
         }
 

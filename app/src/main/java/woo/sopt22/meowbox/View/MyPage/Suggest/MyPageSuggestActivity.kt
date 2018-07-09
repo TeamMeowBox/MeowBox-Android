@@ -36,8 +36,7 @@ class MyPageSuggestActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     fun postSuggest(){
-        meowBoxSuggest = MeowBoxSuggest(SharedPreference.instance!!.getPrefStringData("user_idx")!!
-                ,suggest_opinion.text.toString(),suggest_detail_comment.text.toString())
+        meowBoxSuggest = MeowBoxSuggest(suggest_opinion.text.toString(),suggest_detail_comment.text.toString())
         var suggestResponse = networkService.postSuggest(SharedPreference.instance!!.getPrefStringData("token")!!,meowBoxSuggest)
         suggestResponse.enqueue(object : Callback<BaseModel>{
             override fun onFailure(call: Call<BaseModel>?, t: Throwable?) {

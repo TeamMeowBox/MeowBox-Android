@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
 import android.media.Image
@@ -36,7 +37,9 @@ import retrofit2.Response
 import woo.sopt22.meowbox.ApplicationController
 import woo.sopt22.meowbox.Model.MyPageMain.MyPageYes
 import woo.sopt22.meowbox.Network.NetworkService
+import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
+import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
@@ -45,7 +48,9 @@ import woo.sopt22.meowbox.View.MyPage.OrderHistory.OrderHistoryActivity
 import woo.sopt22.meowbox.View.MyPage.ProgressBar.StateProgressBar
 import woo.sopt22.meowbox.View.MyPage.Setting.MyPageSettingActivity
 import woo.sopt22.meowbox.View.MyPage.Suggest.MyPageSuggestActivity
+import woo.sopt22.meowbox.View.Order.LoginCustomDialog
 import woo.sopt22.meowbox.View.Order.OrderFirstActivity
+import woo.sopt22.meowbox.View.Order.OrderThirdActivity
 
 class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     override fun onClick(v: View?) {
@@ -99,6 +104,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
 
 
+
     lateinit var networkService: NetworkService
     lateinit var myPageYes: MyPageYes
     companion object {
@@ -113,7 +119,6 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         SharedPreference.instance!!.load(this)
 
 
-
         setSupportActionBar(toolbar)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             window.statusBarColor = Color.BLACK
@@ -125,10 +130,11 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         var headerView : View = mypage_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
 
-        if(SharedPreference.instance!!.getPrefStringData("user_email")!!.isEmpty()){
+        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
             userName.text = "OO님!"
         } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("user_email")
+            userName.text = SharedPreference.instance!!.getPrefStringData("name")
+            mypage_name_text1.text = "온풍이 집사 "+SharedPreference.instance!!.getPrefStringData("name")+" 님"
         }
 
         var profileImage = mypage_profile_img as ImageView
@@ -155,13 +161,6 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
 
 
-
-
-
-//        for(i in 0..tmpMaxNum){
-//            descriptionData[i] = (i+1).toString()+"box";
-//
-//        }
         tmpStringMax = "6박스"
         tmpStringCurrent = "6박스"
         stateProgressBar = your_state_progress_bar_id as StateProgressBar
@@ -170,32 +169,19 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
 
 
+        /*re = Regex("[^0-9]")
+        tmpMaxNum = re.replace(tmpStringMax, "").toInt()
+        tmpCurrentNum = re.replace(tmpStringCurrent, "").toInt()
 
 
-
-
-
-        /*stateProgressBar.setMaxStateNumber(tmpMaxNum);
+        stateProgressBar.setMaxStateNumber(tmpMaxNum);
         stateProgressBar.setCurrentStateNumber(tmpCurrentNum);
 
         mypageVisibleBoxLeftBox = mypage_visiblebox_progress_leftbox as TextView
         mypageVisibleBoxGetBox = mypage_visiblebox_progress_getbox as TextView
 
         mypageVisibleBoxLeftBox.setText(tmpStringMax)
-        mypageVisibleBoxGetBox.setText(tmpStringCurrent)
-        var descriptionData = Array(tmpMaxNum,{ i -> (i+1).toString()})
-        stateProgressBar.setStateDescriptionData(descriptionData)
-
-
-        mypageVisibleBoxLeftBox = mypage_visiblebox_progress_leftbox as TextView
-        mypageVisibleBoxGetBox = mypage_visiblebox_progress_getbox as TextView
-
-        mypageVisibleBoxLeftBox.setText(tmpStringMax)
-        mypageVisibleBoxGetBox.setText(tmpStringCurrent)
-*/
-
-
-
+        mypageVisibleBoxGetBox.setText(tmpStringCurrent)*/
 
 
 
@@ -233,6 +219,15 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
         })
 
+        var menu : Menu = mypage_nav_view.menu
+        var login_menu_item : MenuItem = menu.findItem(R.id.loginBtn)
+        var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
+        var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
+        blank_menu_item.setEnabled(false)
+        login_menu_item.setEnabled(false)
+        blank_menu_item2.setEnabled(false)
+        login_menu_item.setTitle("")
+
         mypage_nav_view.setNavigationItemSelectedListener(this)
 
         mypage_setting.setOnClickListener(this)
@@ -243,14 +238,12 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
 
 
-
-
     }
 
     fun getMyPageYes(){
         val tmpResponse = networkService.getMyPageYes(SharedPreference.instance!!.getPrefStringData("token")!!)
 
-        //val tmpResponse = networkService.getMyPageYes("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IldLV01Ec2siLCJ1c2VyX2lkeCI6MjE2LCJpYXQiOjE1MzEwNjczMzgsImV4cCI6MTUzMzY1OTMzOH0.wbmyvhRKz0H17gnrc4cMERgwVZviYQDzXH0YBcRt3rU")
+        //val tmpResponse = networkService.getMyPageYes("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IuyEnOyXsOydtCDstZzqs6Ag6riw7Jqp7J2064qUIOqwgGRkIiwidXNlcl9pZHgiOjE5MywiaWF0IjoxNTMxMDI1NzQ5LCJleHAiOjE1MzM2MTc3NDl9.OlyBgwTWCeG76qAi1f8sV37MzluNJXe4PPqvUpK2mzA")
         Log.v("98","들어오니?")
         tmpResponse.enqueue(object : Callback<MyPageYes>{
             override fun onFailure(call: Call<MyPageYes>?, t: Throwable?) {
@@ -306,9 +299,6 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                         Glide.with(this@MyPageActivity).load(myPageTextImgString).into(myPageTextImg);
 
                     }
-
-
-
                 } else{
                     Log.v("96",response!!.message())
                 }
@@ -342,7 +332,11 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.loginBtn -> {
-                // Handle the camera action
+                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                    startActivity(Intent(this, LoginActivity::class.java))
+                } else{
+                    ToastMaker.makeLongToast(this, "설정에서 로그아웃 해주세요!")
+                }
             }
             R.id.homeBtn -> {
                 var intent =  Intent(this, MainActivity::class.java)
@@ -356,8 +350,21 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 finish()
             }
             R.id.orderBtn -> {
-                startActivity(Intent(this, OrderFirstActivity::class.java))
-                finish()
+                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                    val dialog = LoginCustomDialog(this)
+                    dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    dialog.show()
+                } else{
+                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1"){
+                        val dialog = CatCustomDialog(this)
+                        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        dialog.show()
+                    } else {
+                        val intent = Intent(this, OrderThirdActivity::class.java)
+                        intent.putExtra("cat_idx",SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
+                        startActivity(intent)
+                    }
+                }
             }
             R.id.reviewBtn -> {
                 var intent = Intent(this, MeowBoxReviewActivity::class.java)

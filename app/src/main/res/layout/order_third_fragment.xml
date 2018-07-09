@@ -115,8 +115,9 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
+                            android:id="@+id/order_third_1_layout"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="250dp"
                             android:src="@drawable/big_card_box"
                             android:scaleType="fitXY"/>
                         
@@ -194,7 +195,7 @@
 
                             <RadioButton
                                 android:id="@+id/order_third_2"
-                                android:layout_marginTop="17dp"
+                                android:layout_marginTop="5dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:scaleX="1.0"
@@ -218,7 +219,7 @@
                         <ImageView
                             android:id="@+id/order_third_3"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="150dp"
                             android:src="@drawable/small_card_box"
                             android:scaleType="fitXY"/>
 
@@ -270,7 +271,7 @@
                         <ImageView
                             android:id="@+id/order_third_6"
                             android:layout_width="match_parent"
-                            android:layout_height="199dp"
+                            android:layout_height="150dp"
                             android:src="@drawable/small_card_box"
                             android:scaleType="fitXY"/>
 
@@ -322,7 +323,7 @@
                         <ImageView
                             android:id="@+id/order_third_7"
                             android:layout_width="match_parent"
-                            android:layout_height="199dp"
+                            android:layout_height="150dp"
                             android:src="@drawable/small_card_box"
                             android:scaleType="fitXY"/>
 
@@ -396,6 +397,7 @@
             >
 
             <TextView
+                android:id="@+id/third_back_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="이전"

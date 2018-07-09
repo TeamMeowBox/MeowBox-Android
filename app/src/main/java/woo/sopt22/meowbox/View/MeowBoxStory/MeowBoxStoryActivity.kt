@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -11,20 +12,22 @@ import android.support.v4.content.res.ResourcesCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_meow_box_story.*
 import kotlinx.android.synthetic.main.app_bar_meow_box_story.*
 import woo.sopt22.meowbox.R
+import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.Login.LoginActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
-import woo.sopt22.meowbox.View.Order.OrderFirstActivity
+import woo.sopt22.meowbox.View.Order.LoginCustomDialog
+import woo.sopt22.meowbox.View.Order.OrderThirdActivity
 
 class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -40,10 +43,19 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
         var headerView : View = story_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
 
-        if(SharedPreference.instance!!.getPrefStringData("user_email")!!.isEmpty()){
+        var menu : Menu = story_nav_view.menu
+        var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
+        var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
+        var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
+        blank_menu_item.setEnabled(false)
+        blank_menu_item2.setEnabled(false)
+
+        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
             userName.text = "OO님!"
+            menu_item.setTitle("로그인")
         } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("user_email")
+            userName.text = SharedPreference.instance!!.getPrefStringData("name")
+            menu_item.setTitle("로그아웃")
         }
 
 
@@ -101,22 +113,35 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
                 if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
                     startActivity(Intent(this, LoginActivity::class.java))
                 } else{
-                    ToastMaker.makeLongToast(this, "이미 로그인 하셨습니다.")
+                    ToastMaker.makeLongToast(this, "마이페이지에서 로그아웃 해주세요.")
                 }
             }
             R.id.homeBtn -> {
                 var intent =  Intent(this, MainActivity::class.java)
-                /*intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)*/
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
-                finish()
+                //finish()
             }
             R.id.stroyBtn -> {
                 //startActivity(Intent(this, MeowBoxStoryActivity::class.java))
             }
             R.id.orderBtn -> {
-                startActivity(Intent(this, OrderFirstActivity::class.java))
-                finish()
+                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                    val dialog = LoginCustomDialog(this)
+                    dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    dialog.show()
+                } else{
+                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!!.toInt() == -1){
+                        val dialog = CatCustomDialog(this)
+                        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        dialog.show()
+                    } else {
+                        val intent = Intent(this, OrderThirdActivity::class.java)
+                        intent.putExtra("cat_idx", SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
+                        startActivity(intent)
+                    }
+                }
             }
             R.id.reviewBtn -> {
                 var intent = Intent(this, MeowBoxReviewActivity::class.java)

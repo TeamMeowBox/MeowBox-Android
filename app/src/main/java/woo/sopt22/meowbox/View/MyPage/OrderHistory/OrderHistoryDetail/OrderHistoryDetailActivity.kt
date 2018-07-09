@@ -32,7 +32,11 @@ class OrderHistoryDetailActivity : AppCompatActivity(), View.OnClickListener {
 
     fun getDate(){
         val product_name = getIntent()
-        text_tv.text = product_name.getStringExtra("product")
+        val order_idx = getIntent()
+        val term = getIntent()
+        detail_text_tv1.text = product_name.getStringExtra("product")
+        detail_text_tv2.text = order_idx.getStringExtra("order_idx")
+        detail_text_tv3.text = term.getStringExtra("term")
     }
 
 }

@@ -8,7 +8,6 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.content.res.ResourcesCompat
@@ -19,7 +18,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_meow_box_detail.*
 import kotlinx.android.synthetic.main.activity_order_third.*
 import kotlinx.android.synthetic.main.app_bar_order_third.*
 import woo.sopt22.meowbox.R
@@ -50,11 +48,23 @@ class OrderThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
         var headerView : View = order_third_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+        SharedPreference.instance!!.load(this)
 
-        if(SharedPreference.instance!!.getPrefStringData("user_email")!!.isEmpty()){
+        var menu : Menu = order_third_nav_view.menu
+        var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
+        var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
+        var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
+        blank_menu_item.setEnabled(false)
+        blank_menu_item2.setEnabled(false)
+
+
+        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
             userName.text = "OO님!"
+            menu_item.setTitle("로그인")
+
         } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("user_email")
+            userName.text = SharedPreference.instance!!.getPrefStringData("name")
+            menu_item.setTitle("로그아웃")
         }
 
         replaceFragment(WithOutCatInfoThird())
@@ -106,7 +116,7 @@ class OrderThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                 if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
                     startActivity(Intent(this, LoginActivity::class.java))
                 } else{
-                    ToastMaker.makeLongToast(this, "이미 로그인 하셨습니다.")
+                    ToastMaker.makeLongToast(this, "마이페이지에서 로그아웃 해주세요.")
                 }
             }
             R.id.blankBtn->{

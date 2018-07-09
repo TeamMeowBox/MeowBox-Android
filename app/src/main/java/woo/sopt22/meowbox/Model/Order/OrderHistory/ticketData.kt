@@ -1,4 +1,4 @@
-package woo.sopt22.meowbox.Model.Order
+package woo.sopt22.meowbox.Model.Order.OrderHistory
 
 data class ticketData (
 

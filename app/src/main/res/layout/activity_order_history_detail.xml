@@ -43,17 +43,30 @@
         android:layout_height="0.2dp"
         android:background="#707070"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_centerInParent="true"
-            android:id="@+id/text_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ddd"/>
 
-    </RelativeLayout>
+    <TextView
+        android:layout_centerInParent="true"
+        android:id="@+id/detail_text_tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ddd"/>
+
+
+    <TextView
+        android:layout_centerInParent="true"
+        android:id="@+id/detail_text_tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ddd"/>
+
+
+    <TextView
+        android:layout_centerInParent="true"
+        android:id="@+id/detail_text_tv3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ddd"/>
+
 
 
 </LinearLayout>

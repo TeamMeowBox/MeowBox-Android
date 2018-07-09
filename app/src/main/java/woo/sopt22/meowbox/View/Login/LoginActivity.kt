@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     postLogin()
                     //ToastMaker.makeLongToast(this, "로그인할 수 있음")
                 } else{
-                    ToastMaker.makeLongToast(this, "안되지!")
+                    ToastMaker.makeLongToast(this, "정보를 입력해주세요!")
                 }
 
             }
@@ -174,8 +174,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     Log.v("login",response!!.message())
                     token = response!!.body()!!.result!!.token!!.toString()
                     SharedPreference.instance!!.setPrefData("token",token)
-                    SharedPreference.instance!!.setPrefData("user_email",login_email.text.toString())
-                    SharedPreference.instance!!.setPrefData("cat_idx",response.body()!!.result!!.cat_idx)
+                    SharedPreference.instance!!.setPrefData("user_email",response!!.body()!!.result!!.email)
+                    SharedPreference.instance!!.setPrefData("name",response!!.body()!!.result!!.name)
+                    SharedPreference.instance!!.setPrefData("flag",response!!.body()!!.result!!.flag)
+                    SharedPreference.instance!!.setPrefData("phone_number",response!!.body()!!.result!!.phone_number)
+                    SharedPreference.instance!!.setPrefData("cat_idx",response!!.body()!!.result!!.cat_idx)
                     Log.v("123",token)
                     Log.v("123",response.body()!!.result!!.cat_idx)
                     startActivity(Intent(applicationContext, MainActivity::class.java))

@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import kotlinx.android.synthetic.main.order_five_fragment.*
 import kotlinx.android.synthetic.main.order_five_fragment.view.*
 import woo.sopt22.meowbox.R
@@ -27,6 +28,7 @@ class OrderFiveFragment : Fragment(), View.OnClickListener{
         val view = inflater.inflate(R.layout.order_five_fragment, container, false)
 
         view.order_five_home_btn.setOnClickListener(this)
+        activity!!.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
 
         return view
     }

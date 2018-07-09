@@ -61,10 +61,12 @@ class LogoutCustomDialog(context: Context) : Dialog(context), View.OnClickListen
 
     fun logoutUser(){
         val dialog = LogoutApplyDialog(context)
-        SharedPreference.instance!!.removeData("user_idx")
         SharedPreference.instance!!.removeData("user_email")
         SharedPreference.instance!!.removeData("token")
-        //SharedPreference.instance!!.removeData("cat_idx")
+        SharedPreference.instance!!.removeData("name")
+        SharedPreference.instance!!.removeData("flag")
+        SharedPreference.instance!!.removeData("phone_number")
+        SharedPreference.instance!!.removeData("cat_idx")
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setCanceledOnTouchOutside(false)
         dialog.show()

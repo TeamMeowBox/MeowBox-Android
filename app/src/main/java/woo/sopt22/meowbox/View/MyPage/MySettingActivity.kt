@@ -56,6 +56,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
             }
             mysetting_save->{
                 saveSettingAccount()
+                Log.d("erfind",mysettingname)
                 val intent = Intent(applicationContext, MyPageActivity::class.java)
                 startActivity(intent)
 
@@ -197,8 +198,6 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
             override fun onResponse(call: Call<MyAccountSettingGet>?, response: Response<MyAccountSettingGet>?) {
                 if(response!!.isSuccessful){
 
-
-
                     mysettingname = response!!.body()!!.result.user_name
                     mySettingName.setText(mysettingname)
                     mysettingemail = response!!.body()!!.result.email
@@ -209,7 +208,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
                     mySettingCatName.setText(mysettingcatname)
 
 
-                    //Glide.with(profileImage).load(response!!.body()!!.result.image_profile).into(profileImage)
+                    Glide.with(profileImage).load(response!!.body()!!.result.image_profile).into(profileImage)
 
                     buttonClicked(response!!.body()!!.result.size)
 
@@ -282,21 +281,26 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         intent.type = android.provider.MediaStore.Images.Media.CONTENT_TYPE
         intent.data = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         startActivityForResult(intent, REQ_CODE_SELECT_IMAGE)
+        Glide.with(this).load(intent).into(mysetting_profile)
     }
 
     fun saveSettingAccount(){
-       /* myAccountSettingPost = MyAccountSettingPost(mysettingname, mysettingphone, mysettingemail, image, mysettingcatname,
-                catSize, year+"-"+month+"-"+day,mysettingmysuggest)*/
 
          var birthdayString = year+"-"+month+"-"+day
+
+        mysettingname = mySettingName.text.toString()
+        mysettingemail = mySettingEmail.text.toString()
+        mysettingphone = mySettingPhone.text.toString()
+        mysettingcatname = mySettingCatName.text.toString()
+        mysettingmysuggest = mySettingMySuggest.text.toString()
 
         val userName = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingname)
         val userPhone = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingphone)
         val userEmail = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingemail)
-        val userCatName = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingcatname+" ")
-        val userCatSize = RequestBody.create(MediaType.parse("multipart/form-data"), catSize+" ")
-        val userBirthday = RequestBody.create(MediaType.parse("multipart/form-data"), birthdayString+" ")
-        val userSuggest = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingmysuggest+" ")
+        val userCatName = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingcatname)
+        val userCatSize = RequestBody.create(MediaType.parse("multipart/form-data"), catSize)
+        val userBirthday = RequestBody.create(MediaType.parse("multipart/form-data"), birthdayString)
+        val userSuggest = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingmysuggest)
 
         val tmpResponse = networkService.postMyAccount(SharedPreference.instance!!.getPrefStringData("token")!!,
                 userName, userPhone, userEmail, image, userCatName, userCatSize, userBirthday, userSuggest)
@@ -346,7 +350,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
                     val photo = File(this.data.toString()) // 파일의 이름을 알아내려고 한다.
 
                     // 통신할 때 이미지 사용 - 레트로핏 추가해서
-                    image = MultipartBody.Part.createFormData("store_photo",photo.name, photoBody)
+                    image = MultipartBody.Part.createFormData("image_profile",photo.name, photoBody)
                     // postman으로 확인했을 때 이미지의 key이 photo로 같아야 한다.
 
                     Glide.with(this).load(data!!.data).into(mysetting_profile)

@@ -1,11 +1,14 @@
 package woo.sopt22.meowbox.Network
 
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 import woo.sopt22.meowbox.Model.Base.BaseModel
 import woo.sopt22.meowbox.Model.Login.LoginResponse
 import woo.sopt22.meowbox.Model.Login.LoginUser
 import woo.sopt22.meowbox.Model.MyAccountSetting.MyAccountSettingGet
+import woo.sopt22.meowbox.Model.MyAccountSetting.MyAccountSettingPostResponse
 import woo.sopt22.meowbox.Model.MyPageMain.MyPageYes
 import woo.sopt22.meowbox.Model.Order.OrderData
 import woo.sopt22.meowbox.Model.Order.OrderHistory.OrderHistory
@@ -42,13 +45,13 @@ interface NetworkService {
     // 4. 회원탈퇴 -0
     @HTTP(method = "DELETE", path = "user/account/{user_idx}", hasBody = false)
     fun deleteUser(
-            @Header("token") token : String,
+            @Header("token") token : String
     ):   Call<BaseModel>
 
     // 5. 주문 내역 -0
     @GET("order/order_list/")
     fun getOrderHistory(
-            @Header("authorization") authorization : String,
+            @Header("authorization") authorization : String
     ) : Call<OrderHistory>
 
     // 6. 미유박스에 제안하기
@@ -69,13 +72,6 @@ interface NetworkService {
             @Header("authorization") authorization : String
     ) : Call<QnAResponse>
 
-
-    //?.get계정설정화면
-    @GET("mypage/account/{user_idx}")
-    fun getMyAccountSetting(
-            @Header("authorization") authorization: String,
-            @Path("user_idx") user_idx: String
-    ) : Call<MyAccountSettingGet>
 
     // 10. 주문 페이지 - 0
     @POST("order/order_page")

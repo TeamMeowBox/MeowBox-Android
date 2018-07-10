@@ -74,8 +74,6 @@ interface NetworkService {
     ) : Call<QnAResponse>
 
 
-
-
     // 10. 주문 페이지 - 0
     @POST("order/order_page")
     fun postOrder(

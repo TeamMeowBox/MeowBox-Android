@@ -5,6 +5,7 @@ import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 import woo.sopt22.meowbox.Model.Base.BaseModel
+import woo.sopt22.meowbox.Model.Home.InstaCrawlingResponse
 import woo.sopt22.meowbox.Model.Login.LoginResponse
 import woo.sopt22.meowbox.Model.Login.LoginUser
 import woo.sopt22.meowbox.Model.MyAccountSetting.MyAccountSettingGet
@@ -113,6 +114,12 @@ interface NetworkService {
             @Part("cat_birthday") cat_birthday : RequestBody?,
             @Part("cat_caution") cat_caution : RequestBody?
     ) : Call<MyAccountSettingPostResponse>
+
+    // 15. 인스타 크롤링
+    @GET("home/monthlyBox_detail/crawling")
+    fun getInstaCrawling(
+            @Header("authorization") authorization : String
+    ) : Call<InstaCrawlingResponse>
 
 
 }

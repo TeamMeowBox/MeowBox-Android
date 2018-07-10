@@ -44,6 +44,7 @@ public class LogoutApplyDialog extends Dialog implements View.OnClickListener{
         switch (v.getId()){
             case R.id.logout_apply_apply:
                 cancel();
+                context.startActivity(new Intent(context, MainActivity.class));
                 break;
         }
     }

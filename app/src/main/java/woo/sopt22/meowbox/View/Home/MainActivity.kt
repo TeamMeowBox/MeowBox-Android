@@ -22,11 +22,9 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.widget.*
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_my_page.*
@@ -36,6 +34,13 @@ import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.content_my_page.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.sliding_layout.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import woo.sopt22.meowbox.ApplicationController
+import woo.sopt22.meowbox.Model.Home.CatCountResponse
+import woo.sopt22.meowbox.Model.Home.InstaCrawlingResponse
+import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
@@ -44,6 +49,7 @@ import woo.sopt22.meowbox.View.Login.LoginActivity
 import woo.sopt22.meowbox.View.MeowBoxDetail.MeowBoxDetailActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
+import woo.sopt22.meowbox.View.MyPage.CircleImageView
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 import woo.sopt22.meowbox.View.Order.LoginCustomDialog
 import woo.sopt22.meowbox.View.Order.OrderFirstActivity
@@ -66,21 +72,104 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     lateinit var mViewPager : ViewPager
     lateinit var mSlidingTextView: TextView
-    lateinit var home_stroy_btn : ImageView
-    //lateinit var home_detail_btn : ImageView
-    var cag_flag : Boolean = false
 
+    lateinit var mSlidingInstaProfile1 : CircleImageView
+    lateinit var mSlidingInstaUserName1 : TextView
+    lateinit var mSlidingInstaCatProfile1 : ImageView
+
+    lateinit var mSlidingInstaProfile2 : CircleImageView
+    lateinit var mSlidingInstaUserName2 : TextView
+    lateinit var mSlidingInstaCatProfile2 : ImageView
+
+    lateinit var mSlidingInstaProfile3 : CircleImageView
+    lateinit var mSlidingInstaUserName3 : TextView
+    lateinit var mSlidingInstaCatProfile3 : ImageView
+
+    lateinit var mSlidingInstaProfile4 : CircleImageView
+    lateinit var mSlidingInstaUserName4 : TextView
+    lateinit var mSlidingInstaCatProfile4 : ImageView
+    lateinit var home_stroy_btn : ImageView
+
+    lateinit var slidinViewMain : RelativeLayout
+    lateinit var sliding_toolbar : RelativeLayout
     private val PermissionRequestCode = 123
     private lateinit var managePermissions : ManagePermissions
     lateinit var main_side_bar_btn : ImageView
+    lateinit var networkService: NetworkService
 
     fun init(){
         mViewPager = viewpager as ViewPager
         mSlidingTextView = home_cat_count as TextView
         home_stroy_btn = home_to_story_btn as ImageView
-        //home_detail_btn = home_to_detail_btn as ImageView
+
+        mSlidingInstaProfile1 = insta_profile_image1 as CircleImageView
+        mSlidingInstaUserName1 = insta_user_name1 as TextView
+        mSlidingInstaCatProfile1 = insta_cat_profile1 as ImageView
+
+        mSlidingInstaProfile2 = insta_profile_image2 as CircleImageView
+        mSlidingInstaUserName2 = insta_user_name2 as TextView
+        mSlidingInstaCatProfile2 = insta_cat_profile2 as ImageView
+
+        mSlidingInstaProfile3 = insta_profile_image3 as CircleImageView
+        mSlidingInstaUserName3 = insta_user_name3 as TextView
+        mSlidingInstaCatProfile3 = insta_cat_profile3 as ImageView
+
+        mSlidingInstaProfile4 = insta_profile_image4 as CircleImageView
+        mSlidingInstaUserName4 = insta_user_name4 as TextView
+        mSlidingInstaCatProfile4 = insta_cat_profile4 as ImageView
+
+        slidinViewMain = sliding_view_main as RelativeLayout
+        sliding_toolbar = re as RelativeLayout
     }
 
+    fun getInsta(){
+        Log.v("339","??")
+        val instaResponse = networkService.getInstaCrawling()
+        instaResponse.enqueue(object : Callback<InstaCrawlingResponse>{
+            override fun onFailure(call: Call<InstaCrawlingResponse>?, t: Throwable?) {
+
+            }
+
+            override fun onResponse(call: Call<InstaCrawlingResponse>?, response: Response<InstaCrawlingResponse>?) {
+                if(response!!.isSuccessful){
+                    mSlidingInstaUserName1.text = response!!.body()!!.result[0].nickname
+                    Glide.with(this@MainActivity).load(response!!.body()!!.result[0].profile).into(mSlidingInstaProfile1)
+                    Glide.with(this@MainActivity).load(response!!.body()!!.result[0].picture).into(mSlidingInstaCatProfile1)
+
+                    mSlidingInstaUserName2.text = response!!.body()!!.result[1].nickname
+                    Glide.with(this@MainActivity).load(response!!.body()!!.result[1].profile).into(mSlidingInstaProfile2)
+                    Glide.with(this@MainActivity).load(response!!.body()!!.result[1].picture).into(mSlidingInstaCatProfile2)
+
+                    mSlidingInstaUserName3.text = response!!.body()!!.result[2].nickname
+                    Glide.with(this@MainActivity).load(response!!.body()!!.result[2].profile).into(mSlidingInstaProfile3)
+                    Glide.with(this@MainActivity).load(response!!.body()!!.result[2].picture).into(mSlidingInstaCatProfile3)
+
+                    mSlidingInstaUserName4.text = response!!.body()!!.result[3].nickname
+                    Glide.with(this@MainActivity).load(response!!.body()!!.result[3].profile).into(mSlidingInstaProfile4)
+                    Glide.with(this@MainActivity).load(response!!.body()!!.result[3].picture).into(mSlidingInstaCatProfile4)
+                }
+            }
+
+        })
+    }
+
+    fun getCatCount(){
+        val countResponse = networkService.getCatCount()
+        countResponse.enqueue(object : Callback<CatCountResponse>{
+            override fun onFailure(call: Call<CatCountResponse>?, t: Throwable?) {
+
+            }
+
+            override fun onResponse(call: Call<CatCountResponse>?, response: Response<CatCountResponse>?) {
+                if(response!!.isSuccessful){
+                    mSlidingTextView.text = response!!.body()!!.result+"냥이"
+                    Log.v("7979",response!!.body()!!.result)
+                }
+
+            }
+
+        })
+    }
     override fun onRestart() {
         Log.v("onRestart",SharedPreference.instance!!.getPrefStringData("user_name"))
         super.onRestart()
@@ -110,16 +199,40 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var headerView : View = main_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
 
+        networkService = ApplicationController.instance!!.networkService
 
-
+        SharedPreference.instance!!.load(this)
 
         init()
+        re.setOnTouchListener(object : View.OnTouchListener{
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                when(event!!.action){
+                    MotionEvent.ACTION_UP,MotionEvent.ACTION_MOVE->{
+                        Log.v("8989","8989")
+                        getInsta()
+                        getCatCount()
+                    }
+                    MotionEvent.ACTION_DOWN->{
+                        Log.v("9898","9898")
+                        //getInsta()
+                        ToastMaker.makeLongToast(this@MainActivity, "dd")
+                    }
+
+                }
+                return true
+            }
+
+
+        })
+
+
+
+
+
         home_stroy_btn.setOnClickListener(this)
-        //home_detail_btn.setOnClickListener(this)
-        SharedPreference.instance!!.load(this)
         var result = SharedPreference.instance!!.getPrefStringData("token")
         println("11"+SharedPreference.instance!!.getPrefStringData("token"))
-        println("cat_idx??"+SharedPreference.instance!!.getPrefStringData("cat_idx"))
+        //println("cat_idx??"+SharedPreference.instance!!.getPrefStringData("cat_idx"))
         //println("11"+result!![0])
 
         var menu : Menu = main_nav_view.menu
@@ -154,9 +267,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
 
-        mSlidingTextView.setOnClickListener {
+      /*  mSlidingTextView.setOnClickListener {
             ToastMaker.makeLongToast(this,mSlidingTextView.text.toString())
-        }
+        }*/
 
         // actionBar 타이틀 가리기
 
@@ -320,6 +433,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
     }
+
 
 
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:id="@+id/sliding_view_main"
     android:layout_marginTop="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -127,95 +128,178 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <RelativeLayout
+                            android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
 
 
                             <ImageView
-                                android:id="@+id/insta_frame"
+                                android:id="@+id/insta_frame1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/instagram_frame"/>
 
-                            <ImageView
+                            <woo.sopt22.meowbox.View.MyPage.CircleImageView
+                                android:id="@+id/insta_profile_image1"
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginLeft="15dp"/>
 
                             <TextView
-                                android:layout_centerHorizontal="true"
+                                android:id="@+id/insta_user_name1"
+                                android:layout_toRightOf="@+id/insta_profile_image1"
+                                android:layout_marginLeft="20dp"
                                 android:layout_marginTop="6dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="10dp"/>
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:id="@+id/insta_cat_profile1"
+                                android:layout_marginLeft="10dp"
+                                android:layout_below="@+id/insta_profile_image1"
+                                android:layout_marginTop="4dp"
+                                android:layout_width="148dp"
+                                android:layout_height="150dp" />
 
 
                         </RelativeLayout>
 
 
-
-                        <android.support.v7.widget.CardView
-                            android:layout_width="0dp"
+                        <RelativeLayout
                             android:layout_weight="1"
-                            android:layout_height="171dp">
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
 
                             <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginTop="30dp"
-                                android:src="@drawable/order_normal_cat"
-                                android:scaleType="fitXY"/>
+                                android:id="@+id/insta_frame2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/instagram_frame"/>
+
+                            <woo.sopt22.meowbox.View.MyPage.CircleImageView
+                                android:id="@+id/insta_profile_image2"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginLeft="15dp"/>
+
+                            <TextView
+                                android:id="@+id/insta_user_name2"
+                                android:layout_toRightOf="@+id/insta_profile_image2"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="10dp"/>
+
+                            <ImageView
+                                android:id="@+id/insta_cat_profile2"
+                                android:layout_marginLeft="10dp"
+                                android:layout_below="@+id/insta_profile_image2"
+                                android:layout_marginTop="4dp"
+                                android:layout_width="148dp"
+                                android:layout_height="150dp" />
 
 
-                        </android.support.v7.widget.CardView>
+                        </RelativeLayout>
+
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_horizontal">
 
-
-                        <android.support.v7.widget.CardView
-                            android:layout_width="0dp"
-                            android:layout_height="171dp"
-                            android:layout_weight="1">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginTop="30dp"
-                                android:src="@drawable/order_normal_cat"
-                                android:scaleType="fitXY"/>
-                        </android.support.v7.widget.CardView>
-
-
-                        <android.support.v7.widget.CardView
-                            android:layout_width="0dp"
+                        <RelativeLayout
                             android:layout_weight="1"
-                            android:layout_height="171dp">
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
 
                             <ImageView
-                                android:layout_width="match_parent"
+                                android:id="@+id/insta_frame3"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="30dp"
-                                android:src="@drawable/order_normal_cat"
-                                android:scaleType="fitXY"/>
+                                android:src="@drawable/instagram_frame"/>
+
+                            <woo.sopt22.meowbox.View.MyPage.CircleImageView
+                                android:id="@+id/insta_profile_image3"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginLeft="15dp"/>
+
+                            <TextView
+                                android:id="@+id/insta_user_name3"
+                                android:layout_toRightOf="@+id/insta_profile_image3"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="10dp"/>
+
+                            <ImageView
+                                android:id="@+id/insta_cat_profile3"
+                                android:layout_marginLeft="10dp"
+                                android:layout_below="@+id/insta_profile_image3"
+                                android:layout_marginTop="4dp"
+                                android:layout_width="148dp"
+                                android:layout_height="150dp" />
 
 
-                        </android.support.v7.widget.CardView>
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+
+                            <ImageView
+                                android:id="@+id/insta_frame4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/instagram_frame"/>
+
+                            <woo.sopt22.meowbox.View.MyPage.CircleImageView
+                                android:id="@+id/insta_profile_image4"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginLeft="15dp"/>
+
+                            <TextView
+                                android:id="@+id/insta_user_name4"
+                                android:layout_toRightOf="@+id/insta_profile_image4"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="10dp"/>
+
+                            <ImageView
+                                android:id="@+id/insta_cat_profile4"
+                                android:layout_marginLeft="10dp"
+                                android:layout_below="@+id/insta_profile_image4"
+                                android:layout_marginTop="4dp"
+                                android:layout_width="148dp"
+                                android:layout_height="150dp" />
+
+
+                        </RelativeLayout>
+
 
                     </LinearLayout>
 

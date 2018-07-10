@@ -67,7 +67,7 @@ class DeleteUserApplyCustomDialog(context : Context) : Dialog(context), View.OnC
                     val intent = Intent(context, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    context.startActivity(Intent(context, MainActivity::class.java))
+                    context.startActivity(intent)
                 }
             }
         })

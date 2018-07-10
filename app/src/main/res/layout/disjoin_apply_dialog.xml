@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true">
 
         <TextView
-            android:id="@+id/apply_disjoin_ask"
+            android:id="@+id/delete_apply_ask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
@@ -26,7 +26,7 @@
             />
 
         <LinearLayout
-            android:layout_below="@+id/apply_disjoin_ask"
+            android:layout_below="@+id/delete_apply_ask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"

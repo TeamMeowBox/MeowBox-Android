@@ -71,7 +71,7 @@ class LogoutCustomDialog(context: Context) : Dialog(context), View.OnClickListen
         dialog.setCanceledOnTouchOutside(false)
         dialog.show()
         cancel()
-        context.startActivity(Intent(context, MainActivity::class.java))
+
 
     }
 

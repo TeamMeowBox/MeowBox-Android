@@ -11,7 +11,7 @@
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:lottie_fileName="meow_box_splash_4.json"
+        app:lottie_fileName="meow_box_splash_5.json"
         app:lottie_autoPlay="true"
         />
 

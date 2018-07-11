@@ -226,14 +226,14 @@
                     android:textSize="22dp"
                     android:textStyle="bold" />
 
-                <LinearLayout
+                <ImageView
 
                     android:layout_width="125dp"
                     android:layout_height="93dp"
                     android:layout_gravity="center_horizontal"
-                    android:background="#eeeeee">
+                    android:src="@drawable/meow_box_story_toy_img">
 
-                </LinearLayout>
+                </ImageView>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -244,14 +244,14 @@
                     android:textColor="#4C4E51"
                     android:textSize="16dp" />
 
-                <LinearLayout
+                <ImageView
 
                     android:layout_width="125dp"
                     android:layout_height="93dp"
                     android:layout_gravity="center_horizontal"
-                    android:background="#eeeeee">
+                    android:src="@drawable/meow_box_story_snack_img">
 
-                </LinearLayout>
+                </ImageView>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -463,14 +463,14 @@
                 android:layout_marginTop="40dp"
                 android:src="@drawable/box_dashline" />
 
-            <LinearLayout
+            <ImageView
 
                 android:layout_width="210dp"
                 android:layout_height="155dp"
                 android:layout_gravity="center_horizontal"
-                android:background="#eeeeee">
+                android:src="@drawable/meow_box_story_love_img">
 
-            </LinearLayout>
+            </ImageView>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -490,11 +490,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-                    <LinearLayout
+                    <ImageView
                         android:layout_width="66dp"
                         android:layout_height="9dp"
                         android:layout_alignParentBottom="true"
-                        android:background="#E88687" />
+                        android:src="@drawable/home_pink_line" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -526,11 +526,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-                    <LinearLayout
+                    <ImageView
                         android:layout_width="156dp"
                         android:layout_height="9dp"
                         android:layout_alignParentBottom="true"
-                        android:background="#E88687" />
+                        android:src="@drawable/home_pink_line" />
 
                     <TextView
                         android:layout_width="wrap_content"

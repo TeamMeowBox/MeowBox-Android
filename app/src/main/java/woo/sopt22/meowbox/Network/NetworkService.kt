@@ -123,6 +123,7 @@ interface NetworkService {
     // 15. 인스타 크롤링
     @GET("home/monthlyBox_detail/crawling")
     fun getInstaCrawling(
+            //@Header("authorization") authorization : String
     ) : Call<InstaCrawlingResponse>
 
     // 16. 고양이 카운트

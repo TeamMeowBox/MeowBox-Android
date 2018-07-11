@@ -147,7 +147,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/header_cancel_btn"
+                android:id="@+id/history_top_item_cancel_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/history_ticket_image"
@@ -155,7 +155,7 @@
                 android:layout_marginRight="31dp">
 
                 <TextView
-                    android:id="@+id/header_explaination"
+                    android:id="@+id/history_top_item_explaination"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="해당 월일을 제외한"
@@ -163,10 +163,10 @@
                     android:textSize="13dp" />
 
                 <TextView
-                    android:id="@+id/header_explaination2"
+                    android:id="@+id/history_top_item_explaination2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/header_explaination"
+                    android:layout_below="@+id/history_top_item_explaination"
                     android:layout_marginTop="7dp"
                     android:text="박스 취소가 가능합니다"
                     android:textColor="#999999"
@@ -174,6 +174,7 @@
 
 
                 <ImageView
+                    android:id="@+id/top_history_cancel_btn_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -186,7 +187,7 @@
                 android:id="@+id/history_dash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/header_cancel_btn"
+                android:layout_below="@+id/history_top_item_cancel_btn"
                 android:layout_marginTop="10dp"
                 android:paddingLeft="22dp"
                 android:paddingRight="22dp"

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import android.widget.RadioGroup
 import kotlinx.android.synthetic.main.order_four_fragment.*
 import kotlinx.android.synthetic.main.order_four_fragment.view.*
 import kotlinx.android.synthetic.main.order_second_fragment.*
@@ -16,6 +17,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import woo.sopt22.meowbox.ApplicationController
+import woo.sopt22.meowbox.Model.Address.BeforeAddressResponse
 import woo.sopt22.meowbox.Model.Base.BaseModel
 import woo.sopt22.meowbox.Model.Order.OrderData
 import woo.sopt22.meowbox.Network.NetworkService
@@ -61,6 +63,22 @@ class WithOutCatInfoFour : Fragment(), View.OnClickListener {
         view.order_pay_previous.setOnClickListener(this)
         view.order_pay_next.setOnClickListener(this)
         view.order_four_total_charge.text  = SharedPreference.instance!!.getPrefStringData("price")
+        view.address_rg.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener{
+            override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+                when(checkedId){
+                    R.id.before_address->{
+                        getBeforeAddress()
+                    }
+                    R.id.new_address->{
+                        order_four_name.setText(" ")
+                        order_four_address_one.setText(" ")
+                        order_four_phone_number.setText(" ")
+                        order_four_email.setText(" ")
+                    }
+                }
+            }
+
+        })
 
         price = SharedPreference.instance!!.getPrefStringData("price")!!
         box_type = SharedPreference.instance!!.getPrefStringData("box_type")!!
@@ -71,16 +89,6 @@ class WithOutCatInfoFour : Fragment(), View.OnClickListener {
         return view
     }
 
-/*    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        if(this.arguments != null) {
-            var bundle: Bundle = arguments!!
-            cat_name = bundle.getString("cat_name")
-            box_type = bundle.getString("box_type")
-            price = bundle.getString("price")
-
-        }
-    }*/
 
     fun postOrder(){
         if(this.arguments != null) {
@@ -105,6 +113,32 @@ class WithOutCatInfoFour : Fragment(), View.OnClickListener {
                     Log.v("412",response!!.message())
                     (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithOutCatInfoFive())
                 }
+            }
+
+        })
+    }
+    fun getBeforeAddress(){
+        Log.v("310","어디까지 들어옴?")
+        val addressResponse = networkService.getBeforeAddress(SharedPreference.instance!!.getPrefStringData("token")!!)
+        addressResponse.enqueue(object : Callback<BeforeAddressResponse>{
+            override fun onFailure(call: Call<BeforeAddressResponse>?, t: Throwable?) {
+                Log.v("311",t!!.message)
+
+            }
+
+            override fun onResponse(call: Call<BeforeAddressResponse>?, response: Response<BeforeAddressResponse>?) {
+                if(response!!.isSuccessful){
+                    Log.v("312",response!!.message())
+                    if(response!!.body()!!.result.order_idx == "-1"){
+                        ToastMaker.makeLongToast(context, "이전 배송지가 없습니다.")
+                    } else{
+                        order_four_name.setText(response!!.body()!!.result!!.name)
+                        order_four_address_one.setText(response!!.body()!!.result!!.address)
+                        order_four_phone_number.setText(response!!.body()!!.result!!.phone_number)
+                        order_four_email.setText(response!!.body()!!.result!!.email)
+                    }
+                }
+
             }
 
         })

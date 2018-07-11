@@ -18,8 +18,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView"
-            android:layout_width="49dp"
-            android:layout_height="49dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:src="@drawable/side_bar_profile_img"
             />
 

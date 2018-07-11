@@ -20,7 +20,10 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.*
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_my_page.*
@@ -99,8 +102,6 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     lateinit var mypageVisibleBoxLeftBox : TextView
     lateinit var mypageVisibleBoxGetBox : TextView
     lateinit var re : Regex
-    lateinit var userName : TextView
-    lateinit var headerView : View
 
 
 
@@ -111,6 +112,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         lateinit var stateProgressBar : StateProgressBar
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page)
@@ -118,6 +120,9 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         networkService = ApplicationController.instance.networkService
         SharedPreference.instance!!.load(this)
+
+        Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")).into(mypage_profile_img)
+
 
 
         setSupportActionBar(toolbar)
@@ -128,15 +133,23 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
 
 
-        headerView = mypage_nav_view.getHeaderView(0)
-        userName = headerView.findViewById<TextView>(R.id.header_name)
+        var headerView : View = mypage_nav_view.getHeaderView(0)
+        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+        var userImage : ImageView = headerView.findViewById(R.id.imageView)
+        userImage.setImageResource(R.drawable.side_bar_profile_img)
 
-        /*if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
+        if(SharedPreference.instance!!.getPrefStringData("image") == null){
+            userImage.setImageResource(R.drawable.side_bar_profile_img)
+        } else{
+            Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")!!).into(userImage)
+        }
+
+        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
             userName.text = "OO님!"
         } else {
             userName.text = SharedPreference.instance!!.getPrefStringData("name")
             mypage_name_text1.text = "온풍이 집사 "+SharedPreference.instance!!.getPrefStringData("name")+" 님"
-        }*/
+        }
 
         var profileImage = mypage_profile_img as ImageView
 
@@ -237,16 +250,8 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     override fun onResume() {
         super.onResume()
 
-        headerView = mypage_nav_view.getHeaderView(0)
-        userName = headerView.findViewById<TextView>(R.id.header_name)
-
-        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
-            userName.text = "OO님!"
-        } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("name")
-            mypage_name_text1.text = "온풍이 집사 "+SharedPreference.instance!!.getPrefStringData("name")+" 님"
-        }
-
+        SharedPreference.instance!!.load(this)
+        Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")).into(mypage_profile_img)
 
 
     }

@@ -67,11 +67,12 @@ class LogoutCustomDialog(context: Context) : Dialog(context), View.OnClickListen
         SharedPreference.instance!!.removeData("flag")
         SharedPreference.instance!!.removeData("phone_number")
         SharedPreference.instance!!.removeData("cat_idx")
+        SharedPreference.instance!!.removeData("image")
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setCanceledOnTouchOutside(false)
         dialog.show()
         cancel()
-        context.startActivity(Intent(context, MainActivity::class.java))
+
 
     }
 

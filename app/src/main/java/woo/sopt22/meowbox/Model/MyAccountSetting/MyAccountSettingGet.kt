@@ -14,5 +14,6 @@ data class MyAccountSettingGetData(
         var cat_name : String,
         var size : String,
         var birthday : String,
-        var caution : String
+        var caution : String,
+        var cat_idx : Int
 )

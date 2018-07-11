@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Log.v("073","073")
                 startActivity(Intent(this, MeowBoxStoryActivity::class.java))
             }
-            else->{
+            home_to_detail_btn->{
                 startActivity(Intent(this, MeowBoxDetailActivity::class.java))
             }
 
@@ -220,6 +220,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")!!).into(userImage)
         }*/
         Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")!!).into(userImage)
+        home_to_detail_btn.setOnClickListener(this)
 
         init()
         re.setOnTouchListener(object : View.OnTouchListener{

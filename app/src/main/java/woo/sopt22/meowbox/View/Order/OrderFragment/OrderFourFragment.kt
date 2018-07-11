@@ -23,8 +23,6 @@ import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Order.OrderFirstActivity
-import woo.sopt22.meowbox.View.Order.OrderFragmentWithOutCatInfo.WithOutCatInfoFive
-import woo.sopt22.meowbox.View.Order.OrderThirdActivity
 
 class OrderFourFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {

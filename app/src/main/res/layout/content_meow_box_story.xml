@@ -31,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="83dp"
+                    android:layout_marginTop="53dp"
                     android:text="내 고양이에게\n꼭 필요한\n특별 선물"
                     android:textColor="#4C4E51"
                     android:textSize="28dp" />
@@ -45,7 +45,8 @@
                     android:src="@drawable/story_meow_box_logo_img" />
 
                 <ImageView
-                    android:layout_width="115dp"
+                    android:id="@+id/story_to_order_btn"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="40dp"
@@ -553,6 +554,7 @@
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/story_to_order_btn2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

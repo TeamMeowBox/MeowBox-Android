@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:background="#FFFFFF"
         android:layout_height="match_parent">
-        <include layout="@layout/content_meow_box_detail" />
+
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -22,17 +22,16 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="MeowBox"
+            <ImageView
+                android:layout_width="128dp"
+                android:layout_height="22dp"
                 android:layout_gravity="center_horizontal"
-                android:textSize="18sp"
-                android:textColor="#000000"/>
+                android:src="@drawable/logo_white"/>
 
         </android.support.v7.widget.Toolbar>
 
-
+        <include
+            layout="@layout/content_meow_box_detail" />
     </RelativeLayout>
 
 

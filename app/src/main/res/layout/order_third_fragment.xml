@@ -127,6 +127,7 @@
                             android:layout_marginLeft="30dp"
                             android:layout_width="130dp"
                             android:layout_height="94dp"
+                            android:src="@drawable/one_period_img"
                             />
 
                       <RelativeLayout
@@ -144,6 +145,7 @@
                               android:textSize="18dp"
                               android:textColor="#4C4E51"
                               android:id="@+id/one_shipping"
+                              android:textStyle="bold"
                               android:text="한 번만 받기"/>
 
                           <TextView
@@ -230,6 +232,7 @@
                             android:layout_marginLeft="30dp"
                             android:layout_width="130dp"
                             android:layout_height="94dp"
+                            android:src="@drawable/three_period_img"
                             />
 
 
@@ -248,7 +251,8 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="18dp"
                                 android:textColor="#4C4E51"
-                                android:text="3개월 정기배송"/>
+                                android:text="3개월 정기배송"
+                                android:textStyle="bold"/>
 
                             <TextView
                                 android:layout_below="@+id/three_shipping"
@@ -275,6 +279,7 @@
                             android:src="@drawable/small_card_box"
                             android:scaleType="fitXY"/>
 
+
                         <ImageView
                             android:layout_centerVertical="true"
                             android:id="@+id/order_6month_image"
@@ -282,6 +287,7 @@
                             android:layout_marginLeft="30dp"
                             android:layout_width="130dp"
                             android:layout_height="94dp"
+                            android:src="@drawable/six_period_img"
                             />
 
                         <RelativeLayout
@@ -299,7 +305,8 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="18dp"
                                 android:textColor="#4C4E51"
-                                android:text="6개월 정기배송"/>
+                                android:text="6개월 정기배송"
+                                android:textStyle="bold"/>
 
                             <TextView
                                 android:layout_alignParentRight="true"
@@ -334,6 +341,7 @@
                             android:layout_marginLeft="30dp"
                             android:layout_width="130dp"
                             android:layout_height="94dp"
+                            android:src="@drawable/birthday_period_img"
                             />
                         <RelativeLayout
                             android:layout_centerVertical="true"
@@ -350,7 +358,8 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="18dp"
                                 android:textColor="#4C4E51"
-                                android:text="생일축하해! 박스"/>
+                                android:text="생일축하해! 박스"
+                                android:textStyle="bold"/>
 
                             <TextView
                                 android:layout_alignParentRight="true"

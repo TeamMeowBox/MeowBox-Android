@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
+import android.media.Image
 import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -82,8 +83,12 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         SharedPreference.instance!!.load(this)
 
 
+
         var headerView : View = detail_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+        var userImage : ImageView = headerView.findViewById(R.id.imageView)
+
+        Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")!!).into(userImage)
 
 
         var menu : Menu = detail_nav_view.menu

@@ -15,7 +15,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_meow_box_story.*
 import kotlinx.android.synthetic.main.app_bar_meow_box_story.*
 import woo.sopt22.meowbox.R
@@ -42,6 +44,10 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
         SharedPreference.instance!!.load(this)
         var headerView : View = story_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+
+        var userImage : ImageView = headerView.findViewById(R.id.imageView)
+
+        Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")!!).into(userImage)
 
         var menu : Menu = story_nav_view.menu
         var menu_item : MenuItem = menu.findItem(R.id.loginBtn)

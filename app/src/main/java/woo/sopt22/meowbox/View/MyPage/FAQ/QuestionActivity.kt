@@ -97,6 +97,9 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
             }
             shipping_items.add(Parent(shipping[i], contents))
         }
+        shippingAdapter = ParentAdapter(shipping_items)
+        shipping_rv.layoutManager = LinearLayoutManager(this)
+        shipping_rv.adapter = shippingAdapter
 
     }
 
@@ -117,9 +120,7 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
         question_rv.layoutManager = LinearLayoutManager(this)
         question_rv.adapter = parentAdapter
 
-//        shippingAdapter = ParentAdapter(shipping_items)
-//        shipping_rv.layoutManager = LinearLayoutManager(this)
-//        shipping_rv.adapter = shippingAdapter
+
 //        shipping_rv.setVerticalScrollBarEnabled(false)
     }
 

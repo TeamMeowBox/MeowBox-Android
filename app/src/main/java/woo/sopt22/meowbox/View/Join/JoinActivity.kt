@@ -107,6 +107,7 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
                     SharedPreference.instance!!.setPrefData("phone_number",response!!.body()!!.result!!.phone_number)
                     SharedPreference.instance!!.setPrefData("cat_idx",response!!.body()!!.result!!.cat_idx)
                     SharedPreference.instance!!.setPrefData("flag",response!!.body()!!.result!!.flag)
+                    SharedPreference.instance!!.setPrefData("image",response!!.body()!!.result!!.image_profile!!)
                     val intent = Intent(this@JoinActivity, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

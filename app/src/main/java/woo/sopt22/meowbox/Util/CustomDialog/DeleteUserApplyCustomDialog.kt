@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.content_my_page.*
 import kotlinx.android.synthetic.main.disjoin_apply_dialog.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -63,11 +65,12 @@ class DeleteUserApplyCustomDialog(context : Context) : Dialog(context), View.OnC
                     SharedPreference.instance!!.removeData("flag")
                     SharedPreference.instance!!.removeData("phone_number")
                     SharedPreference.instance!!.removeData("cat_idx")
+                    SharedPreference.instance!!.removeData("image")
                     cancel()
                     val intent = Intent(context, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    context.startActivity(Intent(context, MainActivity::class.java))
+                    context.startActivity(intent)
                 }
             }
         })

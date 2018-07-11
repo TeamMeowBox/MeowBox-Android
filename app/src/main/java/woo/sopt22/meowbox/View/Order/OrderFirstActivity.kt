@@ -167,7 +167,7 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                 item.isChecked = false
             }
             R.id.homeBtn -> {
-                startActivity(Intent(OrderThirdActivity.thirdContext, MainActivity::class.java))
+                startActivity(Intent(OrderFirstActivity.mContext, MainActivity::class.java))
             }
             R.id.stroyBtn -> {
                 startActivity(Intent(this, MeowBoxStoryActivity::class.java))

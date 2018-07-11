@@ -111,6 +111,8 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     companion object {
         lateinit var stateProgressBar : StateProgressBar
     }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page)
@@ -118,6 +120,9 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         networkService = ApplicationController.instance.networkService
         SharedPreference.instance!!.load(this)
+
+        Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")).into(mypage_profile_img)
+
 
 
         setSupportActionBar(toolbar)
@@ -130,6 +135,14 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         var headerView : View = mypage_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+        var userImage : ImageView = headerView.findViewById(R.id.imageView)
+        userImage.setImageResource(R.drawable.side_bar_profile_img)
+
+        if(SharedPreference.instance!!.getPrefStringData("image") == null){
+            userImage.setImageResource(R.drawable.side_bar_profile_img)
+        } else{
+            Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")!!).into(userImage)
+        }
 
         if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
             userName.text = "OO님!"
@@ -237,6 +250,8 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     override fun onResume() {
         super.onResume()
 
+        SharedPreference.instance!!.load(this)
+        Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")).into(mypage_profile_img)
 
 
     }

@@ -207,8 +207,11 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
                     mysettingcatname = response!!.body()!!.result.cat_name
                     mySettingCatName.setText(mysettingcatname)
 
+                    //SharedPreference.instance!!.removeData("name")
+
 
                     Glide.with(profileImage).load(response!!.body()!!.result.image_profile).into(profileImage)
+                    Log.v("image 22",response!!.body()!!.result.image_profile)
 
                     buttonClicked(response!!.body()!!.result.size)
 
@@ -229,6 +232,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
 
                     mysettingmysuggest = response!!.body()!!.result.caution
                     mySettingMySuggest.setText(mysettingmysuggest)
+                    //SharedPreference.instance!!.setPrefData("cat_idx",response!!.body()!!.result!!.cat_idx.toString())
 
 
 
@@ -271,6 +275,9 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
                 customButton3!!.setImageResource(R.drawable.my_large_check_box_pink)
                 catSize = "3"
             }
+            else->{
+                catSize="0"
+            }
         }
 
 
@@ -293,6 +300,10 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         mysettingphone = mySettingPhone.text.toString()
         mysettingcatname = mySettingCatName.text.toString()
         mysettingmysuggest = mySettingMySuggest.text.toString()
+
+        SharedPreference.instance!!.setPrefData("name",mysettingname)
+        //Log.v("image 33",image!!.toString())
+        //Log.v("image 44",data!!.toString())
 
         val userName = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingname)
         val userPhone = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingphone)
@@ -331,6 +342,8 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
                 try{
                     this.data = data!!.data
                     Log.v("이미지",this.data.toString())
+                    SharedPreference.instance!!.setPrefData("image",this.data.toString())
+
 
                     val options = BitmapFactory.Options()
 

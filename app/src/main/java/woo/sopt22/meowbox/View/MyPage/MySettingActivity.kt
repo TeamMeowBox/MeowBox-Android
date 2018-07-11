@@ -56,9 +56,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
             }
             mysetting_save->{
                 saveSettingAccount()
-                Log.d("erfind",mysettingname)
-                val intent = Intent(applicationContext, MyPageActivity::class.java)
-                startActivity(intent)
+                finish()
 
 
             }
@@ -316,6 +314,8 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
                     //Log.v("11",response!!.body()!!.result!!.user_idx)
                     token = response!!.body()!!.result!!.token!!
                     Log.d("404", token)
+                    SharedPreference.instance!!.setPrefData("name", mysettingname)
+
                 } else{
                     Log.v("81",response!!.body()!!.message)
                 }

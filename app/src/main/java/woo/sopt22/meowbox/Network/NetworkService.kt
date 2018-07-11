@@ -18,6 +18,7 @@ import woo.sopt22.meowbox.Model.QnA.QnAResponse
 import woo.sopt22.meowbox.Model.RegisterCat.CatIndex
 import woo.sopt22.meowbox.Model.SignUp.SignUpUser
 import woo.sopt22.meowbox.Model.RegisterCat.CatInformation
+import woo.sopt22.meowbox.Model.Review.ReviewResponse
 import woo.sopt22.meowbox.Model.Suggest.MeowBoxSuggest
 
 interface NetworkService {
@@ -121,5 +122,8 @@ interface NetworkService {
             @Header("authorization") authorization : String
     ) : Call<InstaCrawlingResponse>
 
+    // 17. 후기
+    @GET("home/review")
+    fun getReview() : Call<ReviewResponse>
 
 }

@@ -41,6 +41,7 @@ import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Login.LoginActivity
+import woo.sopt22.meowbox.View.Main2Activity
 import woo.sopt22.meowbox.View.MeowBoxDetail.MeowBoxDetailActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity

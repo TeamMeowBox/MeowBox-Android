@@ -179,6 +179,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     SharedPreference.instance!!.setPrefData("flag",response!!.body()!!.result!!.flag)
                     SharedPreference.instance!!.setPrefData("phone_number",response!!.body()!!.result!!.phone_number)
                     SharedPreference.instance!!.setPrefData("cat_idx",response!!.body()!!.result!!.cat_idx)
+                    SharedPreference.instance!!.setPrefData("image_profile", response!!.body()!!.result!!.image_profile!!)
                     Log.v("123",token)
                     Log.v("123",response.body()!!.result!!.cat_idx)
                     startActivity(Intent(applicationContext, MainActivity::class.java))

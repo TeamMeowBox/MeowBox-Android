@@ -4,10 +4,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
-import woo.sopt22.meowbox.Model.Address.BeforeAddressResponse
 import woo.sopt22.meowbox.Model.Base.BaseModel
-import woo.sopt22.meowbox.Model.Delete.DeleteTicket
-import woo.sopt22.meowbox.Model.Home.CatCountResponse
 import woo.sopt22.meowbox.Model.Home.InstaCrawlingResponse
 import woo.sopt22.meowbox.Model.Login.LoginResponse
 import woo.sopt22.meowbox.Model.Login.LoginUser
@@ -47,13 +44,13 @@ interface NetworkService {
     ) : Call<CatIndex>
 
     // 4. 회원탈퇴 -0
-    @HTTP(method = "DELETE", path = "user/account", hasBody = false)
+    @HTTP(method = "DELETE", path = "user/account/{user_idx}", hasBody = false)
     fun deleteUser(
-            @Header("authorization") authorization : String
+            @Header("token") token : String
     ):   Call<BaseModel>
 
     // 5. 주문 내역 -0
-    @GET("order/order_list")
+    @GET("order/order_list/")
     fun getOrderHistory(
             @Header("authorization") authorization : String
     ) : Call<OrderHistory>
@@ -66,7 +63,7 @@ interface NetworkService {
     ) : Call<BaseModel>
 
     //7. 마이페이지-1
-    @GET("mypage/mypageinfo")
+    @GET("mypage/mypageinfo/")
     fun getMyPageYes(
             @Header("authorization") authorization: String
     ) : Call<MyPageYes>
@@ -92,11 +89,10 @@ interface NetworkService {
 
 
     // 12. 정기권 취소
-    @HTTP(method = "DELETE", path = "order/order_list?", hasBody = false)
+    @HTTP(method = "DELETE", path = "order/order_list{order_idx}", hasBody = false)
     fun deleteSeasonTicket(
-            @Header("authorization") authorization : String,
-            @Query("order_idx") order_idx : String
-    ) : Call<DeleteTicket>
+
+    ) : Call<BaseModel>
 
     //13. 계정설정화면
     @GET("mypage/account_setting/account")
@@ -122,7 +118,7 @@ interface NetworkService {
     // 15. 인스타 크롤링
     @GET("home/monthlyBox_detail/crawling")
     fun getInstaCrawling(
-            //@Header("authorization") authorization : String
+            @Header("authorization") authorization : String
     ) : Call<InstaCrawlingResponse>
 
     // 16. 고양이 카운트
@@ -137,6 +133,9 @@ interface NetworkService {
             @Header("authorization") authorization : String
     ) : Call<BeforeAddressResponse>
 
+    // 18. 후기
+    @GET("home/review")
+    fun getReview() : Call<ReviewResponse>
 
 
 }

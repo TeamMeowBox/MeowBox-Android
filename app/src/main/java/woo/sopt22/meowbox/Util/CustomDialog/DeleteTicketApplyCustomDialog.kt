@@ -58,7 +58,9 @@ class DeleteTicketApplyCustomDialog(context: Context) : Dialog(context), View.On
             override fun onResponse(call: Call<DeleteTicket>?, response: Response<DeleteTicket>?) {
                 if(response!!.isSuccessful){
                     Log.v("080",response!!.message())
+
                     SharedPreference.instance!!.setPrefData("flag",response!!.body()!!.result!!.flag)
+                    SharedPreference.instance!!.removeData("order_idx")
                     cancel()
                     val intent = Intent(context, MyPageActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)

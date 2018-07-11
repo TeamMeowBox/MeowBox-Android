@@ -102,7 +102,7 @@
                 android:src="@drawable/order_ticket_pink" />
 
             <RelativeLayout
-                android:id="@+id/header_ticket_name"
+                android:id="@+id/history_ticket_layout"
                 android:layout_width="42dp"
                 android:layout_height="19dp"
                 android:layout_marginLeft="63dp"
@@ -125,7 +125,7 @@
                 android:id="@+id/history_title_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/header_ticket_name"
+                android:layout_below="@+id/history_ticket_layout"
                 android:layout_marginLeft="63dp">
 
                 <TextView

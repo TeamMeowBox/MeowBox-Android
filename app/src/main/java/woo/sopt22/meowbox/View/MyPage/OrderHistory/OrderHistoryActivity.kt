@@ -114,7 +114,7 @@ class OrderHistoryActivity : AppCompatActivity(), View.OnClickListener {
                         history_nested.visibility = View.GONE
 
                     }
-                      /* if (response!!.body()!!.result!!.ticketed.size == 0) {
+                     /*  if (response!!.body()!!.result!!.ticketed.size == 0) {
                             Log.v("899","여ㅑ기인가?")
                             hidden_layout1.visibility = View.VISIBLE
                             hidden_layout2.visibility = View.GONE
@@ -128,17 +128,42 @@ class OrderHistoryActivity : AppCompatActivity(), View.OnClickListener {
                             history_payment_date.text = response!!.body()!!.result!!.ticket.term
                             history_payment_name.text = response!!.body()!!.result!!.ticket.product
 
-                            //SharedPreference.instance!!.setPrefData("order_idx",response!!.body()!!.result!!.ticket.idx)
+                            SharedPreference.instance!!.setPrefData("order_idx",response!!.body()!!.result!!.ticket.idx)
+                            Log.v("990",response!!.body()!!.result!!.ticket.idx)
                             orderHistoryItemAdapter = OrderHistoryItemAdapter(ticketed_items, this@OrderHistoryActivity)
                             orderHistoryItemAdapter.setOnItemClickListener(this@OrderHistoryActivity)
                             order_history_rv.layoutManager = LinearLayoutManager(this@OrderHistoryActivity)
                             order_history_rv.adapter = orderHistoryItemAdapter
                             //Log.v("299", response!!.body()!!.result!!.ticket.idx)
                         }
-                    }
+              /*      if(response!!.body()!!.result!!.ticket.idx == null){
+                        if(response!!.body()!!.result!!.ticketed.size == 0){
+                            Log.v("001", "001")
+                            hidden_layout1.visibility = View.VISIBLE
+                            history_nested.visibility = View.GONE
+                        } else{
+                            Log.v("002", "002")
+                            hidden_layout1.visibility = View.GONE
 
+                            hidden_layout2.visibility = View.VISIBLE
+                            history_nested.visibility = View.VISIBLE
 
+                            history_top_item_cancel_btn.visibility = View.GONE
+                            history_ticket_image.visibility = View.GONE
+                            history_title_layout.visibility = View.GONE
+                            history_ticket_layout.visibility = View.GONE
+
+                        }
+                    } else {
+                        Log.v("003", "003")
+                        hidden_layout1.visibility = View.GONE
+                        hidden_layout2.visibility = View.GONE
+                        history_nested.visibility = View.VISIBLE
+                    }*/
                 }
+
+
+            }
 
 
         })

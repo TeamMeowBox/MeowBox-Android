@@ -143,7 +143,8 @@
                                 android:id="@+id/insta_frame1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/instagram_frame"/>
+                                android:src="@drawable/instagram_frame"
+                                android:layout_marginRight="10dp"/>
 
                             <woo.sopt22.meowbox.View.MyPage.CircleImageView
                                 android:id="@+id/insta_profile_image1"
@@ -271,7 +272,8 @@
                                 android:id="@+id/insta_frame4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/instagram_frame"/>
+                                android:src="@drawable/instagram_frame"
+                                android:layout_marginRight="10dp"/>
 
                             <woo.sopt22.meowbox.View.MyPage.CircleImageView
                                 android:id="@+id/insta_profile_image4"

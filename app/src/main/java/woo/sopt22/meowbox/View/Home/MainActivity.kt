@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onClick(v: View?) {
         when(v!!){
             home_stroy_btn->{
+                Log.v("073","073")
                 startActivity(Intent(this, MeowBoxStoryActivity::class.java))
             }
             else->{
@@ -95,12 +96,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val PermissionRequestCode = 123
     private lateinit var managePermissions : ManagePermissions
     lateinit var main_side_bar_btn : ImageView
+    lateinit var main_side_back_btn : ImageView
     lateinit var networkService: NetworkService
 
     fun init(){
         mViewPager = viewpager as ViewPager
         mSlidingTextView = home_cat_count as TextView
         home_stroy_btn = home_to_story_btn as ImageView
+        //main_side_back_btn = side_bar_back_btn as ImageView
 
         mSlidingInstaProfile1 = insta_profile_image1 as CircleImageView
         mSlidingInstaUserName1 = insta_user_name1 as TextView
@@ -179,6 +182,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var headerView : View = main_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
 
+
         if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
             userName.text = "OO님!"
         } else {
@@ -196,12 +200,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
         toolbar.bringToFront()
 
+        //main_side_back_btn = side_bar_back_btn as ImageView
+        //side_bar_back_btn.setOnClickListener(this@MainActivity)
+
         var headerView : View = main_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+        var userImage : ImageView = headerView.findViewById(R.id.imageView)
+        userImage.setImageResource(R.drawable.side_bar_profile_img)
 
         networkService = ApplicationController.instance!!.networkService
 
         SharedPreference.instance!!.load(this)
+        Log.v("079",SharedPreference.instance!!.getPrefStringData("image"))
+
+/*        if(SharedPreference.instance!!.getPrefStringData("image") == null){
+            userImage.setImageResource(R.drawable.side_bar_profile_img)
+        } else{
+            Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")!!).into(userImage)
+        }*/
+        Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")!!).into(userImage)
 
         init()
         re.setOnTouchListener(object : View.OnTouchListener{
@@ -230,6 +247,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         home_stroy_btn.setOnClickListener(this)
+        //main_side_back_btn.setOnClickListener(this)
         var result = SharedPreference.instance!!.getPrefStringData("token")
         println("11"+SharedPreference.instance!!.getPrefStringData("token"))
         //println("cat_idx??"+SharedPreference.instance!!.getPrefStringData("cat_idx"))

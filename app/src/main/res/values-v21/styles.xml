@@ -14,5 +14,7 @@
     <style name="MenuItems" parent="AppTheme">
         <item name="android:textSize">18sp</item>
         <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
     </style>
 </resources>

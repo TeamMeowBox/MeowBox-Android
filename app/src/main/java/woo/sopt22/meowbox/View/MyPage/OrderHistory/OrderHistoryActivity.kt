@@ -114,12 +114,12 @@ class OrderHistoryActivity : AppCompatActivity(), View.OnClickListener {
                         history_nested.visibility = View.GONE
 
                     }
-                       if (response!!.body()!!.result!!.ticketed.size == 0) {
+                      /* if (response!!.body()!!.result!!.ticketed.size == 0) {
                             Log.v("899","여ㅑ기인가?")
                             hidden_layout1.visibility = View.VISIBLE
                             hidden_layout2.visibility = View.GONE
 
-                        } else {
+                        }*/ else {
                             hidden_layout1.visibility = View.GONE
                             history_nested.visibility = View.VISIBLE
                             Log.v("999", response!!.body()!!.result!!.ticketed.toString())

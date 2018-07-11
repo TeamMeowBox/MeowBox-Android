@@ -112,6 +112,9 @@ class OrderThirdFragment : Fragment(), View.OnClickListener{
         val view = inflater.inflate(R.layout.order_third_fragment, container, false)
         activity!!.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
 
+        box_type = "1"
+        order_third_pay_method.id =  R.id.order_third_1
+
         //order_third_1_layout.isSelected = true
 
         third_radio_id = view.order_third_pay_method.checkedRadioButtonId

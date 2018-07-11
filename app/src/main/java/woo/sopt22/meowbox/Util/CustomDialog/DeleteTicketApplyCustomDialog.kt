@@ -47,25 +47,28 @@ class DeleteTicketApplyCustomDialog(context: Context) : Dialog(context), View.On
 
     }
     fun deleteTicekt(){
-        Log.v("078","티켓취소")
+        Log.v("권서연","티켓취소")
         val deleteResponse = networkService.deleteSeasonTicket(SharedPreference.instance!!.getPrefStringData("token")!!
                 ,SharedPreference.instance!!.getPrefStringData("order_idx")!!)
         deleteResponse.enqueue(object : Callback<DeleteTicket>{
             override fun onFailure(call: Call<DeleteTicket>?, t: Throwable?) {
-                Log.v("079",t!!.message)
+                Log.v("권서연",t!!.message)
             }
 
             override fun onResponse(call: Call<DeleteTicket>?, response: Response<DeleteTicket>?) {
                 if(response!!.isSuccessful){
-                    Log.v("080",response!!.message())
+                    Log.v("권서연",response!!.message())
 
                     SharedPreference.instance!!.setPrefData("flag",response!!.body()!!.result!!.flag)
+                    Log.v("권서연",response!!.body()!!.result!!.flag)
                     SharedPreference.instance!!.removeData("order_idx")
                     cancel()
                     val intent = Intent(context, MyPageActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     context.startActivity(intent)
+                } else{
+                    Log.v("권서연","권서연")
                 }
             }
 

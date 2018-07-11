@@ -1,4 +1,4 @@
-package woo.sopt22.meowbox.View.Order.OrderFragmentWithOutCatInfo
+package woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -8,18 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
-import kotlinx.android.synthetic.main.order_first_fragment.*
+import kotlinx.android.synthetic.main.order_four_fragment.*
 import kotlinx.android.synthetic.main.order_third_fragment.*
 import kotlinx.android.synthetic.main.order_third_fragment.view.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import woo.sopt22.meowbox.ApplicationController
+import woo.sopt22.meowbox.Model.Order.OrderPeriod.OrderPeriodResponse
+import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
-import woo.sopt22.meowbox.View.Order.OrderFirstActivity
-import woo.sopt22.meowbox.View.Order.OrderFragment.OrderFourFragment
-import woo.sopt22.meowbox.View.Order.OrderFragment.OrderSecondFragment
 import woo.sopt22.meowbox.View.Order.OrderThirdActivity
 
-class WithOutCatInfoThird : Fragment(), View.OnClickListener{
+class WithCatInfoThird : Fragment(), View.OnClickListener{
     override fun onClick(v: View?) {
         when(v!!){
             order_period_previous->{
@@ -28,16 +31,12 @@ class WithOutCatInfoThird : Fragment(), View.OnClickListener{
                 activity!!.finish()
             }
             order_period_next->{
-                val without_four_fragment = WithOutCatInfoFour()
-                val bundle = Bundle(3) // 파라미터는 전달할 데이터 개수
-                bundle.putString("cat_name", SharedPreference.instance!!.getPrefStringData("cat_name")) // key , value
-                bundle.putString("box_type",box_type)
-                bundle.putString("price",price)
-                without_four_fragment.setArguments(bundle)
-                SharedPreference.instance!!.setPrefData("price",price)
-                SharedPreference.instance!!.setPrefData("box_type",box_type)
-                ToastMaker.makeLongToast(context, third_radio_button.text.toString())
-                (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithOutCatInfoFour())
+                if(box_type.equals("")){
+                    order_period_next.isClickable = false
+                } else{
+                    getTicket()
+                }
+
             }
             order_third_1_layout->{
                 if(!order_third_1_layout.isSelected){
@@ -118,9 +117,18 @@ class WithOutCatInfoThird : Fragment(), View.OnClickListener{
     var third_radio_id : Int=0
     lateinit var price : String
     lateinit var third_radio_button : RadioButton
+    lateinit var networkService: NetworkService
     //lateinit var third_radig_group : RadioGroup
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.order_third_fragment, container, false)
+
+        networkService = ApplicationController.instance!!.networkService
+        SharedPreference.instance!!.load(context!!)
+
+        box_type = "1"
+        price = "39,900원"
+        Log.v("box_type 이승우",box_type)
+        //order_third_pay_method.setId(R.id.order_third_1)
 
 
         third_radio_id = view.order_third_pay_method.checkedRadioButtonId
@@ -138,5 +146,40 @@ class WithOutCatInfoThird : Fragment(), View.OnClickListener{
         view.order_third_2.setOnClickListener(this)
         view.order_third_1_layout.isSelected = true
         return view
+    }
+    fun getTicket(){
+        Log.v("이승우","1여기는 들어오니????")
+        val ticketPeriodResponse = networkService.getOrderPeriod(SharedPreference.instance!!.getPrefStringData("token")!!,box_type.toInt())
+        Log.v("이승우 box_type",box_type)
+        Log.v("이승우","3여기는 들어오니????")
+        ticketPeriodResponse.enqueue(object : Callback<OrderPeriodResponse>{
+            override fun onFailure(call: Call<OrderPeriodResponse>?, t: Throwable?) {
+                Log.v("이승우",t!!.message)
+            }
+
+            override fun onResponse(call: Call<OrderPeriodResponse>?, response: Response<OrderPeriodResponse>?) {
+                if(response!!.isSuccessful){
+                    if(response!!.body()!!.result.equals("-1")){
+                        ToastMaker.makeLongToast(context!!, "이미 정기권을 구매하셨습니다.")
+                    } else{
+                        val without_four_fragment = WithCatInfoFour()
+                        val bundle = Bundle(3) // 파라미터는 전달할 데이터 개수
+                        bundle.putString("cat_name", SharedPreference.instance!!.getPrefStringData("cat_name")) // key , value
+                        bundle.putString("box_type",box_type)
+                        bundle.putString("price",price)
+                        without_four_fragment.setArguments(bundle)
+                        SharedPreference.instance!!.setPrefData("price",price)
+                        SharedPreference.instance!!.setPrefData("box_type",box_type)
+                        ToastMaker.makeLongToast(context, third_radio_button.text.toString())
+                        (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoFour())
+                    }
+
+
+                } else{
+                    Log.v("이승우","4여기는 들어오니????")
+                }
+            }
+
+        })
     }
 }

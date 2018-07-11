@@ -274,7 +274,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
                 catSize = "3"
             }
             else->{
-                catSize="0"
+                catSize=null
             }
         }
 

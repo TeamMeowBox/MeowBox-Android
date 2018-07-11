@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v4.view.GravityCompat
+import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -33,6 +34,7 @@ import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.Login.LoginActivity
+import woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
@@ -65,8 +67,12 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         }
     }
 
-    lateinit var detailItem1 : DetailAdapter
+    lateinit var mViewPager1 : ViewPager
+    lateinit var mViewPager2 : ViewPager
+    lateinit var mIndicator1: CircleAnimIndicator
+    lateinit var mIndicator2: CircleAnimIndicator
     lateinit var items1 : ArrayList<DetailModel>
+    lateinit var items2 : ArrayList<DetailModel>
 
     lateinit var detailOrderBtn : RelativeLayout
     lateinit var detailFirstImg : ImageView
@@ -81,6 +87,12 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         toolbar.bringToFront()
 
         SharedPreference.instance!!.load(this)
+
+        mViewPager1 = detail_cardview_pager1 as ViewPager
+        mViewPager2 = detail_cardview_pager2 as ViewPager
+        mIndicator1 = detail_cardview1_indicator as CircleAnimIndicator
+        mIndicator2 = detail_cardview2_indicator as CircleAnimIndicator
+
 
 
 
@@ -151,22 +163,55 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         Glide.with(this).load("http://t1.daumcdn.net/liveboard/petxlab/a5d83a4064744faea244e8ac7667fb90.gif").into(detailFirstImg);
 
 
-       var detailViewPager1 = detail_cardview_pager1 as CardViewPager
-       var detailViewPager2 = detail_cardview_pager2 as CardViewPager
+       var madapter1 = DetailViewAdapter(layoutInflater, items1)
+        var madapter2 = DetailViewAdapter(layoutInflater, items1)
 
 
-        detailItem1 = DetailAdapter()
+        mViewPager1.adapter = madapter1
+        mViewPager2.adapter = madapter2
+        mViewPager1.addOnPageChangeListener(mOnPageChangeListener1)
+        mViewPager2.addOnPageChangeListener(mOnPageChangeListener2)
+
+        mIndicator1.setItemMargin(20)
+        mIndicator1.setAnimDuration(300)
+        mIndicator1.createDotPanel(items1.size,R.drawable.indicator_non, R.drawable.indicator_on )
+        mIndicator2.setItemMargin(20)
+        mIndicator2.setAnimDuration(300)
+        mIndicator2.createDotPanel(items1.size,R.drawable.indicator_non, R.drawable.indicator_on )
         
-        for (i in 0..items1.size-1){
-            detailItem1.addCardItem(items1[i])
+        mViewPager1.setClipToPadding(false)
+        mViewPager1.setPadding(80, 0, 80, 0)
+        mViewPager1.pageMargin = 40
+
+        mViewPager2.setClipToPadding(false)
+        mViewPager2.setPadding(80, 0, 80, 0)
+        mViewPager2.pageMargin = 40
+
+    }
+
+    var mOnPageChangeListener1 = object : ViewPager.OnPageChangeListener{
+        override fun onPageScrollStateChanged(state: Int) {
         }
-        println("333"+detailItem1.getItem(0).text)
 
-        detailItem1.setElevation(-0f)
-        
-        detailViewPager1.setAdapter(detailItem1)
-        detailViewPager2.setAdapter(detailItem1)
-        detailViewPager1.isShowShadowTransformer(false)
+        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+        }
+
+        override fun onPageSelected(position: Int) {
+            mIndicator1.selectDot(position)
+        }
+
+    }
+
+    var mOnPageChangeListener2 = object : ViewPager.OnPageChangeListener{
+        override fun onPageScrollStateChanged(state: Int) {
+        }
+
+        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+        }
+
+        override fun onPageSelected(position: Int) {
+            mIndicator2.selectDot(position)
+        }
 
     }
 

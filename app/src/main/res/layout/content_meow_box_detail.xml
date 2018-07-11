@@ -123,18 +123,27 @@
 
             </LinearLayout>
 
-            <com.zarinpal.libs.cardviwepager.CardViewPager
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="34dp">
+
+            <android.support.v4.view.ViewPager
                 android:id="@+id/detail_cardview_pager1"
 
                 android:layout_width="match_parent"
                 android:layout_height="430dp"
                 android:layout_gravity="center"
-                app:indicatorSize="3dp"
-                app:selectIndicatorColor="#E88787"
-                app:unSelectIndicatorColor="#E4E4E4"
-                app:visibleIndicator="true"
-                android:elevation="0dp"
                 />
+                <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/detail_cardview1_indicator"
+                    />
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -227,16 +236,28 @@
 
             </LinearLayout>
 
-            <com.zarinpal.libs.cardviwepager.CardViewPager
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="34dp">
+
+
+
+            <android.support.v4.view.ViewPager
                 android:id="@+id/detail_cardview_pager2"
                 android:layout_width="match_parent"
                 android:layout_height="430dp"
-                app:indicatorSize="3dp"
-                app:selectIndicatorColor="#E88787"
-                app:unSelectIndicatorColor="#E4E4E4"
-                android:layout_gravity="center"
-                app:visibleIndicator="true"
                 />
+
+                <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/detail_cardview2_indicator"
+                    />
+
+            </RelativeLayout>
             
             <LinearLayout
                 android:layout_width="match_parent"

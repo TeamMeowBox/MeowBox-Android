@@ -286,7 +286,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         intent.type = android.provider.MediaStore.Images.Media.CONTENT_TYPE
         intent.data = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         startActivityForResult(intent, REQ_CODE_SELECT_IMAGE)
-        Glide.with(this).load(intent).into(mysetting_profile)
+        //Glide.with(this).load(intent).into(mysetting_profile)
     }
 
     fun saveSettingAccount(){

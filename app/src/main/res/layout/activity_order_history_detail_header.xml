@@ -25,7 +25,7 @@
             android:textColor="#4C4E51"/>
 
         <ImageView
-            android:id="@+id/order_history_detail_x_btn"
+            android:id="@+id/header_order_history_detail_x_btn"
             android:layout_width="14dp"
             android:layout_height="14dp"
             android:src="@drawable/x_btn"
@@ -84,32 +84,13 @@
 
     </RelativeLayout>
 
-    <ImageView
-        android:layout_marginTop="3dp"
-        android:id="@+id/header_detail_image1"
-        android:layout_width="match_parent"
-        android:layout_height="313dp"
-        android:layout_marginLeft="22dp"
-        android:layout_marginRight="22dp"
-        />
 
-    <ImageView
-        android:layout_marginTop="2dp"
-        android:id="@+id/header_detail_image2"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/history_header_rv"
         android:layout_width="match_parent"
-        android:layout_height="313dp"
+        android:layout_height="match_parent"
         android:layout_marginLeft="22dp"
-        android:layout_marginRight="22dp"
-        />
-
-    <ImageView
-        android:layout_marginTop="2dp"
-        android:id="@+id/header_detail_image3"
-        android:layout_width="match_parent"
-        android:layout_height="313dp"
-        android:layout_marginLeft="22dp"
-        android:layout_marginRight="22dp"
-        />
+        android:layout_marginRight="22dp">/</android.support.v7.widget.RecyclerView>
 
 
 

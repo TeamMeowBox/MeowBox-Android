@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".View.Home.MainActivity"
+            android:name=".View.Splash.SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -67,7 +67,8 @@
             android:label="@string/title_activity_order_third"
             android:theme="@style/AppTheme" />
         <activity android:name=".View.MyPage.OrderHistory.OrderHistoryDetail.OrderHistoryDetailHeaderActivity" />
-        <activity android:name=".View.Main2Activity"></activity>
+        <activity android:name=".View.Main2Activity" />
+        <activity android:name=".View.Home.MainActivity"></activity>
     </application>
 
 </manifest>

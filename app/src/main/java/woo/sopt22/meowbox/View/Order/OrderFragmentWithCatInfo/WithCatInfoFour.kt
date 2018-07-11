@@ -1,4 +1,4 @@
-package woo.sopt22.meowbox.View.Order.OrderFragmentWithOutCatInfo
+package woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -10,9 +10,6 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import kotlinx.android.synthetic.main.order_four_fragment.*
 import kotlinx.android.synthetic.main.order_four_fragment.view.*
-import kotlinx.android.synthetic.main.order_second_fragment.*
-import kotlinx.android.synthetic.main.order_third_fragment.*
-import kotlinx.android.synthetic.main.order_third_fragment.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,18 +21,13 @@ import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
-import woo.sopt22.meowbox.View.Order.OrderFirstActivity
-import woo.sopt22.meowbox.View.Order.OrderFragment.OrderFiveFragment
-import woo.sopt22.meowbox.View.Order.OrderFragment.OrderFourFragment
-import woo.sopt22.meowbox.View.Order.OrderFragment.OrderSecondFragment
-import woo.sopt22.meowbox.View.Order.OrderFragment.OrderThirdFragment
 import woo.sopt22.meowbox.View.Order.OrderThirdActivity
 
-class WithOutCatInfoFour : Fragment(), View.OnClickListener {
+class WithCatInfoFour : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!){
             order_pay_previous->{
-                (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithOutCatInfoThird())
+                (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoThird())
             }
             order_pay_next->{
                 ToastMaker.makeLongToast(context, radio_button.text.trim().toString())
@@ -111,7 +103,7 @@ class WithOutCatInfoFour : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<BaseModel>?, response: Response<BaseModel>?) {
                 if(response!!.isSuccessful){
                     Log.v("412",response!!.message())
-                    (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithOutCatInfoFive())
+                    (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoFive())
                 }
             }
 

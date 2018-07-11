@@ -20,6 +20,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_meow_box_story.*
 import kotlinx.android.synthetic.main.app_bar_meow_box_story.*
+import kotlinx.android.synthetic.main.content_meow_box_story.*
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
@@ -31,7 +32,46 @@ import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 import woo.sopt22.meowbox.View.Order.LoginCustomDialog
 import woo.sopt22.meowbox.View.Order.OrderThirdActivity
 
-class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+    override fun onClick(v: View?) {
+        when(v!!){
+            story_to_order_btn->{
+                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                    val dialog = LoginCustomDialog(this)
+                    dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    dialog.show()
+                } else{
+                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!!.toInt() == -1){
+                        val dialog = CatCustomDialog(this)
+                        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        dialog.show()
+                    } else {
+                        val intent = Intent(this, OrderThirdActivity::class.java)
+                        intent.putExtra("cat_idx", SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
+                        startActivity(intent)
+                    }
+                }
+            }
+            story_to_order_btn2->{
+                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                    val dialog = LoginCustomDialog(this)
+                    dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    dialog.show()
+                } else{
+                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!!.toInt() == -1){
+                        val dialog = CatCustomDialog(this)
+                        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        dialog.show()
+                    } else {
+                        val intent = Intent(this, OrderThirdActivity::class.java)
+                        intent.putExtra("cat_idx", SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
+                        startActivity(intent)
+                    }
+                }
+            }
+
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +81,8 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             window.statusBarColor = Color.BLACK
 
+        story_to_order_btn.setOnClickListener(this)
+        story_to_order_btn2.setOnClickListener(this)
         SharedPreference.instance!!.load(this)
         var headerView : View = story_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)

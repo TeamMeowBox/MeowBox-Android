@@ -29,7 +29,7 @@ import woo.sopt22.meowbox.View.Login.LoginActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
-import woo.sopt22.meowbox.View.Order.OrderFragmentWithOutCatInfo.WithOutCatInfoThird
+import woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo.WithCatInfoThird
 
 class OrderThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -67,7 +67,7 @@ class OrderThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             menu_item.setTitle("로그아웃")
         }
 
-        replaceFragment(WithOutCatInfoThird())
+        replaceFragment(WithCatInfoThird())
         //(OrderThirdActivity. as OrderFirstActivity).replaceFragment(third_fragment)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)

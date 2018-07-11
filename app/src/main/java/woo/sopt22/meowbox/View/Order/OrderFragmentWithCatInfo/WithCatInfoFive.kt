@@ -1,4 +1,4 @@
-package woo.sopt22.meowbox.View.Order.OrderFragmentWithOutCatInfo
+package woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.order_five_fragment.view.*
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.View.Home.MainActivity
 
-class WithOutCatInfoFive : Fragment(), View.OnClickListener{
+class WithCatInfoFive : Fragment(), View.OnClickListener{
     override fun onClick(v: View?) {
         when(v!!){
             order_five_home_btn->{

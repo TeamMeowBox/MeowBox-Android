@@ -17,6 +17,7 @@ import woo.sopt22.meowbox.Model.MyPageMain.MyPageYes
 import woo.sopt22.meowbox.Model.Order.OrderData
 import woo.sopt22.meowbox.Model.Order.OrderHistory.OrderHistory
 import woo.sopt22.meowbox.Model.Order.OrderHistoryDetail.OrderHistoryDetail
+import woo.sopt22.meowbox.Model.Order.OrderPeriod.OrderPeriodResponse
 import woo.sopt22.meowbox.Model.QnA.QnAResponse
 import woo.sopt22.meowbox.Model.RegisterCat.CatIndex
 import woo.sopt22.meowbox.Model.SignUp.SignUpUser
@@ -48,13 +49,13 @@ interface NetworkService {
     ) : Call<CatIndex>
 
     // 4. 회원탈퇴 -0
-    @HTTP(method = "DELETE", path = "user/account/{user_idx}", hasBody = false)
+    @HTTP(method = "DELETE", path = "user/account", hasBody = false)
     fun deleteUser(
-            @Header("token") token : String
+            @Header("authorization") authorization : String
     ):   Call<BaseModel>
 
     // 5. 주문 내역 -0
-    @GET("order/order_list/")
+    @GET("order/order_list")
     fun getOrderHistory(
             @Header("authorization") authorization : String
     ) : Call<OrderHistory>
@@ -67,7 +68,7 @@ interface NetworkService {
     ) : Call<BaseModel>
 
     //7. 마이페이지-1
-    @GET("mypage/mypageinfo/")
+    @GET("mypage/mypageinfo")
     fun getMyPageYes(
             @Header("authorization") authorization: String
     ) : Call<MyPageYes>
@@ -88,15 +89,16 @@ interface NetworkService {
     // 11. 주문내역 상세보기
     @POST("order/order_detail")
     fun postOrderDetail(
-            @Header("authorization") authorization : String
+            @Header("authorization") authorization : String,
+            @Body order_idx : Int
     ) : Call<OrderHistoryDetail>
 
 
     // 12. 정기권 취소
-    @HTTP(method = "DELETE", path = "order/order_list?", hasBody = false)
+    @HTTP(method = "DELETE", path = "order/order_list/{order_idx}", hasBody = false)
     fun deleteSeasonTicket(
             @Header("authorization") authorization : String,
-            @Query("order_idx") order_idx : String
+            @Path("order_idx") order_idx : String
     ) : Call<DeleteTicket>
 
     //13. 계정설정화면
@@ -142,5 +144,11 @@ interface NetworkService {
     @GET("home/review")
     fun getReview() : Call<ReviewResponse>
 
+    // 19. 주문 페이지 기간 선택
+    @GET("order/order_page/product/{product}")
+    fun getOrderPeriod(
+            @Header("authorization") authorization : String,
+            @Path("product") product : Int
+    ) : Call<OrderPeriodResponse>
 
 }

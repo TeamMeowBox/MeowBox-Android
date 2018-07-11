@@ -216,11 +216,12 @@
 
                     </LinearLayout>
 
+
                     <LinearLayout
+                        android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_gravity="center_horizontal">
+                        android:orientation="horizontal">
 
                         <RelativeLayout
                             android:layout_weight="1"
@@ -232,7 +233,8 @@
                                 android:id="@+id/insta_frame3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/instagram_frame"/>
+                                android:src="@drawable/instagram_frame"
+                                android:layout_marginRight="10dp"/>
 
                             <woo.sopt22.meowbox.View.MyPage.CircleImageView
                                 android:id="@+id/insta_profile_image3"
@@ -272,8 +274,7 @@
                                 android:id="@+id/insta_frame4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/instagram_frame"
-                                android:layout_marginRight="10dp"/>
+                                android:src="@drawable/instagram_frame"/>
 
                             <woo.sopt22.meowbox.View.MyPage.CircleImageView
                                 android:id="@+id/insta_profile_image4"

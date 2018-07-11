@@ -50,7 +50,7 @@ interface NetworkService {
     // 4. 회원탈퇴 -0
     @HTTP(method = "DELETE", path = "user/account/{user_idx}", hasBody = false)
     fun deleteUser(
-            @Header("token") token : String
+            @Header("authorization") authorization : String
     ):   Call<BaseModel>
 
     // 5. 주문 내역 -0

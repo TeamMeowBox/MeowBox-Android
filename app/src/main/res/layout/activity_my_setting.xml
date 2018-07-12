@@ -66,7 +66,7 @@
                     android:layout_centerInParent="true">
 
                     <woo.sopt22.meowbox.View.MyPage.CircleImageView
-                        android:id="@+id/mysetting_profile"
+                        android:id="@+id/mysetting_profile12"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/side_bar_profile_img"/>

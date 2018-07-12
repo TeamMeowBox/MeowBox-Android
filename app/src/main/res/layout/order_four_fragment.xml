@@ -128,6 +128,7 @@
                                 android:scaleX="1.0"
                                 android:scaleY="1.0"
                                 android:buttonTint="#E68789"
+                                android:checked="true"
                                 android:textSize="14dp"
                                 android:textColor="#707070"/>
 

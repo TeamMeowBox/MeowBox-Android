@@ -18,6 +18,7 @@ import woo.sopt22.meowbox.Model.Order.OrderData
 import woo.sopt22.meowbox.Model.Order.OrderHistory.OrderHistory
 import woo.sopt22.meowbox.Model.Order.OrderHistoryDetail.OrderHistoryDetail
 import woo.sopt22.meowbox.Model.Order.OrderPeriod.OrderPeriodResponse
+import woo.sopt22.meowbox.Model.Order.OrderResponse
 import woo.sopt22.meowbox.Model.OrderObject
 import woo.sopt22.meowbox.Model.QnA.QnAResponse
 import woo.sopt22.meowbox.Model.RegisterCat.CatIndex
@@ -85,7 +86,7 @@ interface NetworkService {
     fun postOrder(
             @Header("authorization") authorization : String,
             @Body orderData: OrderData
-    ) : Call<BaseModel>
+    ) : Call<OrderResponse>
 
     // 11. 주문내역 상세보기
     @POST("order/order_detail")

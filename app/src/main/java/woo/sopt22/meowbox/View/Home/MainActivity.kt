@@ -1,22 +1,15 @@
 package woo.sopt22.meowbox.View.Home
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.content.res.ResourcesCompat
-import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.media.Image
 import android.os.Build
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBarDrawerToggle
@@ -25,15 +18,10 @@ import android.util.Log
 import android.view.*
 import android.widget.*
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_my_page.*
-import kotlinx.android.synthetic.main.activity_order_first.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.cardview_adapter.*
 import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.android.synthetic.main.content_my_page.*
-import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.sliding_layout.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -48,16 +36,14 @@ import woo.sopt22.meowbox.Util.CustomDialog.LoginToMyPageCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Login.LoginActivity
-import woo.sopt22.meowbox.View.Main2Activity
+import woo.sopt22.meowbox.View.MeowBoxBirthDay.MeowBoxtBirthDayStoryActivity
 import woo.sopt22.meowbox.View.MeowBoxDetail.MeowBoxDetailActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.CircleImageView
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 import woo.sopt22.meowbox.View.Order.LoginCustomDialog
-import woo.sopt22.meowbox.View.Order.OrderFirstActivity
 import woo.sopt22.meowbox.View.Order.OrderThirdActivity
-import java.util.jar.Manifest
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -212,7 +198,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var headerView : View = main_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
         var userImage : ImageView = headerView.findViewById(R.id.imageView)
-        userImage.setImageResource(R.drawable.side_bar_profile_img)
+        //userImage.setImageResource(R.drawable.side_bar_profile_img)
 
         networkService = ApplicationController.instance!!.networkService
 
@@ -317,9 +303,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         items = ArrayList();
         items.add(CardData(R.drawable.home_main_one_img, 1))
         items.add(CardData(R.drawable.home_main_two_img,0))
-        items.add(CardData(R.drawable.home_main_three_img,0))
+        items.add(CardData(R.drawable.home_main_three_img,3))
         items.add(CardData(R.drawable.home_main_four_img,0))
-        items.add(CardData(R.drawable.home_main_five_img,1))
+        items.add(CardData(R.drawable.home_main_five_img,2))
 
         /*home_detail_btn.setOnClickListener {
             ToastMaker.makeLongToast(this, "dd")
@@ -327,6 +313,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         mViewPager.setPadding(0,0,200,0)
         var madapter = CardViewAdapter(layoutInflater, items)
+        mViewPager.setCurrentItem(0)
         mViewPager.adapter = madapter
         mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(state: Int) {
@@ -435,7 +422,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 this, main_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
 
         toggle.setDrawerIndicatorEnabled(false)
-        val drawable = ResourcesCompat.getDrawable(resources, R.drawable.side_bar_btn_black, applicationContext!!.getTheme())
+        val drawable = ResourcesCompat.getDrawable(resources, R.drawable.side_bar_btn_white, applicationContext!!.getTheme())
 
         val bitmap = (drawable as BitmapDrawable).bitmap
         val newdrawable = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, 30, 30, true))
@@ -517,6 +504,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     startActivity(Intent(this, MyPageActivity::class.java))
                 }
             }
+            R.id.birthDayBtn->{
+                startActivity(Intent(this,MeowBoxtBirthDayStoryActivity::class.java))
+            }
+
 
         }
         main_drawer_layout.closeDrawer(GravityCompat.START)

@@ -85,7 +85,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -145,15 +145,15 @@
 
 
                 <RelativeLayout
+                    android:layout_marginTop="33dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="34dp">
 
                     <android.support.v4.view.ViewPager
                         android:id="@+id/detail_cardview_pager_one"
-
                         android:layout_width="match_parent"
-                        android:layout_height="430dp"
+                        android:layout_height="330dp"
                         android:layout_gravity="center"
                         />
                     <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
@@ -170,7 +170,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="43dp"
+                    android:layout_marginTop="33dp"
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="22dp"
                     android:src="@drawable/dash_bar_img"/>
@@ -195,7 +195,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -253,6 +253,7 @@
                 </LinearLayout>
 
                 <RelativeLayout
+                    android:layout_marginTop="33dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="34dp">
@@ -261,7 +262,7 @@
                         android:id="@+id/detail_cardview_pager_two"
 
                         android:layout_width="match_parent"
-                        android:layout_height="430dp"
+                        android:layout_height="330dp"
                         android:layout_gravity="center"
                         />
                     <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
@@ -277,7 +278,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="43dp"
+                    android:layout_marginTop="33dp"
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="22dp"
                     android:src="@drawable/dash_bar_img"/>
@@ -302,7 +303,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -360,6 +361,7 @@
                 </LinearLayout>
 
                 <RelativeLayout
+                    android:layout_marginTop="33dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="34dp">
@@ -368,7 +370,7 @@
                         android:id="@+id/detail_cardview_pager_three"
 
                         android:layout_width="match_parent"
-                        android:layout_height="430dp"
+                        android:layout_height="330dp"
                         android:layout_gravity="center"
                         />
                     <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
@@ -384,7 +386,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="33dp"
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="22dp"
                     android:src="@drawable/dash_bar_img"/>
@@ -409,7 +411,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -467,6 +469,7 @@
                 </LinearLayout>
 
                 <RelativeLayout
+                    android:layout_marginTop="33dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="34dp">
@@ -475,7 +478,7 @@
                         android:id="@+id/detail_cardview_pager_four"
 
                         android:layout_width="match_parent"
-                        android:layout_height="430dp"
+                        android:layout_height="330dp"
                         android:layout_gravity="center"
                         />
                     <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
@@ -516,7 +519,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -574,15 +577,17 @@
                 </LinearLayout>
 
                 <RelativeLayout
+                    android:layout_marginTop="33dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="34dp">
+                    android:layout_marginBottom="63dp"
+                    >
 
                     <android.support.v4.view.ViewPager
                         android:id="@+id/detail_cardview_pager_five"
 
                         android:layout_width="match_parent"
-                        android:layout_height="430dp"
+                        android:layout_height="330dp"
                         android:layout_gravity="center"
                         />
                     <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
@@ -595,173 +600,8 @@
 
                 </RelativeLayout>
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="22dp"
-                    android:src="@drawable/dash_bar_img"/>
-
-                <TextView
-                    android:id="@+id/detail_item1_introduction"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="37dp"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="22dp"
-                    android:layout_marginTop="16dp"
-                    android:lineSpacingExtra="5dp"
-                    android:text="더운 여름을 시원한 바다로 만들어 줄\n쿨 원단으로 만들어진 모자입니다.\n귀여운 사진은 덤, 시원한 여름은 필수입니다."
-                    android:textColor="#4C4E51"
-                    android:textSize="16dp"
-
-                    />
 
             </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="34dp">
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/detail_cardview_pager1"
-
-                android:layout_width="match_parent"
-                android:layout_height="430dp"
-                android:layout_gravity="center"
-                />
-                <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/detail_cardview1_indicator"
-                    />
-
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-            <TextView
-                android:id="@+id/detail_item2_title"
-                android:layout_marginTop="33dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="죠스 쿨링 모자"
-                android:textSize="34dp"
-                android:textColor="#4C4E51"
-                android:layout_marginLeft="22dp"
-                />
-            <ImageView
-                android:id="@+id/detail_item2_title_img"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_marginLeft="22dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/round_hashbox_border">
-                    <TextView
-                        android:id="@+id/detail_item2_hash1"
-                        android:padding="8dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="#쿨링모자"
-                        android:textSize="14dp"
-                        android:textColor="#999999"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginLeft="8dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/round_hashbox_border">
-                    <TextView
-                        android:id="@+id/detail_item2_hash2"
-                        android:padding="8dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="#쿨링모자"
-                        android:textSize="14dp"
-                        android:textColor="#999999"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginLeft="8dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/round_hashbox_border">
-                    <TextView
-                        android:id="@+id/detail_item2_hash3"
-                        android:padding="8dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="#쿨링모자"
-                        android:textSize="14dp"
-                        android:textColor="#999999"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/detail_item2_introduction"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="22dp"
-                android:layout_marginRight="22dp"
-                android:layout_marginTop="16dp"
-                android:textColor="#4C4E51"
-                android:layout_marginBottom="37dp"
-                android:textSize="16dp"
-                android:text="더운 여름을 시원한 바다로 만들어 줄\n쿨 원단으로 만들어진 모자입니다.\n귀여운 사진은 덤, 시원한 여름은 필수입니다."
-
-                />
-
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="34dp">
-
-
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/detail_cardview_pager2"
-                android:layout_width="match_parent"
-                android:layout_height="430dp"
-                />
-
-                <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/detail_cardview2_indicator"
-                    />
-
-            </RelativeLayout>
-            
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"></LinearLayout>
-
-
-
 
         </LinearLayout>
 

@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application
         android:name=".ApplicationController"
         android:allowBackup="true"
@@ -23,7 +22,6 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
                 <data android:scheme="your_own_scheme" />
             </intent-filter>
         </activity>
@@ -78,6 +76,10 @@
             android:name=".View.MeowBoxBirthDay.MeowBoxBirthDayStoryActivity"
             android:label="@string/title_activity_meow_box_birth_day_story"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".View.MeowBoxBirthDay.MeowBoxtBirthDayStoryActivity"
+            android:label="@string/title_activity_meow_boxt_birth_day_story"
+            android:theme="@style/AppTheme"></activity>
         <activity android:name=".View.Order.Credit.CreditActivity"></activity>
     </application>
 

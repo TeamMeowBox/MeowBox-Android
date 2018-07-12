@@ -23,6 +23,7 @@ import woo.sopt22.meowbox.ApplicationController
 import woo.sopt22.meowbox.Model.Address.BeforeAddressResponse
 import woo.sopt22.meowbox.Model.Base.BaseModel
 import woo.sopt22.meowbox.Model.Order.OrderData
+import woo.sopt22.meowbox.Model.Order.OrderResponse
 import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference
@@ -110,12 +111,12 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
                 , order_four_phone_number.text.toString(), box_type,
                 price, order_four_email.text.toString(),radio_button.text.toString())
         val orderRespone = networkService.postOrder(SharedPreference.instance!!.getPrefStringData("token")!!,orderData)
-        orderRespone.enqueue(object : Callback<BaseModel>{
-            override fun onFailure(call: Call<BaseModel>?, t: Throwable?) {
+        orderRespone.enqueue(object : Callback<OrderResponse>{
+            override fun onFailure(call: Call<OrderResponse>?, t: Throwable?) {
 
             }
 
-            override fun onResponse(call: Call<BaseModel>?, response: Response<BaseModel>?) {
+            override fun onResponse(call: Call<OrderResponse>?, response: Response<OrderResponse>?) {
                 if(response!!.isSuccessful){
                     Log.v("412",response!!.message())
                     (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoFive())

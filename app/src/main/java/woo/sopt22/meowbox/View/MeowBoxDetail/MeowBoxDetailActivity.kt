@@ -5,7 +5,6 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
-import android.media.Image
 import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -19,27 +18,24 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.RelativeLayout
 import android.widget.TextView
-import android.widget.Adapter
 import android.widget.ImageView
-import android.widget.LinearLayout
 import com.bumptech.glide.Glide
-import com.zarinpal.libs.cardviwepager.CardViewPager
 import kotlinx.android.synthetic.main.activity_meow_box_detail.*
-import kotlinx.android.synthetic.main.activity_my_page.*
 import kotlinx.android.synthetic.main.app_bar_meow_box_detail.*
 import kotlinx.android.synthetic.main.content_meow_box_detail.*
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
+import woo.sopt22.meowbox.Util.CustomDialog.LoginToMyPageCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.Login.LoginActivity
+import woo.sopt22.meowbox.View.MeowBoxBirthDay.MeowBoxtBirthDayStoryActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 import woo.sopt22.meowbox.View.Order.LoginCustomDialog
-import woo.sopt22.meowbox.View.Order.OrderFirstActivity
 import woo.sopt22.meowbox.View.Order.OrderThirdActivity
 
 class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -71,10 +67,19 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
     lateinit var mViewPager1 : ViewPager
     lateinit var mViewPager2 : ViewPager
+    lateinit var mViewPager3 : ViewPager
+    lateinit var mViewPager4 : ViewPager
+    lateinit var mViewPager5 : ViewPager
     lateinit var mIndicator1: CircleAnimIndicator
     lateinit var mIndicator2: CircleAnimIndicator
+    lateinit var mIndicator3: CircleAnimIndicator
+    lateinit var mIndicator4: CircleAnimIndicator
+    lateinit var mIndicator5: CircleAnimIndicator
     lateinit var items1 : ArrayList<DetailModel>
     lateinit var items2 : ArrayList<DetailModel>
+    lateinit var items3 : ArrayList<DetailModel>
+    lateinit var items4 : ArrayList<DetailModel>
+    lateinit var items5 : ArrayList<DetailModel>
 
     lateinit var detailOrderBtn : RelativeLayout
     lateinit var detailFirstImg : ImageView
@@ -90,10 +95,6 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
         SharedPreference.instance!!.load(this)
 
-        mViewPager1 = detail_cardview_pager1 as ViewPager
-        mViewPager2 = detail_cardview_pager2 as ViewPager
-        mIndicator1 = detail_cardview1_indicator as CircleAnimIndicator
-        mIndicator2 = detail_cardview2_indicator as CircleAnimIndicator
 
 
 
@@ -150,48 +151,116 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         detailOrderBtn = detail_order_btn as RelativeLayout
         detail_order_btn.setOnClickListener(this)
 
-        var imgUrl1 = "https://post-phinf.pstatic.net/MjAxNzA0MjFfMTMx/MDAxNDkyNzAxMjI0NzA3.Q_bmK_EvjtxtFpT30CNtyBsJBfGkAieooME9VDfoKHYg.nrXNY37E18mt1g6nbwDpHN7kQAwmDr9Q2RPLKWkw_2wg.JPEG/1492696692724.jpg?type=w1200" as String
-        var imgUrl2 = "https://post-phinf.pstatic.net/MjAxNzA0MjFfMTc2/MDAxNDkyNzAxMjI1MDA4.IS9AxBl-5bs1-h3PbJssvfm5xmcsUAkkLMg-qIJ9KVsg.h8_rW0zPTvO74wQ5yH_K3TRAJVJUcGT6Z_hldpv_GRgg.JPEG/1492696688049.jpg?type=w1200" as String
-        var imgUrl3 = "https://post-phinf.pstatic.net/MjAxNzA0MjFfMTI1/MDAxNDkyNzAxMjI1MTY0.femsgEnFQWPK7szY4kZ0_6uSgXqCaDNyAPZt5Pp-ebMg.oRMiRH-aga5cGKJc8OSOabjZv1Nf0AO7XUFGe7sVa_cg.JPEG/1492696687282.jpg?type=w1200" as String
 
 
-        items1 = ArrayList();
-        items1.add(DetailModel("ex1",imgUrl1))
-        items1.add(DetailModel("ex2",imgUrl2))
-        items1.add(DetailModel("ex3",imgUrl3))
+        items1 = ArrayList(); // 선글라스 모자
 
-        detailFirstImg = detail_first_img as ImageView
+        items1.add(DetailModel("2018 S/S 피서룩의 완성. 선글라스와 \n모자만 있으면, 이구역 힙냥이는 나야!",R.drawable.sunglass_two_img))
+        items1.add(DetailModel("마음대로 길이조절이 가능한 밀짚모자! \n우리 냥이에게 딱 맞게 씌워주세요.",R.drawable.sunglass_three_img))
+        items1.add(DetailModel("볼수록 더 귀여운 밀짚모자와 선글라스. 냥이에게 \n멋진 피서를 선물하는 법, 어렵지 않아요!",R.drawable.sunglass_four_img))
 
-        Glide.with(this).load("http://t1.daumcdn.net/liveboard/petxlab/a5d83a4064744faea244e8ac7667fb90.gif").into(detailFirstImg);
+        items2 = ArrayList(); // 장난감
+
+        items2.add(DetailModel("보기만 해도 시원해! 냥이가 씹고 뜯고 \n맛보고 즐길 올여름 최애 인형",R.drawable.toy_two_img))
+        items2.add(DetailModel("세상 부드러운 양모볼에 캣닢가루를 솔솔~ \n하루 종일 갖고 놀아도 질리지 않아요.",R.drawable.toy_three_img))
+        items2.add(DetailModel("냥이와 케미 폭발할 아기자기한 인형, \n가지고 놀기 딱 좋은 사이즈로 만들었어요. ",R.drawable.toy_four_img))
+
+        items3 = ArrayList(); // 낚시대
+
+        items3.add(DetailModel("숨어있던 사냥본능을 깨워라! \n자유자재 길이조절로 늘 새로운 3단 낚시대",R.drawable.fishing_rod_two_img))
+        items3.add(DetailModel("길고 부드러운 깃털과 방울 소리로 \n냥이의 사냥본능을 자극해요.",R.drawable.fishing_rod_three_img))
+        items3.add(DetailModel("엉키지 않는 긴 낚시줄과 길이 조절이 가능한 \n낚시대로 더 재밌고 편하게 놀아줄 수 있어요.",R.drawable.fishing_rod_four_img))
+
+        items4 = ArrayList(); // 스크래쳐
+
+        items4.add(DetailModel("스트레스를 해소해 줄 스크래쳐. \n한 번 긁으면, 멈출 수 없을 걸?",R.drawable.scratcher_two_img))
+        items4.add(DetailModel("냥이가 스트레소를 해소하고, \n발톱을 정리할 스크래쳐. 마음껏 긁어주세요!" ,R.drawable.scratcher_three_img))
+        items4.add(DetailModel("미유박스와 딱 맞는 크기의 스크래쳐, \n합체하면 아늑한 냥이만의 공간 완성!",R.drawable.scratcher_four_img))
+
+        items5 = ArrayList(); // 간식
+
+        items5.add(DetailModel("영양소를 그대로 담은 동결건조 닭가슴살, \n맛과 건강 둘 다 놓치지 않을 거예요!",R.drawable.snack_two_img))
+        items5.add(DetailModel("까다로운 냥이도 무너뜨릴 향기, 갈매기살을 \n갈아 만들어 말랑한 식감의 포크 져키",R.drawable.snack_three_img))
+        items5.add(DetailModel("미유가 만들고 수의사가 검사한 믿음직한 \n수제 간식. 영양소와 기호성 또한 최고!",R.drawable.snack_four_img))
 
 
-       var madapter1 = DetailViewAdapter(layoutInflater, items1)
-        var madapter2 = DetailViewAdapter(layoutInflater, items1)
+        //detailFirstImg = detail_first_img as ImageView
+
+        //Glide.with(this).load("http://t1.daumcdn.net/liveboard/petxlab/a5d83a4064744faea244e8ac7667fb90.gif").into(detailFirstImg);
 
 
-        mViewPager1.adapter = madapter1
-        mViewPager2.adapter = madapter2
-        mViewPager1.addOnPageChangeListener(mOnPageChangeListener1)
-        mViewPager2.addOnPageChangeListener(mOnPageChangeListener2)
+        var madapter1 = DetailViewAdapter(layoutInflater, items1)
+        var madapter2 = DetailViewAdapter(layoutInflater, items2)
+        var madapter3 = DetailViewAdapter(layoutInflater, items3)
+        var madapter4 = DetailViewAdapter(layoutInflater, items4)
+        var madapter5 = DetailViewAdapter(layoutInflater, items5)
 
-        mIndicator1.setItemMargin(20)
-        mIndicator1.setAnimDuration(300)
-        mIndicator1.createDotPanel(items1.size,R.drawable.indicator_non, R.drawable.indicator_on )
-        mIndicator2.setItemMargin(20)
-        mIndicator2.setAnimDuration(300)
-        mIndicator2.createDotPanel(items1.size,R.drawable.indicator_non, R.drawable.indicator_on )
-        
-        mViewPager1.setClipToPadding(false)
-        mViewPager1.setPadding(80, 0, 80, 0)
-        mViewPager1.pageMargin = 40
 
-        mViewPager2.setClipToPadding(false)
-        mViewPager2.setPadding(80, 0, 80, 0)
-        mViewPager2.pageMargin = 40
+
+
+        detail_cardview_pager_one.adapter = madapter1
+        detail_cardview_pager_two.adapter = madapter2
+        detail_cardview_pager_three.adapter = madapter3
+        detail_cardview_pager_four.adapter = madapter4
+        detail_cardview_pager_five.adapter = madapter5
+        //mViewPager4.adapter = madapter4
+        //mViewPager5.adapter = madapter5
+
+
+
+
+        detail_cardview_pager_one.addOnPageChangeListener(mOnPageChangeListener_one)
+        detail_cardview_pager_two.addOnPageChangeListener(mOnPageChangeListener_two)
+        detail_cardview_pager_three.addOnPageChangeListener(mOnPageChangeListener_three)
+        detail_cardview_pager_four.addOnPageChangeListener(mOnPageChangeListener_four)
+        detail_cardview_pager_five.addOnPageChangeListener(mOnPageChangeListener_five)
+
+        detail_cardview_one_indicator.setItemMargin(20)
+        detail_cardview_one_indicator.setAnimDuration(300)
+        detail_cardview_one_indicator.createDotPanel(items1.size,R.drawable.indicator_non, R.drawable.indicator_on)
+
+        detail_cardview_two_indicator.setItemMargin(20)
+        detail_cardview_two_indicator.setAnimDuration(300)
+        detail_cardview_two_indicator.createDotPanel(items1.size,R.drawable.indicator_non, R.drawable.indicator_on)
+
+        detail_cardview_three_indicator.setItemMargin(20)
+        detail_cardview_three_indicator.setAnimDuration(300)
+        detail_cardview_three_indicator.createDotPanel(items1.size,R.drawable.indicator_non, R.drawable.indicator_on)
+
+        detail_cardview_four_indicator.setItemMargin(20)
+        detail_cardview_four_indicator.setAnimDuration(300)
+        detail_cardview_four_indicator.createDotPanel(items1.size,R.drawable.indicator_non, R.drawable.indicator_on)
+
+        detail_cardview_five_indicator.setItemMargin(20)
+        detail_cardview_five_indicator.setAnimDuration(300)
+        detail_cardview_five_indicator.createDotPanel(items1.size,R.drawable.indicator_non, R.drawable.indicator_on)
+
+        detail_cardview_pager_one.setClipToPadding(false)
+        detail_cardview_pager_one.setPadding(80,0,80,0)
+        detail_cardview_pager_one.pageMargin = 40
+
+        detail_cardview_pager_two.setClipToPadding(false)
+        detail_cardview_pager_two.setPadding(80,0,80,0)
+        detail_cardview_pager_two.pageMargin = 40
+
+        detail_cardview_pager_three.setClipToPadding(false)
+        detail_cardview_pager_three.setPadding(80,0,80,0)
+        detail_cardview_pager_three.pageMargin = 40
+
+        detail_cardview_pager_four.setClipToPadding(false)
+        detail_cardview_pager_four.setPadding(80,0,80,0)
+        detail_cardview_pager_four.pageMargin = 40
+
+        detail_cardview_pager_five.setClipToPadding(false)
+        detail_cardview_pager_five.setPadding(80,0,80,0)
+        detail_cardview_pager_five.pageMargin = 40
+
+
+
 
     }
 
-    var mOnPageChangeListener1 = object : ViewPager.OnPageChangeListener{
+    var mOnPageChangeListener_one = object : ViewPager.OnPageChangeListener{
         override fun onPageScrollStateChanged(state: Int) {
         }
 
@@ -199,12 +268,12 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         }
 
         override fun onPageSelected(position: Int) {
-            mIndicator1.selectDot(position)
+            detail_cardview_one_indicator.selectDot(position)
         }
 
     }
 
-    var mOnPageChangeListener2 = object : ViewPager.OnPageChangeListener{
+    var mOnPageChangeListener_two = object : ViewPager.OnPageChangeListener{
         override fun onPageScrollStateChanged(state: Int) {
         }
 
@@ -212,10 +281,50 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         }
 
         override fun onPageSelected(position: Int) {
-            mIndicator2.selectDot(position)
+            detail_cardview_two_indicator.selectDot(position)
         }
 
     }
+
+    var mOnPageChangeListener_three = object : ViewPager.OnPageChangeListener{
+        override fun onPageScrollStateChanged(state: Int) {
+        }
+
+        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+        }
+
+        override fun onPageSelected(position: Int) {
+            detail_cardview_three_indicator.selectDot(position)
+        }
+
+    }
+
+    var mOnPageChangeListener_four = object : ViewPager.OnPageChangeListener{
+        override fun onPageScrollStateChanged(state: Int) {
+        }
+
+        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+        }
+
+        override fun onPageSelected(position: Int) {
+            detail_cardview_four_indicator.selectDot(position)
+        }
+
+    }
+
+    var mOnPageChangeListener_five = object : ViewPager.OnPageChangeListener{
+        override fun onPageScrollStateChanged(state: Int) {
+        }
+
+        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+        }
+
+        override fun onPageSelected(position: Int) {
+            detail_cardview_five_indicator.selectDot(position)
+        }
+
+    }
+
 
     override fun onBackPressed() {
         if (detail_drawer_layout.isDrawerOpen(GravityCompat.START)) {
@@ -227,15 +336,6 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
 
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        when (item.itemId) {
-            R.id.action_settings -> return true
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
@@ -278,10 +378,15 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             }
             R.id.myPageBtn->{
                 if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
-                    ToastMaker.makeLongToast(this,"로그인 해주세요.")
+                    val dialog = LoginToMyPageCustomDialog(this)
+                    dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    dialog.show()
                 } else{
                     startActivity(Intent(this, MyPageActivity::class.java))
                 }
+            }
+            R.id.birthDayBtn->{
+                startActivity(Intent(this, MeowBoxtBirthDayStoryActivity::class.java))
             }
         }
 

@@ -113,7 +113,7 @@ class OrderThirdFragment : Fragment(), View.OnClickListener{
         activity!!.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
 
         box_type = "1"
-        order_third_pay_method.id =  R.id.order_third_1
+        //order_third_pay_method.id =  R.id.order_third_1
 
         //order_third_1_layout.isSelected = true
 

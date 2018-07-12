@@ -16,6 +16,7 @@ import java.util.List;
 
 import woo.sopt22.meowbox.R;
 import woo.sopt22.meowbox.Util.ToastMaker;
+import woo.sopt22.meowbox.View.MeowBoxBirthDay.MeowBoxtBirthDayStoryActivity;
 import woo.sopt22.meowbox.View.MeowBoxDetail.MeowBoxDetailActivity;
 
 public class CardViewAdapter extends PagerAdapter{
@@ -52,6 +53,16 @@ public class CardViewAdapter extends PagerAdapter{
         Glide.with(container.getContext()).load(item.getImage()).into(mImageView);
         if(item.getTmp() == 1){
             home_detail_btn.setImageResource(R.drawable.home_detail_btn_white);
+        }
+        else if(item.getTmp() == 2){
+            home_detail_btn.setVisibility(View.INVISIBLE);
+        } else if(item.getTmp() == 3){
+            home_detail_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    context.startActivity(new Intent(context, MeowBoxtBirthDayStoryActivity.class));
+                }
+            });
         }
         container.addView(view);
         return view;

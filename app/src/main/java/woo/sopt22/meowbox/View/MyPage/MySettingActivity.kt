@@ -42,7 +42,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v!!) {
-            mysetting_profile -> {
+            mysetting_profile12 -> {
                 changeImage()
             }
             custom_button1->{
@@ -123,7 +123,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         networkService = ApplicationController.instance.networkService
         SharedPreference.instance!!.load(this)
 
-        profileImage = findViewById<View>(R.id.mysetting_profile) as ImageView
+        profileImage = findViewById<View>(R.id.mysetting_profile12) as ImageView
         val imgUrlex = "https://www.petmd.com/sites/default/files/petmd-cat-happy.jpg"
         mySettingYear = findViewById<View>(R.id.mysetting_year) as Spinner
         mySettingMonth = findViewById<View>(R.id.mysetting_month) as Spinner
@@ -149,7 +149,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         val mySaveButton = findViewById<View>(R.id.mysetting_save) as RelativeLayout
         mySaveButton.setOnClickListener(this)
 
-        mysetting_profile.setOnClickListener(this)
+        mysetting_profile12.setOnClickListener(this)
 
 
         mySettingName = mysetting_my_name as EditText
@@ -196,6 +196,11 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        accountPreview()
     }
 
     fun accountPreview(){
@@ -297,7 +302,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         intent.type = android.provider.MediaStore.Images.Media.CONTENT_TYPE
         intent.data = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         startActivityForResult(intent, REQ_CODE_SELECT_IMAGE)
-        //Glide.with(this).load(intent).into(mysetting_profile)
+        Glide.with(this).load(intent).into(mysetting_profile12)
     }
 
     fun saveSettingAccount(){
@@ -341,16 +346,16 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
 
             override fun onResponse(call: Call<MyAccountSettingPostResponse>?, response: Response<MyAccountSettingPostResponse>?) {
                 if(response!!.isSuccessful){
-                    Log.v("91",response!!.body()!!.message)
-                    Log.v("91",response!!.body()!!.result!!.toString())
+                    Log.v("장용범",response!!.body()!!.message)
+                    Log.v("장용범",response!!.body()!!.result!!.toString())
                     //Log.v("11",response!!.body()!!.result!!.user_idx)
                     token = response!!.body()!!.result!!.token!!
-                    Log.d("404", token)
+                    Log.d("장용범", token)
                     SharedPreference.instance!!.setPrefData("name", mysettingname)
 
                 } else{
-                    Log.v("81",response!!.toString())
-                    Log.v("81",response!!.body()!!.message)
+                    Log.v("장용범 실패",response!!.toString())
+                    Log.v("장용범 실패",response!!.body()!!.message)
                 }
             }
 
@@ -388,7 +393,10 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
                     image = MultipartBody.Part.createFormData("image_profile",photo.name, photoBody)
                     // postman으로 확인했을 때 이미지의 key이 photo로 같아야 한다.
 
-                    Glide.with(this).load(data!!.data).into(mysetting_profile)
+                    println("장용범"+image)
+                    println("장용범"+data!!.data)
+                    Glide.with(this).load(data!!.data.toString()).into(mysetting_profile12)
+
 
                     // 내가 가지고 온 이미지를 이미지 뷰에 가운데를 중심으로 잘라서 Glide를 통해서 넣는다.
                     //registerTv.text=""

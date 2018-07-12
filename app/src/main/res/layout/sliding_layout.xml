@@ -168,7 +168,9 @@
                                 android:layout_below="@+id/insta_profile_image1"
                                 android:layout_marginTop="4dp"
                                 android:layout_width="148dp"
-                                android:layout_height="150dp" />
+                                android:layout_height="150dp"
+                                android:scaleType="fitXY"
+                                />
 
 
                         </RelativeLayout>
@@ -208,7 +210,8 @@
                                 android:layout_below="@+id/insta_profile_image2"
                                 android:layout_marginTop="4dp"
                                 android:layout_width="148dp"
-                                android:layout_height="150dp" />
+                                android:layout_height="150dp"
+                                android:scaleType="fitXY"/>
 
 
                         </RelativeLayout>
@@ -258,7 +261,8 @@
                                 android:layout_below="@+id/insta_profile_image3"
                                 android:layout_marginTop="4dp"
                                 android:layout_width="148dp"
-                                android:layout_height="150dp" />
+                                android:layout_height="150dp"
+                                android:scaleType="fitXY"/>
 
 
                         </RelativeLayout>
@@ -298,7 +302,8 @@
                                 android:layout_below="@+id/insta_profile_image4"
                                 android:layout_marginTop="4dp"
                                 android:layout_width="148dp"
-                                android:layout_height="150dp" />
+                                android:layout_height="150dp"
+                                android:scaleType="fitXY"/>
 
 
                         </RelativeLayout>
@@ -316,7 +321,7 @@
                     android:src="@drawable/dash_bar_img"/>
 
                 <TextView
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginTop="18dp"
                     android:textColor="#4C4E51"
                     android:textSize="22dp"
@@ -331,8 +336,9 @@
                     android:layout_marginRight="22dp"
                     android:layout_marginTop="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="218dp"
-                    android:src="@drawable/small_cat_img"/>
+                    android:layout_height="210dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/home_meow_box_one_img"/>
 
 
                 <TextView
@@ -370,7 +376,7 @@
                     android:src="@drawable/dash_bar_img"/>
 
                 <TextView
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginTop="18dp"
                     android:textColor="#4C4E51"
                     android:textSize="22dp"
@@ -385,8 +391,9 @@
                     android:layout_marginRight="22dp"
                     android:layout_marginTop="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="218dp"
-                    android:src="@drawable/large_cat_img"/>
+                    android:layout_height="210dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/home_meow_box_two_img"/>
 
 
                 <TextView

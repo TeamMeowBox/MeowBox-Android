@@ -261,13 +261,37 @@
 
 
             </RelativeLayout>
+            
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="168dp"
+                android:background="#EFEDED">
 
-            <ImageView
-                android:id="@+id/review_top_btn"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/top_btn"/>
+                <TextView
+                    android:id="@+id/review_best_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="베스트 컷을 기대해주세요!"
+                    android:textColor="#4C4E51"
+                    android:textSize="18dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="50dp"/>
+
+                <ImageView
+                    android:layout_marginTop="19dp"
+                    android:layout_below="@+id/review_best_tv"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/review_top_btn"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingLeft="35dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/top_btn"/>
+
+
+            </RelativeLayout>
+
+
 
         </LinearLayout>
 

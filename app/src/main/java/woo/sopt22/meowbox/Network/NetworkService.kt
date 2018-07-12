@@ -18,6 +18,7 @@ import woo.sopt22.meowbox.Model.Order.OrderData
 import woo.sopt22.meowbox.Model.Order.OrderHistory.OrderHistory
 import woo.sopt22.meowbox.Model.Order.OrderHistoryDetail.OrderHistoryDetail
 import woo.sopt22.meowbox.Model.Order.OrderPeriod.OrderPeriodResponse
+import woo.sopt22.meowbox.Model.OrderObject
 import woo.sopt22.meowbox.Model.QnA.QnAResponse
 import woo.sopt22.meowbox.Model.RegisterCat.CatIndex
 import woo.sopt22.meowbox.Model.SignUp.SignUpUser
@@ -90,7 +91,7 @@ interface NetworkService {
     @POST("order/order_detail")
     fun postOrderDetail(
             @Header("authorization") authorization : String,
-            @Body order_idx : Int
+            @Body order_idx : OrderObject
     ) : Call<OrderHistoryDetail>
 
 

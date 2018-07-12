@@ -51,9 +51,12 @@ class OrderHistoryActivity : AppCompatActivity(), View.OnClickListener {
             v!! -> {
                 val index: Int = order_history_rv.getChildAdapterPosition(v!!)
                 val intent = Intent(this, OrderHistoryDetailActivity::class.java)
-                intent.putExtra("order_idx", index)
+                Log.v("9090",ticketed_items[index].idx)
+                intent.putExtra("order_idx", ticketed_items[index].idx.toInt())
                 intent.putExtra("term", ticketed_items[index].term)
                 intent.putExtra("product", ticketed_items[index].product)
+                Log.v("민형1",ticketed_items[index].term)
+                Log.v("민형2",ticketed_items[index].product)
                 startActivity(intent)
             }
 

@@ -43,29 +43,80 @@
         android:layout_height="0.2dp"
         android:background="#707070"/>
 
-
-    <TextView
-        android:layout_centerInParent="true"
-        android:id="@+id/detail_text_tv1"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_marginTop="23dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ddd"/>
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp">
+
+        <ImageView
+            android:id="@+id/item_detail_image_layout"
+            android:src="@drawable/order_detail_card_img"
+            android:scaleType="fitXY"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="110dp" />
 
 
-    <TextView
-        android:layout_centerInParent="true"
-        android:id="@+id/detail_text_tv2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ddd"/>
+        <TextView
+            android:layout_marginTop="25dp"
+            android:id="@+id/item_detail_name_tv"
+            android:layout_centerHorizontal="true"
+            android:textSize="25dp"
+            android:textColor="#4C4E51"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="dddd"/>
+
+        <TextView
+            android:layout_marginTop="3dp"
+            android:layout_below="@+id/item_detail_name_tv"
+            android:id="@+id/item_detail_term_tv"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:textColor="#999999"
+            android:textSize="13dp"
+            android:text="dddd"/>
 
 
-    <TextView
-        android:layout_centerInParent="true"
-        android:id="@+id/detail_text_tv3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ddd"/>
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/order_history_detail_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"/>
+
+    <ImageView
+        android:layout_marginTop="3dp"
+        android:id="@+id/detail_image1_item"
+        android:layout_width="match_parent"
+        android:layout_height="313dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        />
+
+    <ImageView
+        android:layout_marginTop="2dp"
+        android:id="@+id/detail_image2_item"
+        android:layout_width="match_parent"
+        android:layout_height="313dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        />
+
+    <ImageView
+        android:layout_marginTop="2dp"
+        android:id="@+id/detail_image3_item"
+        android:layout_width="match_parent"
+        android:layout_height="313dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        />
 
 
 

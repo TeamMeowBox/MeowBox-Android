@@ -15,12 +15,14 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.zarinpal.libs.cardviwepager.CardViewPager
 import kotlinx.android.synthetic.main.activity_meow_box_review.*
+import kotlinx.android.synthetic.main.activity_meow_box_story.*
 import kotlinx.android.synthetic.main.app_bar_meow_box_review.*
 import kotlinx.android.synthetic.main.content_meow_box_review.*
 import retrofit2.Call
@@ -73,6 +75,14 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
 
         networkService = ApplicationController.instance!!.networkService
+
+
+        var menu : Menu = review_nav_view.menu
+        var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
+        var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
+        var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
+        blank_menu_item.setEnabled(false)
+        blank_menu_item2.setEnabled(false)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             window.statusBarColor = Color.BLACK

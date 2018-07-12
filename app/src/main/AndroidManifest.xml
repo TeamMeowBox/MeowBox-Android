@@ -47,7 +47,8 @@
         <activity
             android:name=".View.Login.LoginActivity"
             android:windowSoftInputMode="adjustNothing" />
-        <activity android:name=".View.Join.JoinActivity" />
+        <activity android:name=".View.Join.JoinActivity"
+            android:windowSoftInputMode="adjustNothing"/>
         <activity
             android:name=".View.MyPage.Suggest.MyPageSuggestActivity"
             android:windowSoftInputMode="adjustNothing" />

@@ -214,11 +214,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         SharedPreference.instance!!.load(this)
         Log.v("079",SharedPreference.instance!!.getPrefStringData("image"))
 
-/*        if(SharedPreference.instance!!.getPrefStringData("image") == null){
-            userImage.setImageResource(R.drawable.side_bar_profile_img)
+        if(SharedPreference.instance!!.getPrefStringData("image") == null){
+            //userImage.setImageResource(R.drawable.side_bar_profile_img)
+            Log.v("용범","123")
+            Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
         } else{
+            Log.v("용범","456")
             Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")!!).into(userImage)
-        }*/
+        }
         Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")!!).into(userImage)
         home_to_detail_btn.setOnClickListener(this)
 

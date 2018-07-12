@@ -109,7 +109,7 @@ class OrderHistoryActivity : AppCompatActivity(), View.OnClickListener {
 
             override fun onResponse(call: Call<OrderHistory>?, response: Response<OrderHistory>?) {
                 if (response!!.isSuccessful) {
-                    if (response!!.body()!!.result!!.ticket.idx == null && response!!.body()!!.result!!.ticketed.size == 0) {
+    /*                if (response!!.body()!!.result!!.ticket.idx == null && response!!.body()!!.result!!.ticketed.size == 0) {
                         Log.v("799", response!!.body()!!.result!!.ticket.toString())
                         Log.v("799", response!!.body()!!.result!!.ticketed.size.toString())
                         //order_history_layout.visibility = View.GONE
@@ -117,12 +117,12 @@ class OrderHistoryActivity : AppCompatActivity(), View.OnClickListener {
                         history_nested.visibility = View.GONE
 
                     }
-                     /*  if (response!!.body()!!.result!!.ticketed.size == 0) {
+                     *//*  if (response!!.body()!!.result!!.ticketed.size == 0) {
                             Log.v("899","여ㅑ기인가?")
                             hidden_layout1.visibility = View.VISIBLE
                             hidden_layout2.visibility = View.GONE
 
-                        }*/ else {
+                        }*//* else {
                             hidden_layout1.visibility = View.GONE
                             history_nested.visibility = View.VISIBLE
                             Log.v("999", response!!.body()!!.result!!.ticketed.toString())
@@ -138,8 +138,8 @@ class OrderHistoryActivity : AppCompatActivity(), View.OnClickListener {
                             order_history_rv.layoutManager = LinearLayoutManager(this@OrderHistoryActivity)
                             order_history_rv.adapter = orderHistoryItemAdapter
                             //Log.v("299", response!!.body()!!.result!!.ticket.idx)
-                        }
-              /*      if(response!!.body()!!.result!!.ticket.idx == null){
+                        }*/
+                    if(response!!.body()!!.result!!.ticket.idx == null){
                         if(response!!.body()!!.result!!.ticketed.size == 0){
                             Log.v("001", "001")
                             hidden_layout1.visibility = View.VISIBLE
@@ -162,7 +162,7 @@ class OrderHistoryActivity : AppCompatActivity(), View.OnClickListener {
                         hidden_layout1.visibility = View.GONE
                         hidden_layout2.visibility = View.GONE
                         history_nested.visibility = View.VISIBLE
-                    }*/
+                    }
                 }
 
 

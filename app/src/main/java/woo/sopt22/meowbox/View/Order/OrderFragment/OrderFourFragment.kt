@@ -107,6 +107,7 @@ class OrderFourFragment : Fragment(), View.OnClickListener {
                 if(response!!.isSuccessful){
                     Log.v("412",response!!.message())
                     (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(OrderFiveFragment())
+                    response!!.body()!!
                 }
             }
 

@@ -248,7 +248,7 @@
                         <EditText
                             android:id="@+id/order_four_phone_number"
                             android:layout_marginLeft="42dp"
-                            android:inputType="text"
+                            android:inputType="numberDecimal"
                             android:layout_width="208dp"
                             android:layout_height="35dp"
                             android:background="@drawable/edittext_background"/>

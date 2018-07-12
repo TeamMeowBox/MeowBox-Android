@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".View.Home.MainActivity"
-    app:umanoPanelHeight="72dp"
+    app:umanoPanelHeight="70dp"
     app:umanoShadowHeight="40dp"
     android:gravity="bottom"
     tools:showIn="@layout/app_bar_main">

@@ -331,7 +331,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
 
 //        if(mysettingcatname.equals("")){ mysettingname? = null
 //        }
-
+        Log.v("경인",image.toString())
         val tmpResponse = networkService.postMyAccount(SharedPreference.instance!!.getPrefStringData("token")!!,
                 userName, userPhone, userEmail, image, userCatName, userCatSize, userBirthday, userSuggest)
         tmpResponse.enqueue(object : Callback<MyAccountSettingPostResponse>{
@@ -349,6 +349,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
                     SharedPreference.instance!!.setPrefData("name", mysettingname)
 
                 } else{
+                    Log.v("81",response!!.toString())
                     Log.v("81",response!!.body()!!.message)
                 }
             }

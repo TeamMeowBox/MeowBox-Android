@@ -12,5 +12,6 @@ data class MyAccountSettingPostResponse(
 
 
 data class MyAccountSettingResult(
+        var cat_idx : Int,
         var token : String
 )

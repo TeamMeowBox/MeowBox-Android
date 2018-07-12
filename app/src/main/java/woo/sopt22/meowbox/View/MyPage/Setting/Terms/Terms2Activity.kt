@@ -40,7 +40,7 @@ class Terms2Activity : AppCompatActivity(), View.OnClickListener {
         terms2_x_btn.setOnClickListener(this)
 
         terms2_tab.addTab(terms2_tab.newTab().setText("이용약관"))
-        terms2_tab.addTab(terms2_tab.newTab().setText("개인정보 취급방"))
+        terms2_tab.addTab(terms2_tab.newTab().setText("개인정보 취급방침"))
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)

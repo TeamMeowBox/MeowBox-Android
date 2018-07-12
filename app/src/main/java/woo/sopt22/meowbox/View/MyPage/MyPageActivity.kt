@@ -72,10 +72,25 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
 
             mypage_order_btn->{
+
                 startActivity(Intent(this, OrderHistoryActivity::class.java))
             }
             story_order_btn->{
-                startActivity(Intent(this, OrderFirstActivity::class.java))
+                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                    val dialog = LoginCustomDialog(this)
+                    dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    dialog.show()
+                } else{
+                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1"){
+                        val dialog = CatCustomDialog(this)
+                        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        dialog.show()
+                    } else {
+                        val intent = Intent(this, OrderThirdActivity::class.java)
+                        intent.putExtra("cat_idx",SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
+                        startActivity(intent)
+                    }
+                }
             }
         }
 
@@ -111,16 +126,22 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         lateinit var stateProgressBar : StateProgressBar
     }
 
+    fun init(){
+        Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")).into(mypage_profile_img)
+        Log.v("윤선",SharedPreference.instance!!.getPrefStringData("image"))
+    }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page)
-
-
         networkService = ApplicationController.instance.networkService
         SharedPreference.instance!!.load(this)
 
-        Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")).into(mypage_profile_img)
+        init()
+
+
 
 
 
@@ -138,8 +159,11 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         userImage.setImageResource(R.drawable.side_bar_profile_img)
 
         if(SharedPreference.instance!!.getPrefStringData("image") == null){
-            userImage.setImageResource(R.drawable.side_bar_profile_img)
+            //userImage.setImageResource(R.drawable.side_bar_profile_img)
+            Log.v("용범","123")
+            Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
         } else{
+            Log.v("용범","456")
             Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")!!).into(userImage)
         }
 
@@ -147,7 +171,12 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             userName.text = "OO님!"
         } else {
             userName.text = SharedPreference.instance!!.getPrefStringData("name")
-            mypage_name_text1.text = "온풍이 집사 "+SharedPreference.instance!!.getPrefStringData("name")+" 님"
+            if(SharedPreference.instance!!.getPrefStringData("cat_name")!!.isEmpty()){
+                mypage_name_text1.text = SharedPreference.instance!!.getPrefStringData("name")+" 님"
+            } else{
+                mypage_name_text1.text = SharedPreference.instance!!.getPrefStringData("cat_name")!!+SharedPreference.instance!!.getPrefStringData("name")+" 님"
+            }
+
         }
 
         var profileImage = mypage_profile_img as ImageView
@@ -252,6 +281,19 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         SharedPreference.instance!!.load(this)
         Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")).into(mypage_profile_img)
 
+        var headerView : View = mypage_nav_view.getHeaderView(0)
+        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+        var userImage : ImageView = headerView.findViewById(R.id.imageView)
+        userImage.setImageResource(R.drawable.side_bar_profile_img)
+
+        if(SharedPreference.instance!!.getPrefStringData("image") == null){
+            //userImage.setImageResource(R.drawable.side_bar_profile_img)
+            Log.v("용범","123")
+            Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
+        } else{
+            Log.v("용범","456")
+            Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")!!).into(userImage)
+        }
 
     }
 

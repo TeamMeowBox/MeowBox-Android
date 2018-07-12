@@ -47,14 +47,21 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
         when(v!!){
             joinBtn->{
                 //startActivity(Intent(this, LoginActivity::class.java))
-
                 jName = joinName.text.toString()
                 jPhone = joinPhone.text.toString()
                 jEmail = joinEmail.text.toString()
                 jPwd = joinPwd.text.toString()
-                sign()
 
-                Toast.makeText(this, jName+" "+jPhone+" "+jEmail+" "+jPwd, Toast.LENGTH_SHORT).show()
+                if(jName.length == 0 || jPhone.length == 0 || jEmail.length == 0 || jPwd.length == 0){
+                    ToastMaker.makeShortToast(applicationContext, "정보를 입력해주세요.")
+                } else{
+                    sign()
+                }
+
+
+
+
+                //Toast.makeText(this, jName+" "+jPhone+" "+jEmail+" "+jPwd, Toast.LENGTH_SHORT).show()
             }
             joinCloseBtn->{
                 finish()
@@ -99,7 +106,7 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
                     Log.v("11",response!!.body()!!.message)
                     //Log.v("11",response!!.body()!!.result!!.user_idx)
                     token = response!!.body()!!.result!!.token!!.toString()
-                    ToastMaker.makeLongToast(this@JoinActivity, token)
+                    //ToastMaker.makeLongToast(this@JoinActivity, token)
                     SharedPreference.instance!!.setPrefData("token",token)
                     SharedPreference.instance!!.setPrefData("user_email",response!!.body()!!.result!!.email)
                     SharedPreference.instance!!.setPrefData("name",response!!.body()!!.result!!.name)

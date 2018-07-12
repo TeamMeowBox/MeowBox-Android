@@ -208,6 +208,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //main_side_back_btn = side_bar_back_btn as ImageView
         //side_bar_back_btn.setOnClickListener(this@MainActivity)
 
+
         var headerView : View = main_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
         var userImage : ImageView = headerView.findViewById(R.id.imageView)
@@ -268,6 +269,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
         blank_menu_item.setEnabled(false)
         blank_menu_item2.setEnabled(false)
+        //home_detail_btn.setImageResource(R.drawable.home_detail_btn_white)
 
         if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
             userName.text = "OO님!"
@@ -334,7 +336,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             override fun onPageSelected(position: Int) {
                 when(position){
-                    0,4->{
+                    0->{
                         main_toolbar_image.setImageResource(R.drawable.logo_white)
                         home_detail_btn.setImageResource(R.drawable.home_detail_btn_white)
                         val toggle = ActionBarDrawerToggle(
@@ -360,6 +362,29 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     }
                     1,2,3->{
                         main_toolbar_image.setImageResource(R.drawable.logo_pink)
+                        home_detail_btn.setImageResource(R.drawable.home_detail_btn_gray)
+                        val toggle = ActionBarDrawerToggle(
+                                this@MainActivity, main_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+
+                        toggle.setDrawerIndicatorEnabled(false)
+                        val drawable = ResourcesCompat.getDrawable(resources, R.drawable.side_bar_btn_black, applicationContext!!.getTheme())
+
+                        val bitmap = (drawable as BitmapDrawable).bitmap
+                        val newdrawable = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, 30, 30, true))
+
+                        toggle.setHomeAsUpIndicator(drawable)
+                        toggle.setToolbarNavigationClickListener(object : View.OnClickListener {
+                            override fun onClick(v: View?) {
+                                if (main_drawer_layout.isDrawerVisible(GravityCompat.START)) {
+                                    main_drawer_layout.closeDrawer(GravityCompat.START)
+                                } else {
+                                    main_drawer_layout.openDrawer(GravityCompat.START)
+                                }
+                            }
+                        })
+                    }
+                    4->{
+                        main_toolbar_image.setImageResource(R.drawable.logo_white)
                         home_detail_btn.setImageResource(R.drawable.home_detail_btn_gray)
                         val toggle = ActionBarDrawerToggle(
                                 this@MainActivity, main_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)

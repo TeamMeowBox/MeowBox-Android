@@ -78,6 +78,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 startActivity(Intent(this, OrderFirstActivity::class.java))
             }
 
+
         }
 
     }

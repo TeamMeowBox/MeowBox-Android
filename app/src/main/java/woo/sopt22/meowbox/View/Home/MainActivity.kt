@@ -30,6 +30,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_my_page.*
 import kotlinx.android.synthetic.main.activity_order_first.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.cardview_adapter.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.content_my_page.*
 import kotlinx.android.synthetic.main.nav_header_main.*
@@ -43,6 +44,7 @@ import woo.sopt22.meowbox.Model.Home.InstaCrawlingResponse
 import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
+import woo.sopt22.meowbox.Util.CustomDialog.LoginToMyPageCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Login.LoginActivity
@@ -206,6 +208,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //main_side_back_btn = side_bar_back_btn as ImageView
         //side_bar_back_btn.setOnClickListener(this@MainActivity)
 
+
         var headerView : View = main_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
         var userImage : ImageView = headerView.findViewById(R.id.imageView)
@@ -266,13 +269,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
         blank_menu_item.setEnabled(false)
         blank_menu_item2.setEnabled(false)
+        //home_detail_btn.setImageResource(R.drawable.home_detail_btn_white)
 
         if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
             userName.text = "OO님!"
             login_menu_item.setTitle("로그인")
         } else {
             userName.text = SharedPreference.instance!!.getPrefStringData("name")
-            login_menu_item.setTitle("로그아웃")
+            login_menu_item.setTitle("")
+            login_menu_item.setEnabled(false)
         }
 
 
@@ -310,17 +315,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         var items : ArrayList<CardData>
         items = ArrayList();
-        items.add(CardData(imgUrl1))
-        items.add(CardData(imgUrl2))
-        items.add(CardData(imgUrl3))
-        items.add(CardData(imgUrl1))
-        items.add(CardData(imgUrl2))
+        items.add(CardData(R.drawable.home_main_one_img, 1))
+        items.add(CardData(R.drawable.home_main_two_img,0))
+        items.add(CardData(R.drawable.home_main_three_img,0))
+        items.add(CardData(R.drawable.home_main_four_img,0))
+        items.add(CardData(R.drawable.home_main_five_img,1))
 
         /*home_detail_btn.setOnClickListener {
             ToastMaker.makeLongToast(this, "dd")
         }*/
 
-        mViewPager.setPadding(0,0,100,0)
+        mViewPager.setPadding(0,0,200,0)
         var madapter = CardViewAdapter(layoutInflater, items)
         mViewPager.adapter = madapter
         mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
@@ -330,16 +335,88 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             override fun onPageSelected(position: Int) {
+                when(position){
+                    0->{
+                        main_toolbar_image.setImageResource(R.drawable.logo_white)
+                        home_detail_btn.setImageResource(R.drawable.home_detail_btn_white)
+                        val toggle = ActionBarDrawerToggle(
+                                this@MainActivity, main_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+
+                        toggle.setDrawerIndicatorEnabled(false)
+                        val drawable = ResourcesCompat.getDrawable(resources, R.drawable.side_bar_btn_white, applicationContext!!.getTheme())
+
+                        val bitmap = (drawable as BitmapDrawable).bitmap
+                        val newdrawable = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, 30, 30, true))
+
+                        toggle.setHomeAsUpIndicator(drawable)
+                        toggle.setToolbarNavigationClickListener(object : View.OnClickListener {
+                            override fun onClick(v: View?) {
+                                if (main_drawer_layout.isDrawerVisible(GravityCompat.START)) {
+                                    main_drawer_layout.closeDrawer(GravityCompat.START)
+                                } else {
+                                    main_drawer_layout.openDrawer(GravityCompat.START)
+                                }
+                            }
+                        })
+
+                    }
+                    1,2,3->{
+                        main_toolbar_image.setImageResource(R.drawable.logo_pink)
+                        home_detail_btn.setImageResource(R.drawable.home_detail_btn_gray)
+                        val toggle = ActionBarDrawerToggle(
+                                this@MainActivity, main_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+
+                        toggle.setDrawerIndicatorEnabled(false)
+                        val drawable = ResourcesCompat.getDrawable(resources, R.drawable.side_bar_btn_black, applicationContext!!.getTheme())
+
+                        val bitmap = (drawable as BitmapDrawable).bitmap
+                        val newdrawable = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, 30, 30, true))
+
+                        toggle.setHomeAsUpIndicator(drawable)
+                        toggle.setToolbarNavigationClickListener(object : View.OnClickListener {
+                            override fun onClick(v: View?) {
+                                if (main_drawer_layout.isDrawerVisible(GravityCompat.START)) {
+                                    main_drawer_layout.closeDrawer(GravityCompat.START)
+                                } else {
+                                    main_drawer_layout.openDrawer(GravityCompat.START)
+                                }
+                            }
+                        })
+                    }
+                    4->{
+                        main_toolbar_image.setImageResource(R.drawable.logo_white)
+                        home_detail_btn.setImageResource(R.drawable.home_detail_btn_gray)
+                        val toggle = ActionBarDrawerToggle(
+                                this@MainActivity, main_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+
+                        toggle.setDrawerIndicatorEnabled(false)
+                        val drawable = ResourcesCompat.getDrawable(resources, R.drawable.side_bar_btn_black, applicationContext!!.getTheme())
+
+                        val bitmap = (drawable as BitmapDrawable).bitmap
+                        val newdrawable = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, 30, 30, true))
+
+                        toggle.setHomeAsUpIndicator(drawable)
+                        toggle.setToolbarNavigationClickListener(object : View.OnClickListener {
+                            override fun onClick(v: View?) {
+                                if (main_drawer_layout.isDrawerVisible(GravityCompat.START)) {
+                                    main_drawer_layout.closeDrawer(GravityCompat.START)
+                                } else {
+                                    main_drawer_layout.openDrawer(GravityCompat.START)
+                                }
+                            }
+                        })
+                    }
+                }
 
             }
 
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 when(position){
                     (items.size-2)->{
-                        mViewPager.setPadding((100 * positionOffset).toInt(),0,100 - (100*positionOffset).toInt(),0)
+                        mViewPager.setPadding((200 * positionOffset).toInt(),0,200 - (200*positionOffset).toInt(),0)
                     }
                     (items.size-1)->{
-                        mViewPager.setPadding(100,0,0,0)
+                        mViewPager.setPadding(200,0,0,0)
                     }
 
                 }
@@ -433,7 +510,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.myPageBtn->{
                 if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
-                    ToastMaker.makeLongToast(this,"로그인 해주세요.")
+                    val dialog = LoginToMyPageCustomDialog(this)
+                    dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    dialog.show()
                 } else{
                     startActivity(Intent(this, MyPageActivity::class.java))
                 }

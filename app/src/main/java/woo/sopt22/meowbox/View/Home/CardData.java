@@ -1,17 +1,27 @@
 package woo.sopt22.meowbox.View.Home;
 
 public class CardData {
-    String image;
+    int image;
+    int tmp;
 
-    public CardData(String image) {
+    public CardData(int image, int tmp) {
         this.image = image;
+        this.tmp = tmp;
     }
 
-    public String getImage(){
+    public int getTmp() {
+        return tmp;
+    }
+
+    public void setTmp(int tmp) {
+        this.tmp = tmp;
+    }
+
+    public int getImage(){
         return image;
     }
 
-    public void setImage(String image){
+    public void setImage(int image){
         this.image = image;
     }
 }

@@ -22,7 +22,7 @@ class Terms2Fragment2 : Fragment() {
     private fun readTxt(idx: Int): String? {
         var data: String? = null
          if(idx == 2){
-            val inputStream = resources.openRawResource(R.raw.text_txt2)
+            val inputStream = resources.openRawResource(R.raw.terms2)
             val byteArrayOutputStream = ByteArrayOutputStream()
 
             var i: Int

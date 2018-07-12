@@ -172,7 +172,12 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             userName.text = "OO님!"
         } else {
             userName.text = SharedPreference.instance!!.getPrefStringData("name")
-            mypage_name_text1.text = "온풍이 집사 "+SharedPreference.instance!!.getPrefStringData("name")+" 님"
+            if(SharedPreference.instance!!.getPrefStringData("cat_name")!!.isEmpty()){
+                mypage_name_text1.text = SharedPreference.instance!!.getPrefStringData("name")+" 님"
+            } else{
+                mypage_name_text1.text = SharedPreference.instance!!.getPrefStringData("cat_name")!!+SharedPreference.instance!!.getPrefStringData("name")+" 님"
+            }
+
         }
 
         var profileImage = mypage_profile_img as ImageView

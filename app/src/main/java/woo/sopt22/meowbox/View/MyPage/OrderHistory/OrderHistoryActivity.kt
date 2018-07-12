@@ -98,9 +98,9 @@ class OrderHistoryActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     fun getOrderHistroy() {
-        Log.v("09", "09")
+        Log.v("19", "함수 안으로")
         val orderHistoryResponse = networkService.getOrderHistory(SharedPreference.instance!!.getPrefStringData("token")!!)
-        Log.v("19", "19")
+        Log.v("19", "네트워크 변수 할당")
         orderHistoryResponse.enqueue(object : Callback<OrderHistory> {
             override fun onFailure(call: Call<OrderHistory>?, t: Throwable?) {
                 Log.v("order", t!!.message)
@@ -109,62 +109,46 @@ class OrderHistoryActivity : AppCompatActivity(), View.OnClickListener {
 
             override fun onResponse(call: Call<OrderHistory>?, response: Response<OrderHistory>?) {
                 if (response!!.isSuccessful) {
-    /*                if (response!!.body()!!.result!!.ticket.idx == null && response!!.body()!!.result!!.ticketed.size == 0) {
-                        Log.v("799", response!!.body()!!.result!!.ticket.toString())
-                        Log.v("799", response!!.body()!!.result!!.ticketed.size.toString())
-                        //order_history_layout.visibility = View.GONE
-                        hidden_layout1.visibility = View.VISIBLE
-                        history_nested.visibility = View.GONE
-
-                    }
-                     *//*  if (response!!.body()!!.result!!.ticketed.size == 0) {
-                            Log.v("899","여ㅑ기인가?")
+                    Log.v("19", "onResponse 안으로")
+                    if(response!!.body()!!.result.ticket.idx == null){
+                        if(response!!.body()!!.result.ticketed.size == 0){
+                            //history_nested.visibility = View.GONE
                             hidden_layout1.visibility = View.VISIBLE
-                            hidden_layout2.visibility = View.GONE
+                        } else{
+                            Log.v("경인","log")
+                            //hidden_layout2.visibility = View.VISIBLE
+                            //history_nested.visibility = View.VISIBLE
+                            hidden_layout2.visibility = View.VISIBLE
+                            history_layout.visibility = View.GONE
+                            history_ticket_image.visibility = View.GONE
+                            history_title_layout.visibility = View.GONE
+                            history_top_item_cancel_btn.visibility = View.GONE
 
-                        }*//* else {
-                            hidden_layout1.visibility = View.GONE
-                            history_nested.visibility = View.VISIBLE
-                            Log.v("999", response!!.body()!!.result!!.ticketed.toString())
+
+
                             ticketed_items = response!!.body()!!.result!!.ticketed
-                            //SharedPreference.instance!!.setPrefData("idx", response!!.body()!!.result.ticketed)
-                            history_payment_date.text = response!!.body()!!.result!!.ticket.term
-                            history_payment_name.text = response!!.body()!!.result!!.ticket.product
-
-                            SharedPreference.instance!!.setPrefData("order_idx",response!!.body()!!.result!!.ticket.idx)
-                            Log.v("990",response!!.body()!!.result!!.ticket.idx)
                             orderHistoryItemAdapter = OrderHistoryItemAdapter(ticketed_items, this@OrderHistoryActivity)
                             orderHistoryItemAdapter.setOnItemClickListener(this@OrderHistoryActivity)
                             order_history_rv.layoutManager = LinearLayoutManager(this@OrderHistoryActivity)
                             order_history_rv.adapter = orderHistoryItemAdapter
-                            //Log.v("299", response!!.body()!!.result!!.ticket.idx)
-                        }*/
-                    if(response!!.body()!!.result!!.ticket.idx == null){
-                        if(response!!.body()!!.result!!.ticketed.size == 0){
-                            Log.v("001", "001")
-                            hidden_layout1.visibility = View.VISIBLE
-                            history_nested.visibility = View.GONE
-                        } else{
-                            Log.v("002", "002")
-                            hidden_layout1.visibility = View.GONE
-
-                            hidden_layout2.visibility = View.VISIBLE
-                            history_nested.visibility = View.VISIBLE
-
-                            history_top_item_cancel_btn.visibility = View.GONE
-                            history_ticket_image.visibility = View.GONE
-                            history_title_layout.visibility = View.GONE
-                            history_ticket_layout.visibility = View.GONE
-
                         }
-                    } else {
-                        Log.v("003", "003")
-                        hidden_layout1.visibility = View.GONE
-                        hidden_layout2.visibility = View.GONE
-                        history_nested.visibility = View.VISIBLE
-                    }
-                }
 
+                    } else{
+                        history_payment_date.text = response!!.body()!!.result!!.ticket.term
+                        history_payment_name.text = response!!.body()!!.result!!.ticket.product
+
+                        SharedPreference.instance!!.setPrefData("order_idx", response!!.body()!!.result!!.ticket.idx)
+                        ticketed_items = response!!.body()!!.result!!.ticketed
+                        Log.v("990", response!!.body()!!.result!!.ticket.idx)
+                        orderHistoryItemAdapter = OrderHistoryItemAdapter(ticketed_items, this@OrderHistoryActivity)
+                        orderHistoryItemAdapter.setOnItemClickListener(this@OrderHistoryActivity)
+                        order_history_rv.layoutManager = LinearLayoutManager(this@OrderHistoryActivity)
+                        order_history_rv.adapter = orderHistoryItemAdapter
+                    }
+
+                } else{
+                    Log.v("19", "onResponse 안에서 else로")
+                }
 
             }
 
@@ -173,3 +157,58 @@ class OrderHistoryActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 }
+
+/*if (response!!.body()!!.result!!.ticket.idx == null && response!!.body()!!.result!!.ticketed.size == 0) {
+    Log.v("799", response!!.body()!!.result!!.ticket.toString())
+    Log.v("799", response!!.body()!!.result!!.ticketed.size.toString())
+    //order_history_layout.visibility = View.GONE
+    hidden_layout1.visibility = View.VISIBLE
+    history_nested.visibility = View.GONE
+
+}
+*//*if (response!!.body()!!.result!!.ticketed.size == 0) {
+        Log.v("899","여ㅑ기인가?")
+        hidden_layout1.visibility = View.VISIBLE
+        hidden_layout2.visibility = View.GONE*//*
+
+} else {
+    hidden_layout1.visibility = View.GONE
+    history_nested.visibility = View.VISIBLE
+    Log.v("999", response!!.body()!!.result!!.ticketed.toString())
+    ticketed_items = response!!.body()!!.result!!.ticketed
+    //SharedPreference.instance!!.setPrefData("idx", response!!.body()!!.result.ticketed)
+    history_payment_date.text = response!!.body()!!.result!!.ticket.term
+    history_payment_name.text = response!!.body()!!.result!!.ticket.product
+
+    SharedPreference.instance!!.setPrefData("order_idx", response!!.body()!!.result!!.ticket.idx)
+    Log.v("990", response!!.body()!!.result!!.ticket.idx)
+    orderHistoryItemAdapter = OrderHistoryItemAdapter(ticketed_items, this@OrderHistoryActivity)
+    orderHistoryItemAdapter.setOnItemClickListener(this@OrderHistoryActivity)
+    order_history_rv.layoutManager = LinearLayoutManager(this@OrderHistoryActivity)
+    order_history_rv.adapter = orderHistoryItemAdapter
+    //Log.v("299", response!!.body()!!.result!!.ticket.idx)
+}*/
+/*       if(response!!.body()!!.result!!.ticket.idx == null){
+        if(response!!.body()!!.result!!.ticketed.size == 0){
+            Log.v("001", "001")
+            hidden_layout1.visibility = View.VISIBLE
+            history_nested.visibility = View.GONE
+        } else{
+            Log.v("002", "002")
+            hidden_layout1.visibility = View.GONE
+
+            hidden_layout2.visibility = View.VISIBLE
+            history_nested.visibility = View.VISIBLE
+
+            history_top_item_cancel_btn.visibility = View.GONE
+            history_ticket_image.visibility = View.GONE
+            history_title_layout.visibility = View.GONE
+            history_ticket_layout.visibility = View.GONE
+
+        }
+    } else {
+        Log.v("003", "003")
+        hidden_layout1.visibility = View.GONE
+        hidden_layout2.visibility = View.GONE
+       */
+//history_nested.visibility = View.VISIBLE

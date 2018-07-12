@@ -8,7 +8,7 @@
     <application
         android:name=".ApplicationController"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/meow_box"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -47,8 +47,9 @@
         <activity
             android:name=".View.Login.LoginActivity"
             android:windowSoftInputMode="adjustNothing" />
-        <activity android:name=".View.Join.JoinActivity"
-            android:windowSoftInputMode="adjustNothing"/>
+        <activity
+            android:name=".View.Join.JoinActivity"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".View.MyPage.Suggest.MyPageSuggestActivity"
             android:windowSoftInputMode="adjustNothing" />
@@ -69,7 +70,11 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".View.MyPage.OrderHistory.OrderHistoryDetail.OrderHistoryDetailHeaderActivity" />
         <activity android:name=".View.Main2Activity" />
-        <activity android:name=".View.Home.MainActivity"></activity>
+        <activity android:name=".View.Home.MainActivity" />
+        <activity
+            android:name=".View.MeowBoxBirthDay.MeowBoxBirthDayStoryActivity"
+            android:label="@string/title_activity_meow_box_birth_day_story"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

@@ -24,6 +24,7 @@
             >
 
             <ImageView
+                android:id="@+id/main_toolbar_image"
                 android:layout_width="128dp"
                 android:layout_height="22dp"
                 android:src="@drawable/logo_white"

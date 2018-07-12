@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true">
 
         <TextView
-            android:id="@+id/dialog_ex1"
+            android:id="@+id/login_to_mypage_dialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
@@ -26,7 +26,7 @@
             />
 
         <LinearLayout
-            android:layout_below="@+id/dialog_ex1"
+            android:layout_below="@+id/login_to_mypage_dialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"

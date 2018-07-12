@@ -50,6 +50,9 @@ public class CardViewAdapter extends PagerAdapter{
         ImageView mImageView = view.findViewById(R.id.titleImageView);
         CardData item = mPageList.get(position);
         Glide.with(container.getContext()).load(item.getImage()).into(mImageView);
+        if(item.getTmp() == 1){
+            home_detail_btn.setImageResource(R.drawable.home_detail_btn_white);
+        }
         container.addView(view);
         return view;
     }

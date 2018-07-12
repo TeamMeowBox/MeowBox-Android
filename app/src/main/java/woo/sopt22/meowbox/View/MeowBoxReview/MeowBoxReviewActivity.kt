@@ -18,6 +18,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ScrollView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.zarinpal.libs.cardviwepager.CardViewPager
@@ -83,6 +84,9 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
         blank_menu_item.setEnabled(false)
         blank_menu_item2.setEnabled(false)
+        review_top_btn.setOnClickListener {
+            review_scrollview.fullScroll(ScrollView.FOCUS_UP)
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             window.statusBarColor = Color.BLACK

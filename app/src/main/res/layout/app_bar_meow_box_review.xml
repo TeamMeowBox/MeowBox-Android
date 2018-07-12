@@ -20,14 +20,12 @@
             android:background="#FFFFFF"
             app:popupTheme="@style/AppTheme.PopupOverlay" >
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="128dp"
             android:layout_height="wrap_content"
             android:text="MeowBox"
-            android:layout_gravity="center_horizontal"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#4C4E51"/>
+            android:src="@drawable/logo_pink"
+            android:layout_gravity="center_horizontal"/>
 
         </android.support.v7.widget.Toolbar>
 

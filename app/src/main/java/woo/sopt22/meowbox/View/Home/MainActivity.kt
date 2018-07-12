@@ -68,7 +68,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             home_to_detail_btn->{
                 startActivity(Intent(this, MeowBoxDetailActivity::class.java))
             }
-
+            else->{
+                startActivity(Intent(this, MeowBoxDetailActivity::class.java))
+            }
         }
     }
 

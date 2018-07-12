@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import kotlinx.android.synthetic.main.order_four_fragment.*
@@ -124,6 +125,7 @@ class WithCatInfoThird : Fragment(), View.OnClickListener{
 
         networkService = ApplicationController.instance!!.networkService
         SharedPreference.instance!!.load(context!!)
+        activity!!.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
 
         box_type = "1"
         price = "39,900원"

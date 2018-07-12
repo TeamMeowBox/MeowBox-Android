@@ -63,7 +63,9 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
                     }
                 }
+
             }
+
         }
     }
 

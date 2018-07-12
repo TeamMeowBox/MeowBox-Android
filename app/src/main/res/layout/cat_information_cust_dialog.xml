@@ -49,6 +49,7 @@
                 android:text="나의 고양이에게 \n꼭 맞는 박스를 받아보세요!"
                 android:textColor="#4C4E51"
                 android:layout_gravity="center"
+                android:gravity="center_horizontal"
                 />
 
             <TextView

@@ -1,7 +1,6 @@
 package woo.sopt22.meowbox.View.MeowBoxReview
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
@@ -20,10 +19,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ScrollView
 import android.widget.TextView
-import com.bumptech.glide.Glide
-import com.zarinpal.libs.cardviwepager.CardViewPager
 import kotlinx.android.synthetic.main.activity_meow_box_review.*
-import kotlinx.android.synthetic.main.activity_meow_box_story.*
 import kotlinx.android.synthetic.main.app_bar_meow_box_review.*
 import kotlinx.android.synthetic.main.content_meow_box_review.*
 import retrofit2.Call
@@ -38,11 +34,10 @@ import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.Login.LoginActivity
-import woo.sopt22.meowbox.View.MeowBoxDetail.DetailAdapter
+import woo.sopt22.meowbox.View.MeowBoxBirthDay.MeowBoxtBirthDayStoryActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 import woo.sopt22.meowbox.View.Order.LoginCustomDialog
-import woo.sopt22.meowbox.View.Order.OrderFirstActivity
 import woo.sopt22.meowbox.View.Order.OrderThirdActivity
 
 class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -353,6 +348,9 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
                 } else{
                     startActivity(Intent(this, MyPageActivity::class.java))
                 }
+            }
+            R.id.birthDayBtn->{
+                startActivity(Intent(this, MeowBoxtBirthDayStoryActivity::class.java))
             }
         }
 

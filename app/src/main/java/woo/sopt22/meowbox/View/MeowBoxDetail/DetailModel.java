@@ -2,14 +2,14 @@ package woo.sopt22.meowbox.View.MeowBoxDetail;
 
 public class DetailModel {
     private String text;
-    private String imgUrl;
+    private int imgUrl;
 
-    public DetailModel(String text, String imgUrl) {
+    public DetailModel(String text, int imgUrl) {
         this.text = text;
         this.imgUrl = imgUrl;
     }
 
-    public void setImgUrl(String imgUrl) {
+    public void setImgUrl(int imgUrl) {
         this.imgUrl = imgUrl;
     }
 
@@ -17,7 +17,7 @@ public class DetailModel {
         this.text = text;
     }
 
-    public String getImgUrl() {
+    public int getImgUrl() {
         return imgUrl;
     }
 

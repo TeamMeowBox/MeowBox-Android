@@ -74,6 +74,10 @@
         <activity
             android:name=".View.MeowBoxBirthDay.MeowBoxBirthDayStoryActivity"
             android:label="@string/title_activity_meow_box_birth_day_story"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".View.MeowBoxBirthDay.MeowBoxtBirthDayStoryActivity"
+            android:label="@string/title_activity_meow_boxt_birth_day_story"
             android:theme="@style/AppTheme"></activity>
     </application>
 

@@ -27,6 +27,7 @@ import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.Login.LoginActivity
+import woo.sopt22.meowbox.View.MeowBoxBirthDay.MeowBoxtBirthDayStoryActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 import woo.sopt22.meowbox.View.Order.LoginCustomDialog
@@ -200,6 +201,9 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
             R.id.myPageBtn->{
                 startActivity(Intent(this, MyPageActivity::class.java))
                 finish()
+            }
+            R.id.birthDayBtn->{
+                startActivity(Intent(this, MeowBoxtBirthDayStoryActivity::class.java))
             }
 
         }

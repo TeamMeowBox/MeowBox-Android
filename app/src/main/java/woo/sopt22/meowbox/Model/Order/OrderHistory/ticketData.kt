@@ -6,6 +6,7 @@ data class ticketData (
         var product : String,
         var term : String,
         var end_term : String,
-        var flag : Int
+        var flag : Int,
+        var price : String
 
 )

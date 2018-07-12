@@ -64,9 +64,14 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private var customButton1: ImageView? = null
-    private var customButton2: ImageView? = null
-    private var customButton3: ImageView? = null
+    var userCatName : RequestBody? = null
+    var userCatSize : RequestBody? = null
+    var userBirthday : RequestBody? = null
+    var userSuggest : RequestBody? = null
+
+    lateinit var customButton1: ImageView
+    lateinit var customButton2: ImageView
+    lateinit var customButton3: ImageView
 
     lateinit var mySettingName : EditText
     lateinit var mySettingEmail : EditText
@@ -79,6 +84,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var mysettingphone : String
     var mysettingcatname : String? = null
     var mysettingmysuggest : String? = null
+    var catsize : String? = null
 
     var year: String? = null
     var month: String? = null
@@ -93,13 +99,17 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var myAccountSettingPost: MyAccountSettingPost
     lateinit var profileImage : ImageView
 
-    var catSize : String? = null
-
     lateinit var mySettingYear : Spinner
     lateinit var mySettingMonth : Spinner
     lateinit var mySettingDay : Spinner
 
     lateinit var token : String
+
+//    fun initButton(){
+//        customButton1!!.setImageResource(R.drawable.my_small_check_box_gray)
+//        customButton2!!.setImageResource(R.drawable.my_normal_check_box_gray)
+//        customButton3!!.setImageResource(R.drawable.my_large_check_box_gray)
+//    }
 
 
     @SuppressLint("ResourceType")
@@ -119,10 +129,13 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         mySettingMonth = findViewById<View>(R.id.mysetting_month) as Spinner
         mySettingDay = findViewById<View>(R.id.mysetting_day) as Spinner
 
-        mySettingYear.setSelection(2018-1980)
-        mySettingMonth.setSelection(6-1)
-        mySettingDay.setSelection(3-1)
-        mySettingMySuggest = mysetting_my_suggest as EditText
+//        mySettingYear.setSelection(2018-1980)
+//        mySettingMonth.setSelection(6-1)
+//        mySettingDay.setSelection(3-1)
+
+
+        //initButton()
+
 
 
         accountPreview()
@@ -143,6 +156,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         mySettingEmail = mysetting_my_email as EditText
         mySettingPhone = mysetting_my_phone as EditText
         mySettingCatName = mysetting_cat_name as EditText
+        mySettingMySuggest = mysetting_my_suggest as EditText
 
         customButton1 = findViewById<View>(R.id.custom_button1) as ImageView
         customButton1!!.setOnClickListener(this)
@@ -257,24 +271,21 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
                 customButton1!!.setImageResource(R.drawable.my_small_check_box_pink)
                 customButton2!!.setImageResource(R.drawable.my_normal_check_box_gray)
                 customButton3!!.setImageResource(R.drawable.my_large_check_box_gray)
-                catSize = "1"
+                catsize = "1"
             }
 
             "2" ->{
                 customButton1!!.setImageResource(R.drawable.my_small_check_box_gray)
                 customButton2!!.setImageResource(R.drawable.my_normal_check_box_pink)
                 customButton3!!.setImageResource(R.drawable.my_large_check_box_gray)
-                catSize = "2"
+                catsize = "2"
             }
 
             "3" ->{
                 customButton1!!.setImageResource(R.drawable.my_small_check_box_gray)
                 customButton2!!.setImageResource(R.drawable.my_normal_check_box_gray)
                 customButton3!!.setImageResource(R.drawable.my_large_check_box_pink)
-                catSize = "3"
-            }
-            else->{
-                catSize=null
+                catsize = "3"
             }
         }
 
@@ -291,7 +302,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
 
     fun saveSettingAccount(){
 
-         var birthdayString = year+"-"+month+"-"+day
+        var birthdayString = year+"-"+month+"-"+day
 
         mysettingname = mySettingName.text.toString()
         mysettingemail = mySettingEmail.text.toString()
@@ -303,13 +314,23 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         //Log.v("image 33",image!!.toString())
         //Log.v("image 44",data!!.toString())
 
+        if(mySettingPhone.text.length == 0 || catsize == null || birthdayString.equals("1980-01-1")){
+            Log.d("nulllis","nullyes")
+            mysettingcatname = "-1"
+        }
+
+
+
         val userName = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingname)
         val userPhone = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingphone)
         val userEmail = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingemail)
-        val userCatName = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingcatname)
-        val userCatSize = RequestBody.create(MediaType.parse("multipart/form-data"), catSize)
-        val userBirthday = RequestBody.create(MediaType.parse("multipart/form-data"), birthdayString)
-        val userSuggest = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingmysuggest)
+        userCatName = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingcatname)
+        userCatSize = RequestBody.create(MediaType.parse("multipart/form-data"), catsize+"")
+        userBirthday = RequestBody.create(MediaType.parse("multipart/form-data"), birthdayString)
+        userSuggest = RequestBody.create(MediaType.parse("multipart/form-data"), mysettingmysuggest)
+
+//        if(mysettingcatname.equals("")){ mysettingname? = null
+//        }
 
         val tmpResponse = networkService.postMyAccount(SharedPreference.instance!!.getPrefStringData("token")!!,
                 userName, userPhone, userEmail, image, userCatName, userCatSize, userBirthday, userSuggest)

@@ -263,9 +263,9 @@
                         android:layout_centerVertical="true"
                         android:layout_marginRight="22dp"
                         android:background="@null"
-                        android:text="온풍이"
+                        android:hint="고양이 이름"
                         android:textColor="#E88687"
-                        android:textSize="16sp" />
+                        android:textSize="16dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"

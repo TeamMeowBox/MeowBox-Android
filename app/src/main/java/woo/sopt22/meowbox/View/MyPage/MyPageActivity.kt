@@ -77,8 +77,6 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             story_order_btn->{
                 startActivity(Intent(this, OrderFirstActivity::class.java))
             }
-
-
         }
 
     }

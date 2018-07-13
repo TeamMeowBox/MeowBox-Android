@@ -79,8 +79,10 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
         setContentView(R.layout.activity_meow_box_story)
         setSupportActionBar(toolbar)
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
+            window.navigationBarColor = Color.BLACK
+        }
 
         story_to_order_btn.setOnClickListener(this)
         story_to_order_btn2.setOnClickListener(this)

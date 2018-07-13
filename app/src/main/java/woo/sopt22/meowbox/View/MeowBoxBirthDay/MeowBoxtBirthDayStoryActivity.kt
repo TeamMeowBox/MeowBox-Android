@@ -37,7 +37,14 @@ import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 import woo.sopt22.meowbox.View.Order.LoginCustomDialog
 import woo.sopt22.meowbox.View.Order.OrderThirdActivity
 
-class MeowBoxtBirthDayStoryActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MeowBoxtBirthDayStoryActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
+    override fun onClick(v: View?) {
+        when(v!!){
+            birth_day_detail_btn->{
+                startActivity(Intent(this, BirthdayStoryDetailActivity::class.java))
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +57,7 @@ class MeowBoxtBirthDayStoryActivity : AppCompatActivity(), NavigationView.OnNavi
 
         //Glide.with(this).load(R.drawable.webtoon_img).into(birth_web)toon)
         //Glide.with(this).load(R.drawable.webtoon_img).apply(RequestOptions().fitCenter()).into(birth_webtoon)
+        birth_day_detail_btn.setOnClickListener(this)
 
 
         var headerView : View = birth_nav_view.getHeaderView(0)
@@ -87,8 +95,10 @@ class MeowBoxtBirthDayStoryActivity : AppCompatActivity(), NavigationView.OnNavi
         }
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
+            window.navigationBarColor = Color.BLACK
+        }
 
         val toggle = ActionBarDrawerToggle(
                 this, birth_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)

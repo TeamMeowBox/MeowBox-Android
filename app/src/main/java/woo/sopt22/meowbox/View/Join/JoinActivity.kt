@@ -77,8 +77,10 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
         SharedPreference.instance!!.load(this)
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
+            window.navigationBarColor = Color.BLACK
+        }
 
         joinBtn = join_btn as RelativeLayout
         joinBtn.setOnClickListener(this)

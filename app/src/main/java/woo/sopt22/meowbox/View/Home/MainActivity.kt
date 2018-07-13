@@ -1,5 +1,6 @@
 package woo.sopt22.meowbox.View.Home
 
+import android.content.Context
 import android.content.Intent
 
 import android.graphics.Bitmap
@@ -57,6 +58,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(this, MeowBoxDetailActivity::class.java))
             }
             else->{
+
                 startActivity(Intent(this, MeowBoxDetailActivity::class.java))
             }
         }
@@ -315,6 +317,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var madapter = CardViewAdapter(layoutInflater, items)
         mViewPager.setCurrentItem(0)
         mViewPager.adapter = madapter
+
+
         mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(state: Int) {
 
@@ -347,7 +351,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         })
 
                     }
-                    1,2,3->{
+                    1,2->{
                         main_toolbar_image.setImageResource(R.drawable.logo_pink)
                         home_detail_btn.setImageResource(R.drawable.home_detail_btn_gray)
                         val toggle = ActionBarDrawerToggle(
@@ -370,6 +374,38 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                             }
                         })
                     }
+
+                    3->{
+                        main_toolbar_image.setImageResource(R.drawable.logo_pink)
+                        home_detail_btn.setImageResource(R.drawable.home_detail_btn_gray)
+                        home_detail_btn.setOnClickListener(object : View.OnClickListener{
+                            override fun onClick(p0: View?) {
+                                startActivity(Intent(this@MainActivity, MeowBoxtBirthDayStoryActivity::class.java))
+
+                            }
+                        })
+                        val toggle = ActionBarDrawerToggle(
+                                this@MainActivity, main_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+
+                        toggle.setDrawerIndicatorEnabled(false)
+                        val drawable = ResourcesCompat.getDrawable(resources, R.drawable.side_bar_btn_black, applicationContext!!.getTheme())
+
+                        val bitmap = (drawable as BitmapDrawable).bitmap
+                        val newdrawable = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, 30, 30, true))
+
+                        toggle.setHomeAsUpIndicator(drawable)
+                        toggle.setToolbarNavigationClickListener(object : View.OnClickListener {
+                            override fun onClick(v: View?) {
+                                if (main_drawer_layout.isDrawerVisible(GravityCompat.START)) {
+                                    main_drawer_layout.closeDrawer(GravityCompat.START)
+                                } else {
+                                    main_drawer_layout.openDrawer(GravityCompat.START)
+                                }
+                            }
+                        })
+                    }
+
+
                     4->{
                         main_toolbar_image.setImageResource(R.drawable.logo_white)
                         home_detail_btn.setImageResource(R.drawable.home_detail_btn_gray)

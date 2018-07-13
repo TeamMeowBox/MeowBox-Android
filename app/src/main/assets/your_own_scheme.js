@@ -11,7 +11,8 @@ var IMP = window.IMP; // 생략가능
 IMP.init('iamport'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 
 function myset(res){
-var hey = res;
+var hey = JSON.parse(res);
+
 
 //onclick, onload 등 원하는 이벤트에 호출합니다
 IMP.request_pay(
@@ -20,9 +21,9 @@ IMP.request_pay(
 
     pg : 'inicis', // version 1.1.0부터 지원.
     pay_method : 'card',
-    merchant_uid : '402',
-    name : hey,
-    amount : 200,
+    merchant_uid : hey.merchant_uid,
+    name : hey.name,
+    amount : hey.amount,
     buyer_email : 'iamport@siot.do',
     buyer_name : '구매자이름',
     buyer_tel : '010-7473-8455',

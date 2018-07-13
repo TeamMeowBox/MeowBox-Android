@@ -1,5 +1,6 @@
 package woo.sopt22.meowbox.View.Order.OrderFragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -16,13 +17,13 @@ import retrofit2.Callback
 import retrofit2.Response
 import woo.sopt22.meowbox.ApplicationController
 import woo.sopt22.meowbox.Model.Address.BeforeAddressResponse
-import woo.sopt22.meowbox.Model.Base.BaseModel
 import woo.sopt22.meowbox.Model.Order.OrderData
 import woo.sopt22.meowbox.Model.Order.OrderResponse
 import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
+import woo.sopt22.meowbox.View.Order.Credit.CreditActivity
 import woo.sopt22.meowbox.View.Order.OrderFirstActivity
 
 class OrderFourFragment : Fragment(), View.OnClickListener {
@@ -107,8 +108,14 @@ class OrderFourFragment : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<OrderResponse>?, response: Response<OrderResponse>?) {
                 if(response!!.isSuccessful){
                     Log.v("412",response!!.message())
+                    var orderIdx = response!!.body()!!.result.order_idx.toString()
+                    Log.d("ordererr",orderIdx)
+
+                    val intent = Intent(activity, CreditActivity::class.java)
+                    intent.putExtra("orderIdx",orderIdx)
+                    startActivity(intent);
+
                     (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(OrderFiveFragment())
-                    response!!.body()!!
                 }
             }
 

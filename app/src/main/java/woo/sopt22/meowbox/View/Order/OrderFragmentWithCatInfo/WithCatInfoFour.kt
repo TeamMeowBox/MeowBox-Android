@@ -1,7 +1,5 @@
 package woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -13,7 +11,6 @@ import android.view.WindowManager
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.order_four_fragment.*
 import kotlinx.android.synthetic.main.order_four_fragment.view.*
 import retrofit2.Call
@@ -21,9 +18,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import woo.sopt22.meowbox.ApplicationController
 import woo.sopt22.meowbox.Model.Address.BeforeAddressResponse
-import woo.sopt22.meowbox.Model.Base.BaseModel
-import woo.sopt22.meowbox.Model.Order.OrderData
-import woo.sopt22.meowbox.Model.Order.OrderResponse
+import woo.sopt22.meowbox.Model.Order.*
 import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference
@@ -40,14 +35,10 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
             order_pay_next->{
                 ToastMaker.makeLongToast(context, radio_button.text.trim().toString())
                 Log.v("48",radio_button.text.toString())
+
                 postOrder()
 
-                lateinit var gson: Gson
-                gson = GsonBuilder().create()
-                var myjson = gson.toJson(orderData)
-                val intent = Intent(activity, CreditActivity::class.java)
-                intent.putExtra("myJson",myjson)
-                startActivity(intent);
+
 
             }
         }
@@ -59,6 +50,8 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
     lateinit var box_type : String
     lateinit var price : String
     lateinit var orderData: OrderData
+    lateinit var orderChecking : OrderResult
+    lateinit var orderTest : OrderTest
 
     lateinit var networkService: NetworkService
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -97,6 +90,41 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+
+    }
+
+    fun postORrderResult(){
+        orderChecking = OrderResult(SharedPreference.instance!!.getPrefStringData("merchant")!!)
+        Log.d("boolean", "어디까지 들어가냥")
+        val orderCheck = networkService.postOrderResult(SharedPreference.instance!!.getPrefStringData("token")!!,
+                orderChecking)
+        Log.d("boolean", "어디까지 들어가냥")
+        orderCheck.enqueue(object  : Callback<OrderResultResponse>{
+            override fun onFailure(call: Call<OrderResultResponse>?, t: Throwable?) {
+                Log.d("boolean", "어디까지 들어가냥")
+
+            }
+
+            override fun onResponse(call: Call<OrderResultResponse>?, response: Response<OrderResultResponse>?) {
+                if(response!!.isSuccessful){
+                    var orderCheckBoolean = response!!.body()!!.result.order_result
+                    Log.d("boolean", orderCheckBoolean.toString())
+                    if(orderCheckBoolean == true) {
+                        (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoFive())
+                    }
+                    else {
+                        Log.d("boolean", "어디까지 들어가냥")
+                        (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoThird())
+                    }
+                }
+            }
+
+        })
+
+    }
+
 
     fun postOrder(){
         if(this.arguments != null) {
@@ -119,7 +147,25 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<OrderResponse>?, response: Response<OrderResponse>?) {
                 if(response!!.isSuccessful){
                     Log.v("412",response!!.message())
-                    (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoFive())
+                    var orderIdx = response!!.body()!!.result.order_idx.toString()
+                    SharedPreference.instance!!.setPrefData("merchant", orderIdx)
+                    Log.d("ordererr",orderIdx)
+
+                    var priceTmp : Int
+                    var re = Regex("[^0-9]")
+                    priceTmp = re.replace(price, "").toInt()
+
+                    orderTest = OrderTest(orderIdx, box_type+"개월 정기배송", priceTmp)
+                    var gson = Gson()
+                    var orderJson = gson.toJson(orderTest)
+                    gson.toJson(orderTest)
+
+                    val intent = Intent(activity, CreditActivity::class.java)
+                    intent.putExtra("orderIdx",orderJson)
+                    startActivity(intent);
+                    postORrderResult()
+
+
                 }
             }
 

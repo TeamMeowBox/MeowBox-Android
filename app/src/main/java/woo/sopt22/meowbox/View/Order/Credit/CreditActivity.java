@@ -36,15 +36,14 @@ public class CreditActivity extends Activity {
         setContentView(R.layout.activity_credit);
 
         Intent intenttmp = getIntent();
-        String stringTmp = intenttmp.getStringExtra("myJson");
-        Gson gson = new Gson();
-        final OrderData orderData = gson.fromJson(stringTmp, OrderData.class);
+        final String stringTmp = intenttmp.getStringExtra("orderIdx");
+        Log.d("errfind",stringTmp);
 
 
 
 
 
-        mainWebView = (WebView) findViewById(R.id.mainWebView);
+        mainWebView = (WebView) findViewById(R.id.main_web_view);
         mainWebView.setWebViewClient(new InicisWebViewClient(this));
         WebSettings settings = mainWebView.getSettings();
         settings.setJavaScriptEnabled(true);
@@ -67,7 +66,7 @@ public class CreditActivity extends Activity {
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    mainWebView.loadUrl("javascript:myset('"+ orderData.getProduct() +"')");
+                    mainWebView.loadUrl("javascript:myset('"+ stringTmp +"')");
 
                 }
             }, 10000);

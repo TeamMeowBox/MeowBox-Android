@@ -56,13 +56,6 @@ public class CardViewAdapter extends PagerAdapter{
         }
         else if(item.getTmp() == 2){
             home_detail_btn.setVisibility(View.INVISIBLE);
-        } else if(item.getTmp() == 3){
-            home_detail_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    context.startActivity(new Intent(context, MeowBoxtBirthDayStoryActivity.class));
-                }
-            });
         }
         container.addView(view);
         return view;

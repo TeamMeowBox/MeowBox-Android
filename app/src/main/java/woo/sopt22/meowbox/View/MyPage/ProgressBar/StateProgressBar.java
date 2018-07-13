@@ -550,7 +550,7 @@ public class StateProgressBar extends View {
 
     private void validateStateNumber(int stateNumber) {
         if (stateNumber > mMaxStateNumber) {
-            throw new IllegalStateException("State number (" + stateNumber + ") cannot be greater than total number of states " + mMaxStateNumber);
+            //throw new IllegalStateException("State number (" + stateNumber + ") cannot be greater than total number of states " + mMaxStateNumber);
         }
     }
 

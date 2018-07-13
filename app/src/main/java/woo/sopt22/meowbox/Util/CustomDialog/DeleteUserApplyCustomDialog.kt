@@ -66,6 +66,7 @@ class DeleteUserApplyCustomDialog(context : Context) : Dialog(context), View.OnC
                     SharedPreference.instance!!.removeData("phone_number")
                     SharedPreference.instance!!.removeData("cat_idx")
                     SharedPreference.instance!!.removeData("image")
+                    SharedPreference.instance!!.removeData("cat_name")
                     cancel()
                     val intent = Intent(context, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)

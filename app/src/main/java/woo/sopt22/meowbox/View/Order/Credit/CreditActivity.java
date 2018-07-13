@@ -26,6 +26,8 @@ import woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo.WithCatInfoFour;
 
 public class CreditActivity extends Activity {
 
+    String stringTmp;
+
     private WebView mainWebView;
     private static final String APP_SCHEME = "iamporttest://";
     //OrderData orderData;
@@ -36,9 +38,8 @@ public class CreditActivity extends Activity {
         setContentView(R.layout.activity_credit);
 
         Intent intenttmp = getIntent();
-        String stringTmp = intenttmp.getStringExtra("myJson");
-        Gson gson = new Gson();
-        final OrderData orderData = gson.fromJson(stringTmp, OrderData.class);
+        stringTmp = intenttmp.getStringExtra("myJson");
+        Log.v("string123",stringTmp);
 
 
 
@@ -67,7 +68,7 @@ public class CreditActivity extends Activity {
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    mainWebView.loadUrl("javascript:myset('"+ orderData.getProduct() +"')");
+                    mainWebView.loadUrl("javascript:myset('"+ stringTmp +"')");
 
                 }
             }, 10000);

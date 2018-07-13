@@ -9,6 +9,7 @@ import android.support.design.widget.NavigationView
 import android.support.v4.content.res.ResourcesCompat
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Build
 import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager
@@ -36,6 +37,7 @@ import woo.sopt22.meowbox.Util.CustomDialog.LoginToMyPageCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Login.LoginActivity
+import woo.sopt22.meowbox.View.MeowBoxBirthDay.BirthdayStoryDetailActivity
 import woo.sopt22.meowbox.View.MeowBoxBirthDay.MeowBoxtBirthDayStoryActivity
 import woo.sopt22.meowbox.View.MeowBoxDetail.MeowBoxDetailActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
@@ -54,10 +56,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(this, MeowBoxStoryActivity::class.java))
             }
             home_to_detail_btn->{
+                Log.v("만혁","detail")
+                Log.v("만혁","묘박스 디테일")
                 startActivity(Intent(this, MeowBoxDetailActivity::class.java))
+
+                Log.v("만혁","아예 엘스")
             }
             else->{
-                startActivity(Intent(this, MeowBoxDetailActivity::class.java))
+                if(current_number == 2 || current_number == 3){
+                    Log.v("만혁",current_number.toString())
+                    startActivity(Intent(this, BirthdayStoryDetailActivity::class.java))
+                } else{
+                    Log.v("만혁","묘박스 디테일")
+                    startActivity(Intent(this, MeowBoxDetailActivity::class.java))
+                }
+                /*Log.v("만혁","전체 엘스")
+                startActivity(Intent(this, MeowBoxDetailActivity::class.java))*/
             }
         }
     }
@@ -89,6 +103,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var main_side_bar_btn : ImageView
     lateinit var main_side_back_btn : ImageView
     lateinit var networkService: NetworkService
+    var current_number : Int = 0
 
     fun init(){
         mViewPager = viewpager as ViewPager
@@ -117,7 +132,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun getInsta(){
-        Log.v("339","??")
         val instaResponse = networkService.getInstaCrawling()
         instaResponse.enqueue(object : Callback<InstaCrawlingResponse>{
             override fun onFailure(call: Call<InstaCrawlingResponse>?, t: Throwable?) {
@@ -164,6 +178,36 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         })
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        SharedPreference.instance!!.load(this)
+
+
+        var headerView : View = main_nav_view.getHeaderView(0)
+        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+        var userImage : ImageView = headerView.findViewById(R.id.imageView)
+
+
+        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
+            userName.text = "OO님!"
+        } else {
+            userName.text = SharedPreference.instance!!.getPrefStringData("name")
+        }
+
+        if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
+            //userImage.setImageResource(R.drawable.side_bar_profile_img)
+            Log.v("용범 onResume","123")
+            Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
+        } else{
+            Log.v("용범 onResume","456")
+            userImage.setImageURI(Uri.parse(SharedPreference.instance!!.getPrefStringData("image_profile")))
+            Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
+        }
+
+
+    }
     override fun onRestart() {
         Log.v("onRestart",SharedPreference.instance!!.getPrefStringData("user_name"))
         super.onRestart()
@@ -172,12 +216,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         var headerView : View = main_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+        var userImage : ImageView = headerView.findViewById(R.id.imageView)
 
 
         if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
             userName.text = "OO님!"
         } else {
             userName.text = SharedPreference.instance!!.getPrefStringData("name")
+        }
+
+        if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
+            //userImage.setImageResource(R.drawable.side_bar_profile_img)
+            Log.v("용범 onRestart","123")
+            Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
+        } else{
+            Log.v("용범 onRestart","456")
+            userImage.setImageURI(Uri.parse(SharedPreference.instance!!.getPrefStringData("image_profile")))
+            Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
         }
 
 
@@ -203,17 +258,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         networkService = ApplicationController.instance!!.networkService
 
         SharedPreference.instance!!.load(this)
-        Log.v("079",SharedPreference.instance!!.getPrefStringData("image"))
+        Log.v("079",SharedPreference.instance!!.getPrefStringData("image_profile"))
 
-        if(SharedPreference.instance!!.getPrefStringData("image") == null){
-            //userImage.setImageResource(R.drawable.side_bar_profile_img)
-            Log.v("용범","123")
+        if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
+            Log.v("용범 onCreate","123")
             Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
         } else{
-            Log.v("용범","456")
-            Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")!!).into(userImage)
+            Log.v("용범 onCreate","456")
+            Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
         }
-        Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")!!).into(userImage)
+        Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
         home_to_detail_btn.setOnClickListener(this)
 
         init()
@@ -221,14 +275,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 when(event!!.action){
                     MotionEvent.ACTION_UP,MotionEvent.ACTION_MOVE->{
-                        Log.v("8989","8989")
+                        //Log.v("8989","8989")
                         getInsta()
                         getCatCount()
+                        main_sliding_scroll.fullScroll(ScrollView.FOCUS_UP)
                     }
                     MotionEvent.ACTION_DOWN->{
-                        Log.v("9898","9898")
+                        //Log.v("9898","9898")
                         //getInsta()
-                        ToastMaker.makeLongToast(this@MainActivity, "dd")
+                        //ToastMaker.makeLongToast(this@MainActivity, "dd")
+                        main_sliding_scroll.fullScroll(ScrollView.FOCUS_UP)
                     }
 
                 }
@@ -326,6 +382,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onPageSelected(position: Int) {
                 when(position){
                     0->{
+                        current_number = position
                         main_toolbar_image.setImageResource(R.drawable.logo_white)
                         home_detail_btn.setImageResource(R.drawable.home_detail_btn_white)
                         val toggle = ActionBarDrawerToggle(
@@ -350,6 +407,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                     }
                     1,2,3->{
+                        current_number = position
                         main_toolbar_image.setImageResource(R.drawable.logo_pink)
                         home_detail_btn.setImageResource(R.drawable.home_detail_btn_gray)
                         val toggle = ActionBarDrawerToggle(
@@ -373,6 +431,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         })
                     }
                     4->{
+                        current_number = position
                         main_toolbar_image.setImageResource(R.drawable.logo_white)
                         home_detail_btn.setImageResource(R.drawable.home_detail_btn_gray)
                         val toggle = ActionBarDrawerToggle(

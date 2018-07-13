@@ -17,8 +17,10 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
 import android.widget.ScrollView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_meow_box_review.*
 import kotlinx.android.synthetic.main.app_bar_meow_box_review.*
 import kotlinx.android.synthetic.main.content_meow_box_review.*
@@ -29,6 +31,7 @@ import woo.sopt22.meowbox.ApplicationController
 import woo.sopt22.meowbox.Model.Review.ReviewResponse
 import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
+import woo.sopt22.meowbox.R.drawable.side_bar_profile_img
 import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
@@ -71,17 +74,58 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
 
         networkService = ApplicationController.instance!!.networkService
+        SharedPreference.instance!!.load(this)
+
+
+
+
 
 
         var menu : Menu = review_nav_view.menu
         var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
         var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
         var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
+        var login_menu_item : MenuItem = menu.findItem(R.id.loginBtn)
         blank_menu_item.setEnabled(false)
         blank_menu_item2.setEnabled(false)
+
+        var headerView : View = review_nav_view.getHeaderView(0)
+        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+        var userImage : ImageView = headerView.findViewById(R.id.imageView)
+
+        if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
+            //userImage.setImageResource(R.drawable.side_bar_profile_img)
+            Log.v("용범","123")
+            //Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
+            userImage.setImageResource(R.drawable.side_bar_profile_img)
+        } else{
+            Log.v("용범","456")
+            Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
+        }
+
+
+        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
+            userName.text = "OO님!"
+            login_menu_item.setTitle("로그인")
+        } else {
+            userName.text = SharedPreference.instance!!.getPrefStringData("name")
+            login_menu_item.setTitle("")
+            login_menu_item.setEnabled(false)
+        }
+
+
         review_top_btn.setOnClickListener {
             review_scrollview.fullScroll(ScrollView.FOCUS_UP)
         }
+
+
+
+
+
+
+
+
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK

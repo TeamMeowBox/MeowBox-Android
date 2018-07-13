@@ -29,6 +29,7 @@ import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Order.Credit.CreditActivity
+import woo.sopt22.meowbox.View.Order.OrderTest
 import woo.sopt22.meowbox.View.Order.OrderThirdActivity
 
 class WithCatInfoFour : Fragment(), View.OnClickListener {
@@ -41,13 +42,6 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
                 ToastMaker.makeLongToast(context, radio_button.text.trim().toString())
                 Log.v("48",radio_button.text.toString())
                 postOrder()
-
-                lateinit var gson: Gson
-                gson = GsonBuilder().create()
-                var myjson = gson.toJson(orderData)
-                val intent = Intent(activity, CreditActivity::class.java)
-                intent.putExtra("myJson",myjson)
-                startActivity(intent);
 
             }
         }
@@ -119,6 +113,22 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
             override fun onResponse(call: Call<OrderResponse>?, response: Response<OrderResponse>?) {
                 if(response!!.isSuccessful){
                     Log.v("412",response!!.message())
+
+                    var orderIdx = response!!.body()!!.result.order_idx.toString()
+                    SharedPreference.instance!!.setPrefData("merchant", orderIdx)
+
+                    var priceTmp : Int
+                    var re = Regex("[^0-9]")
+                    priceTmp = re.replace(price, "").toInt()
+
+                    var orderTest = OrderTest(orderIdx, box_type+"개월 정기배송", priceTmp)
+                    var gson = Gson()
+                    var orderJson = gson.toJson(orderTest)
+
+                    val intent = Intent(activity, CreditActivity::class.java)
+                    intent.putExtra("myJson", orderJson)
+                    startActivity(intent)
+
                     (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoFive())
                 }
             }

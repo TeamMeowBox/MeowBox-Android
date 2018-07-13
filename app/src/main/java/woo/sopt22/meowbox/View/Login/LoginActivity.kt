@@ -1,5 +1,6 @@
 package woo.sopt22.meowbox.View.Login
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
@@ -14,6 +15,7 @@ import android.text.SpannableStringBuilder
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -46,6 +48,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             login_back_btn->{
                 finish()
             }
+            login_activity_layout->{
+                var imm : InputMethodManager
+                imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromInputMethod(login_email.windowToken, 0)
+            }
         }
     }
 
@@ -73,6 +80,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         login_to_sign_btn.setOnClickListener(this)
         loginBtn.setOnClickListener(this)
         login_back_btn.setOnClickListener(this)
+        login_activity_layout.setOnClickListener(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -183,7 +191,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     SharedPreference.instance!!.setPrefData("cat_idx",response!!.body()!!.result!!.cat_idx)
                     SharedPreference.instance!!.setPrefData("image_profile", response!!.body()!!.result!!.image_profile!!)
                     Log.v("123",token)
-                    Log.v("123",response.body()!!.result!!.cat_idx)
+                    Log.v("1233", response!!.body()!!.result!!.image_profile!!)
+                    Log.v("1234",response.body()!!.result!!.cat_idx)
                     startActivity(Intent(applicationContext, MainActivity::class.java))
                 }
             }

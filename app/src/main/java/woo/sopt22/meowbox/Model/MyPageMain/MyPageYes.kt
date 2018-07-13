@@ -10,8 +10,10 @@ data class MyPageYes (
 data class MyPageYesData(
         var catinfo : String,
         var flag : Int,
+        var image_profile : String,
+        var sendImage : String,
         var ticket : String,
-        var use : String,
-        var sendImage : String
-
+        var use : String
 )
+
+// Edit by 승우 : 민형이꺼 보고 추가

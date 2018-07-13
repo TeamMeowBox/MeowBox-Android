@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
                     android:textSize="16dp"
-                    android:text="취소하기"/>
+                    android:text="아니오"/>
 
             </LinearLayout>
 
@@ -93,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#ffffff"
                     android:textSize="16dp"
-                    android:text="입력하기"/>
+                    android:text="예"/>
 
             </LinearLayout>
 

@@ -47,8 +47,8 @@
 
                 <ImageView
                     android:id="@+id/story_to_order_btn"
-                    android:layout_width="115dp"
-                    android:layout_height="33dp"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
                     android:layout_marginTop="40dp"
                     android:layout_marginLeft="22dp"
                     android:src="@drawable/story_order_btn" />
@@ -494,7 +494,7 @@
 
                     <ImageView
                         android:layout_width="66dp"
-                        android:layout_height="9dp"
+                        android:layout_height="10dp"
                         android:layout_alignParentBottom="true"
                         android:src="@drawable/home_pink_line" />
 
@@ -530,7 +530,7 @@
 
                     <ImageView
                         android:layout_width="156dp"
-                        android:layout_height="9dp"
+                        android:layout_height="10dp"
                         android:layout_alignParentBottom="true"
                         android:src="@drawable/home_pink_line" />
 
@@ -556,8 +556,8 @@
 
             <ImageView
                 android:id="@+id/story_to_order_btn2"
-                android:layout_width="115dp"
-                android:layout_height="33dp"
+                android:layout_width="130dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="50dp"
                 android:layout_marginTop="34dp"

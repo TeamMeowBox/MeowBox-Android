@@ -11,8 +11,8 @@ var IMP = window.IMP; // 생략가능
 IMP.init('iamport'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 
 function myset(res){
-var hey = JSON.parse(res);
-
+var data = JSON.parse(res);
+data;
 //onclick, onload 등 원하는 이벤트에 호출합니다
 IMP.request_pay(
 {
@@ -20,12 +20,12 @@ IMP.request_pay(
 
     pg : 'inicis', // version 1.1.0부터 지원.
     pay_method : 'card',
-    merchant_uid : hey.merchant_uid,
-    name : hey.name,
-    amount : hey.amount,
+    merchant_uid :data.merchant_uid,
+    name :data.name,
+    amount :data.amount,
     buyer_email : 'iamport@siot.do',
     buyer_name : '구매자이름',
-    buyer_tel : '010-7473-8455',
+    buyer_tel : '010-1234-5678',
     buyer_addr : '서울특별시 강남구 삼성동',
     buyer_postcode : '123-456',
     m_redirect_url : 'http://13.124.92.40:3000/order/order_result',

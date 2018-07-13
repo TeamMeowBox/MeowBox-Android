@@ -42,7 +42,7 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
                     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.show()
                 } else{
-                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!!.toInt() == -1){
+                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1"){
                         val dialog = CatCustomDialog(this)
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
@@ -59,7 +59,7 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
                     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.show()
                 } else{
-                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!!.toInt() == -1){
+                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1"){
                         val dialog = CatCustomDialog(this)
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
@@ -92,7 +92,7 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
 
         var userImage : ImageView = headerView.findViewById(R.id.imageView)
 
-        Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")!!).into(userImage)
+        Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
 
         var menu : Menu = story_nav_view.menu
         var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
@@ -106,7 +106,8 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
             menu_item.setTitle("로그인")
         } else {
             userName.text = SharedPreference.instance!!.getPrefStringData("name")
-            menu_item.setTitle("로그아웃")
+            menu_item.setTitle("")
+            menu_item.setEnabled(false)
         }
 
 
@@ -184,7 +185,7 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
                     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.show()
                 } else{
-                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!!.toInt() == -1){
+                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1"){
                         val dialog = CatCustomDialog(this)
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()

@@ -54,7 +54,7 @@
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:text="사용 중인 정기권이 없습니다."
             android:textColor="#999999"/>
 
@@ -75,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="25dp"
-            android:text="사용 중인 정기권이 없습니다.22222"
+            android:text="현재 사용 중인 정기권이 없습니다."
             android:textColor="#999999"/>
 
     </RelativeLayout>

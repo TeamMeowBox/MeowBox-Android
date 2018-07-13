@@ -14,8 +14,7 @@
         <RelativeLayout
             android:id="@+id/re"
             android:layout_width="match_parent"
-            android:layout_height="71dp"
-            android:background="@drawable/sliding_border">
+            android:layout_height="71dp">
 
             <ImageView
                 android:id="@+id/home_down_arrow"
@@ -43,6 +42,7 @@
         </RelativeLayout>
 
         <ScrollView
+            android:id="@+id/main_sliding_scroll"
             android:background="#88ffffff"
             android:layout_below="@+id/re"
             android:layout_width="match_parent"
@@ -335,9 +335,8 @@
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="22dp"
                     android:layout_marginTop="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="210dp"
-                    android:scaleType="fitXY"
+                    android:layout_width="wrap_content"
+                    android:layout_height="250dp"
                     android:src="@drawable/home_meow_box_one_img"/>
 
 
@@ -390,9 +389,8 @@
                     android:layout_marginLeft="22dp"
                     android:layout_marginRight="22dp"
                     android:layout_marginTop="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="210dp"
-                    android:scaleType="fitXY"
+                    android:layout_width="wrap_content"
+                    android:layout_height="250dp"
                     android:src="@drawable/home_meow_box_two_img"/>
 
 

@@ -21,4 +21,5 @@
     <string name="notice2_content">안녕하세요, 미유님들! \n주문해주신 미유박스를 취소/반품/환불 요청은 \n홈페이지 고객센터 1:1 문의에 접수해주시면 \n감사하겠습니다. \n다만, 주문취소(결제취소)의 경우 결제일로부터 \n매주 월요일 이전까지 가능합니다. 월요일 당일 오전 10시 이후 주문, \n결제건은 배송처리를 위해 배송정보 출력 및 포장/배송진행을 \n위한 작업을 바로 진행하기 때문에 취소처리가 \n어려운점 양해해주시면 감사하겠습니다. \n\n어려움이 있으실 경우, 고객센터로 연락주시면 \n자세하게 상담드리도록 하겠습니다. \n\n미유박스 운영팀 드림.</string>
     <string name="title_activity_meow_box_birth_day_story">MeowBoxBirthDayStoryActivity</string>
     <string name="title_activity_meow_boxt_birth_day_story">MeowBoxtBirthDayStoryActivity</string>
+    <string name="prompt">선택하세요.</string>
 </resources>

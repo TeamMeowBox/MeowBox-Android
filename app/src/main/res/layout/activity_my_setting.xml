@@ -66,7 +66,7 @@
                     android:layout_centerInParent="true">
 
                     <woo.sopt22.meowbox.View.MyPage.CircleImageView
-                        android:id="@+id/mysetting_profile12"
+                        android:id="@+id/mysetting_profile"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/side_bar_profile_img"/>
@@ -368,7 +368,9 @@
                             android:id="@+id/mysetting_year"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:entries="@array/year"></Spinner>
+                            android:entries="@array/year"
+                            android:prompt="@string/prompt"
+                            ></Spinner>
 
                         <TextView
                             android:layout_width="wrap_content"

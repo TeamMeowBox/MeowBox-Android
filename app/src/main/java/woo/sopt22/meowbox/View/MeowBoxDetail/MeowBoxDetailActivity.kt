@@ -365,7 +365,7 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
                     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.show()
                 } else{
-                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!!.toInt() == -1){
+                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1"){
                         val dialog = CatCustomDialog(this)
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()

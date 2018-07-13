@@ -183,7 +183,7 @@ class BirthdayStoryDetailActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         override fun onPageSelected(position: Int) {
-            birthday_detail_cardview_one_indicator.selectDot(position)
+            birthday_detail_cardview_two_indicator.selectDot(position)
         }
 
     }
@@ -196,7 +196,7 @@ class BirthdayStoryDetailActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         override fun onPageSelected(position: Int) {
-            birthday_detail_cardview_one_indicator.selectDot(position)
+            birthday_detail_cardview_three_indicator.selectDot(position)
         }
 
     }
@@ -209,7 +209,7 @@ class BirthdayStoryDetailActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         override fun onPageSelected(position: Int) {
-            birthday_detail_cardview_one_indicator.selectDot(position)
+            birthday_detail_cardview_four_indicator.selectDot(position)
         }
 
     }
@@ -221,7 +221,7 @@ class BirthdayStoryDetailActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         override fun onPageSelected(position: Int) {
-            birthday_detail_cardview_one_indicator.selectDot(position)
+            birthday_detail_cardview_five_indicator.selectDot(position)
         }
 
     }

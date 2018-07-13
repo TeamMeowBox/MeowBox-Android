@@ -10,7 +10,6 @@ import android.net.Uri
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -19,7 +18,6 @@ import com.bumptech.glide.Glide
 
 import woo.sopt22.meowbox.R
 
-import android.widget.Toast.LENGTH_SHORT
 import kotlinx.android.synthetic.main.activity_my_setting.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -37,12 +35,13 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.InputStream
+import java.text.SimpleDateFormat
 
 class MySettingActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v!!) {
-            mysetting_profile12 -> {
+            mysetting_profile -> {
                 changeImage()
             }
             custom_button1->{
@@ -56,7 +55,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
             }
             mysetting_save->{
                 saveSettingAccount()
-                finish()
+                //finish()
 
 
             }
@@ -125,7 +124,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         networkService = ApplicationController.instance.networkService
         SharedPreference.instance!!.load(this)
 
-        profileImage = findViewById<View>(R.id.mysetting_profile12) as ImageView
+        profileImage = findViewById<View>(R.id.mysetting_profile) as ImageView
         val imgUrlex = "https://www.petmd.com/sites/default/files/petmd-cat-happy.jpg"
         mySettingYear = findViewById<View>(R.id.mysetting_year) as Spinner
         mySettingMonth = findViewById<View>(R.id.mysetting_month) as Spinner
@@ -151,7 +150,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         val mySaveButton = findViewById<View>(R.id.mysetting_save) as RelativeLayout
         mySaveButton.setOnClickListener(this)
 
-        mysetting_profile12.setOnClickListener(this)
+        mysetting_profile.setOnClickListener(this)
 
 
         mySettingName = mysetting_my_name as EditText
@@ -237,11 +236,26 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
                     if(response!!.body()!!.result.birthday != null) {
                         var birthdays = response!!.body()!!.result.birthday.split("-")
                         var yearInt = birthdays[0].toInt()-1980
-                        year = yearInt.toString()
+                        //year = yearInt.toString()
+                        if(yearInt == 0){
+                            year = (yearInt+1).toString()
+                        } else{
+                            year = yearInt.toString()
+                        }
                         var monthInt = birthdays[1].toInt()-1
-                        month = monthInt.toString()
+                        //month = monthInt.toString()
+                        if(monthInt == 0){
+                            month = (monthInt+1).toString()
+                        } else{
+                            month = monthInt.toString()
+                        }
                         var dayInt = birthdays[2].toInt()-1
-                        day = dayInt.toString()
+                        //day = dayInt.toString()
+                        if(dayInt == 0){
+                            day = (dayInt+1).toString()
+                        } else{
+                            day = dayInt.toString()
+                        }
 
 
                         mySettingYear.setSelection(yearInt)
@@ -304,12 +318,25 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         intent.type = android.provider.MediaStore.Images.Media.CONTENT_TYPE
         intent.data = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         startActivityForResult(intent, REQ_CODE_SELECT_IMAGE)
-        Glide.with(this).load(intent).into(mysetting_profile12)
+        Glide.with(this).load(intent).into(mysetting_profile)
     }
 
     fun saveSettingAccount(){
 
-        var birthdayString = year+"-"+month+"-"+day
+        //var birthdayString = year+"-"+month+"-"+day
+
+        var simpleDataFormat = SimpleDateFormat("yyyy-MM-dd")
+        //var birthdayString = year+"-"+month+"-"+day
+        Log.d("date",year+":"+":"+month+":"+day)
+        var birthdayString : String
+        if(day?.length == 1){
+            day = "0" + day
+        }
+        if(month?.length == 1){
+            month = "0" + month
+        }
+
+        birthdayString = year+"-"+month+"-"+day
 
         mysettingname = mySettingName.text.toString()
         mysettingemail = mySettingEmail.text.toString()
@@ -318,10 +345,11 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         mysettingmysuggest = mySettingMySuggest.text.toString()
 
         SharedPreference.instance!!.setPrefData("name",mysettingname)
+        SharedPreference.instance!!.setPrefData("cat_name",mysettingcatname!!)
         //Log.v("image 33",image!!.toString())
         //Log.v("image 44",data!!.toString())
 
-        if(mySettingPhone.text.length == 0 || catsize == null || birthdayString.equals("1980-01-1")){
+        if(mySettingPhone.text.length == 0 || catsize == null || birthdayString.equals("1980-01-01")){
             Log.d("nulllis","nullyes")
             mysettingcatname = "-1"
         }
@@ -354,6 +382,12 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
                     token = response!!.body()!!.result!!.token!!
                     Log.d("장용범", token)
                     SharedPreference.instance!!.setPrefData("name", mysettingname)
+                    SharedPreference.instance!!.setPrefData("cat_name", mysettingcatname!!)
+                    SharedPreference.instance!!.setPrefData("image_profile",image.toString())
+                    Log.v("장용범 cat_idx",response!!.body()!!.result!!.cat_idx.toString())
+                    SharedPreference.instance!!.setPrefData("cat_idx", response!!.body()!!.result!!.cat_idx)
+                    SharedPreference.instance!!.setPrefData("token", response!!.body()!!.result!!.token)
+                    finish()
 
                 } else{
                     Log.v("장용범 실패",response!!.toString())
@@ -371,7 +405,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
                 try{
                     this.data = data!!.data
                     Log.v("이미지",this.data.toString())
-                    SharedPreference.instance!!.setPrefData("image",this.data.toString())
+                    //SharedPreference.instance!!.setPrefData("image",this.data.toString())
 
 
                     val options = BitmapFactory.Options()
@@ -397,7 +431,9 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
 
                     println("장용범"+image)
                     println("장용범"+data!!.data)
-                    Glide.with(this).load(data!!.data.toString()).into(mysetting_profile12)
+                    //Glide.with(mysetting_profile).load(data!!.data.toString()).into(mysetting_profile)
+
+                    mysetting_profile.setImageURI(data!!.data)
 
 
                     // 내가 가지고 온 이미지를 이미지 뷰에 가운데를 중심으로 잘라서 Glide를 통해서 넣는다.

@@ -30,6 +30,7 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!){
             order_pay_previous->{
+
                 (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoThird())
             }
             order_pay_next->{

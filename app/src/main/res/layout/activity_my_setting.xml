@@ -369,7 +369,7 @@
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
                             android:entries="@array/year"
-                            android:prompt="string"
+                            android:prompt="@string/prompt"
                             ></Spinner>
 
                         <TextView

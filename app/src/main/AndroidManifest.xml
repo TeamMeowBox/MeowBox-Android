@@ -72,14 +72,14 @@
         <activity android:name=".View.MyPage.OrderHistory.OrderHistoryDetail.OrderHistoryDetailHeaderActivity" />
         <activity android:name=".View.Main2Activity" />
         <activity android:name=".View.Home.MainActivity" />
-        <activity
-            android:name=".View.MeowBoxBirthDay.MeowBoxBirthDayStoryActivity"
-            android:label="@string/title_activity_meow_box_birth_day_story"
-            android:theme="@style/AppTheme" />
+
         <activity
             android:name=".View.MeowBoxBirthDay.MeowBoxtBirthDayStoryActivity"
             android:label="@string/title_activity_meow_boxt_birth_day_story"
-            android:theme="@style/AppTheme"></activity>
+
+            android:theme="@style/AppTheme" />
+        <activity android:name=".View.MeowBoxBirthDay.BirthdayStoryDetailActivity"></activity>
+
         <activity android:name=".View.Order.Credit.CreditActivity"></activity>
     </application>
 

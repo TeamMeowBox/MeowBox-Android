@@ -269,8 +269,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-        window.statusBarColor = Color.BLACK
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            window.statusBarColor = Color.BLACK
+            window.navigationBarColor = Color.BLACK
+        }
 
 
         //허가 요청
@@ -305,7 +307,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         items = ArrayList();
         items.add(CardData(R.drawable.home_main_one_img, 1))
         items.add(CardData(R.drawable.home_main_two_img,0))
-        items.add(CardData(R.drawable.home_main_three_img,3))
+        items.add(CardData(R.drawable.home_main_three_img,0))
         items.add(CardData(R.drawable.home_main_four_img,0))
         items.add(CardData(R.drawable.home_main_five_img,2))
 

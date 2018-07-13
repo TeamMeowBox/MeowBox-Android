@@ -83,8 +83,10 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             review_scrollview.fullScroll(ScrollView.FOCUS_UP)
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
+            window.navigationBarColor = Color.BLACK
+        }
 
         mViewPager1 = review_cardview1 as ViewPager
         mViewPager2 = review_cardview2 as ViewPager

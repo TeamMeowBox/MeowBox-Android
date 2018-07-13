@@ -32,6 +32,13 @@
 
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#EFEDED"
+        ></LinearLayout>
+
     <ScrollView
         android:layout_below="@+id/birth_day_layout"
         android:layout_width="match_parent"

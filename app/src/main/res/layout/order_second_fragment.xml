@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:id="@+id/order_second_scrollview"
+        android:layout_above="@+id/order_second_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/order_etc"
+                    android:layout_marginRight="22dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="20.5dp"
+                    android:layout_width="164dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/order_four_step_etc"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.2dp"
+                    android:background="#707070"/>
+
+
+
+                <LinearLayout
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_below="@+id/order_etc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:id="@+id/order_etc_cat_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="28dp"
+                            android:textStyle="bold"
+                            android:text="온풍이"
+                            android:textColor="#4C4E51"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="에 대해"
+                            android:textSize="28dp"
+                            android:textColor="#4C4E51"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="더 알려주세요!"
+                        android:textSize="28dp"
+                        android:textColor="#4C4E51"/>
+
+                    <TextView
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="고양이의 크기, 생일, 건강상태 등을"
+                        android:textSize="14dp"
+                        android:textColor="#999999"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="입력해주세요."
+                        android:textSize="14dp"
+                        android:textColor="#999999"/>
+
+                    <LinearLayout
+                        android:layout_marginTop="32dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#4C4E51"
+                            android:text="크기"
+                            android:textSize="16dp"/>
+
+                        <TextView
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="13dp"
+                            android:textColor="#E68789"
+                            android:text="*"/>
+
+                    </LinearLayout>
+
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:id="@+id/order_small_cat_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="28dp"
+                        android:src="@drawable/order_small_cat"
+                        android:scaleType="fitXY"
+                        />
+
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:id="@+id/order_normal_cat_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="160dp"
+                        android:elevation="10dp"
+                        android:src="@drawable/order_normal_cat"
+                        android:scaleType="fitXY"/>
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:id="@+id/order_large_cat_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="160dp"
+                        android:src="@drawable/order_large_cat"
+                        android:scaleType="fitXY"
+                        />
+
+                    <LinearLayout
+                        android:layout_marginTop="52dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#4C4E51"
+                            android:text="생일"
+                            android:textSize="16dp"/>
+
+                        <TextView
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="13dp"
+                            android:textColor="#E68789"
+                            android:text="*"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <Spinner
+                            android:entries="@array/year"
+                            android:id="@+id/order_second_year"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"></Spinner>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="년"/>
+
+                        <Spinner
+                            android:entries="@array/month"
+                            android:id="@+id/order_second_month"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"></Spinner>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="월"/>
+
+                        <Spinner
+                            android:entries="@array/day"
+                            android:id="@+id/order_second_day"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"></Spinner>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="일"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:textSize="16dp"
+                        android:textColor="#4C4E51"
+                        android:layout_marginTop="47dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="알레르기 및 특이사항"/>
+
+                    <EditText
+                        android:id="@+id/cat_about_info"
+                        android:inputType="text"
+                        android:paddingLeft="11dp"
+                        android:textSize="16dp"
+                        android:paddingTop="11dp"
+                        android:gravity="top"
+                        android:layout_marginTop="22dp"
+                        android:layout_width="match_parent"
+                        android:hint="알레르기가 있는 재료나 좋아하는 재료에 대해 \n적어주세요"
+                        android:layout_height="177dp"
+                        android:background="@drawable/edittext_background"/>
+
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/order_second_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:id="@+id/order_etc_previous"
+            android:background="#EFEDED"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이전"
+                android:layout_centerVertical="true"
+                android:paddingLeft="22dp"
+                android:textColor="#4C4E51"
+                android:textSize="18dp"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+
+            android:id="@+id/order_etc_next"
+            android:background="#E68789"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/order_second_next_text"
+                android:layout_toLeftOf="@+id/order_second_arrow"
+                android:layout_marginRight="7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="다음"
+                android:textSize="18dp"
+                android:textColor="#FFFFFF"
+                android:layout_marginLeft="148dp"
+                android:layout_centerVertical="true"/>
+
+            <ImageView
+                android:id="@+id/order_second_arrow"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="22dp"
+                android:layout_centerVertical="true"
+                android:layout_width="13dp"
+                android:layout_height="14dp"
+                android:src="@drawable/next_arrow"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

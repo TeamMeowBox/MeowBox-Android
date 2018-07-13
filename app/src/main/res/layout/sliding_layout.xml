@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/sliding_view_main"
+    android:layout_marginTop="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@null">
+    <RelativeLayout
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null">
+        <RelativeLayout
+            android:id="@+id/re"
+            android:layout_width="match_parent"
+            android:layout_height="71dp">
+
+            <ImageView
+                android:id="@+id/home_down_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="22dp"
+                android:src="@drawable/home_v_img"/>
+            <TextView
+                android:layout_toRightOf="@+id/home_down_arrow"
+                android:layout_marginLeft="11dp"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="미유박스에 대해 알아보아요!"
+                android:textColor="#4C4E51"
+                android:textSize="16dp"/>
+
+            <ImageView
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="32dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/dash_bar_img"/>
+        </RelativeLayout>
+
+        <ScrollView
+            android:id="@+id/main_sliding_scroll"
+            android:background="#88ffffff"
+            android:layout_below="@+id/re"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:background="#ffffff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_marginTop="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이번 달 미유박스는"
+                    android:textSize="22dp"
+                    android:textColor="#4C4E51"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
+
+                <RelativeLayout
+                    android:id="@+id/home_text_layout"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/home_bottom_view"
+                        android:layout_below="@+id/home_cat_count"
+                        android:layout_marginTop="-15dp"
+                        android:layout_gravity="center"
+                        android:layout_width="176dp"
+                        android:layout_height="10dp"
+                        android:src="@drawable/home_pink_line"/>
+
+                    <TextView
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/home_cat_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3,800 냥이"
+                        android:textSize="34dp"
+                        android:textColor="#4C4E51"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+                </RelativeLayout>
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:textSize="16dp"
+                    android:textColor="#4C4E51"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="를 만났어요!"/>
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:textSize="16dp"
+                    android:textColor="#4C4E51"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이번 달 미유박스와 만난"/>
+
+                <TextView
+                    android:textSize="16dp"
+                    android:textColor="#4C4E51"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="친구들을 소개합니다!!"/>
+
+                
+    
+                <LinearLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="36dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+
+                            <ImageView
+                                android:id="@+id/insta_frame1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/instagram_frame"
+                                android:layout_marginRight="10dp"/>
+
+                            <woo.sopt22.meowbox.View.MyPage.CircleImageView
+                                android:id="@+id/insta_profile_image1"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginLeft="15dp"/>
+
+                            <TextView
+                                android:id="@+id/insta_user_name1"
+                                android:layout_toRightOf="@+id/insta_profile_image1"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="10dp"/>
+
+                            <ImageView
+                                android:id="@+id/insta_cat_profile1"
+                                android:layout_marginLeft="10dp"
+                                android:layout_below="@+id/insta_profile_image1"
+                                android:layout_marginTop="4dp"
+                                android:layout_width="148dp"
+                                android:layout_height="150dp"
+                                android:scaleType="fitXY"
+                                />
+
+
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+
+                            <ImageView
+                                android:id="@+id/insta_frame2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/instagram_frame"/>
+
+                            <woo.sopt22.meowbox.View.MyPage.CircleImageView
+                                android:id="@+id/insta_profile_image2"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginLeft="15dp"/>
+
+                            <TextView
+                                android:id="@+id/insta_user_name2"
+                                android:layout_toRightOf="@+id/insta_profile_image2"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="10dp"/>
+
+                            <ImageView
+                                android:id="@+id/insta_cat_profile2"
+                                android:layout_marginLeft="10dp"
+                                android:layout_below="@+id/insta_profile_image2"
+                                android:layout_marginTop="4dp"
+                                android:layout_width="148dp"
+                                android:layout_height="150dp"
+                                android:scaleType="fitXY"/>
+
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+
+                            <ImageView
+                                android:id="@+id/insta_frame3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/instagram_frame"
+                                android:layout_marginRight="10dp"/>
+
+                            <woo.sopt22.meowbox.View.MyPage.CircleImageView
+                                android:id="@+id/insta_profile_image3"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginLeft="15dp"/>
+
+                            <TextView
+                                android:id="@+id/insta_user_name3"
+                                android:layout_toRightOf="@+id/insta_profile_image3"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="10dp"/>
+
+                            <ImageView
+                                android:id="@+id/insta_cat_profile3"
+                                android:layout_marginLeft="10dp"
+                                android:layout_below="@+id/insta_profile_image3"
+                                android:layout_marginTop="4dp"
+                                android:layout_width="148dp"
+                                android:layout_height="150dp"
+                                android:scaleType="fitXY"/>
+
+
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+
+                            <ImageView
+                                android:id="@+id/insta_frame4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/instagram_frame"/>
+
+                            <woo.sopt22.meowbox.View.MyPage.CircleImageView
+                                android:id="@+id/insta_profile_image4"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginLeft="15dp"/>
+
+                            <TextView
+                                android:id="@+id/insta_user_name4"
+                                android:layout_toRightOf="@+id/insta_profile_image4"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="10dp"/>
+
+                            <ImageView
+                                android:id="@+id/insta_cat_profile4"
+                                android:layout_marginLeft="10dp"
+                                android:layout_below="@+id/insta_profile_image4"
+                                android:layout_marginTop="4dp"
+                                android:layout_width="148dp"
+                                android:layout_height="150dp"
+                                android:scaleType="fitXY"/>
+
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+                    
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_marginTop="44dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/dash_bar_img"/>
+
+                <TextView
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="18dp"
+                    android:textColor="#4C4E51"
+                    android:textSize="22dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="미유박스란?"/>
+
+
+                <ImageView
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="250dp"
+                    android:src="@drawable/home_meow_box_one_img"/>
+
+
+                <TextView
+                    android:textSize="16dp"
+                    android:textColor="#4C4E51"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="미유 박스는 고양이에게 필요한 용품과 \n간식을 담은 박스를 정기적으로 배송해 \n주는 서비스 입니다."/>
+
+
+
+                <TextView
+                    android:textSize="16dp"
+                    android:textColor="#4C4E51"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="나의 고양이를 생각하는 모든 집사들의 \n마음을 담은 박스입니다."/>
+
+                <ImageView
+                    android:id="@+id/home_to_story_btn"
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/home_meowbox_more_btn"/>
+
+                <ImageView
+                    android:layout_marginTop="42dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/dash_bar_img"/>
+
+                <TextView
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="18dp"
+                    android:textColor="#4C4E51"
+                    android:textSize="22dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="이번 달 미유박스는?"/>
+
+
+                <ImageView
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="250dp"
+                    android:src="@drawable/home_meow_box_two_img"/>
+
+
+                <TextView
+                    android:textSize="16dp"
+                    android:textColor="#4C4E51"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="미유 박스는 고양이에게 필요한 용품과 \n간식을 담은 박스를 정기적으로 배송해 \n주는 서비스 입니다."/>
+
+
+
+                <TextView
+                    android:textSize="16dp"
+                    android:textColor="#4C4E51"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="나의 고양이를 생각하는 모든 집사들의 \n마음을 담은 박스입니다."/>
+
+                <ImageView
+                    android:id="@+id/home_to_detail_btn"
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/home_meowbox_detail_btn"
+                    android:layout_marginBottom="42dp"/>
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

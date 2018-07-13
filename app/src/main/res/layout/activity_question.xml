@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.MyPage.FAQ.QuestionActivity">
+
+    <RelativeLayout
+        android:id="@+id/faq_layout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="자주묻는 질문"
+            android:textColor="#4C4E51"
+            android:textSize="16dp"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/question_x_btn"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:src="@drawable/x_btn"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="22dp"/>
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/faq_view"
+        android:layout_below="@+id/faq_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:background="#707070"/>
+
+
+
+    <FrameLayout
+        android:layout_below="@+id/faq_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="21dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="제품"
+                    android:textSize="28dp"
+                    android:textColor="#4C4E51"
+                    />
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/question_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"/>
+
+                <View
+                    android:background="#EFEDED"
+                    android:layout_width="match_parent"
+                    android:layout_height="9dp"/>
+
+                <TextView
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="21dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="배송"
+                    android:textSize="28dp"
+                    android:textColor="#4C4E51"
+                    />
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/shipping_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"/>
+
+                <View
+                    android:background="#EFEDED"
+                    android:layout_width="match_parent"
+                    android:layout_height="9dp"/>
+
+                <TextView
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="21dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="포장"
+                    android:textSize="28dp"
+                    android:textColor="#4C4E51"
+                    />
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/packing_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"/>
+
+                <View
+                    android:background="#EFEDED"
+                    android:layout_width="match_parent"
+                    android:layout_height="9dp"/>
+
+                <TextView
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="21dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="구독"
+                    android:textSize="28dp"
+                    android:textColor="#4C4E51"
+                    />
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/subscribe_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"/>
+
+                <View
+                    android:background="#EFEDED"
+                    android:layout_width="match_parent"
+                    android:layout_height="9dp"/>
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+
+
+
+
+
+
+
+    </FrameLayout>
+
+</RelativeLayout>

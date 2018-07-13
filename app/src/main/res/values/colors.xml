@@ -3,4 +3,14 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="black_alpha_40">#ffffffff</color>
+    <color name="pink">#E68789</color>
+
+    <color name="background_color">#EFEDED</color>
+
+    <color name="foreground_color">#E88687</color>
+
+    <color name="background_text_color">#808080</color>
+
+    <color name="foreground_text_color">#eeeeee</color>
 </resources>

@@ -87,7 +87,6 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                     }
                 }
             }
-
         }
 
     }

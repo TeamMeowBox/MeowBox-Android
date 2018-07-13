@@ -1,5 +1,8 @@
 package woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -9,6 +12,8 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.order_four_fragment.*
 import kotlinx.android.synthetic.main.order_four_fragment.view.*
 import retrofit2.Call
@@ -23,6 +28,7 @@ import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
+import woo.sopt22.meowbox.View.Order.Credit.CreditActivity
 import woo.sopt22.meowbox.View.Order.OrderThirdActivity
 
 class WithCatInfoFour : Fragment(), View.OnClickListener {
@@ -35,6 +41,13 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
                 ToastMaker.makeLongToast(context, radio_button.text.trim().toString())
                 Log.v("48",radio_button.text.toString())
                 postOrder()
+
+                lateinit var gson: Gson
+                gson = GsonBuilder().create()
+                var myjson = gson.toJson(orderData)
+                val intent = Intent(activity, CreditActivity::class.java)
+                intent.putExtra("myJson",myjson)
+                startActivity(intent);
 
             }
         }
@@ -138,4 +151,7 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
 
         })
     }
+
+
+
 }

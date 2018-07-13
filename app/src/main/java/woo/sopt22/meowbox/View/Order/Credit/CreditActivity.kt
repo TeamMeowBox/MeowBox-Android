@@ -18,6 +18,7 @@ import android.webkit.WebView
 import android.widget.Toast
 
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_credit.*
 
 import woo.sopt22.meowbox.Model.Order.OrderData
 import woo.sopt22.meowbox.R
@@ -29,7 +30,7 @@ class CreditActivity : Activity() {
     //AssetManager assetManager = getApplication().getAssets();
 
     private var mainWebView: WebView? = null
-    internal var stringTmp: String
+    lateinit var stringTmp: String
 
     @JavascriptInterface
     @SuppressLint("NewApi")
@@ -40,7 +41,7 @@ class CreditActivity : Activity() {
 
 
 
-        mainWebView = findViewById<View>(R.id.main_web_view)
+        mainWebView = main_web_view as WebView
         mainWebView!!.webViewClient = InicisWebViewClient(this)
         val settings = mainWebView!!.settings
         settings.javaScriptEnabled = true

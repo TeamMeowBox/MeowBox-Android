@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.MeowBoxBirthDay.BirthdayStoryDetailActivity">
+
+    <RelativeLayout
+        android:id="@+id/birth_day_layout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <ImageView
+            android:id="@+id/birth_day_detail_image_btn"
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_pink"
+            android:layout_gravity="center_horizontal"
+            android:layout_centerInParent="true"/>
+
+        <ImageView
+            android:id="@+id/birthday_detail_x_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/x_btn"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="22dp"/>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#EFEDED"
+        ></LinearLayout>
+
+    <ScrollView
+        android:layout_below="@+id/birth_day_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="460dp"
+                android:id="@+id/birth_day_detail_image"
+                android:src="@drawable/meow_box_birthday_detail_main"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="생일축하해! 박스"
+                android:textSize="34dp"
+                android:textColor="#4C4E51"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="하나뿐인 나의 냥이에게 생일파티를! \n미유박스가 함께 축하해드려요"
+                android:textSize="16dp"
+                android:textColor="#4C4E51"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                />
+
+            <ImageView
+                android:layout_marginTop="43dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/dash_bar_img"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="꼬깔모자와 리본타이"
+                android:textSize="34dp"
+                android:textColor="#4C4E51"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                />
+
+            <ImageView
+                android:layout_marginTop="17dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ribbon_one_img"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:background="@drawable/round_hashbox_border">
+
+                    <TextView
+                        android:id="@+id/birthday_detail_item1_one_hash1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="#인간구찌"
+                        android:textColor="#999999"
+                        android:textSize="14dp"
+                        android:textStyle="bold"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/round_hashbox_border">
+
+                    <TextView
+                        android:id="@+id/birthday_detail_item1_one_hash2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="#아니"
+                        android:textColor="#999999"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/round_hashbox_border">
+
+                    <TextView
+                        android:id="@+id/birthday_detail_item1_one_hash3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="#고양이 구찌"
+                        android:textColor="#999999"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="33dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="34dp">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/birthday_detail_cardview_pager_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="330dp"
+                    android:layout_gravity="center"
+                    />
+                <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/birthday_detail_cardview_one_indicator"
+                    />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_marginTop="43dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/dash_bar_img"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="케이크와 그랜드"
+                android:textSize="34dp"
+                android:textColor="#4C4E51"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                />
+
+            <ImageView
+                android:layout_marginTop="17dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/cake_one_img"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:background="@drawable/round_hashbox_border">
+
+                    <TextView
+                        android:id="@+id/birthday_detail_item2_one_hash1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="#인간구찌"
+                        android:textColor="#999999"
+                        android:textSize="14dp"
+                        android:textStyle="bold"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/round_hashbox_border">
+
+                    <TextView
+                        android:id="@+id/birthday_detail_item2_one_hash2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="#아니"
+                        android:textColor="#999999"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/round_hashbox_border">
+
+                    <TextView
+                        android:id="@+id/birthday_detail_item2_one_hash3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="#고양이 구찌"
+                        android:textColor="#999999"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="33dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="34dp">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/birthday_detail_cardview_pager_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="330dp"
+                    android:layout_gravity="center"
+                    />
+                <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/birthday_detail_cardview_two_indicator"
+                    />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_marginTop="43dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/dash_bar_img"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="장난감"
+                android:textSize="34dp"
+                android:textColor="#4C4E51"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                />
+
+            <ImageView
+                android:layout_marginTop="17dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/cake_one_img"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:background="@drawable/round_hashbox_border">
+
+                    <TextView
+                        android:id="@+id/birthday_detail_item3_one_hash1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="#인간구찌"
+                        android:textColor="#999999"
+                        android:textSize="14dp"
+                        android:textStyle="bold"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/round_hashbox_border">
+
+                    <TextView
+                        android:id="@+id/birthday_detail_item3_one_hash2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="#아니"
+                        android:textColor="#999999"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/round_hashbox_border">
+
+                    <TextView
+                        android:id="@+id/birthday_detail_item3_one_hash3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="#고양이 구찌"
+                        android:textColor="#999999"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="33dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="34dp">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/birthday_detail_cardview_pager_three"
+                    android:layout_width="match_parent"
+                    android:layout_height="330dp"
+                    android:layout_gravity="center"
+                    />
+                <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/birthday_detail_cardview_three_indicator"
+                    />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_marginTop="43dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/dash_bar_img"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="케이크와 그랜드"
+                android:textSize="34dp"
+                android:textColor="#4C4E51"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                />
+
+            <ImageView
+                android:layout_marginTop="17dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/cake_one_img"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:background="@drawable/round_hashbox_border">
+
+                    <TextView
+                        android:id="@+id/birthday_detail_item4_one_hash1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="#인간구찌"
+                        android:textColor="#999999"
+                        android:textSize="14dp"
+                        android:textStyle="bold"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/round_hashbox_border">
+
+                    <TextView
+                        android:id="@+id/birthday_detail_item4_one_hash2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="#아니"
+                        android:textColor="#999999"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/round_hashbox_border">
+
+                    <TextView
+                        android:id="@+id/birthday_detail_item4_one_hash3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="#고양이 구찌"
+                        android:textColor="#999999"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="33dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="34dp">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/birthday_detail_cardview_pager_four"
+                    android:layout_width="match_parent"
+                    android:layout_height="330dp"
+                    android:layout_gravity="center"
+                    />
+                <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/birthday_detail_cardview_four_indicator"
+                    />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_marginTop="43dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/dash_bar_img"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="케이크와 그랜드"
+                android:textSize="34dp"
+                android:textColor="#4C4E51"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                />
+
+            <ImageView
+                android:layout_marginTop="17dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/cake_one_img"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:background="@drawable/round_hashbox_border">
+
+                    <TextView
+                        android:id="@+id/birthday_detail_item5_one_hash1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="#인간구찌"
+                        android:textColor="#999999"
+                        android:textSize="14dp"
+                        android:textStyle="bold"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/round_hashbox_border">
+
+                    <TextView
+                        android:id="@+id/birthday_detail_item5_one_hash2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="#아니"
+                        android:textColor="#999999"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/round_hashbox_border">
+
+                    <TextView
+                        android:id="@+id/birthday_detail_item5_one_hash3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="#고양이 구찌"
+                        android:textColor="#999999"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="33dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="34dp">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/birthday_detail_cardview_pager_five"
+                    android:layout_width="match_parent"
+                    android:layout_height="330dp"
+                    android:layout_gravity="center"
+                    />
+                <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/birthday_detail_cardview_five_indicator"
+                    />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_marginTop="43dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/dash_bar_img"/>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/birthday_detail_order_btn"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#E68789">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="미유박스 주문하기"
+            android:textSize="18dp"
+            android:textColor="#FFFFFF"
+            android:textStyle="normal"
+            android:layout_centerInParent="true"/>
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

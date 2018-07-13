@@ -117,8 +117,10 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_my_setting)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
+            window.navigationBarColor = Color.BLACK
+        }
 
         networkService = ApplicationController.instance.networkService
         SharedPreference.instance!!.load(this)

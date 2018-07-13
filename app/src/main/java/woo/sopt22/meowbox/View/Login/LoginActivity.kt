@@ -65,8 +65,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var email : String
 
     fun init(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
+            window.navigationBarColor = Color.BLACK
+        }
 
         login_to_sign_btn.setOnClickListener(this)
         loginBtn.setOnClickListener(this)

@@ -121,8 +121,11 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             menu_item.setTitle("로그아웃")
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
+            window.navigationBarColor = Color.BLACK
+        }
+
 
 
         val toggle = ActionBarDrawerToggle(

@@ -61,8 +61,10 @@ class MyPageSuggestActivity : AppCompatActivity(), View.OnClickListener {
         networkService = ApplicationController.instance!!.networkService
         SharedPreference.instance!!.load(this)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
+            window.navigationBarColor = Color.BLACK
+        }
 
         suggest_btn.setOnClickListener(this)
         suggest_x_btn.setOnClickListener(this)

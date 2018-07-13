@@ -81,8 +81,10 @@ class OrderHistoryActivity : AppCompatActivity(), View.OnClickListener {
         top_history_cancel_btn_image.setOnClickListener(this)
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
+            window.navigationBarColor = Color.BLACK
+        }
 
         networkService = ApplicationController.instance!!.networkService
         SharedPreference.instance!!.load(this)

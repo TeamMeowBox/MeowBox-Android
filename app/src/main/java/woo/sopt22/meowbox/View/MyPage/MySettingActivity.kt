@@ -318,7 +318,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         intent.type = android.provider.MediaStore.Images.Media.CONTENT_TYPE
         intent.data = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         startActivityForResult(intent, REQ_CODE_SELECT_IMAGE)
-        Glide.with(this).load(intent).into(mysetting_profile)
+        //Glide.with(this).load(intent).into(mysetting_profile)
     }
 
     fun saveSettingAccount(){
@@ -422,7 +422,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
                     val bitmap = BitmapFactory.decodeStream(input, null,options)
                     val baos = ByteArrayOutputStream()
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos)
-                    val photoBody = RequestBody.create(MediaType.parse("image/jpg"),baos.toByteArray())
+                    val photoBody = RequestBody.create(MediaType.parse("image/jpeg"),baos.toByteArray())
                     val photo = File(this.data.toString()) // 파일의 이름을 알아내려고 한다.
 
                     // 통신할 때 이미지 사용 - 레트로핏 추가해서

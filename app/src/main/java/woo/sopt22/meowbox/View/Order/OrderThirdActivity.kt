@@ -42,6 +42,8 @@ class OrderThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         setSupportActionBar(toolbar)
         thirdContext = this
 
+
+
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
         toolbar.bringToFront()
@@ -64,14 +66,17 @@ class OrderThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
         } else {
             userName.text = SharedPreference.instance!!.getPrefStringData("name")
-            menu_item.setTitle("로그아웃")
+            menu_item.setTitle("")
+            menu_item.setEnabled(false)
         }
 
         replaceFragment(WithCatInfoThird())
         //(OrderThirdActivity. as OrderFirstActivity).replaceFragment(third_fragment)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
+            window.navigationBarColor = Color.BLACK
+        }
 
         val toggle = ActionBarDrawerToggle(
                 this, order_third_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)

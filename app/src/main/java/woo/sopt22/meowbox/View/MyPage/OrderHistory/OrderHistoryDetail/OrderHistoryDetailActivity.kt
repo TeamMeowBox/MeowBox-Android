@@ -48,8 +48,10 @@ class OrderHistoryDetailActivity : AppCompatActivity(), View.OnClickListener {
         SharedPreference.instance!!.load(this)
         requestManager = Glide.with(this)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
+            window.navigationBarColor = Color.BLACK
+        }
 
         order_history_detail_x_btn.setOnClickListener(this)
         item_detail_name_tv.text = getIntent().getStringExtra("product")

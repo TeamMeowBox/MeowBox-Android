@@ -19,6 +19,8 @@ import woo.sopt22.meowbox.Model.Order.OrderHistory.OrderHistory
 import woo.sopt22.meowbox.Model.Order.OrderHistoryDetail.OrderHistoryDetail
 import woo.sopt22.meowbox.Model.Order.OrderPeriod.OrderPeriodResponse
 import woo.sopt22.meowbox.Model.Order.OrderResponse
+import woo.sopt22.meowbox.Model.Order.OrderResult
+import woo.sopt22.meowbox.Model.Order.OrderResultResponse
 import woo.sopt22.meowbox.Model.OrderObject
 import woo.sopt22.meowbox.Model.QnA.QnAResponse
 import woo.sopt22.meowbox.Model.RegisterCat.CatIndex
@@ -153,5 +155,10 @@ interface NetworkService {
             @Path("product") product : Int
     ) : Call<OrderPeriodResponse>
 
-
+    //h2. 결제 유머 체크
+    @POST("order/order_result/check_order")
+    fun postOrderResult(
+            @Header("authorization") authorization : String,
+            @Body merchant_uid : OrderResult
+    ) : Call<OrderResultResponse>
 }

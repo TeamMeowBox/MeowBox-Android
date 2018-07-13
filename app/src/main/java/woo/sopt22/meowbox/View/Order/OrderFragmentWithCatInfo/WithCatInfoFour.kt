@@ -24,13 +24,13 @@ import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Order.Credit.CreditActivity
-import woo.sopt22.meowbox.View.Order.OrderTest
 import woo.sopt22.meowbox.View.Order.OrderThirdActivity
 
 class WithCatInfoFour : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!){
             order_pay_previous->{
+
                 (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoThird())
             }
             order_pay_next->{
@@ -51,7 +51,8 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
     lateinit var box_type : String
     lateinit var price : String
     lateinit var orderData: OrderData
-    //lateinit var orderChecking : OrderResult
+    lateinit var orderChecking : OrderResult
+
     lateinit var orderTest : OrderTest
 
     lateinit var networkService: NetworkService
@@ -96,7 +97,8 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
 
     }
 
-    /*fun postORrderResult(){
+
+    fun postORrderResult(){
         orderChecking = OrderResult(SharedPreference.instance!!.getPrefStringData("merchant")!!)
         Log.d("boolean", "어디까지 들어가냥")
         val orderCheck = networkService.postOrderResult(SharedPreference.instance!!.getPrefStringData("token")!!,
@@ -124,7 +126,7 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
 
         })
 
-    }*/
+    }
 
 
     fun postOrder(){
@@ -164,7 +166,8 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
                     val intent = Intent(activity, CreditActivity::class.java)
                     intent.putExtra("orderIdx",orderJson)
                     startActivity(intent);
-                    //postORrderResult()
+
+                    postORrderResult()
 
 
                 }

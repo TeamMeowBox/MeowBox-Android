@@ -41,8 +41,10 @@ class OrderHistoryDetailHeaderActivity : AppCompatActivity(), View.OnClickListen
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_history_detail_header)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
+            window.navigationBarColor = Color.BLACK
+        }
 
         networkService = ApplicationController.instance!!.networkService
         SharedPreference.instance!!.load(this)

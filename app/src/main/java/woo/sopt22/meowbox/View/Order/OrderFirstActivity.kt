@@ -59,8 +59,10 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         setContentView(R.layout.activity_order_first)
         setSupportActionBar(toolbar)
         mContext = this
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
+            window.navigationBarColor = Color.BLACK
+        }
 
         SharedPreference.instance!!.load(this)
 
@@ -88,7 +90,8 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             menu_item.setTitle("로그인")
         } else {
             userName.text = SharedPreference.instance!!.getPrefStringData("name")
-            menu_item.setTitle("로그아웃")
+            menu_item.setTitle("")
+            menu_item.setEnabled(false)
         }
 
         replaceFragment(OrderFirstFragment())
@@ -143,15 +146,6 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
 
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        when (item.itemId) {
-            R.id.action_settings -> return true
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.

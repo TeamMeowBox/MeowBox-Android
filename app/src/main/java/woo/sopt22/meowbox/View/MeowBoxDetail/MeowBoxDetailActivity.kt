@@ -118,7 +118,8 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             menu_item.setTitle("로그인")
         } else {
             userName.text = SharedPreference.instance!!.getPrefStringData("name")
-            menu_item.setTitle("로그아웃")
+            menu_item.setTitle("")
+            menu_item.setEnabled(false)
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){

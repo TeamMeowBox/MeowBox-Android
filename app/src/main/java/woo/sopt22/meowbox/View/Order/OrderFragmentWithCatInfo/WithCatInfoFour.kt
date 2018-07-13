@@ -52,6 +52,7 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
     lateinit var price : String
     lateinit var orderData: OrderData
     lateinit var orderChecking : OrderResult
+
     lateinit var orderTest : OrderTest
 
     lateinit var networkService: NetworkService
@@ -95,6 +96,7 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
         super.onResume()
 
     }
+
 
     fun postORrderResult(){
         orderChecking = OrderResult(SharedPreference.instance!!.getPrefStringData("merchant")!!)
@@ -164,6 +166,7 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
                     val intent = Intent(activity, CreditActivity::class.java)
                     intent.putExtra("orderIdx",orderJson)
                     startActivity(intent);
+
                     postORrderResult()
 
 

@@ -37,7 +37,6 @@ class OrderFirstFragment : Fragment(), View.OnClickListener{
 
                 }
 
-
             }
         }
     }

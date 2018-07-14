@@ -8,6 +8,8 @@
     tools:context=".View.MyPage.MySettingActivity">
 
     <ScrollView
+        android:overScrollMode="never"
+        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -69,7 +71,7 @@
                         android:id="@+id/mysetting_profile"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/side_bar_profile_img"/>
+                        />
 
                     <ImageView
 
@@ -260,6 +262,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
+                        android:inputType="text"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="22dp"
                         android:background="@null"
@@ -342,7 +345,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="22dp"
+                        android:layout_marginLeft="20dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -360,13 +363,13 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="22dp"
+                        android:layout_marginRight="29dp"
                         android:orientation="horizontal">
 
 
                         <Spinner
                             android:id="@+id/mysetting_year"
-                            android:layout_width="110dp"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:entries="@array/year"
                             android:prompt="@string/prompt"

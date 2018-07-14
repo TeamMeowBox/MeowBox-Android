@@ -42,6 +42,8 @@
         </RelativeLayout>
 
         <ScrollView
+            android:scrollbars="none"
+            android:overScrollMode="never"
             android:id="@+id/main_sliding_scroll"
             android:background="#88ffffff"
             android:layout_below="@+id/re"

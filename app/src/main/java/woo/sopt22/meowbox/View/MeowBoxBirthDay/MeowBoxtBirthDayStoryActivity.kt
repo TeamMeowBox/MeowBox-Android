@@ -89,7 +89,7 @@ class MeowBoxtBirthDayStoryActivity : AppCompatActivity(), NavigationView.OnNavi
             userName.text = "OO님!"
             login_menu_item.setTitle("로그인")
         } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("name")
+            userName.text = SharedPreference.instance!!.getPrefStringData("name") + "님"
             login_menu_item.setTitle("")
             login_menu_item.setEnabled(false)
         }

@@ -194,6 +194,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     Log.v("1233", response!!.body()!!.result!!.image_profile!!)
                     Log.v("1234",response.body()!!.result!!.cat_idx)
                     startActivity(Intent(applicationContext, MainActivity::class.java))
+                    finish()
                 }
             }
 

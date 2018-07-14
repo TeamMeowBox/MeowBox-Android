@@ -23,8 +23,8 @@
 
         <ImageView
             android:id="@+id/question_x_btn"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/x_btn"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
@@ -49,6 +49,8 @@
 
 
         <ScrollView
+            android:scrollbars="none"
+            android:overScrollMode="never"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

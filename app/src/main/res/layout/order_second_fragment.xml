@@ -6,6 +6,8 @@
 
 
     <ScrollView
+        android:scrollbars="none"
+        android:overScrollMode="never"
         android:id="@+id/order_second_scrollview"
         android:layout_above="@+id/order_second_bottom_layout"
         android:layout_width="match_parent"

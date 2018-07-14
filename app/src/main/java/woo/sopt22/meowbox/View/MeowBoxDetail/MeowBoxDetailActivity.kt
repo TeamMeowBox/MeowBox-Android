@@ -13,6 +13,7 @@ import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -117,11 +118,18 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             userName.text = "OO님!"
             menu_item.setTitle("로그인")
         } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("name")
+            userName.text = SharedPreference.instance!!.getPrefStringData("name") + "님"
             menu_item.setTitle("")
             menu_item.setEnabled(false)
         }
 
+        if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
+            Log.v("Main 용범 onCreate","123")
+            Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
+        } else{
+            Log.v("Main 용범 onCreate","456")
+            Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
             window.navigationBarColor = Color.BLACK

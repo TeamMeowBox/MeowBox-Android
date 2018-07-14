@@ -34,7 +34,11 @@ class OrderSecondFragment : Fragment(), View.OnClickListener{
             }
             order_etc_next->{
                 // 고양이 등록 통신 진행
-                registerCatInfo()
+                if(cat_type == 0 || cat_about_info.text.toString().length == 0){
+                    ToastMaker.makeShortToast(context, "정보를 정확히 입력해주세요.")
+                } else{
+                    registerCatInfo()
+                }
                 //ToastMaker.makeLongToast(context, order_etc_cat_name.text.toString()+"고양이와"+year+month+day+"생일 정보와"+cat_type.toString()+"과"+cat_about_info.text.toString())
             }
             order_small_cat_image->{
@@ -80,7 +84,7 @@ class OrderSecondFragment : Fragment(), View.OnClickListener{
     lateinit var year : String
     lateinit var month : String
     lateinit var day : String
-    var cat_type : Int = 0
+    var cat_type : Int = 3
 
     // 통신
     lateinit var networkService: NetworkService
@@ -111,7 +115,7 @@ class OrderSecondFragment : Fragment(), View.OnClickListener{
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 year = parent!!.getItemAtPosition(position) as String
-                Toast.makeText(context, year, Toast.LENGTH_SHORT).show()
+                //Toast.makeText(context, year, Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -124,7 +128,7 @@ class OrderSecondFragment : Fragment(), View.OnClickListener{
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 month = parent!!.getItemAtPosition(position) as String
-                Toast.makeText(context, month, Toast.LENGTH_SHORT).show()
+                //Toast.makeText(context, month, Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -136,7 +140,7 @@ class OrderSecondFragment : Fragment(), View.OnClickListener{
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 day = parent!!.getItemAtPosition(position) as String
-                Toast.makeText(context, day, Toast.LENGTH_SHORT).show()
+                //Toast.makeText(context, day, Toast.LENGTH_SHORT).show()
 
             }
 

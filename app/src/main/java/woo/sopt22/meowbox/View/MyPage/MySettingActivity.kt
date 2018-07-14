@@ -6,10 +6,13 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -238,7 +241,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
                         var yearInt = birthdays[0].toInt()-1980
                         //year = yearInt.toString()
                         if(yearInt == 0){
-                            year = (yearInt+1).toString()
+                            year = (yearInt+1980).toString()
                         } else{
                             year = yearInt.toString()
                         }
@@ -433,10 +436,16 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
                     println("장용범"+data!!.data)
                     //Glide.with(mysetting_profile).load(data!!.data.toString()).into(mysetting_profile)
 
+//                    var bitmapTmp = MediaStore.Images.Media.getBitmap(contentResolver, data.data)
+//                    var drawbleTmp = BitmapDrawable(bitmapTmp) as Drawable
+//                    mysetting_profile.setImageDrawable(drawbleTmp)
+
                     mysetting_profile.setImageURI(data!!.data)
+                    mysetting_profile.background = data!!.data as Drawable
 
 
-                    // 내가 가지고 온 이미지를 이미지 뷰에 가운데를 중심으로 잘라서 Glide를 통해서 넣는다.
+                    // 내가 가지고 온 이미지를 이미지 뷰에 가운데를 중심으로 잘라서 Glide를
+                    // 통해서 넣는다.
                     //registerTv.text=""
 
 

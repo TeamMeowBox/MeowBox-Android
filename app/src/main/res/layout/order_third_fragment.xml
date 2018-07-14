@@ -5,6 +5,9 @@
     android:layout_height="match_parent">
 
     <ScrollView
+        android:scrollbars="none"
+        android:id="@+id/order_four_scroll"
+        android:overScrollMode="never"
         android:layout_above="@+id/order_third_bottom_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

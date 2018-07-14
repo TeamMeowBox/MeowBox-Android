@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -14,10 +15,13 @@ import android.support.v4.content.res.ResourcesCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_order_third.*
 import kotlinx.android.synthetic.main.app_bar_order_third.*
 import woo.sopt22.meowbox.R
@@ -50,12 +54,15 @@ class OrderThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
         var headerView : View = order_third_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+        var userImage : ImageView = headerView.findViewById(R.id.imageView)
         SharedPreference.instance!!.load(this)
 
         var menu : Menu = order_third_nav_view.menu
         var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
         var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
         var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
+        var order_btn : MenuItem = menu.findItem(R.id.orderBtn)
+        order_btn.setEnabled(false)
         blank_menu_item.setEnabled(false)
         blank_menu_item2.setEnabled(false)
 
@@ -76,6 +83,22 @@ class OrderThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
             window.navigationBarColor = Color.BLACK
+        }
+
+        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
+            userName.text = "OO님!"
+        } else {
+            userName.text = SharedPreference.instance!!.getPrefStringData("name")
+        }
+
+        if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
+            //userImage.setImageResource(R.drawable.side_bar_profile_img)
+            Log.v("용범 onResume","123")
+            Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
+        } else{
+            Log.v("용범 onResume","456")
+            userImage.setImageURI(Uri.parse(SharedPreference.instance!!.getPrefStringData("image_profile")))
+            Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
         }
 
         val toggle = ActionBarDrawerToggle(

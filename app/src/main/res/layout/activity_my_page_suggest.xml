@@ -24,8 +24,8 @@
 
         <ImageView
             android:id="@+id/suggest_x_btn"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/x_btn"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"

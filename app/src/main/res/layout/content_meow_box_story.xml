@@ -10,6 +10,8 @@
 
 
     <ScrollView
+        android:scrollbars="none"
+        android:overScrollMode="never"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
@@ -496,7 +498,7 @@
                         android:layout_width="66dp"
                         android:layout_height="10dp"
                         android:layout_alignParentBottom="true"
-                        android:src="@drawable/home_pink_line" />
+                        android:src="@drawable/meow_box_story_pink_line" />
 
                     <TextView
                         android:layout_width="wrap_content"

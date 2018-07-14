@@ -108,7 +108,7 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             userName.text = "OO님!"
             login_menu_item.setTitle("로그인")
         } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("name")
+            userName.text = SharedPreference.instance!!.getPrefStringData("name") + "님"
             login_menu_item.setTitle("")
             login_menu_item.setEnabled(false)
         }
@@ -276,14 +276,14 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
                     mIndicator3.createDotPanel(items3.size,R.drawable.indicator_non, R.drawable.indicator_on )
 
                     mViewPager1.setClipToPadding(false);
-                    mViewPager1.setPadding(80,0,80,0);
-                    mViewPager1.pageMargin = 40
+                    mViewPager1.setPadding(150,0,150,0);
+                    mViewPager1.pageMargin = 80
                     mViewPager2.setClipToPadding(false);
-                    mViewPager2.setPadding(80,0,80,0);
-                    mViewPager2.pageMargin = 40
+                    mViewPager2.setPadding(150,0,150,0);
+                    mViewPager2.pageMargin = 80
                     mViewPager3.setClipToPadding(false);
-                    mViewPager3.setPadding(80,0,80,0);
-                    mViewPager3.pageMargin = 40
+                    mViewPager3.setPadding(150,0,150,0);
+                    mViewPager3.pageMargin = 80
 
 
                     Log.d("hereis","here")

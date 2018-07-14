@@ -13,7 +13,8 @@ data class MyPageYesData(
         var image_profile : String,
         var sendImage : String,
         var ticket : String,
-        var use : String
+        var use : String,
+        var percent : Int
 )
 
 // Edit by 승우 : 민형이꺼 보고 추가

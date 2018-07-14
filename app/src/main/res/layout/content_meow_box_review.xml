@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".View.MeowBoxReview.MeowBoxReviewActivity"
-    tools:showIn="@layout/app_bar_meow_box_review">
+    tools:context=".View.MeowBoxReview.MeowBoxReviewActivity">
 
     <ScrollView
+        android:scrollbars="none"
+        android:overScrollMode="never"
         android:id="@+id/review_scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -116,7 +117,7 @@
                 <android.support.v4.view.ViewPager
                     android:id="@+id/review_cardview1"
                     android:layout_width="match_parent"
-                    android:layout_height="340dp"
+                    android:layout_height="410dp"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentTop="true"
                     android:paddingBottom="12dp"
@@ -178,7 +179,7 @@
                 <android.support.v4.view.ViewPager
                     android:id="@+id/review_cardview2"
                     android:layout_width="match_parent"
-                    android:layout_height="340dp"
+                    android:layout_height="410dp"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentTop="true"
                     android:paddingBottom="12dp"
@@ -241,7 +242,7 @@
                     <android.support.v4.view.ViewPager
                         android:id="@+id/review_cardview3"
                         android:layout_width="match_parent"
-                        android:layout_height="340dp"
+                        android:layout_height="410dp"
                         android:layout_centerHorizontal="true"
                         android:layout_alignParentTop="true"
                         android:paddingBottom="12dp"

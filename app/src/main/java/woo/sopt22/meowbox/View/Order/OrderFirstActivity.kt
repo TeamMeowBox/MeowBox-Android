@@ -20,12 +20,16 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Build
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.Menu
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_order_third.*
 import kotlinx.android.synthetic.main.content_order_first.*
 import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
@@ -44,6 +48,7 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                 //startActivity(Intent(this, OrderSecondActivity::class.java))
                 val dialog = LoginCustomDialog(this)
                 dialog.show()
+                dialog.dismiss()
             }
         }
     }
@@ -71,6 +76,17 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
         var headerView : View = order_first_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+        var userImage : ImageView = headerView.findViewById(R.id.imageView)
+
+        if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
+            //userImage.setImageResource(R.drawable.side_bar_profile_img)
+            Log.v("용범 onResume","123")
+            Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
+        } else{
+            Log.v("용범 onResume","456")
+            userImage.setImageURI(Uri.parse(SharedPreference.instance!!.getPrefStringData("image_profile")))
+            Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
+        }
 
 
         container = order_framge as FrameLayout
@@ -82,6 +98,8 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
         var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
         var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
+        var order_btn : MenuItem = menu.findItem(R.id.orderBtn)
+        order_btn.setEnabled(false)
         blank_menu_item.setEnabled(false)
         blank_menu_item2.setEnabled(false)
 

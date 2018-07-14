@@ -5,7 +5,7 @@
     android:background="@android:color/transparent"
 
         android:id="@+id/review_card_view"
-        android:layout_width="match_parent"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
     app:cardUseCompatPadding="false"
     app:cardElevation="0dp">
@@ -22,13 +22,15 @@
 
             <ImageView
                 android:id="@+id/review_card_view_img"
-                android:layout_width="312dp"
-                android:layout_height="256dp"
+                android:layout_width="340dp"
+                android:layout_height="330dp"
                 android:scaleType="fitXY"
                 android:layout_gravity="center_horizontal"/>
 
 
             <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="8dp"
                 android:id="@+id/review_card_view_hash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -37,6 +39,8 @@
                 android:textColor="#4C4E51"/>
 
             <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="4dp"
                 android:id="@+id/review_card_view_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

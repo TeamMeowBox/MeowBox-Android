@@ -19,8 +19,15 @@ import android.widget.Toast
 
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_credit.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import woo.sopt22.meowbox.ApplicationController
 
 import woo.sopt22.meowbox.Model.Order.OrderData
+import woo.sopt22.meowbox.Model.Order.OrderResult
+import woo.sopt22.meowbox.Model.Order.OrderResultResponse
+import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo.WithCatInfoFour
@@ -31,12 +38,16 @@ class CreditActivity : Activity() {
 
     private var mainWebView: WebView? = null
     lateinit var stringTmp: String
+    lateinit var orderChecking : OrderResult
+    lateinit var networkService: NetworkService
 
     @JavascriptInterface
     @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_credit)
+        networkService = ApplicationController.instance!!.networkService
+        SharedPreference.instance!!.load(this)
 
 
 
@@ -68,7 +79,7 @@ class CreditActivity : Activity() {
 
 
             val mHandler = Handler()
-            mHandler.postDelayed({ mainWebView!!.loadUrl("javascript:myset('$stringTmp')") }, 5000)
+            mHandler.postDelayed({ mainWebView!!.loadUrl("javascript:myset('$stringTmp')") }, 3000)
 
 
             val tttmm = "안녕"
@@ -96,6 +107,12 @@ class CreditActivity : Activity() {
             val redirectURL = url.substring(APP_SCHEME.length + 3)
             mainWebView!!.loadUrl(redirectURL)
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        val mHandler = Handler()
+        mHandler.postDelayed({ postORrderResult() }, 20500)
     }
 
 
@@ -143,6 +160,37 @@ class CreditActivity : Activity() {
     //            e.printStackTrace();
     //        }
     //    }
+
+
+
+    fun postORrderResult(){
+        orderChecking = OrderResult(SharedPreference.instance!!.getPrefStringData("merchant")!!)
+        Log.d("boolan", "어디까지 들어가냥")
+        val orderCheck = networkService.postOrderResult(SharedPreference.instance!!.getPrefStringData("token")!!,
+                orderChecking)
+        Log.d("boolan3", "어디까지 들어가냥")
+        orderCheck.enqueue(object  : Callback<OrderResultResponse> {
+            override fun onFailure(call: Call<OrderResultResponse>?, t: Throwable?) {
+                Log.d("boolean3", "어디까지 들어가냥")
+
+            }
+
+            override fun onResponse(call: Call<OrderResultResponse>?, response: Response<OrderResultResponse>?) {
+                if(response!!.isSuccessful){
+                    var orderCheckBoolean = response!!.body()!!.result.order_result
+                    Log.d("booln3", orderCheckBoolean.toString())
+
+                    val resultIntent = Intent()
+                    resultIntent.putExtra("result", orderCheckBoolean.toString())
+                    setResult(Activity.RESULT_OK, resultIntent)
+                    finish()
+
+                }
+            }
+
+        })
+
+    }
 
 
 }

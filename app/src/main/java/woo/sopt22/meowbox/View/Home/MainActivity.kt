@@ -222,7 +222,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
             userName.text = "OO님!"
         } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("name")
+            userName.text = SharedPreference.instance!!.getPrefStringData("name") + "님"
         }
 
         if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
@@ -261,10 +261,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         Log.v("079",SharedPreference.instance!!.getPrefStringData("image_profile"))
 
         if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
-            Log.v("용범 onCreate","123")
+            Log.v("Main 용범 onCreate","123")
             Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
         } else{
-            Log.v("용범 onCreate","456")
+            Log.v("Main 용범 onCreate","456")
             Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
         }
         Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
@@ -274,7 +274,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         re.setOnTouchListener(object : View.OnTouchListener{
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 when(event!!.action){
-                    MotionEvent.ACTION_UP,MotionEvent.ACTION_MOVE->{
+                    MotionEvent.ACTION_UP, MotionEvent.ACTION_MOVE->{
                         //Log.v("8989","8989")
                         getInsta()
                         getCatCount()
@@ -317,7 +317,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             userName.text = "OO님!"
             login_menu_item.setTitle("로그인")
         } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("name")
+            userName.text = SharedPreference.instance!!.getPrefStringData("name") + "님"
             login_menu_item.setTitle("")
             login_menu_item.setEnabled(false)
         }

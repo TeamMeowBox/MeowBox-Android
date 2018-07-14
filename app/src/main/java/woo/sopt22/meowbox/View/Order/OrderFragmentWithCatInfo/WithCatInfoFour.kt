@@ -1,5 +1,6 @@
 package woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo
 
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -98,35 +99,35 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
     }
 
 
-    fun postORrderResult(){
-        orderChecking = OrderResult(SharedPreference.instance!!.getPrefStringData("merchant")!!)
-        Log.d("boolean", "어디까지 들어가냥")
-        val orderCheck = networkService.postOrderResult(SharedPreference.instance!!.getPrefStringData("token")!!,
-                orderChecking)
-        Log.d("boolean", "어디까지 들어가냥")
-        orderCheck.enqueue(object  : Callback<OrderResultResponse>{
-            override fun onFailure(call: Call<OrderResultResponse>?, t: Throwable?) {
-                Log.d("boolean", "어디까지 들어가냥")
-
-            }
-
-            override fun onResponse(call: Call<OrderResultResponse>?, response: Response<OrderResultResponse>?) {
-                if(response!!.isSuccessful){
-                    var orderCheckBoolean = response!!.body()!!.result.order_result
-                    Log.d("boolean", orderCheckBoolean.toString())
-                    if(orderCheckBoolean == true) {
-                        (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoFive())
-                    }
-                    else {
-                        Log.d("boolean", "어디까지 들어가냥")
-                        (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoThird())
-                    }
-                }
-            }
-
-        })
-
-    }
+//    fun postORrderResult(){
+//        orderChecking = OrderResult(SharedPreference.instance!!.getPrefStringData("merchant")!!)
+//        Log.d("boolean", "어디까지 들어가냥")
+//        val orderCheck = networkService.postOrderResult(SharedPreference.instance!!.getPrefStringData("token")!!,
+//                orderChecking)
+//        Log.d("boolean", "어디까지 들어가냥")
+//        orderCheck.enqueue(object  : Callback<OrderResultResponse>{
+//            override fun onFailure(call: Call<OrderResultResponse>?, t: Throwable?) {
+//                Log.d("boolean", "어디까지 들어가냥")
+//
+//            }
+//
+//            override fun onResponse(call: Call<OrderResultResponse>?, response: Response<OrderResultResponse>?) {
+//                if(response!!.isSuccessful){
+//                    var orderCheckBoolean = response!!.body()!!.result.order_result
+//                    Log.d("boolean", orderCheckBoolean.toString())
+//                    if(orderCheckBoolean == true) {
+//                        (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoFive())
+//                    }
+//                    else {
+//                        Log.d("boolean", "어디까지 들어가냥")
+//                        (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoThird())
+//                    }
+//                }
+//            }
+//
+//        })
+//
+//    }
 
 
     fun postOrder(){
@@ -158,16 +159,24 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
                     var re = Regex("[^0-9]")
                     priceTmp = re.replace(price, "").toInt()
 
-                    orderTest = OrderTest(orderIdx, box_type+"개월 정기배송", priceTmp)
+                    if(box_type.equals("7")){
+
+                        orderTest = OrderTest(orderIdx, "생일 축하해! 박스", priceTmp)
+
+                    }
+                    else{
+
+                        orderTest = OrderTest(orderIdx, box_type+"개월 정기배송", priceTmp)
+                    }
+
                     var gson = Gson()
                     var orderJson = gson.toJson(orderTest)
                     gson.toJson(orderTest)
 
                     val intent = Intent(activity, CreditActivity::class.java)
                     intent.putExtra("orderIdx",orderJson)
-                    startActivity(intent);
+                    startActivityForResult(intent, 1541);
 
-                    postORrderResult()
 
 
                 }
@@ -200,6 +209,26 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
             }
 
         })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if(resultCode == RESULT_OK){
+            Log.d("체크5", "어디까지 들어가냥2")
+            when(requestCode){
+                1541 ->{
+                    Log.d("체크3",data!!.getStringExtra("result"))
+                    if(data!!.getStringExtra("result").equals("true")) {
+                        (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoFive())
+                    }
+                    else {
+                        Log.d("체크2", "어디까지 들어가냥")
+                        (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoThird())
+                    }
+
+                }
+
+            }
+        }
     }
 
 

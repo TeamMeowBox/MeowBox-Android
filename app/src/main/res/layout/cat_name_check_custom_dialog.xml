@@ -52,17 +52,6 @@
                 android:gravity="center_horizontal"
                 />
 
-            <TextView
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="13dp"
-                android:text="취소할 경우 맞춤 박스는 선물이 불가능합니다"
-                android:textColor="#999999"
-                android:layout_gravity="center"
-                />
-
-
         </LinearLayout>
 
 

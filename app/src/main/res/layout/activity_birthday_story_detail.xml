@@ -41,6 +41,8 @@
         ></LinearLayout>
 
     <ScrollView
+        android:scrollbars="none"
+        android:overScrollMode="never"
         android:layout_below="@+id/birth_day_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -197,7 +199,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="케이크와 그랜드"
+                android:text="케이크와 가랜드"
                 android:textSize="34dp"
                 android:textColor="#4C4E51"
                 android:layout_marginTop="20dp"
@@ -229,7 +231,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        android:text="#인간구찌"
+                        android:text="#어서와"
                         android:textColor="#999999"
                         android:textSize="14dp"
                         android:textStyle="bold"
@@ -247,7 +249,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        android:text="#아니"
+                        android:text="#고양이 케이크는"
                         android:textColor="#999999"
                         android:textSize="14dp"
                         android:textStyle="bold" />
@@ -264,7 +266,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        android:text="#고양이 구찌"
+                        android:text="#처음이지?"
                         android:textColor="#999999"
                         android:textSize="14dp"
                         android:textStyle="bold" />
@@ -337,7 +339,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        android:text="#인간구찌"
+                        android:text="#귀여움 대잔치"
                         android:textColor="#999999"
                         android:textSize="14dp"
                         android:textStyle="bold"
@@ -355,7 +357,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        android:text="#아니"
+                        android:text="#양모볼"
                         android:textColor="#999999"
                         android:textSize="14dp"
                         android:textStyle="bold" />
@@ -372,7 +374,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        android:text="#고양이 구찌"
+                        android:text="#캣닢 가루"
                         android:textColor="#999999"
                         android:textSize="14dp"
                         android:textStyle="bold" />
@@ -446,7 +448,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        android:text="#인간구찌"
+                        android:text="#스트레스 해소"
                         android:textColor="#999999"
                         android:textSize="14dp"
                         android:textStyle="bold"
@@ -464,7 +466,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        android:text="#아니"
+                        android:text="#스크래쳐 박스"
                         android:textColor="#999999"
                         android:textSize="14dp"
                         android:textStyle="bold" />
@@ -481,7 +483,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        android:text="#고양이 구찌"
+                        android:text="#털날림 제로"
                         android:textColor="#999999"
                         android:textSize="14dp"
                         android:textStyle="bold" />
@@ -555,7 +557,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        android:text="#인간구찌"
+                        android:text="#포크져키"
                         android:textColor="#999999"
                         android:textSize="14dp"
                         android:textStyle="bold"
@@ -573,7 +575,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        android:text="#아니"
+                        android:text="#동결건조 닭가슴살"
                         android:textColor="#999999"
                         android:textSize="14dp"
                         android:textStyle="bold" />
@@ -590,7 +592,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        android:text="#고양이 구찌"
+                        android:text="#수의사 검사"
                         android:textColor="#999999"
                         android:textSize="14dp"
                         android:textStyle="bold" />

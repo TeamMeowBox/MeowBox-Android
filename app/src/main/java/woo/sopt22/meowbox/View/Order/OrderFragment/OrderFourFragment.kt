@@ -44,8 +44,11 @@ class OrderFourFragment : Fragment(), View.OnClickListener {
                 if(order_four_name.text.toString().length == 0 ||
                         order_four_address_one.text.toString().length == 0 ||
                         order_four_address_two.text.toString().length == 0 ||
-                        order_four_email.text.toString().length == 0)
-                postOrder()
+                        order_four_email.text.toString().length == 0){
+                    ToastMaker.makeShortToast(context, "필수 정보를 입력해주세요!")
+                } else{
+                    postOrder()
+                }
             }
         }
     }
@@ -164,7 +167,17 @@ class OrderFourFragment : Fragment(), View.OnClickListener {
                     var re = Regex("[^0-9]")
                     priceTmp = re.replace(price, "").toInt()
 
-                    orderTest = OrderTest(orderIdx, box_type + "개월 정기배송", priceTmp)
+                    if(box_type.equals("7")){
+
+                        orderTest = OrderTest(orderIdx, "생일 축하해! 박스", priceTmp/100)
+
+                    }
+                    else{
+
+                        orderTest = OrderTest(orderIdx, box_type+"개월 정기배송", priceTmp/100)
+                    }
+
+                    //orderTest = OrderTest(orderIdx, box_type+"개월 정기배송", priceTmp/100)
                     var gson = Gson()
                     var orderJson = gson.toJson(orderTest)
                     gson.toJson(orderTest)

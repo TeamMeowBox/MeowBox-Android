@@ -176,7 +176,7 @@ class WithCatInfoThird : Fragment(), View.OnClickListener{
                         without_four_fragment.setArguments(bundle)
                         SharedPreference.instance!!.setPrefData("price",price)
                         SharedPreference.instance!!.setPrefData("box_type",box_type)
-                        ToastMaker.makeLongToast(context, third_radio_button.text.toString())
+                        //ToastMaker.makeLongToast(context, third_radio_button.text.toString())
                         (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoFour())
                     }
 

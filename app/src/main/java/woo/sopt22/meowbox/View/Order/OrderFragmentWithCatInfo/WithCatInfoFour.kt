@@ -35,10 +35,18 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
                 (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoThird())
             }
             order_pay_next->{
-                ToastMaker.makeLongToast(context, radio_button.text.trim().toString())
+                //oastMaker.makeLongToast(context, radio_button.text.trim().toString())
                 Log.v("48",radio_button.text.toString())
+                if(order_four_name.text.toString().length == 0 ||
+                        order_four_address_one.text.toString().length == 0 ||
+                        order_four_address_two.text.toString().length == 0 ||
+                        order_four_email.text.toString().length == 0){
+                    ToastMaker.makeShortToast(context, "필수 정보를 입력해주세요!")
+                } else{
+                    postOrder()
+                }
 
-                postOrder()
+                //postOrder()
 
 
 
@@ -161,13 +169,15 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
 
                     if(box_type.equals("7")){
 
-                        orderTest = OrderTest(orderIdx, "생일 축하해! 박스", priceTmp)
+                        orderTest = OrderTest(orderIdx, "생일 축하해! 박스", priceTmp/100)
 
                     }
                     else{
 
-                        orderTest = OrderTest(orderIdx, box_type+"개월 정기배송", priceTmp)
+                        orderTest = OrderTest(orderIdx, box_type+"개월 정기배송", priceTmp/100)
                     }
+
+                    //orderTest = OrderTest(orderIdx, box_type+"개월 정기배송", priceTmp/100)
 
                     var gson = Gson()
                     var orderJson = gson.toJson(orderTest)

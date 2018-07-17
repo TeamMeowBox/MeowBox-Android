@@ -82,6 +82,8 @@ class MeowBoxtBirthDayStoryActivity : AppCompatActivity(), NavigationView.OnNavi
         var login_menu_item : MenuItem = menu.findItem(R.id.loginBtn)
         var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
         var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
+        var birthday_menu_item : MenuItem = menu.findItem(R.id.birthDayBtn)
+        birthday_menu_item.setEnabled(false)
         blank_menu_item.setEnabled(false)
         blank_menu_item2.setEnabled(false)
 

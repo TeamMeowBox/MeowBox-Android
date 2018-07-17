@@ -245,6 +245,8 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         var login_menu_item : MenuItem = menu.findItem(R.id.loginBtn)
         var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
         var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
+        var mypage_menu_item : MenuItem = menu.findItem(R.id.myPageBtn)
+        mypage_menu_item.setEnabled(false)
         blank_menu_item.setEnabled(false)
         login_menu_item.setEnabled(false)
         blank_menu_item2.setEnabled(false)

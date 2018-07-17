@@ -99,7 +99,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var networkService: NetworkService
     lateinit var myAccountSettingGet: MyAccountSettingGet
     lateinit var myAccountSettingPost: MyAccountSettingPost
-    lateinit var profileImage : ImageView
+    lateinit var profileImage : CircleImageView
 
     lateinit var mySettingYear : Spinner
     lateinit var mySettingMonth : Spinner
@@ -127,7 +127,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         networkService = ApplicationController.instance.networkService
         SharedPreference.instance!!.load(this)
 
-        profileImage = findViewById<View>(R.id.mysetting_profile) as ImageView
+        profileImage = findViewById<View>(R.id.mysetting_profile) as CircleImageView
         val imgUrlex = "https://www.petmd.com/sites/default/files/petmd-cat-happy.jpg"
         mySettingYear = findViewById<View>(R.id.mysetting_year) as Spinner
         mySettingMonth = findViewById<View>(R.id.mysetting_month) as Spinner

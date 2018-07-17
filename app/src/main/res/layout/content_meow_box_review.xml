@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".View.MeowBoxReview.MeowBoxReviewActivity">
+
+    <ScrollView
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        android:id="@+id/review_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="410dp"
+                android:orientation="vertical"
+                android:background="@drawable/meow_box_review_main_img">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="21dp"
+                    android:layout_marginTop="24dp"
+                    android:text="미유박스와"
+                    android:textStyle="bold"
+                    android:textColor="#4C4E51"
+                    android:textSize="28dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/review_annual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="21dp"
+                        android:text="2018년"
+                        android:textStyle="bold"
+                        android:textColor="#4C4E51"
+                        android:textSize="28dp"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="을 함께"
+                        android:textColor="#4C4E51"
+                        android:textSize="28dp"
+                        />
+
+
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="21dp"
+                    android:text="보낸 아이들"
+                    android:textColor="#4C4E51"
+                    android:textSize="28dp"
+                    />
+
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/review_birthday_back_ground_img"/>
+
+                <TextView
+                    android:id="@+id/review_month_ment_head"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:textSize="22dp"
+                    android:text="이달의 소중한 탄생"
+                    android:textColor="#4C4E51"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/review_month_ment"
+                    android:layout_below="@+id/review_month_ment_head"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:textSize="14dp"
+                    android:text="태어난 아이들을 함께 축하해줘요!"
+                    android:layout_marginBottom="36dp"
+                    android:textColor="#4C4E51"
+                    android:textStyle="normal"/>
+
+                <RelativeLayout
+                    android:layout_below="@id/review_month_ment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="36dp">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/review_cardview1"
+                    android:layout_width="match_parent"
+                    android:layout_height="410dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentTop="true"
+                    android:paddingBottom="12dp"
+                    android:paddingEnd="30dp"
+                    android:paddingStart="30dp"/>
+
+                    <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/review_cardview1_indicator"
+                        />
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="226dp"
+                    android:background="#EEB1B2"/>
+
+
+                <TextView
+                    android:id="@+id/review_best_ment_head"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:textSize="22dp"
+                    android:text="7월의 베스트 컷"
+                    android:textColor="#4C4E51"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/review_best_ment"
+                    android:layout_below="@+id/review_best_ment_head"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:textSize="14dp"
+                    android:text="태어난 아이들을 함께 축하해줘요!"
+                    android:layout_marginBottom="36dp"
+                    android:textColor="#4C4E51"
+                    android:textStyle="bold"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/review_best_ment"
+                    android:layout_marginBottom="36dp">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/review_cardview2"
+                    android:layout_width="match_parent"
+                    android:layout_height="410dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentTop="true"
+                    android:paddingBottom="12dp"
+                    android:paddingEnd="50dp"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:paddingStart="50dp"/>
+
+                    <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/review_cardview2_indicator"
+                        />
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="226dp"
+                    android:background="#EEB1B2"/>
+
+
+                <TextView
+                    android:id="@+id/review_sub_ment_head"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:textSize="22dp"
+                    android:text="7월의 베스트 컷"
+                    android:textColor="#4C4E51"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/review_sub_ment"
+                    android:layout_below="@+id/review_sub_ment_head"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:textSize="14dp"
+                    android:text="태어난 아이들을 함께 축하해줘요!"
+                    android:layout_marginBottom="36dp"
+                    android:textColor="#4C4E51"
+                    android:textStyle="bold"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/review_sub_ment"
+                    android:layout_marginBottom="36dp">
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/review_cardview3"
+                        android:layout_width="match_parent"
+                        android:layout_height="410dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentTop="true"
+                        android:paddingBottom="12dp"
+                        android:paddingEnd="50dp"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:paddingStart="50dp"/>
+
+                    <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/review_cardview3_indicator"
+                        />
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="168dp"
+                android:background="#EFEDED">
+
+                <TextView
+                    android:id="@+id/review_best_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="베스트 컷을 기대해주세요!"
+                    android:textColor="#4C4E51"
+                    android:textSize="18dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="50dp"/>
+
+                <ImageView
+                    android:layout_marginTop="19dp"
+                    android:layout_below="@+id/review_best_tv"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/review_top_btn"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/top_btn"/>
+
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

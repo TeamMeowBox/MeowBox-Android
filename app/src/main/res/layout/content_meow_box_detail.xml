@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".View.MeowBoxDetail.MeowBoxDetailActivity"
+    tools:showIn="@layout/app_bar_meow_box_detail">
+
+
+    <ScrollView
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="480dp"
+                android:id="@+id/detail_first_img"
+                android:src="@drawable/meow_box_detail_main">
+
+            </ImageView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/detail_item1_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="25dp"
+                    android:text="트로피칼 나이트"
+                    android:textColor="#4C4E51"
+                    android:textSize="34dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="25dp"
+                    android:text="냥이들의 트로피칼 나이트 \n미유박스와 함께 한여름밤의 꿀을!"
+                    android:textColor="#4C4E51"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:id="@+id/detail_item1_title_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="43dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:src="@drawable/dash_bar_img"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="25dp"
+                    android:text="선글라스와 모자"
+                    android:textColor="#4C4E51"
+                    android:textSize="34dp" />
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:src="@drawable/sunglass_one_img"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="22dp"
+                        android:background="@drawable/round_hashbox_border">
+
+                        <TextView
+                            android:id="@+id/birthday_detail_item_one_hash1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="#ootd"
+                            android:textColor="#999999"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:background="@drawable/round_hashbox_border">
+
+                        <TextView
+                            android:id="@+id/detail_item_one_hash2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="#피서룩"
+                            android:textColor="#999999"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:background="@drawable/round_hashbox_border">
+
+                        <TextView
+                            android:id="@+id/detail_item_one_hash3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="#휴가스타그램"
+                            android:textColor="#999999"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+                <RelativeLayout
+                    android:layout_marginTop="33dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="34dp">
+
+                    <android.support.v4.view.ViewPager
+                        android:scrollbars="none"
+                        android:overScrollMode="never"
+                        android:id="@+id/detail_cardview_pager_one"
+                        android:layout_width="match_parent"
+                        android:layout_height="330dp"
+                        android:layout_gravity="center"
+                        />
+                    <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/detail_cardview_one_indicator"
+                        />
+
+                </RelativeLayout>
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="33dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:src="@drawable/dash_bar_img"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="25dp"
+                    android:text="장난감"
+                    android:textColor="#4C4E51"
+                    android:textSize="34dp" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:src="@drawable/toy_one_img"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="22dp"
+                        android:background="@drawable/round_hashbox_border">
+
+                        <TextView
+                            android:id="@+id/detail_item_two_hash1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="#귀여움대잔치"
+                            android:textColor="#999999"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:background="@drawable/round_hashbox_border">
+
+                        <TextView
+                            android:id="@+id/detail_item_two_hash2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="#양모볼"
+                            android:textColor="#999999"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:background="@drawable/round_hashbox_border">
+
+                        <TextView
+                            android:id="@+id/detail_item_two_hash3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="#캣닢가루"
+                            android:textColor="#999999"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="33dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="34dp">
+
+                    <android.support.v4.view.ViewPager
+                        android:scrollbars="none"
+                        android:overScrollMode="never"
+                        android:id="@+id/detail_cardview_pager_two"
+                        android:layout_width="match_parent"
+                        android:layout_height="330dp"
+                        android:layout_gravity="center"
+                        />
+                    <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/detail_cardview_two_indicator"
+                        />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="33dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:src="@drawable/dash_bar_img"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="25dp"
+                    android:text="낚시대"
+                    android:textColor="#4C4E51"
+                    android:textSize="34dp" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:src="@drawable/fishing_rod_one_img"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="22dp"
+                        android:background="@drawable/round_hashbox_border">
+
+                        <TextView
+                            android:id="@+id/detail_item_three_hash1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="#길이조절"
+                            android:textColor="#999999"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:background="@drawable/round_hashbox_border">
+
+                        <TextView
+                            android:id="@+id/detail_item_three_hash2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="#고퀄깃털"
+                            android:textColor="#999999"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:background="@drawable/round_hashbox_border">
+
+                        <TextView
+                            android:id="@+id/detail_item_three_hash3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="#방울까지"
+                            android:textColor="#999999"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="33dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="34dp">
+
+                    <android.support.v4.view.ViewPager
+                        android:scrollbars="none"
+                        android:overScrollMode="never"
+                        android:id="@+id/detail_cardview_pager_three"
+                        android:layout_width="match_parent"
+                        android:layout_height="330dp"
+                        android:layout_gravity="center"
+                        />
+                    <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/detail_cardview_three_indicator"
+                        />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="33dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:src="@drawable/dash_bar_img"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="25dp"
+                    android:text="스크래쳐"
+                    android:textColor="#4C4E51"
+                    android:textSize="34dp" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:src="@drawable/scratcher_one_img"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="22dp"
+                        android:background="@drawable/round_hashbox_border">
+
+                        <TextView
+                            android:id="@+id/detail_item_four_hash1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="#스트레스 해소"
+                            android:textColor="#999999"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:background="@drawable/round_hashbox_border">
+
+                        <TextView
+                            android:id="@+id/detail_item_four_hash2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="#스크래쳐 박스"
+                            android:textColor="#999999"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:background="@drawable/round_hashbox_border">
+
+                        <TextView
+                            android:id="@+id/detail_item_four_hash3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="#털날림 제로"
+                            android:textColor="#999999"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="33dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="34dp">
+
+                    <android.support.v4.view.ViewPager
+                        android:scrollbars="none"
+                        android:overScrollMode="never"
+                        android:id="@+id/detail_cardview_pager_four"
+                        android:layout_width="match_parent"
+                        android:layout_height="330dp"
+                        android:layout_gravity="center"
+                        />
+                    <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/detail_cardview_four_indicator"
+                        />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:src="@drawable/dash_bar_img"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="25dp"
+                    android:text="간식"
+                    android:textColor="#4C4E51"
+                    android:textSize="34dp" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:src="@drawable/snack_one_img"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="22dp"
+                        android:background="@drawable/round_hashbox_border">
+
+                        <TextView
+                            android:id="@+id/detail_item_five_hash1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="#포크 져키"
+                            android:textColor="#999999"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:background="@drawable/round_hashbox_border">
+
+                        <TextView
+                            android:id="@+id/detail_item_five_hash2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="#동결건조 닭가슴살"
+                            android:textColor="#999999"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:background="@drawable/round_hashbox_border">
+
+                        <TextView
+                            android:id="@+id/detail_item_five_hash3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="#수의사검사"
+                            android:textColor="#999999"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="33dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="63dp"
+                    >
+
+                    <android.support.v4.view.ViewPager
+                        android:scrollbars="none"
+                        android:overScrollMode="never"
+                        android:id="@+id/detail_cardview_pager_five"
+                        android:layout_width="match_parent"
+                        android:layout_height="330dp"
+                        android:layout_gravity="center"
+                        />
+                    <woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/detail_cardview_five_indicator"
+                        />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/detail_order_btn"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#E68789">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="미유박스 주문하기"
+            android:textSize="18dp"
+            android:textColor="#FFFFFF"
+            android:textStyle="normal"
+            android:layout_centerInParent="true"/>
+
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".View.MyPage.MyPageActivity"
+    tools:showIn="@layout/app_bar_my_page"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+    <ScrollView
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="horizontal"
+        >
+        
+        <woo.sopt22.meowbox.View.MyPage.CircleImageView
+            android:id="@+id/mypage_profile_img"
+            android:layout_width="51dp"
+            android:layout_height="51dp"
+            android:src="@drawable/pro1"
+            android:layout_gravity="center"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+
+            android:layout_marginLeft="22dp"
+            />
+
+
+        <LinearLayout
+            android:layout_toRightOf="@+id/mypage_profile_img"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="안녕하세요"
+            android:textSize="14dp"/>
+
+            <TextView
+                android:layout_gravity="left"
+                android:id="@+id/mypage_name_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="14dp"
+                android:text="온풍이 집사 한승미님"/>
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/mypage_setting"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/setting_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="22dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#EFEDED"
+            android:layout_alignParentBottom="true"
+            ></LinearLayout>
+
+
+        
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/mypage_visiblebox_progress"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:orientation="vertical"
+
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp">
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="#4C4E51"
+                        android:text="정기권"
+                        android:textSize="14dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/mypage_visiblebox_progress_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_centerHorizontal="true">
+                    <TextView
+                        android:id="@+id/mypage_visiblebox_progress_leftbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#67696B"
+                        android:textSize="27dp"
+                        android:text="3박스"
+                        android:layout_marginTop="30dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#67696B"
+                        android:textSize="27dp"
+                        android:text=" 중 "
+                        android:layout_marginTop="30dp"/>
+
+                    <TextView
+                        android:id="@+id/mypage_visiblebox_progress_getbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#E88687"
+                        android:textStyle="bold"
+                        android:textSize="27dp"
+                        android:text="3박스"
+                        android:layout_marginTop="30dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#67696B"
+                        android:textSize="27dp"
+                        android:text="를"
+                        android:layout_marginTop="30dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="배송 받으셨어요"
+                    android:layout_below="@+id/mypage_visiblebox_progress_box"
+                    android:textColor="#67696B"
+                    android:textSize="27dp"
+                    />
+
+
+
+
+            </RelativeLayout>
+
+            <woo.sopt22.meowbox.View.MyPage.ProgressBar.StateProgressBar
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="14dp"
+
+                android:id="@+id/your_state_progress_bar_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:spb_currentStateNumber="two"
+                app:spb_maxStateNumber="three"
+                app:spb_stateBackgroundColor="#EFEDED"
+                app:spb_stateForegroundColor="#E88687"
+                app:spb_stateNumberBackgroundColor="#EFEDED"
+                app:spb_stateNumberForegroundColor="#E88687"
+                app:spb_currentStateDescriptionColor="#E88687"
+                app:spb_stateDescriptionColor="#EFEDED"
+                app:spb_animateToCurrentProgressState="true"
+                app:spb_checkStateCompleted="true"
+                android:layout_centerHorizontal="true"
+
+
+                />
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/mypage_visiblebox_text"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/mypage_visiblebox_text_img"
+            android:layout_width="wrap_content"
+            android:layout_height="130dp"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/story_order_btn"
+            android:src="@drawable/story_order_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"/>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="9dp"
+        android:background="#EFEDED">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="21dp"
+        android:id="@+id/mypage_order_btn"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#4C4E51"
+            android:textSize="17dp"
+            android:text="주문내역"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="34dp"
+        android:id="@+id/mypage_suggest_btn"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#4C4E51"
+            android:textSize="17dp"
+            android:text="미유박스에 제안"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="34dp"
+        android:id="@+id/mypage_qna_btn"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#4C4E51"
+            android:textSize="17dp"
+            android:text="자주묻는 질문"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="34dp"
+        android:id="@+id/mypage_setting_btn"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#4C4E51"
+            android:textSize="17dp"
+            android:text="설정"/>
+    </LinearLayout>
+
+    </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>

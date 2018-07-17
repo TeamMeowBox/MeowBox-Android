@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <ImageView
+        android:layout_marginTop="109dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/order_five_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/meow_box_logo_type_img"/>
+
+    <LinearLayout
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/order_five_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="주문이 완료되었습니다"
+            android:textSize="22dp"
+            android:textColor="#4C4E51"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_marginTop="11dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="기다리는 반려묘를 위해 빨리 배송할게요"
+            android:textColor="#999999"
+            android:textSize="16dp"/>
+
+        <TextView
+            android:layout_marginTop="11dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="조금만 더 기다려주세요!"
+            android:textColor="#999999"
+            android:textSize="16dp"/>
+
+
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/order_five_home_btn"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="#E68789">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="홈으로 돌아가기"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -2,21 +2,87 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="woo.sopt22.meowbox">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
+        android:name=".ApplicationController"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/meow_box"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".View.Splash.SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <!--<data android:scheme="your_own_scheme" />-->
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".View.MeowBoxStory.MeowBoxStoryActivity"
+            android:label="@string/title_activity_meow_box_story"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".View.MeowBoxReview.MeowBoxReviewActivity"
+            android:label="@string/title_activity_meow_box_review"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".View.Order.OrderFirstActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".View.MeowBoxDetail.MeowBoxDetailActivity"
+            android:label="@string/title_activity_meow_box_detail"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".View.MyPage.MyPageActivity"
+            android:label="@string/title_activity_my_page"
+            android:windowSoftInputMode="adjustNothing"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".View.MyPage.MySettingActivity"
+            android:windowSoftInputMode="adjustNothing"/>
+        <activity
+            android:name=".View.Login.LoginActivity"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".View.Join.JoinActivity"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".View.MyPage.Suggest.MyPageSuggestActivity"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity android:name=".View.MyPage.Setting.MyPageSettingActivity" />
+        <activity android:name=".View.MyPage.FAQ.QuestionActivity" />
+        <activity android:name=".View.MyPage.Setting.Notice.Notice2Activity" />
+        <activity android:name=".View.MyPage.OrderHistory.OrderHistoryActivity" />
+        <activity android:name=".View.MyPage.Setting.Terms.Terms2Activity" />
+        <activity android:name=".View.MyPage.OrderHistory.OrderHistoryDetail.OrderHistoryDetailActivity" />
+        <activity
+            android:name=".View.Order.OrderThirdActivity"
+            android:label="@string/title_activity_order_third"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".View.MyPage.OrderHistory.OrderHistoryDetail.OrderHistoryDetailHeaderActivity" />
+        <activity android:name=".View.Home.MainActivity">
+
+        </activity>
+
+        <activity
+            android:name=".View.MeowBoxBirthDay.MeowBoxtBirthDayStoryActivity"
+            android:label="@string/title_activity_meow_boxt_birth_day_story"
+
+            android:theme="@style/AppTheme" />
+        <activity android:name=".View.MeowBoxBirthDay.BirthdayStoryDetailActivity"></activity>
+
+        <activity android:name=".View.Order.Credit.CreditActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <data android:scheme="your_own_scheme" />
             </intent-filter>
         </activity>
     </application>

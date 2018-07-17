@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onClick(v: View?) {
         when(v!!){
             home_stroy_btn->{
-                Log.v("073","073")
                 startActivity(Intent(this, MeowBoxStoryActivity::class.java))
             }
             home_to_detail_btn->{
@@ -322,21 +321,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
 
-      /*  mSlidingTextView.setOnClickListener {
-            ToastMaker.makeLongToast(this,mSlidingTextView.text.toString())
-        }*/
-
-        // actionBar 타이틀 가리기
-
-
-
-
         //희현카드뷰
 
-
-        var imgUrl1 = "https://post-phinf.pstatic.net/MjAxNzA0MjFfMTMx/MDAxNDkyNzAxMjI0NzA3.Q_bmK_EvjtxtFpT30CNtyBsJBfGkAieooME9VDfoKHYg.nrXNY37E18mt1g6nbwDpHN7kQAwmDr9Q2RPLKWkw_2wg.JPEG/1492696692724.jpg?type=w1200" as String
-        var imgUrl2 = "https://post-phinf.pstatic.net/MjAxNzA0MjFfMTc2/MDAxNDkyNzAxMjI1MDA4.IS9AxBl-5bs1-h3PbJssvfm5xmcsUAkkLMg-qIJ9KVsg.h8_rW0zPTvO74wQ5yH_K3TRAJVJUcGT6Z_hldpv_GRgg.JPEG/1492696688049.jpg?type=w1200" as String
-        var imgUrl3 = "https://post-phinf.pstatic.net/MjAxNzA0MjFfMTI1/MDAxNDkyNzAxMjI1MTY0.femsgEnFQWPK7szY4kZ0_6uSgXqCaDNyAPZt5Pp-ebMg.oRMiRH-aga5cGKJc8OSOabjZv1Nf0AO7XUFGe7sVa_cg.JPEG/1492696687282.jpg?type=w1200" as String
 
         var items : ArrayList<CardData>
         items = ArrayList();
@@ -346,9 +332,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         items.add(CardData(R.drawable.home_main_four_img,0))
         items.add(CardData(R.drawable.home_main_five_img,2))
 
-        /*home_detail_btn.setOnClickListener {
-            ToastMaker.makeLongToast(this, "dd")
-        }*/
 
         mViewPager.setPadding(0,0,200,0)
         var madapter = CardViewAdapter(layoutInflater, items)
@@ -455,9 +438,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
 
         madapter.setOnItemClickListener(this)
-
-
-
 
 
         val toggle = ActionBarDrawerToggle(

@@ -86,6 +86,8 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
         var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
         var login_menu_item : MenuItem = menu.findItem(R.id.loginBtn)
+        var review_menu_item : MenuItem = menu.findItem(R.id.reviewBtn)
+        review_menu_item.setEnabled(false)
         blank_menu_item.setEnabled(false)
         blank_menu_item2.setEnabled(false)
 

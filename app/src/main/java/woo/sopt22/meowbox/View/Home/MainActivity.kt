@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onClick(v: View?) {
         when(v!!){
             home_stroy_btn->{
-                Log.v("073","073")
                 startActivity(Intent(this, MeowBoxStoryActivity::class.java))
             }
             home_to_detail_btn->{
@@ -131,6 +130,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         sliding_toolbar = re as RelativeLayout
     }
 
+
+    // 고양이 인스타 크롤링 사진 받아오기
     fun getInsta(){
         val instaResponse = networkService.getInstaCrawling()
         instaResponse.enqueue(object : Callback<InstaCrawlingResponse>{
@@ -161,6 +162,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
     }
 
+    // 고양이 Count 받아오기
     fun getCatCount(){
         val countResponse = networkService.getCatCount()
         countResponse.enqueue(object : Callback<CatCountResponse>{
@@ -179,8 +181,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
     }
 
-    override fun onResume() {
-        super.onResume()
+
+    // 처음 들어오거나 다른 액티비티로 갔다가 올 때 정보를 확인해서 SharedPreference에 저장된 데이터 불러오도록!!
+    fun checkInfo(){
 
         SharedPreference.instance!!.load(this)
 
@@ -206,34 +209,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        checkInfo()
 
     }
     override fun onRestart() {
         Log.v("onRestart",SharedPreference.instance!!.getPrefStringData("user_name"))
         super.onRestart()
-        SharedPreference.instance!!.load(this)
 
-
-        var headerView : View = main_nav_view.getHeaderView(0)
-        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
-        var userImage : ImageView = headerView.findViewById(R.id.imageView)
-
-
-        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
-            userName.text = "OO님!"
-        } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("name") + "님"
-        }
-
-        if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
-            //userImage.setImageResource(R.drawable.side_bar_profile_img)
-            Log.v("용범 onRestart","123")
-            Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
-        } else{
-            Log.v("용범 onRestart","456")
-            userImage.setImageURI(Uri.parse(SharedPreference.instance!!.getPrefStringData("image_profile")))
-            Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
-        }
+        checkInfo()
 
 
     }
@@ -246,28 +234,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
         toolbar.bringToFront()
 
-        //main_side_back_btn = side_bar_back_btn as ImageView
-        //side_bar_back_btn.setOnClickListener(this@MainActivity)
-
+        networkService = ApplicationController.instance!!.networkService
 
         var headerView : View = main_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
         var userImage : ImageView = headerView.findViewById(R.id.imageView)
         //userImage.setImageResource(R.drawable.side_bar_profile_img)
 
-        networkService = ApplicationController.instance!!.networkService
 
         SharedPreference.instance!!.load(this)
         Log.v("079",SharedPreference.instance!!.getPrefStringData("image_profile"))
 
-        if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
-            Log.v("Main 용범 onCreate","123")
-            Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
-        } else{
-            Log.v("Main 용범 onCreate","456")
-            Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
-        }
-        Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
+        checkInfo()
         home_to_detail_btn.setOnClickListener(this)
 
         init()
@@ -309,6 +287,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var login_menu_item : MenuItem = menu.findItem(R.id.loginBtn)
         var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
         var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
+        var home_menu_item : MenuItem = menu.findItem(R.id.homeBtn)
+        home_menu_item.setEnabled(false)
         blank_menu_item.setEnabled(false)
         blank_menu_item2.setEnabled(false)
         //home_detail_btn.setImageResource(R.drawable.home_detail_btn_white)
@@ -341,21 +321,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
 
-      /*  mSlidingTextView.setOnClickListener {
-            ToastMaker.makeLongToast(this,mSlidingTextView.text.toString())
-        }*/
-
-        // actionBar 타이틀 가리기
-
-
-
-
         //희현카드뷰
 
-
-        var imgUrl1 = "https://post-phinf.pstatic.net/MjAxNzA0MjFfMTMx/MDAxNDkyNzAxMjI0NzA3.Q_bmK_EvjtxtFpT30CNtyBsJBfGkAieooME9VDfoKHYg.nrXNY37E18mt1g6nbwDpHN7kQAwmDr9Q2RPLKWkw_2wg.JPEG/1492696692724.jpg?type=w1200" as String
-        var imgUrl2 = "https://post-phinf.pstatic.net/MjAxNzA0MjFfMTc2/MDAxNDkyNzAxMjI1MDA4.IS9AxBl-5bs1-h3PbJssvfm5xmcsUAkkLMg-qIJ9KVsg.h8_rW0zPTvO74wQ5yH_K3TRAJVJUcGT6Z_hldpv_GRgg.JPEG/1492696688049.jpg?type=w1200" as String
-        var imgUrl3 = "https://post-phinf.pstatic.net/MjAxNzA0MjFfMTI1/MDAxNDkyNzAxMjI1MTY0.femsgEnFQWPK7szY4kZ0_6uSgXqCaDNyAPZt5Pp-ebMg.oRMiRH-aga5cGKJc8OSOabjZv1Nf0AO7XUFGe7sVa_cg.JPEG/1492696687282.jpg?type=w1200" as String
 
         var items : ArrayList<CardData>
         items = ArrayList();
@@ -365,9 +332,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         items.add(CardData(R.drawable.home_main_four_img,0))
         items.add(CardData(R.drawable.home_main_five_img,2))
 
-        /*home_detail_btn.setOnClickListener {
-            ToastMaker.makeLongToast(this, "dd")
-        }*/
 
         mViewPager.setPadding(0,0,200,0)
         var madapter = CardViewAdapter(layoutInflater, items)
@@ -474,9 +438,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
 
         madapter.setOnItemClickListener(this)
-
-
-
 
 
         val toggle = ActionBarDrawerToggle(

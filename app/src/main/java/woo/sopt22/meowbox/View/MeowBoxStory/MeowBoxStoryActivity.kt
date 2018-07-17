@@ -98,6 +98,8 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
         var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
         var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
         var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
+        var story_menu_item : MenuItem = menu.findItem(R.id.stroyBtn)
+        story_menu_item.setEnabled(false)
         blank_menu_item.setEnabled(false)
         blank_menu_item2.setEnabled(false)
 

@@ -40,17 +40,30 @@ class OrderThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     companion object {
         var thirdContext : Context?=null
     }
+
+    fun init(){
+
+        // Status Bar 색상 변경 및 하단 Navigation Bar 색상 변경
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            window.statusBarColor = Color.BLACK
+            window.navigationBarColor = Color.BLACK
+        }
+
+        // 툴바 가리고 내가 원하는 이미지 넣을 수 있도록
+        getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
+        getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
+        toolbar.bringToFront()
+
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_third)
         setSupportActionBar(toolbar)
         thirdContext = this
 
+        init()
+        replaceFragment(WithCatInfoThird())
 
-
-        getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
-        getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
-        toolbar.bringToFront()
 
         var headerView : View = order_third_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
@@ -77,19 +90,8 @@ class OrderThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             menu_item.setEnabled(false)
         }
 
-        replaceFragment(WithCatInfoThird())
         //(OrderThirdActivity. as OrderFirstActivity).replaceFragment(third_fragment)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            window.statusBarColor = Color.BLACK
-            window.navigationBarColor = Color.BLACK
-        }
-
-        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
-            userName.text = "OO님!"
-        } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("name")
-        }
 
         if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
             //userImage.setImageResource(R.drawable.side_bar_profile_img)

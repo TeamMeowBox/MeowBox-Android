@@ -57,13 +57,8 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     companion object {
         var mContext: Context?=null
     }
-    lateinit var order_next_btn : RelativeLayout
-    lateinit var container : FrameLayout
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_order_first)
-        setSupportActionBar(toolbar)
-        mContext = this
+
+    fun init(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
             window.navigationBarColor = Color.BLACK
@@ -74,12 +69,24 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
 
+    }
+    lateinit var order_next_btn : RelativeLayout
+    lateinit var container : FrameLayout
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_order_first)
+        setSupportActionBar(toolbar)
+        mContext = this
+
+        init()
+        replaceFragment(OrderFirstFragment())
+
+
         var headerView : View = order_first_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
         var userImage : ImageView = headerView.findViewById(R.id.imageView)
 
         if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
-            //userImage.setImageResource(R.drawable.side_bar_profile_img)
             Log.v("용범 onResume","123")
             Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
         } else{
@@ -90,9 +97,6 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
 
         container = order_framge as FrameLayout
-
-        //var cat_idx = getIntent().getStringExtra("cat_idx")
-
 
         var menu : Menu = order_first_nav_view.menu
         var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
@@ -107,19 +111,14 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             userName.text = "OO님!"
             menu_item.setTitle("로그인")
         } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("name")
+            userName.text = SharedPreference.instance!!.getPrefStringData("name") + " 님"
             menu_item.setTitle("")
             menu_item.setEnabled(false)
         }
 
-        replaceFragment(OrderFirstFragment())
-
-
 
         val toggle = ActionBarDrawerToggle(
                 this, order_first_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-
-
 
         toggle.setDrawerIndicatorEnabled(false)
         val drawable = ResourcesCompat.getDrawable(resources, R.drawable.side_bar_btn_black, applicationContext!!.getTheme())
@@ -138,10 +137,8 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             }
         })
 
-
         order_first_drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
-
 
         order_first_nav_view.setNavigationItemSelectedListener(this)
     }

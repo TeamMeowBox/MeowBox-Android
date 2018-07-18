@@ -135,10 +135,6 @@ class MeowBoxtBirthDayStoryActivity : AppCompatActivity(), NavigationView.OnNavi
         }
     }
 
-
-
-
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {

@@ -1,6 +1,8 @@
 # MeowBox - Android
 
-![image](/image/meow_box.png)
+![](/image/meow_box.png)
+
+
 <img src="image/meow_box.png" width="60">
 
 반려묘를 위한 수제 필수용품과 간식을 정기 배송하는 서비스 **MeowBox** 입니다.
@@ -15,7 +17,7 @@
 * Language - **Kotlin**
 * Minimum SDK Version - 21
 * Target SDK Version - 27
-* Optimization Device - Galaxy s8+
+* Optimization Device - **Galaxy s8+**
 
 
 ## Library
@@ -24,4 +26,16 @@
 * implementation 'com.sothree.slidinguppanel:library:3.4.0'
 * implementation 'com.android.support:cardview-v7:27.1.1'
 * implementation 'de.hdodenhof:circleimageview:2.2.0'
-* implementation 'de.hdodenhof:circleimageview:2.2.0'
+* implementation 'com.android.support:recyclerview-v7:27.1.1'
+* implementation 'com.thoughtbot:expandablerecyclerview:1.3'
+* implementation 'com.zarinpal:cardviewpager:0.5.3'
+
+2. HTTP REST API
+* implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+* implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+
+3. Material design
+* implementation 'com.android.support:design:27.1.1'
+
+4. Animation
+* implementation 'com.airbnb.android:lottie:2.1.0'

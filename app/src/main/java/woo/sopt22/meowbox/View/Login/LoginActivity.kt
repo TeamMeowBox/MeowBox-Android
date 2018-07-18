@@ -60,8 +60,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     var password_length : Int=0
     var cnt_email : Int=0
     var cnt_password : Int=0
-    var email_flag : Boolean = false
-    var password_flag : Boolean = false
 
 
 
@@ -162,8 +160,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         })
 
 
+        // TextView에 밑줄 표시를 하기 위해서 사용
         val sp = SpannableStringBuilder("아직 아이디가 없으신가요? 회원가입")
-//sp.setSpan(new ForegroundColorSpan(Color.rgb(255, 255, 255)), 0, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        //sp.setSpan(new ForegroundColorSpan(Color.rgb(255, 255, 255)), 0, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         sp.setSpan(ForegroundColorSpan(resources.getColor(R.color.pink)), 15, 19, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         login_to_sign_text.append(sp)
 
@@ -176,13 +175,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val loginResponse = networkService.postSignIn(loginUser)
         loginResponse.enqueue(object : Callback<LoginResponse>{
             override fun onFailure(call: Call<LoginResponse>?, t: Throwable?) {
-                Log.v("login",t!!.message.toString())
+                Log.v("login 실패",t!!.message.toString())
 
             }
 
             override fun onResponse(call: Call<LoginResponse>?, response: Response<LoginResponse>?) {
                 if(response!!.isSuccessful){
-                    Log.v("login",response!!.message())
+                    Log.v("login 성공",response!!.message())
                     token = response!!.body()!!.result!!.token!!.toString()
                     SharedPreference.instance!!.setPrefData("token",token)
                     SharedPreference.instance!!.setPrefData("user_email",response!!.body()!!.result!!.email)
@@ -191,9 +190,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     SharedPreference.instance!!.setPrefData("phone_number",response!!.body()!!.result!!.phone_number)
                     SharedPreference.instance!!.setPrefData("cat_idx",response!!.body()!!.result!!.cat_idx)
                     SharedPreference.instance!!.setPrefData("image_profile", response!!.body()!!.result!!.image_profile!!)
-                    Log.v("123",token)
-                    Log.v("1233", response!!.body()!!.result!!.image_profile!!)
-                    Log.v("1234",response.body()!!.result!!.cat_idx)
+
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

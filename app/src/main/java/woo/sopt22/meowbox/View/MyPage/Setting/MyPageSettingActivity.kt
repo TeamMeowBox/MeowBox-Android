@@ -16,6 +16,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import woo.sopt22.meowbox.Util.CustomDialog.DeleteUserCustomDialog
+import woo.sopt22.meowbox.Util.CustomDialog.LogoutCustomDialog
 import woo.sopt22.meowbox.View.MyPage.Setting.Notice.Notice2Activity
 import woo.sopt22.meowbox.View.MyPage.Setting.Terms.Terms2Activity
 

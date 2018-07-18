@@ -70,7 +70,7 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
 
         networkService = ApplicationController.instance!!.networkService
         SharedPreference.instance!!.load(context!!)
-        activity!!.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
+        activity!!.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
 
         view.order_pay_previous.setOnClickListener(this)
         view.order_pay_next.setOnClickListener(this)

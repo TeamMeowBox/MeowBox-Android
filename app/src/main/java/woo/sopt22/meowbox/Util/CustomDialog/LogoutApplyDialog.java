@@ -1,4 +1,4 @@
-package woo.sopt22.meowbox.View.MyPage.Setting;
+package woo.sopt22.meowbox.Util.CustomDialog;
 
 import android.app.Dialog;
 import android.content.Context;

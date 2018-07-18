@@ -1,25 +1,15 @@
-package woo.sopt22.meowbox.View.MyPage.Setting
+package woo.sopt22.meowbox.Util.CustomDialog
 
 import android.app.Dialog
 import android.content.Context
-import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import woo.sopt22.meowbox.ApplicationController
-import woo.sopt22.meowbox.Model.Base.BaseModel
 import woo.sopt22.meowbox.Network.NetworkService
 
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference
-import woo.sopt22.meowbox.View.Home.MainActivity
-import woo.sopt22.meowbox.View.Login.LoginActivity
-import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 
 
 class DisjoinCustomDialog(context: Context) : Dialog(context), View.OnClickListener {

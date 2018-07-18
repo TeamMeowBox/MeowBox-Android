@@ -53,17 +53,18 @@ class BirthdayStoryDetailActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var items4 : ArrayList<DetailModel>
     lateinit var items5 : ArrayList<DetailModel>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_birthday_story_detail)
+    fun init(){
+
         birthday_detail_order_btn.setOnClickListener(this)
         birthday_detail_x_btn.setOnClickListener(this)
         SharedPreference.instance!!.load(this)
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
             window.navigationBarColor = Color.BLACK
         }
+    }
+
+    fun dataSetting(){
         items1 = ArrayList(); // 선글라스 모자
 
         items1.add(DetailModel("2018 S/S 피서룩의 완성. 선글라스와 \n모자만 있으면, 이구역 힙냥이는 나야!",R.drawable.ribbon_two_img))
@@ -155,13 +156,20 @@ class BirthdayStoryDetailActivity : AppCompatActivity(), View.OnClickListener {
         birthday_detail_cardview_pager_five.setPadding(80,0,80,0)
         birthday_detail_cardview_pager_five.pageMargin = 40
 
+    }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_birthday_story_detail)
 
+        init()
+        dataSetting()
 
 
 
 
     }
+
     var birthdayOnPageChangeListenter_one : ViewPager.OnPageChangeListener = object : ViewPager.OnPageChangeListener{
         override fun onPageScrollStateChanged(state: Int) {
         }

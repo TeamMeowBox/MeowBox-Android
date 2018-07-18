@@ -28,51 +28,29 @@ import woo.sopt22.meowbox.View.Home.MainActivity
 
 class JoinActivity : AppCompatActivity(), View.OnClickListener {
 
-    lateinit var joinBtn : RelativeLayout
-    lateinit var joinCloseBtn : ImageView
-    lateinit var joinName : EditText
-    lateinit var joinPhone : EditText
-    lateinit var joinEmail : EditText
-    lateinit var joinPwd : EditText
-
-    lateinit var jName : String
-    lateinit var jPhone : String
-    lateinit var jEmail : String
-    lateinit var jPwd : String
-
     lateinit var networkService: NetworkService
     lateinit var signUpUser : SignUpUser
     lateinit var token : String
     override fun onClick(v: View?) {
         when(v!!){
-            joinBtn->{
-                //startActivity(Intent(this, LoginActivity::class.java))
-                jName = joinName.text.toString()
-                jPhone = joinPhone.text.toString()
-                jEmail = joinEmail.text.toString()
-                jPwd = joinPwd.text.toString()
-
-                if(jName.length == 0 || jPhone.length == 0 || jEmail.length == 0 || jPwd.length == 0){
-                    ToastMaker.makeShortToast(applicationContext, "정보를 입력해주세요.")
+            join_btn->{
+                if(join_name.text.toString().length == 0
+                        || join_phone.text.toString().length == 0
+                        || join_email.text.toString().length == 0
+                        || join_password.text.toString().length == 0){
+                    ToastMaker.makeShortToast(applicationContext, "정보를 정확히 입력해주세요.")
                 } else{
                     sign()
                 }
 
-
-
-
-                //Toast.makeText(this, jName+" "+jPhone+" "+jEmail+" "+jPwd, Toast.LENGTH_SHORT).show()
             }
-            joinCloseBtn->{
+            join_x_btn->{
                 finish()
             }
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_join)
-
+    fun init(){
         networkService = ApplicationController.instance!!.networkService
         SharedPreference.instance!!.load(this)
 
@@ -82,33 +60,36 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
             window.navigationBarColor = Color.BLACK
         }
 
-        joinBtn = join_btn as RelativeLayout
-        joinBtn.setOnClickListener(this)
+        // 클릭 리스너 달아줌
+        join_btn.setOnClickListener(this)
+        join_x_btn.setOnClickListener(this)
+    }
 
-        joinCloseBtn = join_x_btn as ImageView
-        joinCloseBtn.setOnClickListener(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_join)
 
-        joinName = join_name as EditText
-        joinPhone = join_phone as EditText
-        joinEmail = join_email as EditText
-        joinPwd = join_password as EditText
+        init()
 
     }
 
+    // 회원 가입 - 통신
     fun sign(){
-        signUpUser = SignUpUser(jEmail, jPwd, jName, jPhone)
+        signUpUser = SignUpUser(join_email.text.toString(), join_password.text.toString()
+                , join_name.text.toString(), join_phone.text.toString())
+
         var loginResponse = networkService.postSignUp(signUpUser)
         loginResponse.enqueue(object : Callback<LoginResponse>{
             override fun onFailure(call: Call<LoginResponse>?, t: Throwable?) {
-                Log.v("12",t.toString())
+                Log.v("회원가입 실패",t.toString())
             }
 
             override fun onResponse(call: Call<LoginResponse>?, response: Response<LoginResponse>?) {
                 if(response!!.isSuccessful){
-                    Log.v("11",response!!.body()!!.message)
-                    //Log.v("11",response!!.body()!!.result!!.user_idx)
+                    Log.v("회원 가입 성공",response!!.body()!!.message)
                     token = response!!.body()!!.result!!.token!!.toString()
-                    //ToastMaker.makeLongToast(this@JoinActivity, token)
+
+                    // 회원 가입하면서 받은 정보를 SharedPreference에 저장
                     SharedPreference.instance!!.setPrefData("token",token)
                     SharedPreference.instance!!.setPrefData("user_email",response!!.body()!!.result!!.email)
                     SharedPreference.instance!!.setPrefData("name",response!!.body()!!.result!!.name)
@@ -117,6 +98,8 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
                     SharedPreference.instance!!.setPrefData("cat_idx",response!!.body()!!.result!!.cat_idx)
                     SharedPreference.instance!!.setPrefData("flag",response!!.body()!!.result!!.flag)
                     SharedPreference.instance!!.setPrefData("image_profile",response!!.body()!!.result!!.image_profile!!)
+
+                    // MainActivity로 넘어가면서 스택에 있는 Activity 싹 다 날림
                     val intent = Intent(this@JoinActivity, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

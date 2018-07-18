@@ -21,6 +21,11 @@ class OrderHistoryItemAdapter(var order_history_items : ArrayList<ticketData>, v
     }
 
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
+        if(order_history_items[position].product.contains("정기권")){
+            holder.product_ticket_type.text = "정기권"
+        } else{
+            holder.product_ticket_type.text = "1회권"
+        }
         holder.product_name_item.text = order_history_items[position].product
         holder.product_date_item.text = order_history_items[position].term
     }

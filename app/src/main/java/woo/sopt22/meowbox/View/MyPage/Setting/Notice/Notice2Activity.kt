@@ -36,15 +36,21 @@ class Notice2Activity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notice2)
 
+        set_Staus_Navigation_bar()
+        setClickListener()
+        getGenres()
+    }
+
+    fun set_Staus_Navigation_bar(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            window.statusBarColor = Color.BLACK
+            window.navigationBarColor = Color.BLACK
+        }
+    }
+
+    fun setClickListener(){
         notice_x_btn.setOnClickListener(this)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            window.statusBarColor = Color.BLACK
-
-        getGenres()
-        parentAdapter = ParentAdapter(genre_items)
-        notice_rv.layoutManager = LinearLayoutManager(this)
-        notice_rv.adapter = parentAdapter
     }
 
     fun getGenres() {
@@ -55,5 +61,9 @@ class Notice2Activity : AppCompatActivity(), View.OnClickListener {
             contents.add(Child(notice_content[i]))
             genre_items.add(Parent(notice[i], contents))
         }
+
+        parentAdapter = ParentAdapter(genre_items)
+        notice_rv.layoutManager = LinearLayoutManager(this)
+        notice_rv.adapter = parentAdapter
     }
 }

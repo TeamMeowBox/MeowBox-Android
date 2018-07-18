@@ -99,7 +99,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var networkService: NetworkService
     lateinit var myAccountSettingGet: MyAccountSettingGet
     lateinit var myAccountSettingPost: MyAccountSettingPost
-    lateinit var profileImage : ImageView
+    lateinit var profileImage : CircleImageView
 
     lateinit var mySettingYear : Spinner
     lateinit var mySettingMonth : Spinner
@@ -107,11 +107,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var token : String
 
-//    fun initButton(){
-//        customButton1!!.setImageResource(R.drawable.my_small_check_box_gray)
-//        customButton2!!.setImageResource(R.drawable.my_normal_check_box_gray)
-//        customButton3!!.setImageResource(R.drawable.my_large_check_box_gray)
-//    }
+
 
 
     @SuppressLint("ResourceType")
@@ -127,20 +123,11 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
         networkService = ApplicationController.instance.networkService
         SharedPreference.instance!!.load(this)
 
-        profileImage = findViewById<View>(R.id.mysetting_profile) as ImageView
+        profileImage = findViewById<View>(R.id.mysetting_profile) as CircleImageView
         val imgUrlex = "https://www.petmd.com/sites/default/files/petmd-cat-happy.jpg"
         mySettingYear = findViewById<View>(R.id.mysetting_year) as Spinner
         mySettingMonth = findViewById<View>(R.id.mysetting_month) as Spinner
         mySettingDay = findViewById<View>(R.id.mysetting_day) as Spinner
-
-//        mySettingYear.setSelection(2018-1980)
-//        mySettingMonth.setSelection(6-1)
-//        mySettingDay.setSelection(3-1)
-
-
-        //initButton()
-
-
 
         accountPreview()
 
@@ -220,13 +207,15 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
                 if(response!!.isSuccessful){
 
                     mysettingname = response!!.body()!!.result.user_name
-                    mySettingName.setText(mysettingname)
+                    mysetting_my_name.setText(mysettingname)
                     mysettingemail = response!!.body()!!.result.email
-                    mySettingEmail.setText(mysettingemail)
+                    mysetting_my_email.setText(mysettingemail)
                     mysettingphone = response!!.body()!!.result.phone_number
-                    mySettingPhone.setText(mysettingphone)
+                    mysetting_my_phone.setText(mysettingphone)
                     mysettingcatname = response!!.body()!!.result.cat_name
-                    mySettingCatName.setText(mysettingcatname)
+                    mysetting_cat_name.setText(mysettingcatname)
+                    mysettingmysuggest = response!!.body()!!.result.caution
+                    mysetting_my_suggest.setText(mysettingmysuggest)
 
                     //SharedPreference.instance!!.removeData("name")
 
@@ -266,19 +255,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
                         mySettingDay.setSelection(dayInt)
                     }
 
-                    mysettingmysuggest = response!!.body()!!.result.caution
-                    mySettingMySuggest.setText(mysettingmysuggest)
                     //SharedPreference.instance!!.setPrefData("cat_idx",response!!.body()!!.result!!.cat_idx.toString())
-
-
-
-
-
-
-
-
-
-
 
                 } else{
                     Log.v("96",response!!.message())
@@ -316,6 +293,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
+    // 이미지 가져오기 위해 갤러리에 접근
     fun changeImage(){
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = android.provider.MediaStore.Images.Media.CONTENT_TYPE
@@ -402,6 +380,7 @@ class MySettingActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
+    // 갤러리 갔다 온 다음에 바로 호출되는 함수
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(requestCode == REQ_CODE_SELECT_IMAGE){
             if(resultCode == Activity.RESULT_OK){

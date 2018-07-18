@@ -37,10 +37,8 @@ class OrderHistoryDetailHeaderActivity : AppCompatActivity(), View.OnClickListen
     lateinit var orderObject: OrderObject
     lateinit var historyDetailHeaderAdapter: HistoryDetailAdapter
     lateinit var requestManager : RequestManager
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_order_history_detail_header)
 
+    fun init(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
             window.navigationBarColor = Color.BLACK
@@ -49,6 +47,12 @@ class OrderHistoryDetailHeaderActivity : AppCompatActivity(), View.OnClickListen
         networkService = ApplicationController.instance!!.networkService
         SharedPreference.instance!!.load(this)
         header_order_history_detail_x_btn.setOnClickListener(this)
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_order_history_detail_header)
+
+
         requestManager = Glide.with(this)
 
         header_detail_term_tv.text = getIntent().getStringExtra("term")
@@ -58,15 +62,9 @@ class OrderHistoryDetailHeaderActivity : AppCompatActivity(), View.OnClickListen
         postOrderHistoryDetail()
 
     }
-    fun getData()
-    {
-        val term = getIntent()
-        val name = getIntent()
-        header_detail_term_tv.text = term.getStringExtra("term")
-        header_detail_name_tv.text = name.getStringExtra("name")
 
-    }
 
+    // 주문 상세 내역 - 통신
     fun postOrderHistoryDetail(){
         orderObject = OrderObject(SharedPreference.instance!!.getPrefStringData("order_idx")!!)
         Log.v("한승미 token : ",SharedPreference.instance!!.getPrefStringData("token")!!)

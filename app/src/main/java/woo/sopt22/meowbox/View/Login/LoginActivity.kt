@@ -72,6 +72,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var email : String
 
     fun init(){
+
+        networkService = ApplicationController.instance!!.networkService
+        SharedPreference.instance!!.load(this)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
             window.navigationBarColor = Color.BLACK
@@ -87,13 +91,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        networkService = ApplicationController.instance!!.networkService
-        SharedPreference.instance!!.load(this)
-        email = SharedPreference.instance!!.getPrefStringData("user_name")!!
-
         init()
 
-
+        email = SharedPreference.instance!!.getPrefStringData("user_name")!!
 
         email_length = login_email.text.toString().length
         password_length = login_password.text.toString().length
@@ -170,6 +170,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
+    // 로그인  - 통신
     fun postLogin(){
         loginUser = LoginUser(login_email.text.toString(), login_password.text.toString())
         val loginResponse = networkService.postSignIn(loginUser)
@@ -193,7 +194,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     Log.v("123",token)
                     Log.v("1233", response!!.body()!!.result!!.image_profile!!)
                     Log.v("1234",response.body()!!.result!!.cat_idx)
-                    startActivity(Intent(applicationContext, MainActivity::class.java))
+                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
                     finish()
                 }
             }

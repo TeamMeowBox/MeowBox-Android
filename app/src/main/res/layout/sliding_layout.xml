@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@null">
         <RelativeLayout
-            android:id="@+id/re"
+            android:id="@+id/bottom_up_relative_layout"
             android:layout_width="match_parent"
             android:layout_height="71dp">
 
@@ -46,7 +46,7 @@
             android:overScrollMode="never"
             android:id="@+id/main_sliding_scroll"
             android:background="#88ffffff"
-            android:layout_below="@+id/re"
+            android:layout_below="@+id/bottom_up_relative_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

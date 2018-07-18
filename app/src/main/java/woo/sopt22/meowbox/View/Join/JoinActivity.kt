@@ -69,10 +69,7 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_join)
-
+    fun init(){
         networkService = ApplicationController.instance!!.networkService
         SharedPreference.instance!!.load(this)
 
@@ -81,6 +78,14 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
             window.statusBarColor = Color.BLACK
             window.navigationBarColor = Color.BLACK
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_join)
+
+        init()
+
 
         joinBtn = join_btn as RelativeLayout
         joinBtn.setOnClickListener(this)
@@ -95,6 +100,7 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
+    // 회원 가입 - 통신
     fun sign(){
         signUpUser = SignUpUser(jEmail, jPwd, jName, jPhone)
         var loginResponse = networkService.postSignUp(signUpUser)
@@ -109,6 +115,8 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
                     //Log.v("11",response!!.body()!!.result!!.user_idx)
                     token = response!!.body()!!.result!!.token!!.toString()
                     //ToastMaker.makeLongToast(this@JoinActivity, token)
+
+                    // 회원 가입하면서 받은 정보를 저장
                     SharedPreference.instance!!.setPrefData("token",token)
                     SharedPreference.instance!!.setPrefData("user_email",response!!.body()!!.result!!.email)
                     SharedPreference.instance!!.setPrefData("name",response!!.body()!!.result!!.name)
@@ -117,6 +125,8 @@ class JoinActivity : AppCompatActivity(), View.OnClickListener {
                     SharedPreference.instance!!.setPrefData("cat_idx",response!!.body()!!.result!!.cat_idx)
                     SharedPreference.instance!!.setPrefData("flag",response!!.body()!!.result!!.flag)
                     SharedPreference.instance!!.setPrefData("image_profile",response!!.body()!!.result!!.image_profile!!)
+
+                    // MainActivity로 넘어가면서 스택에 있는 Activity 싹 다 날림
                     val intent = Intent(this@JoinActivity, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

@@ -16,6 +16,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ScrollView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -88,8 +89,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         init()
+        login_scroll.fullScroll(ScrollView.FOCUS_UP)
 
         email = SharedPreference.instance!!.getPrefStringData("user_name")!!
 

@@ -109,6 +109,10 @@ class OrderSecondFragment : Fragment(), View.OnClickListener{
 
 
 
+        /*FIXME
+        * Spinner 부분 Date Picker로 변경해야함
+        *
+        * */
         view.order_second_year.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }

@@ -43,6 +43,7 @@
 
 
     <ScrollView
+        android:id="@+id/login_scroll"
         android:layout_below="@+id/login_border"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

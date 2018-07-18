@@ -1,6 +1,5 @@
 # MeowBox - Android
 
-![](/image/meow_box.png)
 <img src="image/meow_box.png" width="60">
 
 

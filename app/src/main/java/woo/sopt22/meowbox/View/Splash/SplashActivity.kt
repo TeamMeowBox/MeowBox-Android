@@ -23,7 +23,7 @@ class SplashActivity : AppCompatActivity() {
             finish() // 이 스플래쉬 화면으로 돌아오지 못하도록 finish()로 액티비티를 끈다.
         }, 3800) // 3.8초
 
-        // 2초 있다가 위에 있는 함수를 실행시킨다. 즉, 2초 있다가 MainActivity로 넘어가게 된다.
+        // 3.8초 있다가 위에 있는 함수를 실행시킨다. 즉, 3.8초 있다가 MainActivity로 넘어가게 된다.
 
     }
 }

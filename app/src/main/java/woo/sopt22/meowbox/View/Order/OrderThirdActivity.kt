@@ -90,11 +90,9 @@ class OrderThirdActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             menu_item.setEnabled(false)
         }
 
-        //(OrderThirdActivity. as OrderFirstActivity).replaceFragment(third_fragment)
 
 
         if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
-            //userImage.setImageResource(R.drawable.side_bar_profile_img)
             Log.v("용범 onResume","123")
             Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
         } else{

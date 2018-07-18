@@ -33,12 +33,9 @@ class CardViewAdapter(private val inflater: LayoutInflater, private val mPageLis
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val view = inflater.inflate(R.layout.cardview_adapter, container, false)
 
-
-        //val home_detail_btn = view.findViewById<View>(R.id.home_detail_btn) as ImageView
         view.home_detail_btn.setOnClickListener(onItemClick)
-        val mImageView = view.findViewById<ImageView>(R.id.titleImageView)
         val item = mPageList[position]
-        Glide.with(container.context).load(item.image).into(mImageView)
+        Glide.with(container.context).load(item.image).into(view.titleImageView)
         if (item.tmp == 1) {
             view.home_detail_btn.setImageResource(R.drawable.home_detail_btn_white)
         } else if (item.tmp == 2) {

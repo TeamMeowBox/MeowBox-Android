@@ -37,3 +37,4 @@
 
 4. Animation
 * 'com.airbnb.android:lottie:2.1.0'
+

@@ -65,21 +65,10 @@ class OrderHistoryActivity : AppCompatActivity(), View.OnClickListener {
 
 
     lateinit var ticketed_items: ArrayList<ticketData>
-    //lateinit var order_header_history_items : ArrayList<>
     lateinit var networkService: NetworkService
-    //lateinit var orderHistoryAdapter : OrderHistoryAdapter
     lateinit var orderHistoryItemAdapter: OrderHistoryItemAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_order_history)
-
-
-        order_history_x_btn.setOnClickListener(this)
-        history_ticket_image.setOnClickListener(this)
-        //history_top_item_cancel_btn.setOnClickListener(this)
-        top_history_cancel_btn_image.setOnClickListener(this)
-
+    fun init(){
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
@@ -89,16 +78,22 @@ class OrderHistoryActivity : AppCompatActivity(), View.OnClickListener {
         networkService = ApplicationController.instance!!.networkService
         SharedPreference.instance!!.load(this)
 
-        /*     if(SharedPreference.instance!!.getPrefStringData("flag") == "-1"){
-            hidden_layout.visibility = View.VISIBLE
-        } else{
-            hidden_layout.visibility = View.GONE
-        }*/
+
+        order_history_x_btn.setOnClickListener(this)
+        history_ticket_image.setOnClickListener(this)
+        //history_top_item_cancel_btn.setOnClickListener(this)
+        top_history_cancel_btn_image.setOnClickListener(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_order_history)
 
         getOrderHistroy()
 
     }
 
+    // 주문 내역 받아오기 - 통신
     fun getOrderHistroy() {
         Log.v("19", "함수 안으로")
         val orderHistoryResponse = networkService.getOrderHistory(SharedPreference.instance!!.getPrefStringData("token")!!)
@@ -159,58 +154,3 @@ class OrderHistoryActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 }
-
-/*if (response!!.body()!!.result!!.ticket.idx == null && response!!.body()!!.result!!.ticketed.size == 0) {
-    Log.v("799", response!!.body()!!.result!!.ticket.toString())
-    Log.v("799", response!!.body()!!.result!!.ticketed.size.toString())
-    //order_history_layout.visibility = View.GONE
-    hidden_layout1.visibility = View.VISIBLE
-    history_nested.visibility = View.GONE
-
-}
-*//*if (response!!.body()!!.result!!.ticketed.size == 0) {
-        Log.v("899","여ㅑ기인가?")
-        hidden_layout1.visibility = View.VISIBLE
-        hidden_layout2.visibility = View.GONE*//*
-
-} else {
-    hidden_layout1.visibility = View.GONE
-    history_nested.visibility = View.VISIBLE
-    Log.v("999", response!!.body()!!.result!!.ticketed.toString())
-    ticketed_items = response!!.body()!!.result!!.ticketed
-    //SharedPreference.instance!!.setPrefData("idx", response!!.body()!!.result.ticketed)
-    history_payment_date.text = response!!.body()!!.result!!.ticket.term
-    history_payment_name.text = response!!.body()!!.result!!.ticket.product
-
-    SharedPreference.instance!!.setPrefData("order_idx", response!!.body()!!.result!!.ticket.idx)
-    Log.v("990", response!!.body()!!.result!!.ticket.idx)
-    orderHistoryItemAdapter = OrderHistoryItemAdapter(ticketed_items, this@OrderHistoryActivity)
-    orderHistoryItemAdapter.setOnItemClickListener(this@OrderHistoryActivity)
-    order_history_rv.layoutManager = LinearLayoutManager(this@OrderHistoryActivity)
-    order_history_rv.adapter = orderHistoryItemAdapter
-    //Log.v("299", response!!.body()!!.result!!.ticket.idx)
-}*/
-/*       if(response!!.body()!!.result!!.ticket.idx == null){
-        if(response!!.body()!!.result!!.ticketed.size == 0){
-            Log.v("001", "001")
-            hidden_layout1.visibility = View.VISIBLE
-            history_nested.visibility = View.GONE
-        } else{
-            Log.v("002", "002")
-            hidden_layout1.visibility = View.GONE
-
-            hidden_layout2.visibility = View.VISIBLE
-            history_nested.visibility = View.VISIBLE
-
-            history_top_item_cancel_btn.visibility = View.GONE
-            history_ticket_image.visibility = View.GONE
-            history_title_layout.visibility = View.GONE
-            history_ticket_layout.visibility = View.GONE
-
-        }
-    } else {
-        Log.v("003", "003")
-        hidden_layout1.visibility = View.GONE
-        hidden_layout2.visibility = View.GONE
-       */
-//history_nested.visibility = View.VISIBLE

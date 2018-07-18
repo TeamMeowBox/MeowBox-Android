@@ -98,6 +98,7 @@ class OrderFirstActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
         container = order_framge as FrameLayout
 
+        // 네비게이션 버튼 비활성화
         var menu : Menu = order_first_nav_view.menu
         var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
         var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)

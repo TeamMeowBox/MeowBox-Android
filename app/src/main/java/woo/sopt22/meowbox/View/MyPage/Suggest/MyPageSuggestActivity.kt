@@ -1,6 +1,5 @@
 package woo.sopt22.meowbox.View.MyPage.Suggest
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
@@ -19,14 +18,19 @@ import woo.sopt22.meowbox.Model.Suggest.MeowBoxSuggest
 import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference
-import woo.sopt22.meowbox.View.MyPage.MyPageActivity
+import woo.sopt22.meowbox.Util.ToastMaker
 
 class MyPageSuggestActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!){
             suggest_btn->{
                 // 서버랑 통신
-                postSuggest()
+                if(suggest_opinion.text.toString().length > 5
+                        && suggest_detail_comment.text.toString().length > 5){
+                    postSuggest()
+                } else{
+                    ToastMaker.makeLongToast(this, "정확히 입력해주세요!")
+                }
             }
             suggest_x_btn->{
                 finish()
@@ -35,39 +39,14 @@ class MyPageSuggestActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    fun postSuggest(){
-        meowBoxSuggest = MeowBoxSuggest(suggest_opinion.text.toString(),suggest_detail_comment.text.toString())
-        var suggestResponse = networkService.postSuggest(SharedPreference.instance!!.getPrefStringData("token")!!,meowBoxSuggest)
-        suggestResponse.enqueue(object : Callback<BaseModel>{
-            override fun onFailure(call: Call<BaseModel>?, t: Throwable?) {
 
-            }
 
-            override fun onResponse(call: Call<BaseModel>?, response: Response<BaseModel>?) {
-                if(response!!.isSuccessful){
-                    Log.v("43",response!!.message())
-                    finish()
-                }
-            }
-
-        })
-    }
     lateinit var networkService: NetworkService
     lateinit var meowBoxSuggest: MeowBoxSuggest
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page_suggest)
-
-        networkService = ApplicationController.instance!!.networkService
-        SharedPreference.instance!!.load(this)
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            window.statusBarColor = Color.BLACK
-            window.navigationBarColor = Color.BLACK
-        }
-
-        suggest_btn.setOnClickListener(this)
-        suggest_x_btn.setOnClickListener(this)
 
 
         // 제안하기
@@ -97,5 +76,40 @@ class MyPageSuggestActivity : AppCompatActivity(), View.OnClickListener {
         })
 
 
+    }
+
+    fun init(){
+        networkService = ApplicationController.instance!!.networkService
+        SharedPreference.instance!!.load(this)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            window.statusBarColor = Color.BLACK
+            window.navigationBarColor = Color.BLACK
+        }
+
+        suggest_btn.setOnClickListener(this)
+        suggest_x_btn.setOnClickListener(this)
+    }
+
+    // 미유 박스에 제안하기 - 통신
+    fun postSuggest(){
+        meowBoxSuggest = MeowBoxSuggest(suggest_opinion.text.toString()
+                ,suggest_detail_comment.text.toString())
+        var suggestResponse = networkService.postSuggest(
+                SharedPreference.instance!!.getPrefStringData("token")!!,meowBoxSuggest)
+
+        suggestResponse.enqueue(object : Callback<BaseModel>{
+            override fun onFailure(call: Call<BaseModel>?, t: Throwable?) {
+
+            }
+
+            override fun onResponse(call: Call<BaseModel>?, response: Response<BaseModel>?) {
+                if(response!!.isSuccessful){
+                    Log.v("제안하기 성공",response!!.message())
+                    finish()
+                }
+            }
+
+        })
     }
 }

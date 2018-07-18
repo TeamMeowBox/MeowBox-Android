@@ -78,9 +78,6 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
 
 
-
-
-
         var menu : Menu = review_nav_view.menu
         var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
         var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
@@ -119,13 +116,6 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         review_top_btn.setOnClickListener {
             review_scrollview.fullScroll(ScrollView.FOCUS_UP)
         }
-
-
-
-
-
-
-
 
 
 

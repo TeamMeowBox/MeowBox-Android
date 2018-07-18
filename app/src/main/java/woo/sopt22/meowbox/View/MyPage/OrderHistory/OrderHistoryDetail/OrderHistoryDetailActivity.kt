@@ -19,7 +19,6 @@ import woo.sopt22.meowbox.Model.OrderObject
 import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference
-import woo.sopt22.meowbox.View.MeowBoxDetail.DetailAdapter
 import woo.sopt22.meowbox.View.MyPage.OrderHistory.Adapter.HistoryDetailAdapter
 import java.util.*
 
@@ -40,18 +39,22 @@ class OrderHistoryDetailActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var orderObject: OrderObject
     lateinit var historyDetailAdapter: HistoryDetailAdapter
     lateinit var requestManager : RequestManager
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_order_history_detail)
 
+    fun init(){
         networkService = ApplicationController.instance!!.networkService
         SharedPreference.instance!!.load(this)
-        requestManager = Glide.with(this)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
             window.navigationBarColor = Color.BLACK
         }
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_order_history_detail)
+
+        requestManager = Glide.with(this)
+
 
         order_history_detail_x_btn.setOnClickListener(this)
         item_detail_name_tv.text = getIntent().getStringExtra("product")
@@ -60,40 +63,28 @@ class OrderHistoryDetailActivity : AppCompatActivity(), View.OnClickListener {
         Log.v("기용2",getIntent().getStringExtra("term"))
         Log.v("기용3",getIntent().getIntExtra("order_idx",0).toString())
 
-       // getDate()
         postOrderHistoryDetailItem()
     }
 
-    fun getDate(){
 
-        item_detail_name_tv.text = getIntent().getStringExtra("product")
-        //detail_text_tv2.text = order_idx.getIntExtra("order_idx",0).toString()
-        item_detail_term_tv.text = getIntent().getStringExtra("term")
-
-    }
-
+    // 주문 상세 내역 - 통신
     fun postOrderHistoryDetailItem(){
         orderObject = OrderObject(getIntent().getIntExtra("order_idx",0).toString())
-        Log.v("기용7","겨이니ㅣㄴ")
         val orderHistoryDetailItemResponse = networkService
                 .postOrderDetail(SharedPreference.instance!!.getPrefStringData("token")!!,orderObject)
-        Log.v("기용9",getIntent().getIntExtra("order_idx",0).toString())
-        Log.v("기용8","겨이니ㅣㄴ")
         orderHistoryDetailItemResponse.enqueue(object : Callback<OrderHistoryDetail>{
             override fun onFailure(call: Call<OrderHistoryDetail>?, t: Throwable?) {
-                Log.v("기용6",t!!.message)
+                Log.v("상세내역 실패",t!!.message)
             }
 
             override fun onResponse(call: Call<OrderHistoryDetail>?, response: Response<OrderHistoryDetail>?) {
                 if(response!!.isSuccessful){
-                    Log.v("기용4",response!!.body()!!.result.size.toString())
+                    // 받은 이미지 순서 반대로 돌림
                     Collections.reverse(response!!.body()!!.result)
                     historyDetailAdapter = HistoryDetailAdapter(response!!.body()!!.result,requestManager)
                     order_history_detail_rv.layoutManager = LinearLayoutManager(this@OrderHistoryDetailActivity)
                     order_history_detail_rv.adapter = historyDetailAdapter
 
-                } else{
-                    Log.v("기용5",response!!.message())
                 }
             }
 

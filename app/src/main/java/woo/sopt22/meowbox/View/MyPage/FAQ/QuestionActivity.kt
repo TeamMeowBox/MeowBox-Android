@@ -44,7 +44,6 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var subscribe_item : ArrayList<ResultData>
 
 
-
     lateinit var parent_items : ArrayList<Parent>
     lateinit var shipping_items : ArrayList<Parent>
     lateinit var packing_items : ArrayList<Parent>
@@ -83,7 +82,6 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
         getShipping()
         getPacking()
         getSubscribe()
-        //getQnA()
     }
 
 

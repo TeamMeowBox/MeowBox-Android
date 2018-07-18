@@ -66,16 +66,6 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         }
     }
 
-    lateinit var mViewPager1 : ViewPager
-    lateinit var mViewPager2 : ViewPager
-    lateinit var mViewPager3 : ViewPager
-    lateinit var mViewPager4 : ViewPager
-    lateinit var mViewPager5 : ViewPager
-    lateinit var mIndicator1: CircleAnimIndicator
-    lateinit var mIndicator2: CircleAnimIndicator
-    lateinit var mIndicator3: CircleAnimIndicator
-    lateinit var mIndicator4: CircleAnimIndicator
-    lateinit var mIndicator5: CircleAnimIndicator
     lateinit var items1 : ArrayList<DetailModel>
     lateinit var items2 : ArrayList<DetailModel>
     lateinit var items3 : ArrayList<DetailModel>
@@ -83,12 +73,8 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
     lateinit var items5 : ArrayList<DetailModel>
 
     lateinit var detailOrderBtn : RelativeLayout
-    lateinit var detailFirstImg : ImageView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_meow_box_detail)
-        setSupportActionBar(toolbar)
+    fun init(){
 
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
@@ -96,75 +82,16 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
         SharedPreference.instance!!.load(this)
 
-
-
-
-
-        var headerView : View = detail_nav_view.getHeaderView(0)
-        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
-        var userImage : ImageView = headerView.findViewById(R.id.imageView)
-
-        Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")!!).into(userImage)
-
-
-        var menu : Menu = detail_nav_view.menu
-        var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
-        var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
-        var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
-        blank_menu_item.setEnabled(false)
-        blank_menu_item2.setEnabled(false)
-
-        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
-            userName.text = "OO님!"
-            menu_item.setTitle("로그인")
-        } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("name") + "님"
-            menu_item.setTitle("")
-            menu_item.setEnabled(false)
-        }
-
-        if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
-            Log.v("Main 용범 onCreate","123")
-            Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
-        } else{
-            Log.v("Main 용범 onCreate","456")
-            Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
-        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
             window.navigationBarColor = Color.BLACK
         }
 
-
-
-        val toggle = ActionBarDrawerToggle(
-                this, detail_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        toggle.setDrawerIndicatorEnabled(false)
-        val drawable = ResourcesCompat.getDrawable(resources, R.drawable.side_bar_btn_black, applicationContext!!.getTheme())
-
-        val bitmap = (drawable as BitmapDrawable).bitmap
-        val newdrawable = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, 30, 30, true))
-
-        toggle.setHomeAsUpIndicator(drawable)
-        toggle.setToolbarNavigationClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                if (detail_drawer_layout.isDrawerVisible(GravityCompat.START)) {
-                    detail_drawer_layout.closeDrawer(GravityCompat.START)
-                } else {
-                    detail_drawer_layout.openDrawer(GravityCompat.START)
-                }
-            }
-        })
-        detail_drawer_layout.addDrawerListener(toggle)
-        toggle.syncState()
-
-        detail_nav_view.setNavigationItemSelectedListener(this)
-
-        detailOrderBtn = detail_order_btn as RelativeLayout
         detail_order_btn.setOnClickListener(this)
 
+    }
 
-
+    fun dataSetting(){
         items1 = ArrayList(); // 선글라스 모자
 
         items1.add(DetailModel("2018 S/S 피서룩의 완성. 선글라스와 \n모자만 있으면, 이구역 힙냥이는 나야!",R.drawable.sunglass_two_img))
@@ -196,9 +123,6 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         items5.add(DetailModel("미유가 만들고 수의사가 검사한 믿음직한 \n수제 간식. 영양소와 기호성 또한 최고!",R.drawable.snack_four_img))
 
 
-        //detailFirstImg = detail_first_img as ImageView
-
-        //Glide.with(this).load("http://t1.daumcdn.net/liveboard/petxlab/a5d83a4064744faea244e8ac7667fb90.gif").into(detailFirstImg);
 
 
         var madapter1 = DetailViewAdapter(layoutInflater, items1)
@@ -215,9 +139,6 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         detail_cardview_pager_three.adapter = madapter3
         detail_cardview_pager_four.adapter = madapter4
         detail_cardview_pager_five.adapter = madapter5
-        //mViewPager4.adapter = madapter4
-        //mViewPager5.adapter = madapter5
-
 
 
 
@@ -228,7 +149,7 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         detail_cardview_pager_five.addOnPageChangeListener(mOnPageChangeListener_five)
 
         detail_cardview_one_indicator.setItemMargin(20)
-        detail_cardview_one_indicator.setAnimDuration(300)
+        detail_cardview_one_indicator.setAnimDuration(400)
         detail_cardview_one_indicator.createDotPanel(items1.size,R.drawable.indicator_non, R.drawable.indicator_on)
 
         detail_cardview_two_indicator.setItemMargin(20)
@@ -268,6 +189,71 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         detail_cardview_pager_five.pageMargin = 40
 
 
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_meow_box_detail)
+        setSupportActionBar(toolbar)
+
+        init()
+        dataSetting()
+
+
+
+
+        var headerView : View = detail_nav_view.getHeaderView(0)
+        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+        var userImage : ImageView = headerView.findViewById(R.id.imageView)
+
+        Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")!!).into(userImage)
+
+
+        var menu : Menu = detail_nav_view.menu
+        var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
+        var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
+        var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
+        blank_menu_item.setEnabled(false)
+        blank_menu_item2.setEnabled(false)
+
+        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
+            userName.text = "OO님!"
+            menu_item.setTitle("로그인")
+        } else {
+            userName.text = SharedPreference.instance!!.getPrefStringData("name") + "님"
+            menu_item.setTitle("")
+            menu_item.setEnabled(false)
+        }
+
+        if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
+            Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
+        } else{
+            Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
+        }
+
+
+        val toggle = ActionBarDrawerToggle(
+                this, detail_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        toggle.setDrawerIndicatorEnabled(false)
+        val drawable = ResourcesCompat.getDrawable(resources, R.drawable.side_bar_btn_black, applicationContext!!.getTheme())
+
+        val bitmap = (drawable as BitmapDrawable).bitmap
+        val newdrawable = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, 30, 30, true))
+
+        toggle.setHomeAsUpIndicator(drawable)
+        toggle.setToolbarNavigationClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                if (detail_drawer_layout.isDrawerVisible(GravityCompat.START)) {
+                    detail_drawer_layout.closeDrawer(GravityCompat.START)
+                } else {
+                    detail_drawer_layout.openDrawer(GravityCompat.START)
+                }
+            }
+        })
+
+        detail_drawer_layout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        detail_nav_view.setNavigationItemSelectedListener(this)
 
 
     }

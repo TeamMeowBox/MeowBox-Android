@@ -12,8 +12,6 @@ import kotlinx.android.synthetic.main.order_first_fragment.*
 import kotlinx.android.synthetic.main.order_first_fragment.view.*
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.CustomDialog.CatNameCheckCustomDialog
-import woo.sopt22.meowbox.Util.ToastMaker
-import woo.sopt22.meowbox.View.Order.OrderFirstActivity
 
 
 class OrderFirstFragment : Fragment(), View.OnClickListener{
@@ -22,7 +20,7 @@ class OrderFirstFragment : Fragment(), View.OnClickListener{
             order_name_next_btn->{
                 // OrderFirstActivity의 함수 이용하기
                 if(order_cat_name.text.toString().length == 0){
-                    var dialog = CatNameCheckCustomDialog(OrderFirstActivity.mContext as OrderFirstActivity)
+                    var dialog = CatNameCheckCustomDialog(OrderWithOutCatInfoActivity.mContext as OrderWithOutCatInfoActivity)
                     dialog.getWindow ().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.setCanceledOnTouchOutside(false)
                     dialog.show()
@@ -33,7 +31,7 @@ class OrderFirstFragment : Fragment(), View.OnClickListener{
                     val bundle = Bundle(1) // 파라미터는 전달할 데이터 개수
                     bundle.putString("cat_name", order_cat_name.text.toString()) // key , value
                     second_fragment.setArguments(bundle)
-                    (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(second_fragment)
+                    (OrderWithOutCatInfoActivity.mContext as OrderWithOutCatInfoActivity).replaceFragment(second_fragment)
 
                 }
 

@@ -33,7 +33,7 @@
             android:label="@string/title_activity_meow_box_review"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".View.Order.OrderFirstActivity"
+            android:name=".View.Order.OrderFragment.OrderWithOutCatInfoActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".View.MeowBoxDetail.MeowBoxDetailActivity"
@@ -44,7 +44,7 @@
             android:label="@string/title_activity_my_page"
             android:windowSoftInputMode="adjustNothing"
             android:theme="@style/AppTheme" />
-        <activity android:name=".View.MyPage.MySettingActivity"
+        <activity android:name=".View.MyPage.MyPageSettingActivity"
             android:windowSoftInputMode="adjustNothing"/>
         <activity
             android:name=".View.Login.LoginActivity"
@@ -55,14 +55,14 @@
         <activity
             android:name=".View.MyPage.Suggest.MyPageSuggestActivity"
             android:windowSoftInputMode="adjustNothing" />
-        <activity android:name=".View.MyPage.Setting.MyPageSettingActivity" />
+        <activity android:name=".View.MyPage.Setting.SettingActivity" />
         <activity android:name=".View.MyPage.FAQ.QuestionActivity" />
         <activity android:name=".View.MyPage.Setting.Notice.Notice2Activity" />
         <activity android:name=".View.MyPage.OrderHistory.OrderHistoryActivity" />
         <activity android:name=".View.MyPage.Setting.Terms.Terms2Activity" />
         <activity android:name=".View.MyPage.OrderHistory.OrderHistoryDetail.OrderHistoryDetailActivity" />
         <activity
-            android:name=".View.Order.OrderThirdActivity"
+            android:name=".View.Order.OrderFragmentWithCatInfo.OrderWithCatInfoActivity"
             android:label="@string/title_activity_order_third"
             android:theme="@style/AppTheme" />
         <activity android:name=".View.MyPage.OrderHistory.OrderHistoryDetail.OrderHistoryDetailHeaderActivity" />

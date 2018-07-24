@@ -40,7 +40,7 @@ import java.io.FileNotFoundException
 import java.io.InputStream
 import java.text.SimpleDateFormat
 
-class MySettingActivity : AppCompatActivity(), View.OnClickListener {
+class MyPageSettingActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v!!) {

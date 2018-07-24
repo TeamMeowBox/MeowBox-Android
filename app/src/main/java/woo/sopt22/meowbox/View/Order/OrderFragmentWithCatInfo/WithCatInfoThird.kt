@@ -10,7 +10,6 @@ import android.view.WindowManager
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.ScrollView
-import kotlinx.android.synthetic.main.order_four_fragment.*
 import kotlinx.android.synthetic.main.order_third_fragment.*
 import kotlinx.android.synthetic.main.order_third_fragment.view.*
 import retrofit2.Call
@@ -22,13 +21,12 @@ import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
-import woo.sopt22.meowbox.View.Order.OrderThirdActivity
 
 class WithCatInfoThird : Fragment(), View.OnClickListener{
     override fun onClick(v: View?) {
         when(v!!){
             order_period_previous->{
-                //(OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(OrderSecondFragment())
+                //(OrderWithCatInfoActivity.thirdContext as OrderWithCatInfoActivity).replaceFragment(OrderSecondFragment())
                 //ToastMaker.makeLongToast(context, "이전으로 돌아가지 못합니다. ")
                 activity!!.finish()
             }
@@ -177,7 +175,7 @@ class WithCatInfoThird : Fragment(), View.OnClickListener{
                         SharedPreference.instance!!.setPrefData("price",price)
                         SharedPreference.instance!!.setPrefData("box_type",box_type)
                         //ToastMaker.makeLongToast(context, third_radio_button.text.toString())
-                        (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoFour())
+                        (OrderWithCatInfoActivity.thirdContext as OrderWithCatInfoActivity).replaceFragment(WithCatInfoFour())
                     }
 
 

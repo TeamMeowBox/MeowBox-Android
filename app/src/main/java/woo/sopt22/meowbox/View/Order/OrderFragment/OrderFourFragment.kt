@@ -27,16 +27,12 @@ import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Order.Credit.CreditActivity
-import woo.sopt22.meowbox.View.Order.OrderFirstActivity
-import woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo.WithCatInfoFive
-import woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo.WithCatInfoThird
-import woo.sopt22.meowbox.View.Order.OrderThirdActivity
 
 class OrderFourFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v!!) {
             order_pay_previous -> {
-                (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(OrderThirdFragment())
+                (OrderWithOutCatInfoActivity.mContext as OrderWithOutCatInfoActivity).replaceFragment(OrderThirdFragment())
             }
             order_pay_next -> {
                 //ToastMaker.makeLongToast(context, radio_button.text.trim().toString())
@@ -131,7 +127,7 @@ class OrderFourFragment : Fragment(), View.OnClickListener {
                     intent.putExtra("orderIdx",orderIdx)
                     startActivity(intent);
 
-                    (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(OrderFiveFragment())
+                    (OrderWithOutCatInfoActivity.mContext as OrderWithOutCatInfoActivity).replaceFragment(OrderFiveFragment())
                 }
             }
 
@@ -227,10 +223,10 @@ class OrderFourFragment : Fragment(), View.OnClickListener {
                 1541 -> {
                     Log.d("체크3", data!!.getStringExtra("result"))
                     if (data!!.getStringExtra("result").equals("true")) {
-                        (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(OrderFiveFragment())
+                        (OrderWithOutCatInfoActivity.mContext as OrderWithOutCatInfoActivity).replaceFragment(OrderFiveFragment())
                     } else {
                         Log.d("체크2", "어디까지 들어가냥")
-                        (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(OrderThirdFragment())
+                        (OrderWithOutCatInfoActivity.mContext as OrderWithOutCatInfoActivity).replaceFragment(OrderThirdFragment())
                     }
 
                 }

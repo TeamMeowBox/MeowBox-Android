@@ -13,7 +13,6 @@ import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -32,12 +31,11 @@ import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Home.MainActivity
 import woo.sopt22.meowbox.View.Login.LoginActivity
 import woo.sopt22.meowbox.View.MeowBoxBirthDay.MeowBoxtBirthDayStoryActivity
-import woo.sopt22.meowbox.View.MeowBoxReview.CircleAnimIndicator
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 import woo.sopt22.meowbox.View.Order.LoginCustomDialog
-import woo.sopt22.meowbox.View.Order.OrderThirdActivity
+import woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo.OrderWithCatInfoActivity
 
 class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
@@ -54,7 +52,7 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
                     } else {
-                        val intent = Intent(this, OrderThirdActivity::class.java)
+                        val intent = Intent(this, OrderWithCatInfoActivity::class.java)
                         intent.putExtra("cat_idx", SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
                         startActivity(intent)
 
@@ -365,7 +363,7 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
                     } else {
-                        val intent = Intent(this, OrderThirdActivity::class.java)
+                        val intent = Intent(this, OrderWithCatInfoActivity::class.java)
                         intent.putExtra("cat_idx", SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
                         startActivity(intent)
                     }

@@ -8,29 +8,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.AdapterView
-import android.widget.Toast
 import kotlinx.android.synthetic.main.order_second_fragment.*
 import kotlinx.android.synthetic.main.order_second_fragment.view.*
-import kotlinx.android.synthetic.main.sliding_layout.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import woo.sopt22.meowbox.ApplicationController
-import woo.sopt22.meowbox.Model.Base.BaseModel
 import woo.sopt22.meowbox.Model.RegisterCat.CatIndex
 import woo.sopt22.meowbox.Model.RegisterCat.CatInformation
 import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
-import woo.sopt22.meowbox.View.Order.OrderFirstActivity
 
 
 class OrderSecondFragment : Fragment(), View.OnClickListener{
     override fun onClick(v: View?) {
         when(v!!){
             order_etc_previous->{
-                (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(OrderFirstFragment())
+                (OrderWithOutCatInfoActivity.mContext as OrderWithOutCatInfoActivity).replaceFragment(OrderFirstFragment())
             }
             order_etc_next->{
                 // 고양이 등록 통신 진행
@@ -186,7 +182,7 @@ class OrderSecondFragment : Fragment(), View.OnClickListener{
                     SharedPreference.instance!!.setPrefData("cat_idx", response!!.body()!!.result.cat_idx) // 고양이 정보 등록했다는 걸 : 1로 표시
                     SharedPreference.instance!!.setPrefData("cat_name",order_etc_cat_name.text.toString()) // 고양이 이름 저장
                     Log.v("cat_idx", response!!.body()!!.result!!.cat_idx)
-                    (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(OrderThirdFragment())
+                    (OrderWithOutCatInfoActivity.mContext as OrderWithOutCatInfoActivity).replaceFragment(OrderThirdFragment())
                 } else{
                     Log.v("02",response!!.message())
                 }

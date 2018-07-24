@@ -7,21 +7,17 @@ import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableString
-import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_my_page_setting.*
 import woo.sopt22.meowbox.R
 import android.text.style.UnderlineSpan
 import android.view.View
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import woo.sopt22.meowbox.Util.CustomDialog.DeleteUserCustomDialog
 import woo.sopt22.meowbox.Util.CustomDialog.LogoutCustomDialog
 import woo.sopt22.meowbox.View.MyPage.Setting.Notice.Notice2Activity
 import woo.sopt22.meowbox.View.MyPage.Setting.Terms.Terms2Activity
 
 
-class MyPageSettingActivity : AppCompatActivity(), View.OnClickListener{
+class SettingActivity : AppCompatActivity(), View.OnClickListener{
     override fun onClick(v: View?) {
         when(v!!) {
             my_page_setting_x_btn -> {
@@ -33,14 +29,14 @@ class MyPageSettingActivity : AppCompatActivity(), View.OnClickListener{
             }
 
             my_page_setting_logout->{
-                var logout_dialog = LogoutCustomDialog(this@MyPageSettingActivity)
+                var logout_dialog = LogoutCustomDialog(this@SettingActivity)
                 logout_dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 logout_dialog.setCanceledOnTouchOutside(false)
                 logout_dialog.show()
             }
 
             my_page_setting_disjoin->{
-                var dis_joing_dialog = DeleteUserCustomDialog(this@MyPageSettingActivity)
+                var dis_joing_dialog = DeleteUserCustomDialog(this@SettingActivity)
                 dis_joing_dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 dis_joing_dialog.setCanceledOnTouchOutside(false)
                 dis_joing_dialog.show()

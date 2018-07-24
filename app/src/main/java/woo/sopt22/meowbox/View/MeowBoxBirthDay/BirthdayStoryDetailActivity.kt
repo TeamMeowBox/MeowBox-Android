@@ -9,14 +9,13 @@ import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.view.View
 import kotlinx.android.synthetic.main.activity_birthday_story_detail.*
-import kotlinx.android.synthetic.main.content_meow_box_detail.*
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.View.MeowBoxDetail.DetailModel
 import woo.sopt22.meowbox.View.MeowBoxDetail.DetailViewAdapter
 import woo.sopt22.meowbox.View.Order.LoginCustomDialog
-import woo.sopt22.meowbox.View.Order.OrderThirdActivity
+import woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo.OrderWithCatInfoActivity
 
 class BirthdayStoryDetailActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
@@ -32,7 +31,7 @@ class BirthdayStoryDetailActivity : AppCompatActivity(), View.OnClickListener {
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
                     } else {
-                        val intent = Intent(this, OrderThirdActivity::class.java)
+                        val intent = Intent(this, OrderWithCatInfoActivity::class.java)
                         intent.putExtra("cat_idx",SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
                         startActivity(intent)
                     }

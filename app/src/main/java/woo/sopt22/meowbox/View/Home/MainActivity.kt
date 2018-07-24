@@ -45,7 +45,7 @@ import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.CircleImageView
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 import woo.sopt22.meowbox.View.Order.LoginCustomDialog
-import woo.sopt22.meowbox.View.Order.OrderThirdActivity
+import woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo.OrderWithCatInfoActivity
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -510,7 +510,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
                     } else {
-                        val intent = Intent(this, OrderThirdActivity::class.java)
+                        val intent = Intent(this, OrderWithCatInfoActivity::class.java)
                         intent.putExtra("cat_idx",SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
                         startActivity(intent)
                     }

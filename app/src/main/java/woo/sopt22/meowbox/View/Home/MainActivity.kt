@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.cardview_adapter.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.sliding_layout.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -61,6 +62,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                 Log.v("만혁","아예 엘스")
             }
+            main_back_btn->{
+                main_drawer_layout.closeDrawer(GravityCompat.START)
+            }
             else->{
                 if(current_number == 2 || current_number == 3){
                     Log.v("만혁",current_number.toString())
@@ -73,7 +77,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    lateinit var mViewPager : ViewPager
     lateinit var mSlidingTextView: TextView
 
     lateinit var mSlidingInstaProfile1 : CircleImageView
@@ -97,8 +100,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var sliding_toolbar : RelativeLayout
     private val PermissionRequestCode = 123
     private lateinit var managePermissions : ManagePermissions
-    lateinit var main_side_bar_btn : ImageView
-    lateinit var main_side_back_btn : ImageView
     lateinit var networkService: NetworkService
     var current_number : Int = 0
 
@@ -185,7 +186,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         SharedPreference.instance!!.load(this)
 
-
         var headerView : View = main_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
         var userImage : ImageView = headerView.findViewById(R.id.imageView)
@@ -211,14 +211,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onResume() {
         super.onResume()
-
         checkInfo()
 
     }
     override fun onRestart() {
         Log.v("onRestart",SharedPreference.instance!!.getPrefStringData("user_name"))
         super.onRestart()
-
         checkInfo()
 
 
@@ -237,6 +235,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         /*FIXME
          * 기본 NavigationBar를 지우고 내가 원하는 이미지를 넣기 위해서 감추고 원하는 이미지를 넣는다.
          * 그리고 내가 넣은 이미지가 원래 NavigationBar처럼 똑같이 동작하도록 코드를 넣어주었다.
+         * ActionBarDrawerToggle 이라는 함수를 통해 main_drawer_layout을 toggle이라는 이름의 객체로 가져온다.
+         * 그리고 IndicatorEnabled를 false로 줌으로써 보이지 않게 하고
          * */
         val toggle = ActionBarDrawerToggle(
                 this, main_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -244,8 +244,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.setDrawerIndicatorEnabled(false)
         val drawable = ResourcesCompat.getDrawable(resources, R.drawable.side_bar_btn_white, applicationContext!!.getTheme())
 
-        val bitmap = (drawable as BitmapDrawable).bitmap
-        val newdrawable = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, 30, 30, true))
+        //val bitmap = (drawable as BitmapDrawable).bitmap
+        //val newdrawable = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, 30, 30, true))
 
         toggle.setHomeAsUpIndicator(drawable)
         toggle.setToolbarNavigationClickListener(object : View.OnClickListener {
@@ -267,10 +267,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var headerView : View = main_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
         var userImage : ImageView = headerView.findViewById(R.id.imageView)
-        //userImage.setImageResource(R.drawable.side_bar_profile_img)
+        var main_back_button : ImageView = headerView.findViewById(R.id.main_back_btn)
+        userImage.setImageResource(R.drawable.side_bar_profile_img)
+        main_back_button.setOnClickListener(this)
 
-
-        Log.v("079",SharedPreference.instance!!.getPrefStringData("image_profile"))
 
         checkInfo()
 
@@ -463,8 +463,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
 
         madapter.setOnItemClickListener(this)
-
-
         main_nav_view.setNavigationItemSelectedListener(this)
     }
 
@@ -552,13 +550,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
     }
-
-
-
-
-
-
-
 }
 
 

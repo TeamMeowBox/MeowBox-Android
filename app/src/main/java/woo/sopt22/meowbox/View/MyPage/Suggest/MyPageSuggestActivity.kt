@@ -48,6 +48,8 @@ class MyPageSuggestActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page_suggest)
 
+        init()
+
 
         // 제안하기
         suggest_opinion.addTextChangedListener(object : TextWatcher{

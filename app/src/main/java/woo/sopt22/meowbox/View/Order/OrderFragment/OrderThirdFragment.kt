@@ -8,26 +8,22 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.RadioButton
 import android.widget.RadioGroup
-import kotlinx.android.synthetic.main.order_first_fragment.*
-import kotlinx.android.synthetic.main.order_second_fragment.*
 import kotlinx.android.synthetic.main.order_third_fragment.*
 import kotlinx.android.synthetic.main.order_third_fragment.view.*
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference
-import woo.sopt22.meowbox.Util.ToastMaker
-import woo.sopt22.meowbox.View.Order.OrderFirstActivity
 
 class OrderThirdFragment : Fragment(), View.OnClickListener{
     override fun onClick(v: View?) {
         when(v!!){
             order_period_previous->{
-                (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(OrderSecondFragment())
+                (OrderWithOutCatInfoActivity.mContext as OrderWithOutCatInfoActivity).replaceFragment(OrderSecondFragment())
             }
             order_period_next->{
 
                 SharedPreference.instance!!.setPrefData("price",price!!)
                 SharedPreference.instance!!.setPrefData("box_type",box_type!!)
-                (OrderFirstActivity.mContext as OrderFirstActivity).replaceFragment(OrderFourFragment())
+                (OrderWithOutCatInfoActivity.mContext as OrderWithOutCatInfoActivity).replaceFragment(OrderFourFragment())
             }
             order_third_1_layout->{
                 if(!order_third_1_layout.isSelected){

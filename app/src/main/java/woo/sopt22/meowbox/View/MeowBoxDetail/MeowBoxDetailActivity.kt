@@ -96,6 +96,7 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         items1.add(DetailModel("마음대로 길이조절이 가능한 밀짚모자! \n우리 냥이에게 딱 맞게 씌워주세요.",R.drawable.sunglass_three_img))
         items1.add(DetailModel("볼수록 더 귀여운 밀짚모자와 선글라스. 냥이에게 \n멋진 피서를 선물하는 법, 어렵지 않아요!",R.drawable.sunglass_four_img))
 
+
         items2 = ArrayList(); // 장난감
 
         items2.add(DetailModel("보기만 해도 시원해! 냥이가 씹고 뜯고 \n맛보고 즐길 올여름 최애 인형",R.drawable.toy_two_img))
@@ -130,14 +131,11 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         var madapter5 = DetailViewAdapter(layoutInflater, items5)
 
 
-
-
         detail_cardview_pager_one.adapter = madapter1
         detail_cardview_pager_two.adapter = madapter2
         detail_cardview_pager_three.adapter = madapter3
         detail_cardview_pager_four.adapter = madapter4
         detail_cardview_pager_five.adapter = madapter5
-
 
 
         detail_cardview_pager_one.addOnPageChangeListener(mOnPageChangeListener_one)
@@ -195,8 +193,6 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
         init()
         dataSetting()
-
-
 
 
         var headerView : View = detail_nav_view.getHeaderView(0)

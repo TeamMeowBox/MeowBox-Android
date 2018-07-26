@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.detail_card_view.view.*
 
 import woo.sopt22.meowbox.R
 
@@ -28,11 +29,11 @@ class DetailViewAdapter(private val inflater: LayoutInflater, private val mPageL
         val view = inflater.inflate(R.layout.detail_card_view, container, false)
 
 
-        val detailCardViewImg = view.findViewById<View>(R.id.detail_card_view_img) as ImageView
-        val detailCardViewTxt = view.findViewById<View>(R.id.detail_card_view_txt) as TextView
+        //val detailCardViewImg = view.findViewById<View>(R.id.detail_card_view_img) as ImageView
+        //val detailCardViewTxt = view.findViewById<View>(R.id.detail_card_view_txt) as TextView
         val item = mPageList[position]
-        Glide.with(container.context).load(item.imgUrl).into(detailCardViewImg)
-        detailCardViewTxt.text = item.text
+        Glide.with(container.context).load(item.imgUrl).into(view.detail_card_view_img)
+        view.detail_card_view_txt.text = item.text
 
         container.addView(view)
         return view

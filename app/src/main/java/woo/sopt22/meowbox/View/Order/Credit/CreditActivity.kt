@@ -50,8 +50,6 @@ class CreditActivity : Activity() {
         SharedPreference.instance!!.load(this)
 
 
-
-
         mainWebView = main_web_view as WebView
         mainWebView!!.webViewClient = InicisWebViewClient(this)
         val settings = mainWebView!!.settings

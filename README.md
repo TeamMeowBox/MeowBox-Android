@@ -1,6 +1,6 @@
 # MeowBox - Android
 
-<img src="image/meow_box.png" width="60">
+<img src="image/meow_box.png" width="70">
 
 
 반려묘를 위한 수제 필수용품과 간식을 정기 배송하는 서비스 **MeowBox** 입니다.

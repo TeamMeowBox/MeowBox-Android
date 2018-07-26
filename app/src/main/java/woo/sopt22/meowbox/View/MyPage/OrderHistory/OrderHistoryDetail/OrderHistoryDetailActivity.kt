@@ -54,8 +54,7 @@ class OrderHistoryDetailActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_order_history_detail)
 
         requestManager = Glide.with(this)
-
-
+        init()
         order_history_detail_x_btn.setOnClickListener(this)
         item_detail_name_tv.text = getIntent().getStringExtra("product")
         item_detail_term_tv.text = getIntent().getStringExtra("term")

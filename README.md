@@ -24,10 +24,56 @@
 ## # 주요 기능
 
 * 메인 화면
-	* Navigation Bar를 이용하여 사용자가 어디서든 다른 화면으로 이동할 수 있도록 하였습니다. 
-	* Viewpager를 이용하여 카드 형식으로 화면을 넘겨 볼 수 있도록 구성하였습니다.
-	* Sliding Up Panel Layout을 사용하여 아래에서 View를 끌어올릴 수 있도록 구현하였습니다. 
-	* 
+	* **Navigation Bar**를 이용하여 사용자가 어디서든 다른 화면으로 이동할 수 있도록 하였습니다. 
+	* **Sliding Up Panel Layout**을 사용하여 아래에서 View를 끌어올릴 수 있도록 구현하였습니다. 
+	* Viewpager에 들어가는 item의 Padding 값을 조절하여 카드 형식으로 화면을 넘겨 볼 수 있도록 구성하였습니다. 
+	
+
+```kotlin
+
+    var items : ArrayList<CardData>
+    items = ArrayList();
+    items.add(CardData(R.drawable.home_main_one_img, 1))
+    items.add(CardData(R.drawable.home_main_two_img,0))
+    items.add(CardData(R.drawable.home_main_three_img,0))
+    items.add(CardData(R.drawable.home_main_four_img,0))
+    items.add(CardData(R.drawable.home_main_five_img,2))
+
+	main_viewpager.setPadding(0,0,200,0)
+    var madapter = CardViewAdapter(layoutInflater, items)
+   	main_viewpager.setCurrentItem(0)
+    main_viewpager.adapter = madapter
+	main_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {
+
+
+            }
+
+            // 이 함수를 통해서 선택된 position 값에 따른 네비게이션 바의 색깔과 툴바의 색을 변경할 수 있다.
+            // 그리고 1,2에서의 상세보기와 3,4에서의 상세보기 버튼을 다른 기능을 할 수 있도록 구현할 수 있다.
+            override fun onPageSelected(position: Int) {
+           
+
+            }
+
+            // 화면의 일부만 보이게 하기 위해서 ViewPager의 함수인 onpageScrolled에서 postion과 Offset을 건드렸다.
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                when(position){
+                    (items.size-2)->{
+                        main_viewpager.setPadding((200 * positionOffset).toInt(),0,200 - (200*positionOffset).toInt(),0)
+                    }
+                    (items.size-1)->{
+                        main_viewpager.setPadding(200,0,0,0)
+                    }
+
+                }
+
+            }
+
+        })
+
+```
+
 
 
 

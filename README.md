@@ -24,6 +24,11 @@
 ## # 주요 기능
 
 * 메인 화면
+
+<img src="image/meowbox_home.png" width="70">
+<img src="image/meowbox_bottom_up.png" width="70">
+
+
 	* **Navigation Bar**를 이용하여 사용자가 어디서든 다른 화면으로 이동할 수 있도록 하였습니다. 
 	* **Sliding Up Panel Layout**을 사용하여 아래에서 View를 끌어올릴 수 있도록 구현하였습니다. 
 	* **onPageScrolled**() 함수 안에서 position과 **positionOffset**값을 이용하여 Viewpager에 들어가는 item의 **Padding** 값을 조절하여 카드 형식으로 화면을 넘겨 볼 수 있도록 구성하였습니다. 
@@ -39,12 +44,12 @@
     items.add(CardData(R.drawable.home_main_four_img,0))
     items.add(CardData(R.drawable.home_main_five_img,2))
 
-	main_viewpager.setPadding(0,0,200,0)
-	var madapter = CardViewAdapter(layoutInflater, items)
-	main_viewpager.setCurrentItem(0)
-	main_viewpager.adapter = madapter
+    main_viewpager.setPadding(0,0,200,0)
+    var madapter = CardViewAdapter(layoutInflater, items)
+    main_viewpager.setCurrentItem(0)
+    main_viewpager.adapter = madapter
 
-	main_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+    main_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(state: Int) {
 
 
@@ -74,6 +79,8 @@
         })
 
 ```
+
+* 
 
 
 

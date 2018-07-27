@@ -25,13 +25,12 @@
 
 * 메인 화면
 
-<img src="image/meowbox_home.png" width="70">
-<img src="image/meowbox_bottom_up.png" width="70">
+<img src="image/meowbox_home.png" width="150" height="150"> <img src="image/meowbox_bottom_up.png" width="150" height="150">
 
 
 	* **Navigation Bar**를 이용하여 사용자가 어디서든 다른 화면으로 이동할 수 있도록 하였습니다. 
-	* **Sliding Up Panel Layout**을 사용하여 아래에서 View를 끌어올릴 수 있도록 구현하였습니다. 
-	* **onPageScrolled**() 함수 안에서 position과 **positionOffset**값을 이용하여 Viewpager에 들어가는 item의 **Padding** 값을 조절하여 카드 형식으로 화면을 넘겨 볼 수 있도록 구성하였습니다. 
+	* **onPageScrolled**()
+		* position과 **positionOffset**값을 이용하여 Viewpager에 들어가는 item의 **Padding** 값을 조절하여 카드 형식으로 화면을 넘겨 볼 수 있도록 구성하였습니다. 
 	
 
 ```kotlin
@@ -62,7 +61,12 @@
 
             }
 
-            // 화면의 일부만 보이게 하기 위해서 ViewPager의 함수인 onpageScrolled에서 postion과 Offset을 건드렸다.
+            // 화면의 일부만 보이게 하기 위해서 ViewPager의 함수인 onpageScrolled에서 postion과 Offset을 수정했습니다. 
+            // 오른쪽 부분이 계속 보이다가 마지막 페이지에서는 왼쪽 페이지가 보입니다.
+            // 결국에는 보여지는 화면의 position의 따라서 마지막과 마지막 전의 페이지만 padding 값을 조절하면 됩니다. 
+            // items의 마지막 (items.size-1)은 왼쪽의 padding을 줘서 보이도록 하고 
+            // 이 함수가 페이지가 스크롤 되는 동안에도 계속해서 호출이 되기 때문에 items의 마지막 전 (items.size-2) 페이지는
+             
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 when(position){
                     (items.size-2)->{
@@ -79,8 +83,36 @@
         })
 
 ```
+	* **Sliding Up Panel Layout**을 사용하여 아래에서 View를 끌어올릴 수 있도록 구현하였습니다. 
 
-* 
+```kotlin
+
+    bottom_up_relative_layout.setOnTouchListener(object : View.OnTouchListener{
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                when(event!!.action){
+                    MotionEvent.ACTION_UP,MotionEvent.ACTION_SCROLL,MotionEvent.ACTION_MOVE->{
+                    	
+                        getInsta()
+                        getCatCount()
+                        main_sliding_scroll.fullScroll(ScrollView.FOCUS_UP)
+                    }
+                    MotionEvent.ACTION_DOWN->{
+
+                        main_sliding_scroll.fullScroll(ScrollView.FOCUS_UP)
+                    }
+
+                }
+                return true
+            }
+
+
+        })
+```
+
+
+
+* 주문하기 화면
+
 
 
 

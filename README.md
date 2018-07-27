@@ -121,12 +121,152 @@
 
 * 집사들의 후기 화면
 	* 6월, 7월, 생일 총 3개 카테고리의 후기를 볼 수 있으며 카드 형식으로 Viewpager를 구성하였습니다. 
-	
+
 * 주문하기 화면
+	* IamPort 모듈을 이용해서 결제 테스트를 구현했습니다.
+	* PG사와 카드사가 제공하는 인증 및 프로세스는 웹을 통해서 이루어지므로 Webview를 활용하였습니다.
+	* 내장된 Webview에서 아임포트 Javascript 코드가 포함된 페이지를 로드하며 이를 기반으로 결제가 이루어지게 됩니다. 
 
 
+* 주문 페이지
+	* 주문하기 버튼을 클릭했을 때 통신 함수를 호출하고 함수 안에서 필요한 정보를 가지고 CrediActivity로 넘어갑니다. 
+	* 
+
+```kotlin
+    fun postOrder() {
+        if (this.arguments != null) {
+            var bundle: Bundle = arguments!!
+            cat_name = bundle.getString("cat_name")
+            box_type = bundle.getString("box_type")
+            price = bundle.getString("price")
+
+        }
+        orderData = OrderData(order_four_name.text.toString()
+                , order_four_address_one.text.toString() + order_four_address_two.text.toString()
+                , order_four_phone_number.text.toString(), box_type,
+                price, order_four_email.text.toString(), radio_button.text.toString())
+        val orderRespone = networkService.postOrder(SharedPreference.instance!!.getPrefStringData("token")!!, orderData)
+        orderRespone.enqueue(object : Callback<OrderResponse> {
+            override fun onFailure(call: Call<OrderResponse>?, t: Throwable?) {
+
+            }
+
+            override fun onResponse(call: Call<OrderResponse>?, response: Response<OrderResponse>?) {
+                if (response!!.isSuccessful) {
+                    var orderIdx = response!!.body()!!.result.order_idx.toString()
+                    SharedPreference.instance!!.setPrefData("merchant", orderIdx)
+                    Log.d("ordererr", orderIdx)
+
+                    var priceTmp: Int
+                    var re = Regex("[^0-9]")
+                    priceTmp = re.replace(price, "").toInt()
+
+                    if(box_type.equals("7")){
+
+                        orderTest = OrderTest(orderIdx, "생일 축하해! 박스", priceTmp/100)
+
+                    }
+                    else{
+
+                        orderTest = OrderTest(orderIdx, box_type+"개월 정기배송", priceTmp/100)
+                    }
+
+                    //orderTest = OrderTest(orderIdx, box_type+"개월 정기배송", priceTmp/100)
+                    var gson = Gson()
+                    var orderJson = gson.toJson(orderTest)
+                    gson.toJson(orderTest)
+
+                    val intent = Intent(activity, CreditActivity::class.java)
+                    intent.putExtra("orderIdx", orderJson)
+                    startActivityForResult(intent, 1541);
 
 
+                }
+            }
+
+        })
+    }
+
+
+       override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK) {
+            Log.d("체크5", "어디까지 들어가냥2")
+            when (requestCode) {
+                1541 -> {
+                    Log.d("체크3", data!!.getStringExtra("result"))
+                    if (data!!.getStringExtra("result").equals("true")) {
+                        (OrderWithOutCatInfoActivity.mContext as OrderWithOutCatInfoActivity).replaceFragment(OrderFiveFragment())
+                    } else {
+                        Log.d("체크2", "어디까지 들어가냥")
+                        (OrderWithOutCatInfoActivity.mContext as OrderWithOutCatInfoActivity).replaceFragment(OrderThirdFragment())
+                    }
+
+                }
+
+            }
+        }
+    }
+
+```
+* 결제 페이지
+	* 
+
+```Javascript
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pay document</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+<script type="text/javascript">
+var IMP = window.IMP; // 생략가능
+IMP.init('iamport'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+
+function myset(res){
+var data = JSON.parse(res);
+data;
+//onclick, onload 등 원하는 이벤트에 호출합니다
+IMP.request_pay(
+{
+
+
+    pg : 'inicis', // version 1.1.0부터 지원.
+    pay_method : 'card',
+    merchant_uid :data.merchant_uid,
+    name :data.name,
+    amount :data.amount,
+    buyer_email : 'iamport@siot.do',
+    buyer_name : '구매자이름',
+    buyer_tel : '010-1234-5678',
+    buyer_addr : '서울특별시 강남구 삼성동',
+    buyer_postcode : '123-456',
+    m_redirect_url : 'http://13.124.92.40:3000/order/order_result',
+    app_scheme : 'iamportapp'
+}
+, function(rsp) {
+    if ( rsp.success ) {
+        var msg = '결제가 완료되었습니다.';
+        msg += '고유ID : ' + rsp.imp_uid;
+        msg += '상점 거래ID : ' + rsp.merchant_uid;
+        msg += '결제 금액 : ' + rsp.paid_amount;
+        msg += '카드 승인번호 : ' + rsp.apply_num;
+    } else {
+        var msg = '결제에 실패하였습니다.';
+        msg += '에러내용 : ' + rsp.error_msg;
+    }
+
+    alert(msg);
+});
+}
+
+
+</script>
+
+</body>
+</html>
+```
 
 
 

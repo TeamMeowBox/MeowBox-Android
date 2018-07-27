@@ -32,6 +32,7 @@ import woo.sopt22.meowbox.Model.Review.ReviewResponse
 import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
+import woo.sopt22.meowbox.Util.CustomDialog.LoginToMyPageCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Home.MainActivity
@@ -381,7 +382,9 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             }
             R.id.myPageBtn->{
                 if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
-                    ToastMaker.makeLongToast(this,"로그인 해주세요.")
+                    val dialog = LoginToMyPageCustomDialog(this)
+                    dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    dialog.show()
                 } else{
                     startActivity(Intent(this, MyPageActivity::class.java))
                 }

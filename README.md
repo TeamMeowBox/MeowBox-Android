@@ -25,11 +25,10 @@
 
 * 메인 화면
 
-
+	* 사용자는 로그인 및 회원가입을 하지 않고도 앱을 둘러보고 사용할 수 있습니다.
+	* 주문하기와 마이 페이지에 접근하기 위해서는 로그인을 해야 합니다.
 	* **Navigation Bar**를 이용하여 사용자가 어디서든 다른 화면으로 이동할 수 있도록 하였습니다. 
 	* **onPageScrolled**() 함수의 position과 **positionOffset**값을 이용하여 Viewpager에 들어가는 item의 **Padding** 값을 조절하여 카드 형식으로 화면을 넘겨 볼 수 있도록 구성하였습니다. 
-
-	
 
 ```kotlin
 
@@ -81,17 +80,19 @@
         })
 
 ```
+* 메인 화면 - 추가 화면
 	* **Sliding Up Panel Layout**을 사용하여 아래에서 View를 끌어올릴 수 있도록 구현하였습니다. 
 
 ```kotlin
 
+	// 클릭 이벤트가 아닌 터치 제스처를 통해서 끌어올리면 통신과 뷰가 올라올 수 있도록 구현하였습니다. 
     bottom_up_relative_layout.setOnTouchListener(object : View.OnTouchListener{
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 when(event!!.action){
-                    MotionEvent.ACTION_UP,MotionEvent.ACTION_SCROLL,MotionEvent.ACTION_MOVE->{
+                    MotionEvent.ACTION_UP,MotionEvent.ACTION_MOVE->{
 
-                        getInsta()
-                        getCatCount()
+                        getInsta() // 고양이 인스타 크롤링 정보를 받아오는 통신 함수
+                        getCatCount() // 등록된 고양이의 수를 받아오는 통신 함수
                         main_sliding_scroll.fullScroll(ScrollView.FOCUS_UP)
                     }
                     MotionEvent.ACTION_DOWN->{
@@ -110,6 +111,17 @@
 <img src="image/meowbox_home.png"> <img src="image/meowbox_bottom_up.png">
 
 
+* 미유 박스 이야기 화면
+	* 미유 박스의 목표와 미유 박스가 무엇인지, 미유 박스는 어떤 구성품으로 구성되어있는지를 설명해줍니다.
+	* 그리고 미유 박스를 주문할 수 있도록 유도합니다. 
+
+* 생일 축하해 화면
+	* 반려묘의 생일을 축하하는 이야기가 담겨 있는 화면입니다.
+	* 자체 제작한 웹툰이 연재되어 있습니다. 
+
+* 집사들의 후기 화면
+	* 6월, 7월, 생일 총 3개 카테고리의 후기를 볼 수 있으며 카드 형식으로 Viewpager를 구성하였습니다. 
+	
 * 주문하기 화면
 
 

@@ -279,7 +279,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         bottom_up_relative_layout.setOnTouchListener(object : View.OnTouchListener{
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 when(event!!.action){
-                    MotionEvent.ACTION_UP, MotionEvent.ACTION_MOVE->{
+                    MotionEvent.ACTION_UP,MotionEvent.ACTION_SCROLL,MotionEvent.ACTION_MOVE->{
                         //Log.v("8989","8989")
                         getInsta()
                         getCatCount()
@@ -447,12 +447,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             // 화면의 일부만 보이게 하기 위해서 ViewPager의 함수인 onpageScrolled에서 postion과 Offset을 건드렸다.
+            /*FIXME
+            * positionOffset이란 해당 포지션의 page의 변위차를 의미한다.
+            * */
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 when(position){
                     (items.size-2)->{
-                        main_viewpager.setPadding((200 * positionOffset).toInt(),0,200 - (200*positionOffset).toInt(),0)
+                        //Log.v("12",positionOffset.toString())
+                        Log.v("12",(200*positionOffset).toString())
+                        main_viewpager.setPadding((200*positionOffset).toInt(),0,200 - (200*positionOffset).toInt(),0)
+                        Log.v("33",(200-(200*positionOffset)).toString())
                     }
                     (items.size-1)->{
+                        Log.v("44",positionOffset.toString())
                         main_viewpager.setPadding(200,0,0,0)
                     }
 

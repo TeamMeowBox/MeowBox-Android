@@ -130,7 +130,6 @@
 
 * 주문 페이지
 	* 주문하기 버튼을 클릭했을 때 통신 함수를 호출하고 함수 안에서 필요한 정보를 가지고 CrediActivity로 넘어갑니다. 
-	* 
 
 ```kotlin
     fun postOrder() {
@@ -187,7 +186,7 @@
         })
     }
 
-
+// 다른 곳에서 사용
        override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK) {
             Log.d("체크5", "어디까지 들어가냥2")
@@ -209,7 +208,111 @@
 
 ```
 * 결제 페이지
+	* 주문 페이지에서 넘어 온 정보를 전달 받고 Javascript 코드에 있는 함수를 통해 값을 넘깁니다. 
+	* 그리고 내장된 Javascript 코드를 호출하여 결제 페이지를 로드합니다.
 	* 
+
+```kotlin
+
+        mainWebView = main_web_view as WebView
+        mainWebView!!.webViewClient = InicisWebViewClient(this)
+        val settings = mainWebView!!.settings
+        settings.javaScriptEnabled = true
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+            val cookieManager = CookieManager.getInstance()
+            cookieManager.setAcceptCookie(true)
+            cookieManager.setAcceptThirdPartyCookies(mainWebView, true)
+        }
+
+        val intent = intent
+        val intentData = intent.data
+
+        val intentTmp = getIntent()
+        stringTmp = intentTmp.getStringExtra("orderIdx")
+
+
+
+        if (intentData == null) {
+            Log.d("ton", "ton")
+            mainWebView!!.loadUrl("file:///android_asset/your_own_scheme.js")
+            Log.d("ton22", "ton22")
+
+
+            val mHandler = Handler()
+            mHandler.postDelayed({ mainWebView!!.loadUrl("javascript:myset('$stringTmp')") }, 3000)
+
+
+            val tttmm = "안녕"
+
+
+            //mainWebView.loadUrl("javascript:myset()");
+            Log.d("ton33", "ton33")
+            //mainWebView.loadUrl("javascript:IMP.request_pay('"+dataString+"')");
+
+
+            //        	mainWebView.loadUrl("http://192.168.0.77:8888");
+        } else {
+            //isp 인증 후 복귀했을 때 결제 후속조치
+            val url = intentData.toString()
+            if (url.startsWith(APP_SCHEME)) {
+                val redirectURL = url.substring(APP_SCHEME.length + 3)
+                mainWebView!!.loadUrl(redirectURL)
+            }
+        }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        val url = intent.dataString
+        if (url!!.startsWith(APP_SCHEME)) {
+            val redirectURL = url.substring(APP_SCHEME.length + 3)
+            mainWebView!!.loadUrl(redirectURL)
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        val mHandler = Handler()
+        mHandler.postDelayed({ postORrderResult() }, 22000)
+    }
+
+    fun postORrderResult(){
+        orderChecking = OrderResult(SharedPreference.instance!!.getPrefStringData("merchant")!!)
+        Log.d("boolan", "어디까지 들어가냥")
+        val orderCheck = networkService.postOrderResult(SharedPreference.instance!!.getPrefStringData("token")!!,
+                orderChecking)
+        Log.d("boolan3", "어디까지 들어가냥")
+        orderCheck.enqueue(object  : Callback<OrderResultResponse> {
+            override fun onFailure(call: Call<OrderResultResponse>?, t: Throwable?) {
+                Log.d("boolean3", "어디까지 들어가냥")
+
+            }
+
+            override fun onResponse(call: Call<OrderResultResponse>?, response: Response<OrderResultResponse>?) {
+                if(response!!.isSuccessful){
+                    //var orderCheckBoolean = response!!.body()!!.result.order_result
+                    var orderCheckBoolean = true
+                    Log.d("booln3", orderCheckBoolean.toString())
+
+                    val resultIntent = Intent()
+                    resultIntent.putExtra("result", orderCheckBoolean.toString())
+                    setResult(Activity.RESULT_OK, resultIntent)
+                    finish()
+
+                }
+            }
+
+        })
+
+    }
+```
+
+
+
+* 결제 페이지에 사용되는 Javascript 코드
+	* 아래의 Javascript 코드를 추가하고 코드 안에 함수를 작성하였습니다.
+	* myset 함수는 안드로이드에서 Javascript 쪽으로 정보를 전달받기 위한 함수입니다. 
 
 ```Javascript
 <!DOCTYPE html>

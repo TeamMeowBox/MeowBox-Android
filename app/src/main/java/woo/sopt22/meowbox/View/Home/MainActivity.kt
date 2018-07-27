@@ -279,7 +279,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         bottom_up_relative_layout.setOnTouchListener(object : View.OnTouchListener{
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 when(event!!.action){
-                    MotionEvent.ACTION_UP,MotionEvent.ACTION_SCROLL,MotionEvent.ACTION_MOVE->{
+                    MotionEvent.ACTION_UP,MotionEvent.ACTION_MOVE->{
                         //Log.v("8989","8989")
                         getInsta()
                         getCatCount()

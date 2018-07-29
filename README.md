@@ -129,7 +129,9 @@
 
 
 * 주문 페이지
-	* 주문하기 버튼을 클릭했을 때 통신 함수를 호출하고 함수 안에서 필요한 정보를 가지고 CrediActivity로 넘어갑니다. 
+	* 주문하기 버튼을 클릭했을 때 통신 함수를 호출합니다
+	* 서버로부터 필요한 정보를 받아와 그 값을 Json 형태로 변환합니다.
+	* 그리고 그 값을 가지고 CrediActivity로 넘어갑니다. 
 
 ```kotlin
     fun postOrder() {
@@ -153,6 +155,7 @@
             override fun onResponse(call: Call<OrderResponse>?, response: Response<OrderResponse>?) {
                 if (response!!.isSuccessful) {
                     var orderIdx = response!!.body()!!.result.order_idx.toString()
+                    // 해당 주문에 대한 id를 뜻하는 merchant 값입니다. 
                     SharedPreference.instance!!.setPrefData("merchant", orderIdx)
                     Log.d("ordererr", orderIdx)
 
@@ -170,14 +173,14 @@
                         orderTest = OrderTest(orderIdx, box_type+"개월 정기배송", priceTmp/100)
                     }
 
-                    //orderTest = OrderTest(orderIdx, box_type+"개월 정기배송", priceTmp/100)
                     var gson = Gson()
                     var orderJson = gson.toJson(orderTest)
                     gson.toJson(orderTest)
 
+                    // Json 형태로 바꾼 다음에 그 값을 CreditActivity로 보냅니다.
                     val intent = Intent(activity, CreditActivity::class.java)
                     intent.putExtra("orderIdx", orderJson)
-                    startActivityForResult(intent, 1541);
+                    startActivityForResult(intent, 1541); // 순서 : 1번
 
 
                 }
@@ -186,17 +189,18 @@
         })
     }
 
-// 다른 곳에서 사용
+       // 순서 : 3번
+       // startActivityForResult를 통해서 결제 페이지에 갔다가
+       // 값을 받고 setResult 함수를 통해서 주문 페이지로 돌아오게 됩니다.
+       // 그리고 data.result 가 true라면 주문이 완료된 것이므로 주문 완료 페이지로 넘어갑니다.
+       // false라면 주문이 완료되지 않은 것이므로 그 전 페이지로 돌아갑니다.
        override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK) {
-            Log.d("체크5", "어디까지 들어가냥2")
             when (requestCode) {
                 1541 -> {
-                    Log.d("체크3", data!!.getStringExtra("result"))
                     if (data!!.getStringExtra("result").equals("true")) {
                         (OrderWithOutCatInfoActivity.mContext as OrderWithOutCatInfoActivity).replaceFragment(OrderFiveFragment())
                     } else {
-                        Log.d("체크2", "어디까지 들어가냥")
                         (OrderWithOutCatInfoActivity.mContext as OrderWithOutCatInfoActivity).replaceFragment(OrderThirdFragment())
                     }
 
@@ -217,6 +221,8 @@
         mainWebView = main_web_view as WebView
         mainWebView!!.webViewClient = InicisWebViewClient(this)
         val settings = mainWebView!!.settings
+
+        // Webview에서 Javascript 코드를 사용할 수 있도록 설정해줍니다. 
         settings.javaScriptEnabled = true
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -230,29 +236,25 @@
         val intentData = intent.data
 
         val intentTmp = getIntent()
-        stringTmp = intentTmp.getStringExtra("orderIdx")
+
+        // merchant의 값인 orderIdx를 받습니다. 
+        var stringTmp = intentTmp.getStringExtra("orderIdx")
 
 
 
         if (intentData == null) {
-            Log.d("ton", "ton")
+
+        	// 내장된 Javascript 코드를 호출하여 페이지를 로드합니다.
             mainWebView!!.loadUrl("file:///android_asset/your_own_scheme.js")
-            Log.d("ton22", "ton22")
 
-
+            // 그리고 Handler를 이용하여 3초 정도 delay 시켜서
+            // Javascript 함수 안에 있는 함수를 호출하여 stringTmp 즉, merchant 값을 넘깁니다. 
+            // 그러면 iamport에 보낸 merchant값을 받습니다. 
+            // 그리고 우리 서버로 redirectUrl을 설정해 놓습니다. 
+            // 그러면 iamport에서 우리가 보낸 merchant를 우리 서버에 return 해줍니다. 
             val mHandler = Handler()
             mHandler.postDelayed({ mainWebView!!.loadUrl("javascript:myset('$stringTmp')") }, 3000)
 
-
-            val tttmm = "안녕"
-
-
-            //mainWebView.loadUrl("javascript:myset()");
-            Log.d("ton33", "ton33")
-            //mainWebView.loadUrl("javascript:IMP.request_pay('"+dataString+"')");
-
-
-            //        	mainWebView.loadUrl("http://192.168.0.77:8888");
         } else {
             //isp 인증 후 복귀했을 때 결제 후속조치
             val url = intentData.toString()
@@ -271,29 +273,30 @@
         }
     }
 
+    // 액티비티가 보이지 않을 때 Handler를 이용하여 통신 함수를 호출합니다.
+    // Webview를 통해 카카오페이 결제에 들어가면 다른 Component들에 대한 통제권이 없기 때문에 handler를 통하여 지연시킵니다.
     override fun onStop() {
         super.onStop()
         val mHandler = Handler()
         mHandler.postDelayed({ postORrderResult() }, 22000)
     }
 
-    fun postORrderResult(){
+    // 서버는 주문자가 주문을 했을 때 발급해준 orderIdx 즉, merchant 값과 iamport에서 받은 merchant 값을 비교하여 true/false인지 반환해줍니다.
+    // 그럼 boolean 값을 가지고 serResult를 통해서 다시 주문 페이지로 반환해줍니다. 
+
+    fun postORrderResult(){ // 순서 : 2번
         orderChecking = OrderResult(SharedPreference.instance!!.getPrefStringData("merchant")!!)
-        Log.d("boolan", "어디까지 들어가냥")
         val orderCheck = networkService.postOrderResult(SharedPreference.instance!!.getPrefStringData("token")!!,
                 orderChecking)
-        Log.d("boolan3", "어디까지 들어가냥")
         orderCheck.enqueue(object  : Callback<OrderResultResponse> {
             override fun onFailure(call: Call<OrderResultResponse>?, t: Throwable?) {
-                Log.d("boolean3", "어디까지 들어가냥")
 
             }
 
             override fun onResponse(call: Call<OrderResultResponse>?, response: Response<OrderResultResponse>?) {
                 if(response!!.isSuccessful){
-                    //var orderCheckBoolean = response!!.body()!!.result.order_result
-                    var orderCheckBoolean = true
-                    Log.d("booln3", orderCheckBoolean.toString())
+                    var orderCheckBoolean = response!!.body()!!.result.order_result
+                    //var orderCheckBoolean = true
 
                     val resultIntent = Intent()
                     resultIntent.putExtra("result", orderCheckBoolean.toString())
@@ -313,6 +316,7 @@
 * 결제 페이지에 사용되는 Javascript 코드
 	* 아래의 Javascript 코드를 추가하고 코드 안에 함수를 작성하였습니다.
 	* myset 함수는 안드로이드에서 Javascript 쪽으로 정보를 전달받기 위한 함수입니다. 
+	* 이 함수를 통해서 data라는 Json 객체에 저장된 데이터에 접근하여 정보를 가져옵니다. 
 
 ```Javascript
 <!DOCTYPE html>

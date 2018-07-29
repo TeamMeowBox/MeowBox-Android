@@ -25,6 +25,7 @@ import kotlinx.android.synthetic.main.app_bar_meow_box_detail.*
 import kotlinx.android.synthetic.main.content_meow_box_detail.*
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
+import woo.sopt22.meowbox.Util.CustomDialog.LoginCheckCustomDialog
 import woo.sopt22.meowbox.Util.CustomDialog.LoginToMyPageCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
@@ -87,6 +88,70 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
         detail_order_btn.setOnClickListener(this)
 
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_meow_box_detail)
+        setSupportActionBar(toolbar)
+
+        init()
+        dataSetting()
+
+
+        var headerView : View = detail_nav_view.getHeaderView(0)
+        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
+        var userImage : ImageView = headerView.findViewById(R.id.imageView)
+
+        Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")!!).into(userImage)
+
+
+        var menu : Menu = detail_nav_view.menu
+        var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
+        var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
+        var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
+        blank_menu_item.setEnabled(false)
+        blank_menu_item2.setEnabled(false)
+
+        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
+            userName.text = "OO님!"
+            menu_item.setTitle("로그인")
+        } else {
+            userName.text = SharedPreference.instance!!.getPrefStringData("name") + "님"
+            menu_item.setTitle("")
+            menu_item.setEnabled(false)
+        }
+
+        if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
+            Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
+        } else{
+            Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
+        }
+
+
+        val toggle = ActionBarDrawerToggle(
+                this, detail_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        toggle.setDrawerIndicatorEnabled(false)
+        val drawable = ResourcesCompat.getDrawable(resources, R.drawable.side_bar_btn_black, applicationContext!!.getTheme())
+
+        val bitmap = (drawable as BitmapDrawable).bitmap
+        val newdrawable = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, 30, 30, true))
+
+        toggle.setHomeAsUpIndicator(drawable)
+        toggle.setToolbarNavigationClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                if (detail_drawer_layout.isDrawerVisible(GravityCompat.START)) {
+                    detail_drawer_layout.closeDrawer(GravityCompat.START)
+                } else {
+                    detail_drawer_layout.openDrawer(GravityCompat.START)
+                }
+            }
+        })
+
+        detail_drawer_layout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        detail_nav_view.setNavigationItemSelectedListener(this)
     }
 
     fun dataSetting(){
@@ -186,71 +251,7 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
 
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_meow_box_detail)
-        setSupportActionBar(toolbar)
 
-        init()
-        dataSetting()
-
-
-        var headerView : View = detail_nav_view.getHeaderView(0)
-        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
-        var userImage : ImageView = headerView.findViewById(R.id.imageView)
-
-        Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")!!).into(userImage)
-
-
-        var menu : Menu = detail_nav_view.menu
-        var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
-        var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
-        var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
-        blank_menu_item.setEnabled(false)
-        blank_menu_item2.setEnabled(false)
-
-        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
-            userName.text = "OO님!"
-            menu_item.setTitle("로그인")
-        } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("name") + "님"
-            menu_item.setTitle("")
-            menu_item.setEnabled(false)
-        }
-
-        if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
-            Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
-        } else{
-            Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
-        }
-
-
-        val toggle = ActionBarDrawerToggle(
-                this, detail_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        toggle.setDrawerIndicatorEnabled(false)
-        val drawable = ResourcesCompat.getDrawable(resources, R.drawable.side_bar_btn_black, applicationContext!!.getTheme())
-
-        val bitmap = (drawable as BitmapDrawable).bitmap
-        val newdrawable = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, 30, 30, true))
-
-        toggle.setHomeAsUpIndicator(drawable)
-        toggle.setToolbarNavigationClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                if (detail_drawer_layout.isDrawerVisible(GravityCompat.START)) {
-                    detail_drawer_layout.closeDrawer(GravityCompat.START)
-                } else {
-                    detail_drawer_layout.openDrawer(GravityCompat.START)
-                }
-            }
-        })
-
-        detail_drawer_layout.addDrawerListener(toggle)
-        toggle.syncState()
-
-        detail_nav_view.setNavigationItemSelectedListener(this)
-
-
-    }
 
     var mOnPageChangeListener_one = object : ViewPager.OnPageChangeListener{
         override fun onPageScrollStateChanged(state: Int) {
@@ -350,7 +351,7 @@ class MeowBoxDetailActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             }
             R.id.orderBtn -> {
                 if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
-                    val dialog = LoginCustomDialog(this)
+                    val dialog = LoginCheckCustomDialog(this)
                     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.show()
                 } else{

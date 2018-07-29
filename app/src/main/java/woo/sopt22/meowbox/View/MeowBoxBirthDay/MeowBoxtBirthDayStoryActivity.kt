@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.app_bar_meow_boxt_birth_day_story.*
 import kotlinx.android.synthetic.main.content_meow_boxt_birth_day_story.*
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
+import woo.sopt22.meowbox.Util.CustomDialog.LoginCheckCustomDialog
 import woo.sopt22.meowbox.Util.CustomDialog.LoginToMyPageCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
@@ -161,7 +162,7 @@ class MeowBoxtBirthDayStoryActivity : AppCompatActivity(), NavigationView.OnNavi
             }
             R.id.orderBtn -> {
                 if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
-                    val dialog = LoginCustomDialog(this)
+                    val dialog = LoginCheckCustomDialog(this)
                     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.show()
                 } else{

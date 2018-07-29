@@ -1,6 +1,6 @@
 # MeowBox - Android
 
-<img src="image/meow_box.png" width="70">
+<img src="image/meow_box.png" width="80">
 
 
 반려묘를 위한 수제 필수용품과 간식을 정기 배송하는 서비스 **MeowBox** 입니다.
@@ -157,7 +157,6 @@
                     var orderIdx = response!!.body()!!.result.order_idx.toString()
                     // 해당 주문에 대한 id를 뜻하는 merchant 값입니다. 
                     SharedPreference.instance!!.setPrefData("merchant", orderIdx)
-                    Log.d("ordererr", orderIdx)
 
                     var priceTmp: Int
                     var re = Regex("[^0-9]")
@@ -214,7 +213,6 @@
 * 결제 페이지
 	* 주문 페이지에서 넘어 온 정보를 전달 받고 Javascript 코드에 있는 함수를 통해 값을 넘깁니다. 
 	* 그리고 내장된 Javascript 코드를 호출하여 결제 페이지를 로드합니다.
-	* 
 
 ```kotlin
 
@@ -244,7 +242,7 @@
 
         if (intentData == null) {
 
-        	// 내장된 Javascript 코드를 호출하여 페이지를 로드합니다.
+            // 내장된 Javascript 코드를 호출하여 페이지를 로드합니다.
             mainWebView!!.loadUrl("file:///android_asset/your_own_scheme.js")
 
             // 그리고 Handler를 이용하여 3초 정도 delay 시켜서

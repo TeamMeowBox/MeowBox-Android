@@ -26,8 +26,9 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="480dp"
+                android:layout_height="460dp"
                 android:id="@+id/detail_first_img"
+                android:scaleType="fitXY"
                 android:src="@drawable/meow_box_detail_main">
 
             </ImageView>

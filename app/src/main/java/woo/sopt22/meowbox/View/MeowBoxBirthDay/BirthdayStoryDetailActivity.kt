@@ -52,6 +52,8 @@ class BirthdayStoryDetailActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var items4 : ArrayList<DetailModel>
     lateinit var items5 : ArrayList<DetailModel>
 
+
+
     fun init(){
 
         birthday_detail_order_btn.setOnClickListener(this)
@@ -61,6 +63,16 @@ class BirthdayStoryDetailActivity : AppCompatActivity(), View.OnClickListener {
             window.statusBarColor = Color.BLACK
             window.navigationBarColor = Color.BLACK
         }
+    }
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_birthday_story_detail)
+
+        init()
+        dataSetting()
+
     }
 
     fun dataSetting(){
@@ -157,17 +169,6 @@ class BirthdayStoryDetailActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_birthday_story_detail)
-
-        init()
-        dataSetting()
-
-
-
-
-    }
 
     var birthdayOnPageChangeListenter_one : ViewPager.OnPageChangeListener = object : ViewPager.OnPageChangeListener{
         override fun onPageScrollStateChanged(state: Int) {

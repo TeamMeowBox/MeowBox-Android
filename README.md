@@ -16,10 +16,38 @@
 3. 생일 박스
 
 
-
 ## # 워크 플로우
 
 ![](/image/meow_box_workflow.png)
+
+## # Develop Environment
+
+* Language - **Kotlin**, java
+* Minimum SDK Version - 21
+* Target SDK Version - 27
+* Optimization Device - **Galaxy s8+**
+
+
+## # Library
+
+1. **Layout**
+* 'com.sothree.slidinguppanel:library:3.4.0'
+* 'com.android.support:cardview-v7:27.1.1'
+* 'de.hdodenhof:circleimageview:2.2.0'
+* 'com.android.support:recyclerview-v7:27.1.1'
+* 'com.thoughtbot:expandablerecyclerview:1.3'
+* 'com.zarinpal:cardviewpager:0.5.3'
+
+2. **HTTP REST API**
+* 'com.squareup.retrofit2:retrofit:2.4.0'
+* 'com.squareup.retrofit2:converter-gson:2.1.0'
+
+3. **Material design**
+* 'com.android.support:design:27.1.1'
+
+4. **Animation**
+* 'com.airbnb.android:lottie:2.1.0'
+
 
 ## # 주요 기능
 
@@ -372,34 +400,4 @@ IMP.request_pay(
 </body>
 </html>
 ```
-
-
-
-## # Develop Environment
-
-* Language - **Kotlin**
-* Minimum SDK Version - 21
-* Target SDK Version - 27
-* Optimization Device - **Galaxy s8+**
-
-
-## # Library
-
-1. **Layout**
-* 'com.sothree.slidinguppanel:library:3.4.0'
-* 'com.android.support:cardview-v7:27.1.1'
-* 'de.hdodenhof:circleimageview:2.2.0'
-* 'com.android.support:recyclerview-v7:27.1.1'
-* 'com.thoughtbot:expandablerecyclerview:1.3'
-* 'com.zarinpal:cardviewpager:0.5.3'
-
-2. **HTTP REST API**
-* 'com.squareup.retrofit2:retrofit:2.4.0'
-* 'com.squareup.retrofit2:converter-gson:2.1.0'
-
-3. **Material design**
-* 'com.android.support:design:27.1.1'
-
-4. **Animation**
-* 'com.airbnb.android:lottie:2.1.0'
 

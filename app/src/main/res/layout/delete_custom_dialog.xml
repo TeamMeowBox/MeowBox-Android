@@ -65,7 +65,7 @@
             <LinearLayout
                 android:id="@+id/delete_ticket_cancel"
                 android:layout_weight="1"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/cancel_border"
                 android:gravity="center"
@@ -83,7 +83,7 @@
             <LinearLayout
                 android:id="@+id/delete_ticket_apply"
                 android:layout_weight="1"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/ok_border"
                 android:gravity="center">

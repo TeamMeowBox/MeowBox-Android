@@ -59,21 +59,26 @@ class DeleteUserApplyCustomDialog(context : Context) : Dialog(context), View.OnC
             override fun onResponse(call: Call<BaseModel>?, response: Response<BaseModel>?) {
                 if(response!!.isSuccessful){
                     Log.v("success",response!!.body()!!.message)
-                    SharedPreference.instance!!.removeData("user_email")
-                    SharedPreference.instance!!.removeData("token")
-                    SharedPreference.instance!!.removeData("name")
-                    SharedPreference.instance!!.removeData("flag")
-                    SharedPreference.instance!!.removeData("phone_number")
-                    SharedPreference.instance!!.removeData("cat_idx")
-                    SharedPreference.instance!!.removeData("image")
-                    SharedPreference.instance!!.removeData("cat_name")
-                    cancel()
-                    val intent = Intent(context, MainActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    context.startActivity(intent)
+                    deleteUserInfo()
+
                 }
             }
         })
+    }
+
+    fun deleteUserInfo(){
+        SharedPreference.instance!!.removeData("user_email")
+        SharedPreference.instance!!.removeData("token")
+        SharedPreference.instance!!.removeData("name")
+        SharedPreference.instance!!.removeData("flag")
+        SharedPreference.instance!!.removeData("phone_number")
+        SharedPreference.instance!!.removeData("cat_idx")
+        SharedPreference.instance!!.removeData("image_profile")
+        SharedPreference.instance!!.removeData("cat_name")
+        cancel()
+        val intent = Intent(context, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        context.startActivity(intent)
     }
 }

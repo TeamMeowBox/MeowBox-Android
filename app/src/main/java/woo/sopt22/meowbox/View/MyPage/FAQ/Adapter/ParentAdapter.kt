@@ -1,12 +1,10 @@
 package woo.sopt22.meowbox.View.MyPage.FAQ.Adapter
 
 
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.thoughtbot.expandablerecyclerview.ExpandableRecyclerViewAdapter
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup
-import woo.sopt22.meowbox.Model.QnA.ResultData
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.View.MyPage.FAQ.ViewHolder.ContentViewHolder
 import woo.sopt22.meowbox.View.MyPage.FAQ.ViewHolder.ParentViewHolder

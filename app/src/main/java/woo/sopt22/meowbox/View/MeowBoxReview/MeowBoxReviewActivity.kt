@@ -31,8 +31,9 @@ import woo.sopt22.meowbox.ApplicationController
 import woo.sopt22.meowbox.Model.Review.ReviewResponse
 import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
-import woo.sopt22.meowbox.R.drawable.side_bar_profile_img
 import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
+import woo.sopt22.meowbox.Util.CustomDialog.LoginCheckCustomDialog
+import woo.sopt22.meowbox.Util.CustomDialog.LoginToMyPageCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Home.MainActivity
@@ -41,7 +42,7 @@ import woo.sopt22.meowbox.View.MeowBoxBirthDay.MeowBoxtBirthDayStoryActivity
 import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 import woo.sopt22.meowbox.View.Order.LoginCustomDialog
-import woo.sopt22.meowbox.View.Order.OrderThirdActivity
+import woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo.OrderWithCatInfoActivity
 
 class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -78,14 +79,13 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
 
 
-
-
-
         var menu : Menu = review_nav_view.menu
         var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
         var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
         var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
         var login_menu_item : MenuItem = menu.findItem(R.id.loginBtn)
+        var review_menu_item : MenuItem = menu.findItem(R.id.reviewBtn)
+        review_menu_item.setEnabled(false)
         blank_menu_item.setEnabled(false)
         blank_menu_item2.setEnabled(false)
 
@@ -117,13 +117,6 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         review_top_btn.setOnClickListener {
             review_scrollview.fullScroll(ScrollView.FOCUS_UP)
         }
-
-
-
-
-
-
-
 
 
 
@@ -370,7 +363,7 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             }
             R.id.orderBtn -> {
                 if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
-                    val dialog = LoginCustomDialog(this)
+                    val dialog = LoginCheckCustomDialog(this)
                     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.show()
                 } else{
@@ -379,7 +372,7 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
                     } else {
-                        val intent = Intent(this, OrderThirdActivity::class.java)
+                        val intent = Intent(this, OrderWithCatInfoActivity::class.java)
                         intent.putExtra("cat_idx",SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
                         startActivity(intent)
                     }
@@ -390,7 +383,9 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             }
             R.id.myPageBtn->{
                 if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
-                    ToastMaker.makeLongToast(this,"로그인 해주세요.")
+                    val dialog = LoginToMyPageCustomDialog(this)
+                    dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    dialog.show()
                 } else{
                     startActivity(Intent(this, MyPageActivity::class.java))
                 }

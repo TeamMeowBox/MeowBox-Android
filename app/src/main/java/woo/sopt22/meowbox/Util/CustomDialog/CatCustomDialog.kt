@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.cat_information_custom_dialog.*
 import woo.sopt22.meowbox.R
-import woo.sopt22.meowbox.View.Order.OrderFirstActivity
+import woo.sopt22.meowbox.View.Order.OrderFragment.OrderWithOutCatInfoActivity
 
 
 class CatCustomDialog(context: Context) : Dialog(context), View.OnClickListener {
@@ -22,7 +22,7 @@ class CatCustomDialog(context: Context) : Dialog(context), View.OnClickListener 
                 dismiss()
             }
             cat_question_apply_btn->{
-                context.startActivity(Intent(context, OrderFirstActivity::class.java))
+                context.startActivity(Intent(context, OrderWithOutCatInfoActivity::class.java))
             }
 
         }

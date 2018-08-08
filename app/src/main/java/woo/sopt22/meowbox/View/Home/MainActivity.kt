@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.cardview_adapter.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.sliding_layout.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,6 +34,7 @@ import woo.sopt22.meowbox.Model.Home.InstaCrawlingResponse
 import woo.sopt22.meowbox.Network.NetworkService
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
+import woo.sopt22.meowbox.Util.CustomDialog.LoginCheckCustomDialog
 import woo.sopt22.meowbox.Util.CustomDialog.LoginToMyPageCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
@@ -45,14 +47,13 @@ import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.CircleImageView
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 import woo.sopt22.meowbox.View.Order.LoginCustomDialog
-import woo.sopt22.meowbox.View.Order.OrderThirdActivity
+import woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo.OrderWithCatInfoActivity
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!){
-            home_stroy_btn->{
-                Log.v("073","073")
+            home_to_story_btn->{
                 startActivity(Intent(this, MeowBoxStoryActivity::class.java))
             }
             home_to_detail_btn->{
@@ -62,6 +63,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                 Log.v("만혁","아예 엘스")
             }
+            main_back_btn->{
+                main_drawer_layout.closeDrawer(GravityCompat.START)
+            }
             else->{
                 if(current_number == 2 || current_number == 3){
                     Log.v("만혁",current_number.toString())
@@ -70,13 +74,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     Log.v("만혁","묘박스 디테일")
                     startActivity(Intent(this, MeowBoxDetailActivity::class.java))
                 }
-                /*Log.v("만혁","전체 엘스")
-                startActivity(Intent(this, MeowBoxDetailActivity::class.java))*/
             }
         }
     }
 
-    lateinit var mViewPager : ViewPager
     lateinit var mSlidingTextView: TextView
 
     lateinit var mSlidingInstaProfile1 : CircleImageView
@@ -100,16 +101,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var sliding_toolbar : RelativeLayout
     private val PermissionRequestCode = 123
     private lateinit var managePermissions : ManagePermissions
-    lateinit var main_side_bar_btn : ImageView
-    lateinit var main_side_back_btn : ImageView
     lateinit var networkService: NetworkService
     var current_number : Int = 0
 
     fun init(){
-        mViewPager = viewpager as ViewPager
         mSlidingTextView = home_cat_count as TextView
-        home_stroy_btn = home_to_story_btn as ImageView
-        //main_side_back_btn = side_bar_back_btn as ImageView
 
         mSlidingInstaProfile1 = insta_profile_image1 as CircleImageView
         mSlidingInstaUserName1 = insta_user_name1 as TextView
@@ -128,9 +124,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         mSlidingInstaCatProfile4 = insta_cat_profile4 as ImageView
 
         slidinViewMain = sliding_view_main as RelativeLayout
-        sliding_toolbar = re as RelativeLayout
+        sliding_toolbar = bottom_up_relative_layout as RelativeLayout
+
+        home_to_detail_btn.setOnClickListener(this)
+        home_to_story_btn.setOnClickListener(this)
     }
 
+
+    // 고양이 인스타 크롤링 사진 받아오기 - 통신
     fun getInsta(){
         val instaResponse = networkService.getInstaCrawling()
         instaResponse.enqueue(object : Callback<InstaCrawlingResponse>{
@@ -161,6 +162,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
     }
 
+    // 고양이 Count 받아오기 - 통신
     fun getCatCount(){
         val countResponse = networkService.getCatCount()
         countResponse.enqueue(object : Callback<CatCountResponse>{
@@ -179,11 +181,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
     }
 
-    override fun onResume() {
-        super.onResume()
+
+    // 처음 들어오거나 다른 액티비티로 갔다가 올 때 정보를 확인해서 SharedPreference에 저장된 데이터 불러오도록!!
+    fun checkInfo(){
 
         SharedPreference.instance!!.load(this)
-
 
         var headerView : View = main_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
@@ -193,7 +195,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
             userName.text = "OO님!"
         } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("name")
+            userName.text = SharedPreference.instance!!.getPrefStringData("name") + " 님"
         }
 
         if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
@@ -206,34 +208,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        checkInfo()
 
     }
     override fun onRestart() {
         Log.v("onRestart",SharedPreference.instance!!.getPrefStringData("user_name"))
         super.onRestart()
-        SharedPreference.instance!!.load(this)
-
-
-        var headerView : View = main_nav_view.getHeaderView(0)
-        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
-        var userImage : ImageView = headerView.findViewById(R.id.imageView)
-
-
-        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
-            userName.text = "OO님!"
-        } else {
-            userName.text = SharedPreference.instance!!.getPrefStringData("name") + "님"
-        }
-
-        if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
-            //userImage.setImageResource(R.drawable.side_bar_profile_img)
-            Log.v("용범 onRestart","123")
-            Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
-        } else{
-            Log.v("용범 onRestart","456")
-            userImage.setImageURI(Uri.parse(SharedPreference.instance!!.getPrefStringData("image_profile")))
-            Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
-        }
+        checkInfo()
 
 
     }
@@ -242,39 +227,60 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        // toolbar의 타이을틀 가리고 기능도 없애는 부분
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
         toolbar.bringToFront()
 
-        //main_side_back_btn = side_bar_back_btn as ImageView
-        //side_bar_back_btn.setOnClickListener(this@MainActivity)
+        /*FIXME
+         * 기본 NavigationBar를 지우고 내가 원하는 이미지를 넣기 위해서 감추고 원하는 이미지를 넣는다.
+         * 그리고 내가 넣은 이미지가 원래 NavigationBar처럼 똑같이 동작하도록 코드를 넣어주었다.
+         * ActionBarDrawerToggle 이라는 함수를 통해 main_drawer_layout을 toggle이라는 이름의 객체로 가져온다.
+         * 그리고 IndicatorEnabled를 false로 줌으로써 보이지 않게 하고
+         * */
+        val toggle = ActionBarDrawerToggle(
+                this, main_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
 
+        toggle.setDrawerIndicatorEnabled(false)
+        val drawable = ResourcesCompat.getDrawable(resources, R.drawable.side_bar_btn_white, applicationContext!!.getTheme())
+
+        //val bitmap = (drawable as BitmapDrawable).bitmap
+        //val newdrawable = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, 30, 30, true))
+
+        toggle.setHomeAsUpIndicator(drawable)
+        toggle.setToolbarNavigationClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                if (main_drawer_layout.isDrawerVisible(GravityCompat.START)) {
+                    main_drawer_layout.closeDrawer(GravityCompat.START)
+                } else {
+                    main_drawer_layout.openDrawer(GravityCompat.START)
+                }
+            }
+        })
+
+        main_drawer_layout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        SharedPreference.instance!!.load(this)
+        networkService = ApplicationController.instance!!.networkService
 
         var headerView : View = main_nav_view.getHeaderView(0)
         var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
         var userImage : ImageView = headerView.findViewById(R.id.imageView)
-        //userImage.setImageResource(R.drawable.side_bar_profile_img)
+        var main_back_button : ImageView = headerView.findViewById(R.id.main_back_btn)
+        userImage.setImageResource(R.drawable.side_bar_profile_img)
+        main_back_button.setOnClickListener(this)
 
-        networkService = ApplicationController.instance!!.networkService
 
-        SharedPreference.instance!!.load(this)
-        Log.v("079",SharedPreference.instance!!.getPrefStringData("image_profile"))
-
-        if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
-            Log.v("Main 용범 onCreate","123")
-            Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
-        } else{
-            Log.v("Main 용범 onCreate","456")
-            Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
-        }
-        Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
-        home_to_detail_btn.setOnClickListener(this)
+        checkInfo()
 
         init()
-        re.setOnTouchListener(object : View.OnTouchListener{
+        // 터치 리스너를 달아준다.
+        bottom_up_relative_layout.setOnTouchListener(object : View.OnTouchListener{
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 when(event!!.action){
-                    MotionEvent.ACTION_UP, MotionEvent.ACTION_MOVE->{
+                    MotionEvent.ACTION_UP,MotionEvent.ACTION_MOVE->{
                         //Log.v("8989","8989")
                         getInsta()
                         getCatCount()
@@ -295,10 +301,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
 
 
-
-
-
-        home_stroy_btn.setOnClickListener(this)
         //main_side_back_btn.setOnClickListener(this)
         var result = SharedPreference.instance!!.getPrefStringData("token")
         println("11"+SharedPreference.instance!!.getPrefStringData("token"))
@@ -309,6 +311,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var login_menu_item : MenuItem = menu.findItem(R.id.loginBtn)
         var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
         var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
+        var home_menu_item : MenuItem = menu.findItem(R.id.homeBtn)
+        home_menu_item.setEnabled(false)
         blank_menu_item.setEnabled(false)
         blank_menu_item2.setEnabled(false)
         //home_detail_btn.setImageResource(R.drawable.home_detail_btn_white)
@@ -341,21 +345,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
 
-      /*  mSlidingTextView.setOnClickListener {
-            ToastMaker.makeLongToast(this,mSlidingTextView.text.toString())
-        }*/
-
-        // actionBar 타이틀 가리기
-
-
-
-
         //희현카드뷰
 
-
-        var imgUrl1 = "https://post-phinf.pstatic.net/MjAxNzA0MjFfMTMx/MDAxNDkyNzAxMjI0NzA3.Q_bmK_EvjtxtFpT30CNtyBsJBfGkAieooME9VDfoKHYg.nrXNY37E18mt1g6nbwDpHN7kQAwmDr9Q2RPLKWkw_2wg.JPEG/1492696692724.jpg?type=w1200" as String
-        var imgUrl2 = "https://post-phinf.pstatic.net/MjAxNzA0MjFfMTc2/MDAxNDkyNzAxMjI1MDA4.IS9AxBl-5bs1-h3PbJssvfm5xmcsUAkkLMg-qIJ9KVsg.h8_rW0zPTvO74wQ5yH_K3TRAJVJUcGT6Z_hldpv_GRgg.JPEG/1492696688049.jpg?type=w1200" as String
-        var imgUrl3 = "https://post-phinf.pstatic.net/MjAxNzA0MjFfMTI1/MDAxNDkyNzAxMjI1MTY0.femsgEnFQWPK7szY4kZ0_6uSgXqCaDNyAPZt5Pp-ebMg.oRMiRH-aga5cGKJc8OSOabjZv1Nf0AO7XUFGe7sVa_cg.JPEG/1492696687282.jpg?type=w1200" as String
 
         var items : ArrayList<CardData>
         items = ArrayList();
@@ -365,20 +356,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         items.add(CardData(R.drawable.home_main_four_img,0))
         items.add(CardData(R.drawable.home_main_five_img,2))
 
-        /*home_detail_btn.setOnClickListener {
-            ToastMaker.makeLongToast(this, "dd")
-        }*/
-
-        mViewPager.setPadding(0,0,200,0)
+        main_viewpager.setPadding(0,0,200,0)
         var madapter = CardViewAdapter(layoutInflater, items)
-        mViewPager.setCurrentItem(0)
-        mViewPager.adapter = madapter
-        mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+        main_viewpager.setCurrentItem(0)
+        main_viewpager.adapter = madapter
+        main_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(state: Int) {
 
 
             }
 
+            // 이 함수를 통해서 선택된 position 값에 따른 네비게이션 바의 색깔과 툴바의 색을 변경할 수 있다.
+            // 그리고 1,2에서의 상세보기와 3,4에서의 상세보기 버튼을 다른 기능을 할 수 있도록 구현할 수 있다.
             override fun onPageSelected(position: Int) {
                 when(position){
                     0->{
@@ -458,13 +447,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
 
+            // 화면의 일부만 보이게 하기 위해서 ViewPager의 함수인 onpageScrolled에서 postion과 Offset을 건드렸다.
+            /*FIXME
+            * positionOffset이란 해당 포지션의 page의 변위차를 의미한다.
+            * */
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 when(position){
                     (items.size-2)->{
-                        mViewPager.setPadding((200 * positionOffset).toInt(),0,200 - (200*positionOffset).toInt(),0)
+                        //Log.v("12",positionOffset.toString())
+                        Log.v("12",(200*positionOffset).toString())
+                        main_viewpager.setPadding((200*positionOffset).toInt(),0,200 - (200*positionOffset).toInt(),0)
+                        Log.v("33",(200-(200*positionOffset)).toString())
                     }
                     (items.size-1)->{
-                        mViewPager.setPadding(200,0,0,0)
+                        Log.v("44",positionOffset.toString())
+                        main_viewpager.setPadding(200,0,0,0)
                     }
 
                 }
@@ -474,40 +471,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
 
         madapter.setOnItemClickListener(this)
-
-
-
-
-
-        val toggle = ActionBarDrawerToggle(
-                this, main_drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-
-        toggle.setDrawerIndicatorEnabled(false)
-        val drawable = ResourcesCompat.getDrawable(resources, R.drawable.side_bar_btn_white, applicationContext!!.getTheme())
-
-        val bitmap = (drawable as BitmapDrawable).bitmap
-        val newdrawable = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, 30, 30, true))
-
-        toggle.setHomeAsUpIndicator(drawable)
-        toggle.setToolbarNavigationClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                if (main_drawer_layout.isDrawerVisible(GravityCompat.START)) {
-                    main_drawer_layout.closeDrawer(GravityCompat.START)
-                } else {
-                    main_drawer_layout.openDrawer(GravityCompat.START)
-                }
-            }
-        })
-
-        main_drawer_layout.addDrawerListener(toggle)
-        toggle.syncState()
-
-
-
-
         main_nav_view.setNavigationItemSelectedListener(this)
     }
 
+    // 뒤로가기 버튼
     override fun onBackPressed() {
         if (main_drawer_layout.isDrawerOpen(GravityCompat.START)) {
             main_drawer_layout.closeDrawer(GravityCompat.START)
@@ -517,6 +484,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
 
+
+    // Navigation Bar에 있는 아이템을 선택했을 때의 클릭 리스너 부분
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
@@ -538,7 +507,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.orderBtn -> {
                 if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
-                    val dialog = LoginCustomDialog(this)
+                    val dialog = LoginCheckCustomDialog(this)
                     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.show()
                 } else{
@@ -547,7 +516,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
                     } else {
-                        val intent = Intent(this, OrderThirdActivity::class.java)
+                        val intent = Intent(this, OrderWithCatInfoActivity::class.java)
                         intent.putExtra("cat_idx",SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
                         startActivity(intent)
                     }
@@ -589,13 +558,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
     }
-
-
-
-
-
-
-
 }
 
 

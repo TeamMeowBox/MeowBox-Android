@@ -25,20 +25,27 @@ import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Order.Credit.CreditActivity
-import woo.sopt22.meowbox.View.Order.OrderThirdActivity
 
 class WithCatInfoFour : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!){
             order_pay_previous->{
 
-                (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoThird())
+                (OrderWithCatInfoActivity.thirdContext as OrderWithCatInfoActivity).replaceFragment(WithCatInfoThird())
             }
             order_pay_next->{
-                ToastMaker.makeLongToast(context, radio_button.text.trim().toString())
+                //oastMaker.makeLongToast(context, radio_button.text.trim().toString())
                 Log.v("48",radio_button.text.toString())
+                if(order_four_name.text.toString().length == 0 ||
+                        order_four_address_one.text.toString().length == 0 ||
+                        order_four_address_two.text.toString().length == 0 ||
+                        order_four_email.text.toString().length == 0){
+                    ToastMaker.makeShortToast(context, "필수 정보를 입력해주세요!")
+                } else{
+                    postOrder()
+                }
 
-                postOrder()
+                //postOrder()
 
 
 
@@ -62,7 +69,7 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
 
         networkService = ApplicationController.instance!!.networkService
         SharedPreference.instance!!.load(context!!)
-        activity!!.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
+        activity!!.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
 
         view.order_pay_previous.setOnClickListener(this)
         view.order_pay_next.setOnClickListener(this)
@@ -116,11 +123,11 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
 //                    var orderCheckBoolean = response!!.body()!!.result.order_result
 //                    Log.d("boolean", orderCheckBoolean.toString())
 //                    if(orderCheckBoolean == true) {
-//                        (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoFive())
+//                        (OrderWithCatInfoActivity.thirdContext as OrderWithCatInfoActivity).replaceFragment(WithCatInfoFive())
 //                    }
 //                    else {
 //                        Log.d("boolean", "어디까지 들어가냥")
-//                        (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoThird())
+//                        (OrderWithCatInfoActivity.thirdContext as OrderWithCatInfoActivity).replaceFragment(WithCatInfoThird())
 //                    }
 //                }
 //            }
@@ -161,13 +168,15 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
 
                     if(box_type.equals("7")){
 
-                        orderTest = OrderTest(orderIdx, "생일 축하해! 박스", priceTmp)
+                        orderTest = OrderTest(orderIdx, "생일 축하해! 박스", priceTmp/100)
 
                     }
                     else{
 
-                        orderTest = OrderTest(orderIdx, box_type+"개월 정기배송", priceTmp)
+                        orderTest = OrderTest(orderIdx, box_type+"개월 정기배송", priceTmp/100)
                     }
+
+                    //orderTest = OrderTest(orderIdx, box_type+"개월 정기배송", priceTmp/100)
 
                     var gson = Gson()
                     var orderJson = gson.toJson(orderTest)
@@ -218,11 +227,11 @@ class WithCatInfoFour : Fragment(), View.OnClickListener {
                 1541 ->{
                     Log.d("체크3",data!!.getStringExtra("result"))
                     if(data!!.getStringExtra("result").equals("true")) {
-                        (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoFive())
+                        (OrderWithCatInfoActivity.thirdContext as OrderWithCatInfoActivity).replaceFragment(WithCatInfoFive())
                     }
                     else {
                         Log.d("체크2", "어디까지 들어가냥")
-                        (OrderThirdActivity.thirdContext as OrderThirdActivity).replaceFragment(WithCatInfoThird())
+                        (OrderWithCatInfoActivity.thirdContext as OrderWithCatInfoActivity).replaceFragment(WithCatInfoThird())
                     }
 
                 }

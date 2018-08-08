@@ -44,16 +44,16 @@ import woo.sopt22.meowbox.View.MeowBoxStory.MeowBoxStoryActivity
 import woo.sopt22.meowbox.View.MyPage.FAQ.QuestionActivity
 import woo.sopt22.meowbox.View.MyPage.OrderHistory.OrderHistoryActivity
 import woo.sopt22.meowbox.View.MyPage.ProgressBar.StateProgressBar
-import woo.sopt22.meowbox.View.MyPage.Setting.MyPageSettingActivity
+import woo.sopt22.meowbox.View.MyPage.Setting.SettingActivity
 import woo.sopt22.meowbox.View.MyPage.Suggest.MyPageSuggestActivity
 import woo.sopt22.meowbox.View.Order.LoginCustomDialog
-import woo.sopt22.meowbox.View.Order.OrderThirdActivity
+import woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo.OrderWithCatInfoActivity
 
 class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!){
             mypage_setting -> {
-                val intent = Intent(applicationContext, MySettingActivity::class.java)
+                val intent = Intent(applicationContext, MyPageSettingActivity::class.java)
                 startActivity(intent);
             }
             mypage_suggest_btn->{
@@ -61,7 +61,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
 
             mypage_setting_btn->{
-                startActivity(Intent(this, MyPageSettingActivity::class.java))
+                startActivity(Intent(this, SettingActivity::class.java))
             }
             mypage_qna_btn->{
                 startActivity(Intent(this, QuestionActivity::class.java))
@@ -82,7 +82,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
                     } else {
-                        val intent = Intent(this, OrderThirdActivity::class.java)
+                        val intent = Intent(this, OrderWithCatInfoActivity::class.java)
                         intent.putExtra("cat_idx",SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
                         startActivity(intent)
                     }
@@ -245,6 +245,8 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         var login_menu_item : MenuItem = menu.findItem(R.id.loginBtn)
         var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
         var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
+        var mypage_menu_item : MenuItem = menu.findItem(R.id.myPageBtn)
+        mypage_menu_item.setEnabled(false)
         blank_menu_item.setEnabled(false)
         login_menu_item.setEnabled(false)
         blank_menu_item2.setEnabled(false)
@@ -422,7 +424,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
                     } else {
-                        val intent = Intent(this, OrderThirdActivity::class.java)
+                        val intent = Intent(this, OrderWithCatInfoActivity::class.java)
                         intent.putExtra("cat_idx",SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
                         startActivity(intent)
                     }

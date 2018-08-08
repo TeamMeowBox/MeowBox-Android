@@ -9,14 +9,13 @@ import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.view.View
 import kotlinx.android.synthetic.main.activity_birthday_story_detail.*
-import kotlinx.android.synthetic.main.content_meow_box_detail.*
 import woo.sopt22.meowbox.R
 import woo.sopt22.meowbox.Util.CustomDialog.CatCustomDialog
 import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.View.MeowBoxDetail.DetailModel
 import woo.sopt22.meowbox.View.MeowBoxDetail.DetailViewAdapter
 import woo.sopt22.meowbox.View.Order.LoginCustomDialog
-import woo.sopt22.meowbox.View.Order.OrderThirdActivity
+import woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo.OrderWithCatInfoActivity
 
 class BirthdayStoryDetailActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
@@ -32,7 +31,7 @@ class BirthdayStoryDetailActivity : AppCompatActivity(), View.OnClickListener {
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
                     } else {
-                        val intent = Intent(this, OrderThirdActivity::class.java)
+                        val intent = Intent(this, OrderWithCatInfoActivity::class.java)
                         intent.putExtra("cat_idx",SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
                         startActivity(intent)
                     }
@@ -53,17 +52,30 @@ class BirthdayStoryDetailActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var items4 : ArrayList<DetailModel>
     lateinit var items5 : ArrayList<DetailModel>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_birthday_story_detail)
+
+
+    fun init(){
+
         birthday_detail_order_btn.setOnClickListener(this)
         birthday_detail_x_btn.setOnClickListener(this)
         SharedPreference.instance!!.load(this)
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             window.statusBarColor = Color.BLACK
             window.navigationBarColor = Color.BLACK
         }
+    }
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_birthday_story_detail)
+
+        init()
+        dataSetting()
+
+    }
+
+    fun dataSetting(){
         items1 = ArrayList(); // 선글라스 모자
 
         items1.add(DetailModel("2018 S/S 피서룩의 완성. 선글라스와 \n모자만 있으면, 이구역 힙냥이는 나야!",R.drawable.ribbon_two_img))
@@ -155,13 +167,9 @@ class BirthdayStoryDetailActivity : AppCompatActivity(), View.OnClickListener {
         birthday_detail_cardview_pager_five.setPadding(80,0,80,0)
         birthday_detail_cardview_pager_five.pageMargin = 40
 
-
-
-
-
-
-
     }
+
+
     var birthdayOnPageChangeListenter_one : ViewPager.OnPageChangeListener = object : ViewPager.OnPageChangeListener{
         override fun onPageScrollStateChanged(state: Int) {
         }

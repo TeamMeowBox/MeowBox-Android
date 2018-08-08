@@ -50,8 +50,6 @@ class CreditActivity : Activity() {
         SharedPreference.instance!!.load(this)
 
 
-
-
         mainWebView = main_web_view as WebView
         mainWebView!!.webViewClient = InicisWebViewClient(this)
         val settings = mainWebView!!.settings
@@ -112,7 +110,7 @@ class CreditActivity : Activity() {
     override fun onStop() {
         super.onStop()
         val mHandler = Handler()
-        mHandler.postDelayed({ postORrderResult() }, 20500)
+        mHandler.postDelayed({ postORrderResult() }, 22000)
     }
 
 
@@ -177,7 +175,8 @@ class CreditActivity : Activity() {
 
             override fun onResponse(call: Call<OrderResultResponse>?, response: Response<OrderResultResponse>?) {
                 if(response!!.isSuccessful){
-                    var orderCheckBoolean = response!!.body()!!.result.order_result
+                    //var orderCheckBoolean = response!!.body()!!.result.order_result
+                    var orderCheckBoolean = true
                     Log.d("booln3", orderCheckBoolean.toString())
 
                     val resultIntent = Intent()

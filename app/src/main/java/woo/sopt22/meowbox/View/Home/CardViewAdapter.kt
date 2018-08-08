@@ -10,8 +10,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.cardview_adapter.view.*
 
 import woo.sopt22.meowbox.R
+import woo.sopt22.meowbox.R.id.home_detail_btn
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.MeowBoxBirthDay.MeowBoxtBirthDayStoryActivity
 import woo.sopt22.meowbox.View.MeowBoxDetail.MeowBoxDetailActivity
@@ -31,16 +33,13 @@ class CardViewAdapter(private val inflater: LayoutInflater, private val mPageLis
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val view = inflater.inflate(R.layout.cardview_adapter, container, false)
 
-
-        val home_detail_btn = view.findViewById<View>(R.id.home_detail_btn) as ImageView
-        home_detail_btn.setOnClickListener(onItemClick)
-        val mImageView = view.findViewById<ImageView>(R.id.titleImageView)
+        view.home_detail_btn.setOnClickListener(onItemClick)
         val item = mPageList[position]
-        Glide.with(container.context).load(item.image).into(mImageView)
+        Glide.with(container.context).load(item.image).into(view.titleImageView)
         if (item.tmp == 1) {
-            home_detail_btn.setImageResource(R.drawable.home_detail_btn_white)
+            view.home_detail_btn.setImageResource(R.drawable.home_detail_btn_white)
         } else if (item.tmp == 2) {
-            home_detail_btn.visibility = View.INVISIBLE
+            view.home_detail_btn.visibility = View.INVISIBLE
         }
         container.addView(view)
         return view

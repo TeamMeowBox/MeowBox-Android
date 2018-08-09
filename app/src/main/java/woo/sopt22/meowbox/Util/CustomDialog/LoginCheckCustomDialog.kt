@@ -14,11 +14,11 @@ import woo.sopt22.meowbox.View.Login.LoginActivity
  */
 class LoginCheckCustomDialog(context: Context) : Dialog(context), View.OnClickListener {
     override fun onClick(v: View?) {
-        when(v!!){
-            popup_cancel_btn->{
+        when (v!!) {
+            popup_cancel_btn -> {
                 cancel()
             }
-            popup_login_btn->{
+            popup_login_btn -> {
                 context.startActivity(Intent(context, LoginActivity::class.java))
             }
         }

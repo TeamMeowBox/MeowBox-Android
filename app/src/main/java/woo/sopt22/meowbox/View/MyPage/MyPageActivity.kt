@@ -51,39 +51,39 @@ import woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo.OrderWithCatInfoAc
 
 class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     override fun onClick(v: View?) {
-        when(v!!){
+        when (v!!) {
             mypage_setting -> {
                 val intent = Intent(applicationContext, MyPageSettingActivity::class.java)
                 startActivity(intent);
             }
-            mypage_suggest_btn->{
+            mypage_suggest_btn -> {
                 startActivity(Intent(this, MyPageSuggestActivity::class.java))
             }
 
-            mypage_setting_btn->{
+            mypage_setting_btn -> {
                 startActivity(Intent(this, SettingActivity::class.java))
             }
-            mypage_qna_btn->{
+            mypage_qna_btn -> {
                 startActivity(Intent(this, QuestionActivity::class.java))
             }
 
-            mypage_order_btn->{
+            mypage_order_btn -> {
 
                 startActivity(Intent(this, OrderHistoryActivity::class.java))
             }
-            story_order_btn->{
-                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+            story_order_btn -> {
+                if (SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()) {
                     val dialog = LoginCustomDialog(this)
                     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.show()
-                } else{
-                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1"){
+                } else {
+                    if (SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1") {
                         val dialog = CatCustomDialog(this)
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
                     } else {
                         val intent = Intent(this, OrderWithCatInfoActivity::class.java)
-                        intent.putExtra("cat_idx",SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
+                        intent.putExtra("cat_idx", SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
                         startActivity(intent)
                     }
                 }
@@ -94,42 +94,39 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     //var descriptionData = arrayOf("1box")
 
-    var tmpMaxNum : Int = 0
-    var tmpCurrentNum : Int = 0
-    lateinit var tmpStringMax : String
-    lateinit var tmpStringCurrent : String
-    lateinit var myPageTextImg : ImageView
-    lateinit var myPageTextImgString : String
-    lateinit var storyOrderBtn : ImageView
+    var tmpMaxNum: Int = 0
+    var tmpCurrentNum: Int = 0
+    lateinit var tmpStringMax: String
+    lateinit var tmpStringCurrent: String
+    lateinit var myPageTextImg: ImageView
+    lateinit var myPageTextImgString: String
+    lateinit var storyOrderBtn: ImageView
 
-    lateinit var mypageVisibleProgess : RelativeLayout
-    lateinit var mypageVisibleText : RelativeLayout
+    lateinit var mypageVisibleProgess: RelativeLayout
+    lateinit var mypageVisibleText: RelativeLayout
 
-    lateinit var mypage_to_suggest_btn : LinearLayout
-    lateinit var mypage_to_setting_btn : LinearLayout
-    lateinit var mypage_to_qna_btn : LinearLayout
-    lateinit var mypage_to_history_btn : LinearLayout
-    lateinit var mypageVisibleBoxLeftBox : TextView
-    lateinit var mypageVisibleBoxGetBox : TextView
-    lateinit var re : Regex
-    lateinit var profileImage : ImageView
+    lateinit var mypage_to_suggest_btn: LinearLayout
+    lateinit var mypage_to_setting_btn: LinearLayout
+    lateinit var mypage_to_qna_btn: LinearLayout
+    lateinit var mypage_to_history_btn: LinearLayout
+    lateinit var mypageVisibleBoxLeftBox: TextView
+    lateinit var mypageVisibleBoxGetBox: TextView
+    lateinit var re: Regex
+    lateinit var profileImage: ImageView
     // Edit by 승우 : 민형이꺼 코드 추가
-
-
 
 
     lateinit var networkService: NetworkService
     lateinit var myPageYes: MyPageYes
+
     companion object {
-        lateinit var stateProgressBar : StateProgressBar
+        lateinit var stateProgressBar: StateProgressBar
     }
 
-    fun init(){
+    fun init() {
         Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image")).into(mypage_profile_img)
-        Log.v("윤선",SharedPreference.instance!!.getPrefStringData("ima\nge"))
+        Log.v("윤선", SharedPreference.instance!!.getPrefStringData("ima\nge"))
     }
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -144,7 +141,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
 
         setSupportActionBar(toolbar)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.statusBarColor = Color.BLACK
             window.navigationBarColor = Color.BLACK
         }
@@ -153,17 +150,17 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
 
 
-        var headerView : View = mypage_nav_view.getHeaderView(0)
-        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
-        var userImage : ImageView = headerView.findViewById(R.id.imageView)
+        var headerView: View = mypage_nav_view.getHeaderView(0)
+        var userName: TextView = headerView.findViewById<TextView>(R.id.header_name)
+        var userImage: ImageView = headerView.findViewById(R.id.imageView)
         userImage.setImageResource(R.drawable.side_bar_profile_img)
 
-        if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
+        if (SharedPreference.instance!!.getPrefStringData("image_profile") == null) {
             //userImage.setImageResource(R.drawable.side_bar_profile_img)
-            Log.v("용범","123")
+            Log.v("용범", "123")
             Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
-        } else{
-            Log.v("용범","456")
+        } else {
+            Log.v("용범", "456")
             //userImage.setImage(SharedPreference.instance!!.getPrefStringData("image"))
             Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
         }
@@ -200,8 +197,6 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         getMyPageYes();
 
 
-
-
         /*re = Regex("[^0-9]")
         tmpMaxNum = re.replace(tmpStringMax, "").toInt()
         tmpCurrentNum = re.replace(tmpStringCurrent, "").toInt()
@@ -215,7 +210,6 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         mypageVisibleBoxLeftBox.setText(tmpStringMax)
         mypageVisibleBoxGetBox.setText(tmpStringCurrent)*/
-
 
 
         val toggle = ActionBarDrawerToggle(
@@ -241,11 +235,11 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
         })
 
-        var menu : Menu = mypage_nav_view.menu
-        var login_menu_item : MenuItem = menu.findItem(R.id.loginBtn)
-        var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
-        var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
-        var mypage_menu_item : MenuItem = menu.findItem(R.id.myPageBtn)
+        var menu: Menu = mypage_nav_view.menu
+        var login_menu_item: MenuItem = menu.findItem(R.id.loginBtn)
+        var blank_menu_item: MenuItem = menu.findItem(R.id.blankBtn)
+        var blank_menu_item2: MenuItem = menu.findItem(R.id.blankBtn2)
+        var mypage_menu_item: MenuItem = menu.findItem(R.id.myPageBtn)
         mypage_menu_item.setEnabled(false)
         blank_menu_item.setEnabled(false)
         login_menu_item.setEnabled(false)
@@ -266,35 +260,34 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         SharedPreference.instance!!.load(this)
 
 
-        var headerView : View = mypage_nav_view.getHeaderView(0)
-        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
-        var userImage : ImageView = headerView.findViewById(R.id.imageView)
+        var headerView: View = mypage_nav_view.getHeaderView(0)
+        var userName: TextView = headerView.findViewById<TextView>(R.id.header_name)
+        var userImage: ImageView = headerView.findViewById(R.id.imageView)
         //userImage.setImageResource(R.drawable.side_bar_profile_img)
         Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")).into(userImage)
 
-        if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
+        if (SharedPreference.instance!!.getPrefStringData("image_profile") == null) {
             //userImage.setImageResource(R.drawable.side_bar_profile_img)
-            Log.v("승우 onResume","123")
+            Log.v("승우 onResume", "123")
             Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
-        } else{
-            Log.v("승우 onResume","456")
+        } else {
+            Log.v("승우 onResume", "456")
             //Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")).into(mypage_profile_img)
             Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
         }
 
-        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
+        if (SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()) {
             userName.text = "OO님!"
         } else {
             userName.text = SharedPreference.instance!!.getPrefStringData("name")
-            if(SharedPreference.instance!!.getPrefStringData("cat_name")!!.isEmpty()){
-                mypage_name_text1.text = SharedPreference.instance!!.getPrefStringData("name")+" 님"
-            } else{
-                if(SharedPreference.instance!!.getPrefStringData("cat_idx") == "-1")
-                {
-                    mypage_name_text1.text = " 집사 "+SharedPreference.instance!!.getPrefStringData("name")+" 님"
+            if (SharedPreference.instance!!.getPrefStringData("cat_name")!!.isEmpty()) {
+                mypage_name_text1.text = SharedPreference.instance!!.getPrefStringData("name") + " 님"
+            } else {
+                if (SharedPreference.instance!!.getPrefStringData("cat_idx") == "-1") {
+                    mypage_name_text1.text = " 집사 " + SharedPreference.instance!!.getPrefStringData("name") + " 님"
 
-                } else{
-                    mypage_name_text1.text = SharedPreference.instance!!.getPrefStringData("cat_name")!!+" 집사 "+SharedPreference.instance!!.getPrefStringData("name")+" 님"
+                } else {
+                    mypage_name_text1.text = SharedPreference.instance!!.getPrefStringData("cat_name")!! + " 집사 " + SharedPreference.instance!!.getPrefStringData("name") + " 님"
                 }
             }
 
@@ -302,21 +295,21 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     }
 
-    fun getMyPageYes(){
+    fun getMyPageYes() {
         val tmpResponse = networkService.getMyPageYes(SharedPreference.instance!!.getPrefStringData("token")!!)
 
         //val tmpResponse = networkService.getMyPageYes("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IuyEnOyXsOydtCDstZzqs6Ag6riw7Jqp7J2064qUIOqwgGRkIiwidXNlcl9pZHgiOjE5MywiaWF0IjoxNTMxMDI1NzQ5LCJleHAiOjE1MzM2MTc3NDl9.OlyBgwTWCeG76qAi1f8sV37MzluNJXe4PPqvUpK2mzA")
-        Log.v("98","들어오니?")
-        tmpResponse.enqueue(object : Callback<MyPageYes>{
+        Log.v("98", "들어오니?")
+        tmpResponse.enqueue(object : Callback<MyPageYes> {
             override fun onFailure(call: Call<MyPageYes>?, t: Throwable?) {
-                Log.v("98","안됭")
+                Log.v("98", "안됭")
             }
 
             override fun onResponse(call: Call<MyPageYes>?, response: Response<MyPageYes>?) {
-                if(response!!.isSuccessful){
+                if (response!!.isSuccessful) {
 
                     var tmpFlag = response!!.body()!!.result.flag
-                    if(tmpFlag == 1){
+                    if (tmpFlag == 1) {
                         mypageVisibleProgess.show()
                         mypageVisibleText.hide()
 
@@ -326,7 +319,7 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
                         tmpStringMax = response!!.body()!!.result.ticket
                         tmpStringCurrent = response!!.body()!!.result.use
-                        Log.v("93",tmpStringCurrent)
+                        Log.v("93", tmpStringCurrent)
                         Log.v("94", tmpStringMax)
 
                         re = Regex("[^0-9]")
@@ -342,22 +335,19 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
                         mypageVisibleBoxLeftBox.setText(tmpStringMax)
                         mypageVisibleBoxGetBox.setText(tmpStringCurrent)
-                        var descriptionData = Array(tmpMaxNum,{ i -> (i+1).toString()})
+                        var descriptionData = Array(tmpMaxNum, { i -> (i + 1).toString() })
                         stateProgressBar.setStateDescriptionData(descriptionData)
 
                         Glide.with(this@MyPageActivity).load(response!!.body()!!.result.image_profile).into(profileImage)
-                        SharedPreference.instance!!.setPrefData("image_profile",response!!.body()!!.result.image_profile)
-                        var headerView : View = mypage_nav_view.getHeaderView(0)
-                        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
-                        var userImage : ImageView = headerView.findViewById(R.id.imageView)
+                        SharedPreference.instance!!.setPrefData("image_profile", response!!.body()!!.result.image_profile)
+                        var headerView: View = mypage_nav_view.getHeaderView(0)
+                        var userName: TextView = headerView.findViewById<TextView>(R.id.header_name)
+                        var userImage: ImageView = headerView.findViewById(R.id.imageView)
                         userImage.setImageURI(Uri.parse(response!!.body()!!.result.image_profile))
                         Glide.with(this@MyPageActivity).load(response!!.body()!!.result.image_profile).into(userImage)
 
 
-
-
-                    }
-                    else{
+                    } else {
                         mypageVisibleProgess.hide()
                         mypageVisibleText.show()
                         myPageTextImgString = response!!.body()!!.result.sendImage
@@ -368,11 +358,11 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                         myPageTextImg = mypage_visiblebox_text_img as ImageView
                         Glide.with(this@MyPageActivity).load(myPageTextImgString).into(myPageTextImg);
                         Glide.with(this@MyPageActivity).load(response!!.body()!!.result.image_profile).into(profileImage)
-                        SharedPreference.instance!!.setPrefData("image_profile",response!!.body()!!.result.image_profile)
+                        SharedPreference.instance!!.setPrefData("image_profile", response!!.body()!!.result.image_profile)
 
                     }
-                } else{
-                    Log.v("96",response!!.message())
+                } else {
+                    Log.v("96", response!!.message())
                 }
 
             }
@@ -390,20 +380,18 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
 
-
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.loginBtn -> {
-                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                if (SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()) {
                     startActivity(Intent(this, LoginActivity::class.java))
-                } else{
+                } else {
                     ToastMaker.makeLongToast(this, "설정에서 로그아웃 해주세요!")
                 }
             }
             R.id.homeBtn -> {
-                var intent =  Intent(this, MainActivity::class.java)
+                var intent = Intent(this, MainActivity::class.java)
                 /*intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)*/
                 startActivity(intent)
@@ -414,18 +402,18 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 finish()
             }
             R.id.orderBtn -> {
-                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                if (SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()) {
                     val dialog = LoginCustomDialog(this)
                     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.show()
-                } else{
-                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1"){
+                } else {
+                    if (SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1") {
                         val dialog = CatCustomDialog(this)
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
                     } else {
                         val intent = Intent(this, OrderWithCatInfoActivity::class.java)
-                        intent.putExtra("cat_idx",SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
+                        intent.putExtra("cat_idx", SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
                         startActivity(intent)
                     }
                 }
@@ -435,10 +423,10 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 startActivity(intent)
                 finish()
             }
-            R.id.myPageBtn->{
+            R.id.myPageBtn -> {
 
             }
-            R.id.birthDayBtn->{
+            R.id.birthDayBtn -> {
                 startActivity(Intent(this, MeowBoxtBirthDayStoryActivity::class.java))
             }
         }
@@ -447,14 +435,13 @@ class MyPageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         return true
     }
 
-    fun View.show(){
+    fun View.show() {
         visibility = View.VISIBLE
     }
 
-    fun View.hide(){
+    fun View.hide() {
         visibility = View.GONE
     }
-
 
 
 }

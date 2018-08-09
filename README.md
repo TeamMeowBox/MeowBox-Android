@@ -136,7 +136,7 @@
         })
 ```
 
-<img src="image/meowbox_home.png"> <img src="image/meowbox_bottom_up.png">
+
 
 
 * 미유 박스 이야기 화면

@@ -8,7 +8,7 @@ import android.support.v7.app.AlertDialog
 import woo.sopt22.meowbox.Util.ToastMaker
 
 
-class ManagePermissions(val activity: Activity,val list: List<String>,val code:Int) {
+class ManagePermissions(val activity: Activity, val list: List<String>, val code: Int) {
 
     // Check permissions at runtime
     fun checkPermissions() {
@@ -59,7 +59,7 @@ class ManagePermissions(val activity: Activity,val list: List<String>,val code:I
         val permission = deniedPermission()
         if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
             // Show an explanation asynchronously
-            ToastMaker.makeLongToast(activity,"Should show an explanation.")
+            ToastMaker.makeLongToast(activity, "Should show an explanation.")
         } else {
             ActivityCompat.requestPermissions(activity, list.toTypedArray(), code)
         }

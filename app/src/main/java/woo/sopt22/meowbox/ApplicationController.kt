@@ -8,7 +8,7 @@ import woo.sopt22.meowbox.Network.NetworkService
 class ApplicationController : Application() {
 
     lateinit var networkService : NetworkService
-    private val baseUrl = "http://52.79.252.44:3000/"
+    private val baseUrl = "http://52.79.252.44:3002/"
     companion object {
         lateinit var instance : ApplicationController
     }

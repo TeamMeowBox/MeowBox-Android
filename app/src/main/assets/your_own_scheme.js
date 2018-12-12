@@ -17,7 +17,6 @@ data;
 IMP.request_pay(
 {
 
-
     pg : 'inicis', // version 1.1.0부터 지원.
     pay_method : 'card',
     merchant_uid :data.merchant_uid,

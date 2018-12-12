@@ -26,6 +26,7 @@ import woo.sopt22.meowbox.Util.SharedPreference
 import woo.sopt22.meowbox.Util.ToastMaker
 import woo.sopt22.meowbox.View.Order.Credit.CreditActivity
 
+
 class WithCatInfoFour : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!){

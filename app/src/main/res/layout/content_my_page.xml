@@ -31,7 +31,6 @@
             android:id="@+id/mypage_profile_img"
             android:layout_width="51dp"
             android:layout_height="51dp"
-            android:src="@drawable/pro1"
             android:layout_gravity="center"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"

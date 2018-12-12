@@ -9,6 +9,7 @@
     tools:context=".View.Splash.SplashActivity">
 
     <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/mainLottie"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:lottie_fileName="meow_box_splash_5.json"

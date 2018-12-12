@@ -48,23 +48,23 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
 
     //lateinit var reviewItem3 : ReviewAdapter
-    lateinit var items1 : ArrayList<ReviewModel>
-    lateinit var items2 : ArrayList<ReviewModel>
-    lateinit var items3 : ArrayList<ReviewModel>
+    lateinit var items1: ArrayList<ReviewModel>
+    lateinit var items2: ArrayList<ReviewModel>
+    lateinit var items3: ArrayList<ReviewModel>
     //lateinit var items3 : ArrayList<ReviewModel>
     lateinit var networkService: NetworkService
-    lateinit var mViewPager1 : ViewPager
-    lateinit var mViewPager2 : ViewPager
+    lateinit var mViewPager1: ViewPager
+    lateinit var mViewPager2: ViewPager
     lateinit var mViewPager3: ViewPager
-    lateinit var mIndicator1 : CircleAnimIndicator
+    lateinit var mIndicator1: CircleAnimIndicator
     lateinit var mIndicator2: CircleAnimIndicator
     lateinit var mIndicator3: CircleAnimIndicator
-    lateinit var title1 : TextView
-    lateinit var title2 : TextView
-    lateinit var title3 : TextView
-    lateinit var comment1 : TextView
-    lateinit var comment2 : TextView
-    lateinit var comment3 : TextView
+    lateinit var title1: TextView
+    lateinit var title2: TextView
+    lateinit var title3: TextView
+    lateinit var comment1: TextView
+    lateinit var comment2: TextView
+    lateinit var comment3: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,33 +78,32 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         SharedPreference.instance!!.load(this)
 
 
-
-        var menu : Menu = review_nav_view.menu
-        var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
-        var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
-        var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
-        var login_menu_item : MenuItem = menu.findItem(R.id.loginBtn)
-        var review_menu_item : MenuItem = menu.findItem(R.id.reviewBtn)
+        var menu: Menu = review_nav_view.menu
+        var menu_item: MenuItem = menu.findItem(R.id.loginBtn)
+        var blank_menu_item: MenuItem = menu.findItem(R.id.blankBtn)
+        var blank_menu_item2: MenuItem = menu.findItem(R.id.blankBtn2)
+        var login_menu_item: MenuItem = menu.findItem(R.id.loginBtn)
+        var review_menu_item: MenuItem = menu.findItem(R.id.reviewBtn)
         review_menu_item.setEnabled(false)
         blank_menu_item.setEnabled(false)
         blank_menu_item2.setEnabled(false)
 
-        var headerView : View = review_nav_view.getHeaderView(0)
-        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
-        var userImage : ImageView = headerView.findViewById(R.id.imageView)
+        var headerView: View = review_nav_view.getHeaderView(0)
+        var userName: TextView = headerView.findViewById<TextView>(R.id.header_name)
+        var userImage: ImageView = headerView.findViewById(R.id.imageView)
 
-        if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
+        if (SharedPreference.instance!!.getPrefStringData("image_profile") == null) {
             //userImage.setImageResource(R.drawable.side_bar_profile_img)
-            Log.v("용범","123")
+            Log.v("용범", "123")
             //Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
             userImage.setImageResource(R.drawable.side_bar_profile_img)
-        } else{
-            Log.v("용범","456")
+        } else {
+            Log.v("용범", "456")
             Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
         }
 
 
-        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
+        if (SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()) {
             userName.text = "OO님!"
             login_menu_item.setTitle("로그인")
         } else {
@@ -120,7 +119,7 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.statusBarColor = Color.BLACK
             window.navigationBarColor = Color.BLACK
         }
@@ -141,7 +140,6 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
 
         reviewCardShow()
-
 
 
         val toggle = ActionBarDrawerToggle(
@@ -171,7 +169,6 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         review_nav_view.setNavigationItemSelectedListener(this)
 
 
-
     }
 
     override fun onBackPressed() {
@@ -182,19 +179,19 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         }
     }
 
-    fun reviewCardShow(){
+    fun reviewCardShow() {
         val tmpResponse = networkService.getReview()
 
-        Log.v("98888","들어오니?")
+        Log.v("98888", "들어오니?")
         tmpResponse.enqueue(object : Callback<ReviewResponse> {
             override fun onFailure(call: Call<ReviewResponse>?, t: Throwable?) {
                 Log.v("98888", t!!.message)
             }
 
             override fun onResponse(call: Call<ReviewResponse>?, response: Response<ReviewResponse>?) {
-                Log.v("9277","승우신")
+                Log.v("9277", "승우신")
                 if (response!!.isSuccessful) {
-                    Log.v("9377",response!!.body()!!.result.birthday.image_list.size.toString())
+                    Log.v("9377", response!!.body()!!.result.birthday.image_list.size.toString())
                     //Log.v("9377",response!!.body()!!.result.birthday.image_list.size.toString())
                     var birthday = response!!.body()!!.result.birthday
                     var best_image_7 = response!!.body()!!.result.best_image_7
@@ -227,7 +224,7 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
 
                     for (i in 0..2) {
-                        Log.d("test",response!!.body()!!.result.birthday.image_list[i])
+                        Log.d("test", response!!.body()!!.result.birthday.image_list[i])
                         imgUrls1.add(i, birthday.image_list[i])
                         hashTag1.add(i, birthday.hashtag[i])
                         instaId1.add(i, birthday.insta_id[i])
@@ -260,30 +257,26 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
                     mIndicator1.setItemMargin(20)
                     mIndicator1.setAnimDuration(300)
-                    mIndicator1.createDotPanel(items1.size,R.drawable.indicator_non, R.drawable.indicator_on )
+                    mIndicator1.createDotPanel(items1.size, R.drawable.indicator_non, R.drawable.indicator_on)
                     mIndicator2.setItemMargin(20)
                     mIndicator2.setAnimDuration(300)
-                    mIndicator2.createDotPanel(items2.size,R.drawable.indicator_non, R.drawable.indicator_on )
+                    mIndicator2.createDotPanel(items2.size, R.drawable.indicator_non, R.drawable.indicator_on)
                     mIndicator3.setItemMargin(20)
                     mIndicator3.setAnimDuration(300)
-                    mIndicator3.createDotPanel(items3.size,R.drawable.indicator_non, R.drawable.indicator_on )
+                    mIndicator3.createDotPanel(items3.size, R.drawable.indicator_non, R.drawable.indicator_on)
 
                     mViewPager1.setClipToPadding(false);
-                    mViewPager1.setPadding(150,0,150,0);
+                    mViewPager1.setPadding(150, 0, 150, 0);
                     mViewPager1.pageMargin = 80
                     mViewPager2.setClipToPadding(false);
-                    mViewPager2.setPadding(150,0,150,0);
+                    mViewPager2.setPadding(150, 0, 150, 0);
                     mViewPager2.pageMargin = 80
                     mViewPager3.setClipToPadding(false);
-                    mViewPager3.setPadding(150,0,150,0);
+                    mViewPager3.setPadding(150, 0, 150, 0);
                     mViewPager3.pageMargin = 80
 
 
-                    Log.d("hereis","here")
-
-
-
-
+                    Log.d("hereis", "here")
 
 
                 } else {
@@ -296,8 +289,7 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
     }
 
 
-
-    var mOnPageChangeListener1 = object : ViewPager.OnPageChangeListener{
+    var mOnPageChangeListener1 = object : ViewPager.OnPageChangeListener {
         override fun onPageScrollStateChanged(state: Int) {
         }
 
@@ -310,7 +302,7 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
     }
 
-    var mOnPageChangeListener2 = object : ViewPager.OnPageChangeListener{
+    var mOnPageChangeListener2 = object : ViewPager.OnPageChangeListener {
         override fun onPageScrollStateChanged(state: Int) {
         }
 
@@ -323,7 +315,7 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
     }
 
-    var mOnPageChangeListener3 = object : ViewPager.OnPageChangeListener{
+    var mOnPageChangeListener3 = object : ViewPager.OnPageChangeListener {
         override fun onPageScrollStateChanged(state: Int) {
         }
 
@@ -337,23 +329,22 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
     }
 
 
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.loginBtn -> {
-                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                if (SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()) {
                     startActivity(Intent(this, LoginActivity::class.java))
-                } else{
+                } else {
                     ToastMaker.makeLongToast(this, "마이페이지에서 로그아웃 해주세요.")
                 }
             }
-            R.id.blankBtn->{
+            R.id.blankBtn -> {
                 item.isChecked = false
             }
             R.id.homeBtn -> {
                 finish()
-                var intent =  Intent(this, MainActivity::class.java)
+                var intent = Intent(this, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
@@ -362,18 +353,18 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
                 startActivity(Intent(this, MeowBoxStoryActivity::class.java))
             }
             R.id.orderBtn -> {
-                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                if (SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()) {
                     val dialog = LoginCheckCustomDialog(this)
                     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.show()
-                } else{
-                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1"){
+                } else {
+                    if (SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1") {
                         val dialog = CatCustomDialog(this)
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
                     } else {
                         val intent = Intent(this, OrderWithCatInfoActivity::class.java)
-                        intent.putExtra("cat_idx",SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
+                        intent.putExtra("cat_idx", SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
                         startActivity(intent)
                     }
                 }
@@ -381,16 +372,16 @@ class MeowBoxReviewActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             R.id.reviewBtn -> {
                 startActivity(Intent(this, MeowBoxReviewActivity::class.java))
             }
-            R.id.myPageBtn->{
-                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+            R.id.myPageBtn -> {
+                if (SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()) {
                     val dialog = LoginToMyPageCustomDialog(this)
                     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.show()
-                } else{
+                } else {
                     startActivity(Intent(this, MyPageActivity::class.java))
                 }
             }
-            R.id.birthDayBtn->{
+            R.id.birthDayBtn -> {
                 startActivity(Intent(this, MeowBoxtBirthDayStoryActivity::class.java))
             }
         }

@@ -1,5 +1,6 @@
 package woo.sopt22.meowbox.View.Home
 
+import android.content.Context
 import android.content.Intent
 
 import android.graphics.Bitmap
@@ -17,6 +18,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.*
+import android.view.GestureDetector.OnGestureListener
 import android.widget.*
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
@@ -52,26 +54,26 @@ import woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo.OrderWithCatInfoAc
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     override fun onClick(v: View?) {
-        when(v!!){
-            home_to_story_btn->{
+        when (v!!) {
+            home_to_story_btn -> {
                 startActivity(Intent(this, MeowBoxStoryActivity::class.java))
             }
-            home_to_detail_btn->{
-                Log.v("만혁","detail")
-                Log.v("만혁","묘박스 디테일")
+            home_to_detail_btn -> {
+                Log.v("만혁", "detail")
+                Log.v("만혁", "묘박스 디테일")
                 startActivity(Intent(this, MeowBoxDetailActivity::class.java))
 
-                Log.v("만혁","아예 엘스")
+                Log.v("만혁", "아예 엘스")
             }
-            main_back_btn->{
+            main_back_btn -> {
                 main_drawer_layout.closeDrawer(GravityCompat.START)
             }
-            else->{
-                if(current_number == 2 || current_number == 3){
-                    Log.v("만혁",current_number.toString())
+            else -> {
+                if (current_number == 2 || current_number == 3) {
+                    Log.v("만혁", current_number.toString())
                     startActivity(Intent(this, BirthdayStoryDetailActivity::class.java))
-                } else{
-                    Log.v("만혁","묘박스 디테일")
+                } else {
+                    Log.v("만혁", "묘박스 디테일")
                     startActivity(Intent(this, MeowBoxDetailActivity::class.java))
                 }
             }
@@ -80,31 +82,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     lateinit var mSlidingTextView: TextView
 
-    lateinit var mSlidingInstaProfile1 : CircleImageView
-    lateinit var mSlidingInstaUserName1 : TextView
-    lateinit var mSlidingInstaCatProfile1 : ImageView
+    lateinit var mSlidingInstaProfile1: CircleImageView
+    lateinit var mSlidingInstaUserName1: TextView
+    lateinit var mSlidingInstaCatProfile1: ImageView
 
-    lateinit var mSlidingInstaProfile2 : CircleImageView
-    lateinit var mSlidingInstaUserName2 : TextView
-    lateinit var mSlidingInstaCatProfile2 : ImageView
+    lateinit var mSlidingInstaProfile2: CircleImageView
+    lateinit var mSlidingInstaUserName2: TextView
+    lateinit var mSlidingInstaCatProfile2: ImageView
 
-    lateinit var mSlidingInstaProfile3 : CircleImageView
-    lateinit var mSlidingInstaUserName3 : TextView
-    lateinit var mSlidingInstaCatProfile3 : ImageView
+    lateinit var mSlidingInstaProfile3: CircleImageView
+    lateinit var mSlidingInstaUserName3: TextView
+    lateinit var mSlidingInstaCatProfile3: ImageView
 
-    lateinit var mSlidingInstaProfile4 : CircleImageView
-    lateinit var mSlidingInstaUserName4 : TextView
-    lateinit var mSlidingInstaCatProfile4 : ImageView
-    lateinit var home_stroy_btn : ImageView
+    lateinit var mSlidingInstaProfile4: CircleImageView
+    lateinit var mSlidingInstaUserName4: TextView
+    lateinit var mSlidingInstaCatProfile4: ImageView
 
-    lateinit var slidinViewMain : RelativeLayout
-    lateinit var sliding_toolbar : RelativeLayout
+    var backKeyPressedTime: Long = 0
+    lateinit var slidinViewMain: RelativeLayout
+    lateinit var sliding_toolbar: RelativeLayout
     private val PermissionRequestCode = 123
-    private lateinit var managePermissions : ManagePermissions
+    private lateinit var managePermissions: ManagePermissions
     lateinit var networkService: NetworkService
-    var current_number : Int = 0
+    var current_number: Int = 0
 
-    fun init(){
+    fun init() {
         mSlidingTextView = home_cat_count as TextView
 
         mSlidingInstaProfile1 = insta_profile_image1 as CircleImageView
@@ -128,19 +130,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         home_to_detail_btn.setOnClickListener(this)
         home_to_story_btn.setOnClickListener(this)
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.statusBarColor = Color.BLACK
+            window.navigationBarColor = Color.BLACK
+        }
+
     }
 
 
     // 고양이 인스타 크롤링 사진 받아오기 - 통신
-    fun getInsta(){
+    fun getInsta() {
         val instaResponse = networkService.getInstaCrawling()
-        instaResponse.enqueue(object : Callback<InstaCrawlingResponse>{
+        instaResponse.enqueue(object : Callback<InstaCrawlingResponse> {
             override fun onFailure(call: Call<InstaCrawlingResponse>?, t: Throwable?) {
 
             }
 
             override fun onResponse(call: Call<InstaCrawlingResponse>?, response: Response<InstaCrawlingResponse>?) {
-                if(response!!.isSuccessful){
+                if (response!!.isSuccessful) {
                     mSlidingInstaUserName1.text = response!!.body()!!.result[0].nickname
                     Glide.with(this@MainActivity).load(response!!.body()!!.result[0].profile).into(mSlidingInstaProfile1)
                     Glide.with(this@MainActivity).load(response!!.body()!!.result[0].picture).into(mSlidingInstaCatProfile1)
@@ -163,17 +172,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     // 고양이 Count 받아오기 - 통신
-    fun getCatCount(){
+    fun getCatCount() {
         val countResponse = networkService.getCatCount()
-        countResponse.enqueue(object : Callback<CatCountResponse>{
+        countResponse.enqueue(object : Callback<CatCountResponse> {
             override fun onFailure(call: Call<CatCountResponse>?, t: Throwable?) {
 
             }
 
             override fun onResponse(call: Call<CatCountResponse>?, response: Response<CatCountResponse>?) {
-                if(response!!.isSuccessful){
-                    mSlidingTextView.text = response!!.body()!!.result+"냥이"
-                    Log.v("7979",response!!.body()!!.result)
+                if (response!!.isSuccessful) {
+                    mSlidingTextView.text = response!!.body()!!.result + "냥이"
+                    Log.v("7979", response!!.body()!!.result)
                 }
 
             }
@@ -183,27 +192,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     // 처음 들어오거나 다른 액티비티로 갔다가 올 때 정보를 확인해서 SharedPreference에 저장된 데이터 불러오도록!!
-    fun checkInfo(){
+    fun checkInfo() {
 
         SharedPreference.instance!!.load(this)
 
-        var headerView : View = main_nav_view.getHeaderView(0)
-        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
-        var userImage : ImageView = headerView.findViewById(R.id.imageView)
+        var headerView: View = main_nav_view.getHeaderView(0)
+        var userName: TextView = headerView.findViewById<TextView>(R.id.header_name)
+        var userImage: ImageView = headerView.findViewById(R.id.imageView)
 
 
-        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
+        if (SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()) {
             userName.text = "OO님!"
         } else {
             userName.text = SharedPreference.instance!!.getPrefStringData("name") + " 님"
         }
 
-        if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
+        if (SharedPreference.instance!!.getPrefStringData("image_profile") == null) {
             //userImage.setImageResource(R.drawable.side_bar_profile_img)
-            Log.v("용범 onResume","123")
+            Log.v("용범 onResume", "123")
             Glide.with(this).load(R.drawable.side_bar_profile_img).into(userImage)
-        } else{
-            Log.v("용범 onResume","456")
+        } else {
+            Log.v("용범 onResume", "456")
             userImage.setImageURI(Uri.parse(SharedPreference.instance!!.getPrefStringData("image_profile")))
             Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
         }
@@ -215,8 +224,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         checkInfo()
 
     }
+
     override fun onRestart() {
-        Log.v("onRestart",SharedPreference.instance!!.getPrefStringData("user_name"))
+        Log.v("onRestart", SharedPreference.instance!!.getPrefStringData("user_name"))
         super.onRestart()
         checkInfo()
 
@@ -265,10 +275,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         SharedPreference.instance!!.load(this)
         networkService = ApplicationController.instance!!.networkService
 
-        var headerView : View = main_nav_view.getHeaderView(0)
-        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
-        var userImage : ImageView = headerView.findViewById(R.id.imageView)
-        var main_back_button : ImageView = headerView.findViewById(R.id.main_back_btn)
+        var headerView: View = main_nav_view.getHeaderView(0)
+        var userName: TextView = headerView.findViewById<TextView>(R.id.header_name)
+        var userImage: ImageView = headerView.findViewById(R.id.imageView)
+        var main_back_button: ImageView = headerView.findViewById(R.id.main_back_btn)
         userImage.setImageResource(R.drawable.side_bar_profile_img)
         main_back_button.setOnClickListener(this)
 
@@ -277,16 +287,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         init()
         // 터치 리스너를 달아준다.
-        bottom_up_relative_layout.setOnTouchListener(object : View.OnTouchListener{
+        bottom_up_relative_layout.setOnTouchListener(object : View.OnTouchListener {
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-                when(event!!.action){
-                    MotionEvent.ACTION_UP,MotionEvent.ACTION_MOVE->{
+                when (event!!.action) {
+                    MotionEvent.ACTION_UP, MotionEvent.ACTION_MOVE -> {
                         //Log.v("8989","8989")
                         getInsta()
                         getCatCount()
                         main_sliding_scroll.fullScroll(ScrollView.FOCUS_UP)
                     }
-                    MotionEvent.ACTION_DOWN->{
+                    MotionEvent.ACTION_DOWN -> {
                         //Log.v("9898","9898")
                         //getInsta()
                         //ToastMaker.makeLongToast(this@MainActivity, "dd")
@@ -303,33 +313,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         //main_side_back_btn.setOnClickListener(this)
         var result = SharedPreference.instance!!.getPrefStringData("token")
-        println("11"+SharedPreference.instance!!.getPrefStringData("token"))
+        println("11" + SharedPreference.instance!!.getPrefStringData("token"))
         //println("cat_idx??"+SharedPreference.instance!!.getPrefStringData("cat_idx"))
         //println("11"+result!![0])
 
-        var menu : Menu = main_nav_view.menu
-        var login_menu_item : MenuItem = menu.findItem(R.id.loginBtn)
-        var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
-        var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
-        var home_menu_item : MenuItem = menu.findItem(R.id.homeBtn)
+        var menu: Menu = main_nav_view.menu
+        var login_menu_item: MenuItem = menu.findItem(R.id.loginBtn)
+        var blank_menu_item: MenuItem = menu.findItem(R.id.blankBtn)
+        var blank_menu_item2: MenuItem = menu.findItem(R.id.blankBtn2)
+        var home_menu_item: MenuItem = menu.findItem(R.id.homeBtn)
         home_menu_item.setEnabled(false)
         blank_menu_item.setEnabled(false)
         blank_menu_item2.setEnabled(false)
         //home_detail_btn.setImageResource(R.drawable.home_detail_btn_white)
 
-        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
+        if (SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()) {
             userName.text = "OO님!"
             login_menu_item.setTitle("로그인")
         } else {
             userName.text = SharedPreference.instance!!.getPrefStringData("name") + "님"
             login_menu_item.setTitle("")
             login_menu_item.setEnabled(false)
-        }
-
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            window.statusBarColor = Color.BLACK
-            window.navigationBarColor = Color.BLACK
         }
 
 
@@ -340,27 +344,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         managePermissions = ManagePermissions(this, list, PermissionRequestCode)
 
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-                managePermissions.checkPermissions()
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+            managePermissions.checkPermissions()
 
 
         //희현카드뷰
 
 
-        var items : ArrayList<CardData>
+        var items: ArrayList<CardData>
         items = ArrayList();
         items.add(CardData(R.drawable.home_main_one_img, 1))
-        items.add(CardData(R.drawable.home_main_two_img,0))
-        items.add(CardData(R.drawable.home_main_three_img,0))
-        items.add(CardData(R.drawable.home_main_four_img,0))
-        items.add(CardData(R.drawable.home_main_five_img,2))
+        items.add(CardData(R.drawable.home_main_two_img, 0))
+        items.add(CardData(R.drawable.home_main_three_img, 0))
+        items.add(CardData(R.drawable.home_main_four_img, 0))
+        items.add(CardData(R.drawable.home_main_five_img, 2))
 
-        main_viewpager.setPadding(0,0,200,0)
+        main_viewpager.setPadding(0, 0, 200, 0)
         var madapter = CardViewAdapter(layoutInflater, items)
         main_viewpager.setCurrentItem(0)
         main_viewpager.adapter = madapter
-        main_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+        main_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
 
 
@@ -369,8 +372,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             // 이 함수를 통해서 선택된 position 값에 따른 네비게이션 바의 색깔과 툴바의 색을 변경할 수 있다.
             // 그리고 1,2에서의 상세보기와 3,4에서의 상세보기 버튼을 다른 기능을 할 수 있도록 구현할 수 있다.
             override fun onPageSelected(position: Int) {
-                when(position){
-                    0->{
+                when (position) {
+                    0 -> {
                         current_number = position
                         main_toolbar_image.setImageResource(R.drawable.logo_white)
                         home_detail_btn.setImageResource(R.drawable.home_detail_btn_white)
@@ -395,7 +398,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         })
 
                     }
-                    1,2,3->{
+                    1, 2, 3 -> {
                         current_number = position
                         main_toolbar_image.setImageResource(R.drawable.logo_pink)
                         home_detail_btn.setImageResource(R.drawable.home_detail_btn_gray)
@@ -419,7 +422,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                             }
                         })
                     }
-                    4->{
+                    4 -> {
                         current_number = position
                         main_toolbar_image.setImageResource(R.drawable.logo_white)
                         home_detail_btn.setImageResource(R.drawable.home_detail_btn_gray)
@@ -452,16 +455,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             * positionOffset이란 해당 포지션의 page의 변위차를 의미한다.
             * */
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                when(position){
-                    (items.size-2)->{
+                when (position) {
+                    (items.size - 2) -> {
                         //Log.v("12",positionOffset.toString())
-                        Log.v("12",(200*positionOffset).toString())
-                        main_viewpager.setPadding((200*positionOffset).toInt(),0,200 - (200*positionOffset).toInt(),0)
-                        Log.v("33",(200-(200*positionOffset)).toString())
+                        Log.v("12", (200 * positionOffset).toString())
+                        main_viewpager.setPadding((200 * positionOffset).toInt(), 0, 200 - (200 * positionOffset).toInt(), 0)
+                        Log.v("33", (200 - (200 * positionOffset)).toString())
                     }
-                    (items.size-1)->{
-                        Log.v("44",positionOffset.toString())
-                        main_viewpager.setPadding(200,0,0,0)
+                    (items.size - 1) -> {
+                        Log.v("44", positionOffset.toString())
+                        main_viewpager.setPadding(200, 0, 0, 0)
                     }
 
                 }
@@ -478,11 +481,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onBackPressed() {
         if (main_drawer_layout.isDrawerOpen(GravityCompat.START)) {
             main_drawer_layout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
         }
-    }
+        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+            backKeyPressedTime = System.currentTimeMillis()
+            ToastMaker.makeShortToast(this, "\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.")
+            return
+        }
+        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            this.finish()
 
+        }
+
+
+    }
 
 
     // Navigation Bar에 있는 아이템을 선택했을 때의 클릭 리스너 부분
@@ -490,13 +501,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.loginBtn -> {
-                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                if (SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()) {
                     startActivity(Intent(this, LoginActivity::class.java))
-                } else{
+                } else {
                     ToastMaker.makeLongToast(this, "마이페이지에서 로그아웃 해주세요.")
                 }
             }
-            R.id.blankBtn->{
+            R.id.blankBtn -> {
                 item.isChecked = false
             }
             R.id.homeBtn -> {
@@ -506,18 +517,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(this, MeowBoxStoryActivity::class.java))
             }
             R.id.orderBtn -> {
-                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                if (SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()) {
                     val dialog = LoginCheckCustomDialog(this)
                     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.show()
-                } else{
-                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1"){
+                } else {
+                    if (SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1") {
                         val dialog = CatCustomDialog(this)
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
                     } else {
                         val intent = Intent(this, OrderWithCatInfoActivity::class.java)
-                        intent.putExtra("cat_idx",SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
+                        intent.putExtra("cat_idx", SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
                         startActivity(intent)
                     }
                 }
@@ -525,17 +536,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.reviewBtn -> {
                 startActivity(Intent(this, MeowBoxReviewActivity::class.java))
             }
-            R.id.myPageBtn->{
-                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+            R.id.myPageBtn -> {
+                if (SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()) {
                     val dialog = LoginToMyPageCustomDialog(this)
                     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.show()
-                } else{
+                } else {
                     startActivity(Intent(this, MyPageActivity::class.java))
                 }
             }
-            R.id.birthDayBtn->{
-                startActivity(Intent(this,MeowBoxtBirthDayStoryActivity::class.java))
+            R.id.birthDayBtn -> {
+                startActivity(Intent(this, MeowBoxtBirthDayStoryActivity::class.java))
             }
 
 
@@ -545,14 +556,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        when (requestCode){
-            PermissionRequestCode ->{
+        when (requestCode) {
+            PermissionRequestCode -> {
                 val isPermissionsGranted = managePermissions.processPermissionsResult(requestCode, permissions as Array<String>, grantResults)
-                if(isPermissionsGranted){
+                if (isPermissionsGranted) {
                     // Do the task now
                     //ToastMaker.makeLongToast(this,"Permissions granted.")
-                }else{
-                    ToastMaker.makeLongToast(this,"Permissions denied.")
+                } else {
+                    ToastMaker.makeLongToast(this, "Permissions denied.")
                 }
                 return
             }

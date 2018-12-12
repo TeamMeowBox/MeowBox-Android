@@ -162,7 +162,8 @@ class CreditActivity : Activity() {
 
 
     fun postORrderResult(){
-        orderChecking = OrderResult(SharedPreference.instance!!.getPrefStringData("merchant")!!)
+        // orderChecking = OrderResult(SharedPreference.instance!!.getPrefStringData("merchant")!!)
+        orderChecking = OrderResult(SharedPreference.instance!!.getPrefStringData("`")!!)
         Log.d("boolan", "어디까지 들어가냥")
         val orderCheck = networkService.postOrderResult(SharedPreference.instance!!.getPrefStringData("token")!!,
                 orderChecking)

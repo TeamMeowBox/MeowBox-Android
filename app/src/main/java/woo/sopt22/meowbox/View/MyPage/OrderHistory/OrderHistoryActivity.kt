@@ -89,6 +89,7 @@ class OrderHistoryActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_history)
 
+        init()
         getOrderHistroy()
 
     }

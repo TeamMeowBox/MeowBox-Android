@@ -16,6 +16,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ScrollView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,49 +33,48 @@ import woo.sopt22.meowbox.View.Join.JoinActivity
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
-        when(v!!){
-            login_to_sign_btn->{
+        when (v!!) {
+            login_to_sign_btn -> {
                 startActivity(Intent(applicationContext, JoinActivity::class.java))
             }
-            loginBtn->{
-                if(cnt_email == 1 && cnt_password == 1){
+            loginBtn -> {
+                if (cnt_email == 1 && cnt_password == 1) {
                     postLogin()
                     //ToastMaker.makeLongToast(this, "로그인할 수 있음")
-                } else{
+                } else {
                     ToastMaker.makeLongToast(this, "정보를 입력해주세요!")
                 }
 
             }
-            login_back_btn->{
+            login_back_btn -> {
                 finish()
             }
-            login_activity_layout->{
-                var imm : InputMethodManager
+            login_activity_layout -> {
+                var imm: InputMethodManager
                 imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromInputMethod(login_email.windowToken, 0)
             }
         }
     }
 
-    var email_length : Int=0
-    var password_length : Int=0
-    var cnt_email : Int=0
-    var cnt_password : Int=0
-
+    var email_length: Int = 0
+    var password_length: Int = 0
+    var cnt_email: Int = 0
+    var cnt_password: Int = 0
 
 
     // 통신
-    lateinit var loginUser : LoginUser
+    lateinit var loginUser: LoginUser
     lateinit var networkService: NetworkService
-    lateinit var token : String
-    lateinit var email : String
+    lateinit var token: String
+    lateinit var email: String
 
-    fun init(){
+    fun init() {
 
         networkService = ApplicationController.instance!!.networkService
         SharedPreference.instance!!.load(this)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.statusBarColor = Color.BLACK
             window.navigationBarColor = Color.BLACK
         }
@@ -88,8 +88,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         init()
+        login_scroll.fullScroll(ScrollView.FOCUS_UP)
 
         email = SharedPreference.instance!!.getPrefStringData("user_name")!!
 
@@ -100,30 +100,30 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         // login_email 입력 시 이메일 아이콘 색상 변경
         login_email.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if(s!!.toString().length == 0){
+                if (s!!.toString().length == 0) {
                     login_email_image.isSelected = false
                 }
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                if(login_email.text.toString().length<1 && login_password.text.toString().length<1){
+                if (login_email.text.toString().length < 1 && login_password.text.toString().length < 1) {
                     loginBtn.setImageResource(R.drawable.login_btn_gray)
-                    cnt_email=0
-                    cnt_password=0
+                    cnt_email = 0
+                    cnt_password = 0
                 }
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(s!!.length !=null){
+                if (s!!.length != null) {
                     login_email_image.isSelected = true
                 } else {
                     login_email_image.isSelected = false
                 }
 
-                if(login_email.text.toString().length>=1 && login_password.text.toString().length>=1){
+                if (login_email.text.toString().length >= 1 && login_password.text.toString().length >= 1) {
                     loginBtn.setImageResource(R.drawable.login_btn_pink)
-                    cnt_email=1
-                    cnt_password=1
+                    cnt_email = 1
+                    cnt_password = 1
                 }
             }
         })
@@ -131,30 +131,30 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         // login_password 입력 시 password 아이콘 색상 변경
         login_password.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if(s!!.toString().length == 0){
+                if (s!!.toString().length == 0) {
                     login_password_image.isSelected = false
                 }
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                if(login_email.text.toString().length<5 && login_password.text.toString().length<5){
+                if (login_email.text.toString().length < 5 && login_password.text.toString().length < 5) {
                     loginBtn.setImageResource(R.drawable.login_btn_gray)
-                    cnt_password=0
-                    cnt_email=0
+                    cnt_password = 0
+                    cnt_email = 0
                 }
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(s!!.length !=null){
+                if (s!!.length != null) {
                     login_password_image.isSelected = true
-                } else if(s!!.length == null){
+                } else if (s!!.length == null) {
                     login_password_image.isSelected = false
                 }
 
-                if(login_email.text.toString().length>=1 && login_password.text.toString().length>=1){
+                if (login_email.text.toString().length >= 1 && login_password.text.toString().length >= 1) {
                     loginBtn.setImageResource(R.drawable.login_btn_pink)
                     cnt_password = 1
-                    cnt_email=1
+                    cnt_email = 1
                 }
             }
         })
@@ -170,25 +170,25 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     // 로그인  - 통신
-    fun postLogin(){
+    fun postLogin() {
         loginUser = LoginUser(login_email.text.toString(), login_password.text.toString())
         val loginResponse = networkService.postSignIn(loginUser)
-        loginResponse.enqueue(object : Callback<LoginResponse>{
+        loginResponse.enqueue(object : Callback<LoginResponse> {
             override fun onFailure(call: Call<LoginResponse>?, t: Throwable?) {
-                Log.v("login 실패",t!!.message.toString())
+                Log.v("login 실패", t!!.message.toString())
 
             }
 
             override fun onResponse(call: Call<LoginResponse>?, response: Response<LoginResponse>?) {
-                if(response!!.isSuccessful){
-                    Log.v("login 성공",response!!.message())
+                if (response!!.isSuccessful) {
+                    Log.v("login 성공", response!!.message())
                     token = response!!.body()!!.result!!.token!!.toString()
-                    SharedPreference.instance!!.setPrefData("token",token)
-                    SharedPreference.instance!!.setPrefData("user_email",response!!.body()!!.result!!.email)
-                    SharedPreference.instance!!.setPrefData("name",response!!.body()!!.result!!.name)
-                    SharedPreference.instance!!.setPrefData("flag",response!!.body()!!.result!!.flag)
-                    SharedPreference.instance!!.setPrefData("phone_number",response!!.body()!!.result!!.phone_number)
-                    SharedPreference.instance!!.setPrefData("cat_idx",response!!.body()!!.result!!.cat_idx)
+                    SharedPreference.instance!!.setPrefData("token", token)
+                    SharedPreference.instance!!.setPrefData("user_email", response!!.body()!!.result!!.email)
+                    SharedPreference.instance!!.setPrefData("name", response!!.body()!!.result!!.name)
+                    SharedPreference.instance!!.setPrefData("flag", response!!.body()!!.result!!.flag)
+                    SharedPreference.instance!!.setPrefData("phone_number", response!!.body()!!.result!!.phone_number)
+                    SharedPreference.instance!!.setPrefData("cat_idx", response!!.body()!!.result!!.cat_idx)
                     SharedPreference.instance!!.setPrefData("image_profile", response!!.body()!!.result!!.image_profile!!)
 
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)

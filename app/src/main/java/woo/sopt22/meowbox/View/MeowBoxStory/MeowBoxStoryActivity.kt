@@ -12,7 +12,6 @@ import android.support.v4.content.res.ResourcesCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -33,40 +32,40 @@ import woo.sopt22.meowbox.View.MeowBoxBirthDay.MeowBoxtBirthDayStoryActivity
 import woo.sopt22.meowbox.View.MeowBoxReview.MeowBoxReviewActivity
 import woo.sopt22.meowbox.View.MyPage.MyPageActivity
 import woo.sopt22.meowbox.View.Order.LoginCustomDialog
-import woo.sopt22.meowbox.View.Order.OrderThirdActivity
+import woo.sopt22.meowbox.View.Order.OrderFragmentWithCatInfo.OrderWithCatInfoActivity
 
 class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     override fun onClick(v: View?) {
-        when(v!!){
-            story_to_order_btn->{
-                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+        when (v!!) {
+            story_to_order_btn -> {
+                if (SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()) {
                     val dialog = LoginCustomDialog(this)
                     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.show()
-                } else{
-                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1"){
+                } else {
+                    if (SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1") {
                         val dialog = CatCustomDialog(this)
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
                     } else {
-                        val intent = Intent(this, OrderThirdActivity::class.java)
+                        val intent = Intent(this, OrderWithCatInfoActivity::class.java)
                         intent.putExtra("cat_idx", SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
                         startActivity(intent)
                     }
                 }
             }
-            story_to_order_btn2->{
-                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+            story_to_order_btn2 -> {
+                if (SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()) {
                     val dialog = LoginCustomDialog(this)
                     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.show()
-                } else{
-                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1"){
+                } else {
+                    if (SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1") {
                         val dialog = CatCustomDialog(this)
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
                     } else {
-                        val intent = Intent(this, OrderThirdActivity::class.java)
+                        val intent = Intent(this, OrderWithCatInfoActivity::class.java)
                         intent.putExtra("cat_idx", SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
                         startActivity(intent)
                     }
@@ -76,9 +75,9 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
         }
     }
 
-    fun init(){
+    fun init() {
         getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.statusBarColor = Color.BLACK
             window.navigationBarColor = Color.BLACK
         }
@@ -97,29 +96,29 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
         init()
 
 
-        var headerView : View = story_nav_view.getHeaderView(0)
-        var userName : TextView = headerView.findViewById<TextView>(R.id.header_name)
-        var userImage : ImageView = headerView.findViewById(R.id.imageView)
+        var headerView: View = story_nav_view.getHeaderView(0)
+        var userName: TextView = headerView.findViewById<TextView>(R.id.header_name)
+        var userImage: ImageView = headerView.findViewById(R.id.imageView)
 
         Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
 
-        var menu : Menu = story_nav_view.menu
-        var menu_item : MenuItem = menu.findItem(R.id.loginBtn)
-        var blank_menu_item : MenuItem = menu.findItem(R.id.blankBtn)
-        var blank_menu_item2 : MenuItem = menu.findItem(R.id.blankBtn2)
-        var story_menu_item : MenuItem = menu.findItem(R.id.stroyBtn)
+        var menu: Menu = story_nav_view.menu
+        var menu_item: MenuItem = menu.findItem(R.id.loginBtn)
+        var blank_menu_item: MenuItem = menu.findItem(R.id.blankBtn)
+        var blank_menu_item2: MenuItem = menu.findItem(R.id.blankBtn2)
+        var story_menu_item: MenuItem = menu.findItem(R.id.stroyBtn)
         story_menu_item.setEnabled(false)
         blank_menu_item.setEnabled(false)
         blank_menu_item2.setEnabled(false)
 
 
-        if(SharedPreference.instance!!.getPrefStringData("image_profile") == null){
+        if (SharedPreference.instance!!.getPrefStringData("image_profile") == null) {
             userImage.setImageResource(R.drawable.side_bar_profile_img)
-        } else{
+        } else {
             Glide.with(this).load(SharedPreference.instance!!.getPrefStringData("image_profile")!!).into(userImage)
         }
 
-        if(SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()){
+        if (SharedPreference.instance!!.getPrefStringData("name")!!.isEmpty()) {
             userName.text = "OO님!"
             menu_item.setTitle("로그인")
         } else {
@@ -127,7 +126,6 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
             menu_item.setTitle("")
             menu_item.setEnabled(false)
         }
-
 
 
         val toggle = ActionBarDrawerToggle(
@@ -168,15 +166,15 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.loginBtn -> {
-                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                if (SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()) {
                     startActivity(Intent(this, LoginActivity::class.java))
-                } else{
+                } else {
                     ToastMaker.makeLongToast(this, "마이페이지에서 로그아웃 해주세요.")
                 }
             }
             R.id.homeBtn -> {
                 finish()
-                var intent =  Intent(this, MainActivity::class.java)
+                var intent = Intent(this, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
@@ -186,17 +184,17 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
                 //startActivity(Intent(this, MeowBoxStoryActivity::class.java))
             }
             R.id.orderBtn -> {
-                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+                if (SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()) {
                     val dialog = LoginCustomDialog(this)
                     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.show()
-                } else{
-                    if(SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1"){
+                } else {
+                    if (SharedPreference.instance!!.getPrefStringData("cat_idx")!! == "-1") {
                         val dialog = CatCustomDialog(this)
                         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
                     } else {
-                        val intent = Intent(this, OrderThirdActivity::class.java)
+                        val intent = Intent(this, OrderWithCatInfoActivity::class.java)
                         intent.putExtra("cat_idx", SharedPreference.instance!!.getPrefStringData("cat_idx")!!)
                         startActivity(intent)
                     }
@@ -207,16 +205,16 @@ class MeowBoxStoryActivity : AppCompatActivity(), NavigationView.OnNavigationIte
                 startActivity(intent)
                 finish()
             }
-            R.id.myPageBtn->{
-                if(SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()){
+            R.id.myPageBtn -> {
+                if (SharedPreference.instance!!.getPrefStringData("token")!!.isEmpty()) {
                     val dialog = LoginToMyPageCustomDialog(this)
                     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     dialog.show()
-                } else{
+                } else {
                     startActivity(Intent(this, MyPageActivity::class.java))
                 }
             }
-            R.id.birthDayBtn->{
+            R.id.birthDayBtn -> {
                 startActivity(Intent(this, MeowBoxtBirthDayStoryActivity::class.java))
             }
 

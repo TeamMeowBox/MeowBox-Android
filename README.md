@@ -18,6 +18,7 @@
 
 ## [ Main View, Function ]
 
+
 * 메인 화면
 	* 로그인 및 회원가입을 하지 않아도 앱을 둘러보고 사용할 수 있습니다.
 	* 주문하기와 마이 페이지는 로그인이 필요합니다.
@@ -87,6 +88,7 @@
 
 3. **Animation**
 * [lottie](https://github.com/airbnb/lottie-android)
+
 
 ## [ 워크 플로우 ]
 

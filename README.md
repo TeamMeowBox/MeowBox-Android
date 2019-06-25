@@ -53,45 +53,22 @@
 
 * 메인 화면
 
-	* 사용자는 로그인 및 회원가입을 하지 않고도 앱을 둘러보고 사용할 수 있습니다.
+	* 사용자는 로그인 및 회원가입을 하지 않아도 앱을 둘러보고 사용할 수 있습니다.
 	* 주문하기와 마이 페이지에 접근하기 위해서는 로그인을 해야 합니다.
-	* **Navigation Bar**를 이용하여 사용자가 어디서든 다른 화면으로 이동할 수 있도록 하였습니다. 
+	* **Navigation Bar**를 이용하여 사용자가 어디서든 다른 화면으로 이동할 수 있도록 접근성을 높였습니다.
 	* **onPageScrolled**() 함수의 position과 **positionOffset**값을 이용하여 Viewpager에 들어가는 item의 **Padding** 값을 조절하여 카드 형식으로 화면을 넘겨 볼 수 있도록 구성하였습니다. 
 
 ```kotlin
-
-    var items : ArrayList<CardData>
-    items = ArrayList();
-    items.add(CardData(R.drawable.home_main_one_img, 1))
-    items.add(CardData(R.drawable.home_main_two_img,0))
-    items.add(CardData(R.drawable.home_main_three_img,0))
-    items.add(CardData(R.drawable.home_main_four_img,0))
-    items.add(CardData(R.drawable.home_main_five_img,2))
-
-    main_viewpager.setPadding(0,0,200,0)
-    var madapter = CardViewAdapter(layoutInflater, items)
-    main_viewpager.setCurrentItem(0)
-    main_viewpager.adapter = madapter
-
     main_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(state: Int) {
 
-
             }
-
-            // 이 함수를 통해서 선택된 position 값에 따른 네비게이션 바의 색깔과 툴바의 색을 변경할 수 있다.
-            // 그리고 1,2에서의 상세보기와 3,4에서의 상세보기 버튼을 다른 기능을 할 수 있도록 구현할 수 있다.
+	    
             override fun onPageSelected(position: Int) {
            
 
             }
-
-            // 화면의 일부만 보이게 하기 위해서 ViewPager의 함수인 onpageScrolled에서 postion과 Offset을 수정했습니다. 
-            // 오른쪽 부분이 계속 보이다가 마지막 페이지에서는 왼쪽 페이지가 보입니다.
-            // 결국에는 보여지는 화면의 position의 따라서 마지막과 마지막 전의 페이지만 padding 값을 조절하면 됩니다. 
-            // items의 마지막 (items.size-1)은 왼쪽의 padding을 줘서 보이도록 하고 
-            // 이 함수가 페이지가 스크롤 되는 동안에도 계속해서 호출이 되기 때문에 items의 마지막 전 (items.size-2) 페이지는
-             
+	    // position과 positionOffset을 조절
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 when(position){
                     (items.size-2)->{
@@ -100,13 +77,9 @@
                     (items.size-1)->{
                         main_viewpager.setPadding(200,0,0,0)
                     }
-
                 }
-
             }
-
         })
-
 ```
 * 메인 화면 - 추가 화면
 	* **Sliding Up Panel Layout**을 사용하여 아래에서 View를 끌어올릴 수 있도록 구현하였습니다. 
@@ -238,166 +211,3 @@
     }
 
 ```
-<!-- * 결제 페이지
-	* 주문 페이지에서 넘어 온 정보를 전달 받고 Javascript 코드에 있는 함수를 통해 값을 넘깁니다. 
-	* 그리고 내장된 Javascript 코드를 호출하여 결제 페이지를 로드합니다.
-
-```kotlin
-
-        mainWebView = main_web_view as WebView
-        mainWebView!!.webViewClient = InicisWebViewClient(this)
-        val settings = mainWebView!!.settings
-
-        // Webview에서 Javascript 코드를 사용할 수 있도록 설정해줍니다. 
-        settings.javaScriptEnabled = true
-
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
-            val cookieManager = CookieManager.getInstance()
-            cookieManager.setAcceptCookie(true)
-            cookieManager.setAcceptThirdPartyCookies(mainWebView, true)
-        }
-
-        val intent = intent
-        val intentData = intent.data
-
-        val intentTmp = getIntent()
-
-        // merchant의 값인 orderIdx를 받습니다. 
-        var stringTmp = intentTmp.getStringExtra("orderIdx")
-
-
-
-        if (intentData == null) {
-
-            // 내장된 Javascript 코드를 호출하여 페이지를 로드합니다.
-            mainWebView!!.loadUrl("file:///android_asset/your_own_scheme.js")
-
-            // 그리고 Handler를 이용하여 3초 정도 delay 시켜서
-            // Javascript 함수 안에 있는 함수를 호출하여 stringTmp 즉, merchant 값을 넘깁니다. 
-            // 그러면 iamport에 보낸 merchant값을 받습니다. 
-            // 그리고 우리 서버로 redirectUrl을 설정해 놓습니다. 
-            // 그러면 iamport에서 우리가 보낸 merchant를 우리 서버에 return 해줍니다. 
-            val mHandler = Handler()
-            mHandler.postDelayed({ mainWebView!!.loadUrl("javascript:myset('$stringTmp')") }, 3000)
-
-        } else {
-            //isp 인증 후 복귀했을 때 결제 후속조치
-            val url = intentData.toString()
-            if (url.startsWith(APP_SCHEME)) {
-                val redirectURL = url.substring(APP_SCHEME.length + 3)
-                mainWebView!!.loadUrl(redirectURL)
-            }
-        }
-    }
-
-    override fun onNewIntent(intent: Intent) {
-        val url = intent.dataString
-        if (url!!.startsWith(APP_SCHEME)) {
-            val redirectURL = url.substring(APP_SCHEME.length + 3)
-            mainWebView!!.loadUrl(redirectURL)
-        }
-    }
-
-    // 액티비티가 보이지 않을 때 Handler를 이용하여 통신 함수를 호출합니다.
-    // Webview를 통해 카카오페이 결제에 들어가면 다른 Component들에 대한 통제권이 없기 때문에 handler를 통하여 지연시킵니다.
-    override fun onStop() {
-        super.onStop()
-        val mHandler = Handler()
-        mHandler.postDelayed({ postORrderResult() }, 22000)
-    }
-
-    // 서버는 주문자가 주문을 했을 때 발급해준 orderIdx 즉, merchant 값과 iamport에서 받은 merchant 값을 비교하여 true/false인지 반환해줍니다.
-    // 그럼 boolean 값을 가지고 serResult를 통해서 다시 주문 페이지로 반환해줍니다. 
-
-    fun postORrderResult(){ // 순서 : 2번
-        orderChecking = OrderResult(SharedPreference.instance!!.getPrefStringData("merchant")!!)
-        val orderCheck = networkService.postOrderResult(SharedPreference.instance!!.getPrefStringData("token")!!,
-                orderChecking)
-        orderCheck.enqueue(object  : Callback<OrderResultResponse> {
-            override fun onFailure(call: Call<OrderResultResponse>?, t: Throwable?) {
-
-            }
-
-            override fun onResponse(call: Call<OrderResultResponse>?, response: Response<OrderResultResponse>?) {
-                if(response!!.isSuccessful){
-                    var orderCheckBoolean = response!!.body()!!.result.order_result
-                    //var orderCheckBoolean = true
-
-                    val resultIntent = Intent()
-                    resultIntent.putExtra("result", orderCheckBoolean.toString())
-                    setResult(Activity.RESULT_OK, resultIntent)
-                    finish()
-
-                }
-            }
-
-        })
-
-    }
-```
-
-
-
-* 결제 페이지에 사용되는 Javascript 코드
-	* 아래의 Javascript 코드를 추가하고 코드 안에 함수를 작성하였습니다.
-	* myset 함수는 안드로이드에서 Javascript 쪽으로 정보를 전달받기 위한 함수입니다. 
-	* 이 함수를 통해서 data라는 Json 객체에 저장된 데이터에 접근하여 정보를 가져옵니다. 
-
-```Javascript
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Pay document</title>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-    <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
-<script type="text/javascript">
-var IMP = window.IMP; // 생략가능
-IMP.init('iamport'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-
-function myset(res){
-var data = JSON.parse(res);
-data;
-//onclick, onload 등 원하는 이벤트에 호출합니다
-IMP.request_pay(
-{
-
-
-    pg : 'inicis', // version 1.1.0부터 지원.
-    pay_method : 'card',
-    merchant_uid :data.merchant_uid,
-    name :data.name,
-    amount :data.amount,
-    buyer_email : 'iamport@siot.do',
-    buyer_name : '구매자이름',
-    buyer_tel : '010-1234-5678',
-    buyer_addr : '서울특별시 강남구 삼성동',
-    buyer_postcode : '123-456',
-    m_redirect_url : 'http://13.124.92.40:3000/order/order_result',
-    app_scheme : 'iamportapp'
-}
-, function(rsp) {
-    if ( rsp.success ) {
-        var msg = '결제가 완료되었습니다.';
-        msg += '고유ID : ' + rsp.imp_uid;
-        msg += '상점 거래ID : ' + rsp.merchant_uid;
-        msg += '결제 금액 : ' + rsp.paid_amount;
-        msg += '카드 승인번호 : ' + rsp.apply_num;
-    } else {
-        var msg = '결제에 실패하였습니다.';
-        msg += '에러내용 : ' + rsp.error_msg;
-    }
-
-    alert(msg);
-});
-}
-
-
-</script>
-
-</body>
-</html>
-``` -->
-

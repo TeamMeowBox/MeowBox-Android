@@ -3,8 +3,10 @@
 <img src="image/meow_box.png" width="80">
 
 반려묘를 위한 수제 필수용품과 간식을 정기 배송하는 서비스 **MeowBox** 입니다.
+**SOPT 22기 AppJam 대상 수상**
+개발 기간 : 2018년 7월 1일 ~ 7월 14일
 
-## [ 개요 ]
+## [ About ]
 
 필수 용품(장난감, 스크래쳐 등등)과 수제 간식과 같은 반려묘에게 꼭 필요한 것들을 정기 배송 해줌으로써 묘주의 구매력을 높이고 새로운 아이템을 찾아야 하는 번거로움을 해결하였고, 수제 간식 같은 건강식을 통해 반려묘의 건강을 관리 할 수 있습니다. 
 
@@ -14,7 +16,8 @@
 2. 월별 컨셉 박스
 3. 생일 박스
 
-## [ 주요 화면 및 기능 ]
+## [ Main View, Function ]
+
 
 * 메인 화면
 	* 로그인 및 회원가입을 하지 않아도 앱을 둘러보고 사용할 수 있습니다.
@@ -74,22 +77,18 @@
 ## [ Library ]
 
 1. **Layout**
-* 'com.sothree.slidinguppanel:library:3.4.0'
-* 'com.android.support:cardview-v7:27.1.1'
-* 'de.hdodenhof:circleimageview:2.2.0'
-* 'com.android.support:recyclerview-v7:27.1.1'
-* 'com.thoughtbot:expandablerecyclerview:1.3'
-* 'com.zarinpal:cardviewpager:0.5.3'
+* [slidinguppanel](https://github.com/umano/AndroidSlidingUpPanel)
+* [circleimageview](https://github.com/hdodenhof/CircleImageView)
+* [recyclerView](https://developer.android.com/guide/topics/ui/layout/recyclerview)
+* [expandablerecyclerview](https://github.com/thoughtbot/expandable-recycler-view)
 
 2. **HTTP REST API**
-* 'com.squareup.retrofit2:retrofit:2.4.0'
-* 'com.squareup.retrofit2:converter-gson:2.1.0'
+* [retrofit2](https://github.com/square/retrofit)
+* [gson](https://github.com/google/gson)
 
-3. **Material design**
-* 'com.android.support:design:27.1.1'
+3. **Animation**
+* [lottie](https://github.com/airbnb/lottie-android)
 
-4. **Animation**
-* 'com.airbnb.android:lottie:2.1.0'
 
 ## [ 워크 플로우 ]
 

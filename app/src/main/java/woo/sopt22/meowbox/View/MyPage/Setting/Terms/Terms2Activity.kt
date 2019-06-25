@@ -26,7 +26,6 @@ class Terms2Activity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-
     fun replaceFragment(fragment : Fragment){
         val fm = supportFragmentManager
         val transaction = fm.beginTransaction()

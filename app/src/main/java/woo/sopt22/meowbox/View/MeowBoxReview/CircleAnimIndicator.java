@@ -78,8 +78,6 @@ public class CircleAnimIndicator extends LinearLayout {
             imageDot[i].setTag(imageDot[i].getId(), false);
             this.addView(imageDot[i]);
         }
-
-
         //첫인덱스 선택
         selectDot(0);
     }

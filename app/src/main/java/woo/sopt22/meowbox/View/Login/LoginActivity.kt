@@ -131,7 +131,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         // login_password 입력 시 password 아이콘 색상 변경
         login_password.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if (s!!.toString().length == 0) {
+                if (s!!.toString().isEmpty()) {
                     login_password_image.isSelected = false
                 }
             }
@@ -145,11 +145,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s!!.length != null) {
-                    login_password_image.isSelected = true
-                } else if (s!!.length == null) {
-                    login_password_image.isSelected = false
-                }
+                login_password_image.isSelected = true
 
                 if (login_email.text.toString().length >= 1 && login_password.text.toString().length >= 1) {
                     loginBtn.setImageResource(R.drawable.login_btn_pink)

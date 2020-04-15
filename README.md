@@ -6,7 +6,7 @@
 **SOPT 22기 AppJam 대상 수상**
 개발 기간 : 2018년 7월 1일 ~ 7월 14일
 
-## [ About ]
+## About
 
 필수 용품(장난감, 스크래쳐 등등)과 수제 간식과 같은 반려묘에게 꼭 필요한 것들을 정기 배송 해줌으로써 묘주의 구매력을 높이고 새로운 아이템을 찾아야 하는 번거로움을 해결하였고, 수제 간식 같은 건강식을 통해 반려묘의 건강을 관리 할 수 있습니다. 
 
@@ -16,7 +16,7 @@
 2. 월별 컨셉 박스
 3. 생일 박스
 
-## [ Main View, Function ]
+## Main View, Function
 
 
 * 메인 화면
@@ -66,7 +66,7 @@
 	* WebView와 통신하기 위해 JavaScript로 함수를 구성해 통신을 진행하였습니다.
 
 
-## [ Develop Environment ]
+## Develop Environment
 
 * Language - **Kotlin**, java
 * Minimum SDK Version - 21
@@ -74,7 +74,7 @@
 * Optimization Device - **Galaxy s8+**
 
 
-## [ Library ]
+## Library
 
 1. **Layout**
 * [slidinguppanel](https://github.com/umano/AndroidSlidingUpPanel)
@@ -90,7 +90,7 @@
 * [lottie](https://github.com/airbnb/lottie-android)
 
 
-## [ 워크 플로우 ]
+## Work flow
 
 ![](/image/meow_box_workflow.png)
 
